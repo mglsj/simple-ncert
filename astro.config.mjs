@@ -11,6 +11,9 @@ export default defineConfig({
 			social: {
 				github: "https://github.com/mglsj/simple-ncert",
 			},
+			editLink: {
+				baseUrl: "https://github.com/mglsj/simple-ncert/edit/master/",
+			},
 			sidebar: [
 				{
 					label: "Class 12",

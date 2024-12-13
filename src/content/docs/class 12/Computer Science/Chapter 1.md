@@ -491,25 +491,47 @@ exception occurs or not.
 
 ## Exercise
 
-1. “Every syntax error is an exception but every exception cannot be a syntax
-   error.” Justify the statement.
-2. When are the following built-in exceptions raised? Give examples to support
-   your answers.
-   1. ImportError
-   2. IOError
-   3. NameError
-   4. ZeroDivisionError
-3. What is the use of a raise statement? Write a code to accept two numbers and
-   display the quotient. Appropriate exception should be raised if the user
-   enters the second number (denominator) as zero (0).
-4. Use assert statement in Question No. 3 to test the division expression in the
-   program.
-5. Define the following:
-   1. Exception Handling
-   2. Throwing an exception
-   3. Catching an exception
-6. Explain catching exceptions using try and except block.
-7. Consider the code given below and fill in the blanks.
+### Question 1
+
+**"Every syntax error is an exception but every exception cannot be a syntax
+error."** Justify the statement.
+
+### Question 2
+
+When are the following built-in exceptions raised? Give examples to support your
+answers.
+
+1. `ImportError`
+2. `IOError`
+3. `NameError`
+4. `ZeroDivisionError`
+
+### Question 3
+
+What is the use of a raise statement? Write a code to accept two numbers and
+display the quotient. Appropriate exception should be raised if the user enters
+the second number (denominator) as zero (0).
+
+### Question 4
+
+Use assert statement in [Question No. 3](#question-3) to test the division
+expression in the program.
+
+### Question 5
+
+Define the following:
+
+1. Exception Handling
+2. Throwing an exception
+3. Catching an exception
+
+### Question 6
+
+Explain catching exceptions using try and except block.
+
+### Question 7
+
+Consider the code given below and fill in the blanks.
 
 ```py
 print (" Learning Exceptions...")
@@ -528,10 +550,15 @@ ___________: # to be executed at the end
     print(" JOB OVER... GO GET SOME REST")
 ```
 
-8. You have learnt how to use math module in Class XI. Write a code where you
-   use the wrong number of arguments for a method (say sqrt() or pow()). Use the
-   exception handling process to catch the ValueError exception.
-9. What is the use of finally clause? Use finally clause in the problem given in
-   Question No. 7.
+### Question 8
+
+You have learnt how to use math module in Class XI. Write a code where you use
+the wrong number of arguments for a method (say `sqrt()` or `pow()`). Use the
+exception handling process to catch the `ValueError` exception.
+
+### Question 9
+
+What is the use of finally clause? Use finally clause in the problem given in
+[Question No. 7](#question-7).
 
 ---
