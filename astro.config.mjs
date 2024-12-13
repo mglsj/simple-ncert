@@ -1,14 +1,22 @@
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
+import { defineConfig } from "astro/config";
+import starlight from "@astrojs/starlight";
 
 // https://astro.build/config
 export default defineConfig({
+	site: "https://mglsj.github.io/",
+	base: "/simple-ncert/",
 	integrations: [
 		starlight({
-			title: 'My Docs',
+			title: "Simple NCERT",
 			social: {
-				github: 'https://github.com/withastro/starlight',
+				github: "https://github.com/mglsj/simple-ncert",
 			},
+			sidebar: [
+				{
+					label: "Class 12",
+					autogenerate: { directory: "class 12" },
+				},
+			],
 		}),
 	],
 });

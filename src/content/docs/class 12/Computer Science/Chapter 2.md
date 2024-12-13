@@ -79,7 +79,7 @@ it displays the remaining file contents starting from a new line. Contents in a
 text file are usually separated by whitespace, but comma (,) and tab (\t) are
 also commonly used to separate values in a text file.
 
-:::caution[Activity 2.1]
+:::danger[Activity 2.1]
 
 Create a text file using notepad and write your name and save it. Now, create a
 .docx file using Microsoft Word and write your name and save it as well. Check
@@ -903,25 +903,42 @@ end-of-file exception.
 
 ## Exercise
 
-1. Differentiate between:
-   1. text file and binary file
-   2. `readline()` and `readlines()`
-   3. `write()` and `writelines()`
-2. Write the use and syntax for the following methods:
-   1. `open()`
-   2. `read()`
-   3. `seek()`
-   4. `dump()`
-3. Write the file mode that will be used for opening the following files. Also,
-   write the Python statements to open the following files:
-   1. a text file `example.txt` in both read and write mode
-   2. a binary file `bfile.dat` in write mode
-   3. a text file `try.txt` in append and read mode
-   4. a binary file `btry.dat` in read only mode.
-4. Why is it advised to close a file after we are done with the read and write
-   operations? What will happen if we do not close it? Will some error message
-   be flashed?
-5. What is the difference between the following set of statements (a) and (b):
+### Question 1
+
+Differentiate between:
+
+1. text file and binary file
+2. `readline()` and `readlines()`
+3. `write()` and `writelines()`
+
+### Question 2
+
+Write the use and syntax for the following methods:
+
+1. `open()`
+2. `read()`
+3. `seek()`
+4. `dump()`
+
+### Question 3
+
+Write the file mode that will be used for opening the following files. Also,
+write the Python statements to open the following files:
+
+1. a text file `example.txt` in both read and write mode
+2. a binary file `bfile.dat` in write mode
+3. a text file `try.txt` in append and read mode
+4. a binary file `btry.dat` in read only mode.
+
+### Question 4
+
+Why is it advised to close a file after we are done with the read and write
+operations? What will happen if we do not close it? Will some error message be
+flashed?
+
+### Question 5
+
+What is the difference between the following set of statements (a) and (b):
 
 ```py title="a.py"
 P = open("practice.txt","r")
@@ -933,8 +950,10 @@ with open("practice.txt", "r") as P:
     x = P.read()
 ```
 
-6. Write a command(s) to write the following lines to the text file named
-   `hello.txt`. Assume that the file is opened in append mode.
+### Question 6
+
+Write a command(s) to write the following lines to the text file named
+`hello.txt`. Assume that the file is opened in append mode.
 
 ```txt
 Welcome my class
@@ -942,15 +961,26 @@ It is a fun place
 You will learn and play
 ```
 
-7. Write a Python program to open the file hello.txt used in question no 6 in
-   read mode to display its contents. What will be the difference if the file
-   was opened in write mode instead of append mode?
-8. Write a program to accept string/sentences from the user till the user enters
-   "END" to. Save the data in a text file and then display only those sentences
-   which begin with an uppercase alphabet.
-9. Define pickling in Python. Explain serialization and deserialization of
-   Python object.
-10. Write a program to enter the following records in a binary file:
+### Question 7
+
+Write a Python program to open the file hello.txt used in question no 6 in read
+mode to display its contents. What will be the difference if the file was opened
+in write mode instead of append mode?
+
+### Question 8
+
+Write a program to accept string/sentences from the user till the user enters
+"END" to. Save the data in a text file and then display only those sentences
+which begin with an uppercase alphabet.
+
+### Question 9
+
+Define pickling in Python. Explain serialization and deserialization of Python
+object.
+
+### Question 10
+
+Write a program to enter the following records in a binary file:
 
 ```txt
 Item No integer
