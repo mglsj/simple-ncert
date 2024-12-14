@@ -970,7 +970,7 @@ in write mode instead of append mode?
 ### Question 8
 
 Write a program to accept string/sentences from the user till the user enters
-"END" to. Save the data in a text file and then display only those sentences
+**"END"** to. Save the data in a text file and then display only those sentences
 which begin with an uppercase alphabet.
 
 ### Question 9

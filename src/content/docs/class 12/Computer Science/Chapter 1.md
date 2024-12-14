@@ -189,7 +189,7 @@ subsequent statements will not be executed. Hence, on passing a negative value
 (-350) as an argument, it results in `AssertionError` and displays the message
 “OOPS…. Negative Number”. The output of the code is shown in Figure 1.7.
 
-## 1.6 HandlIng ExcEptIonS
+## 1.6 Handling Exceptions
 
 Each and every exception has to be handled by the programmer to avoid the
 program from crashing abruptly. This is done by writing additional code in a

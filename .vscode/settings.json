@@ -1,5 +1,6 @@
 {
     "yaml.schemas": {
         "https://json.schemastore.org/github-workflow.json": "file:///c%3A/Users/laksh/Documents/programming/web/encert/.github/workflows/deploy.yml"
-    }
+    },
+    "workspaceKeybindings.markdownMathSyntax.enabled": true // setting can be anything you want
 }
