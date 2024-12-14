@@ -20,7 +20,7 @@ export default defineConfig({
 				github: "https://github.com/mglsj/simple-ncert",
 			},
 			editLink: {
-				baseUrl: "https://github.com/mglsj/simple-ncert/edit/master/",
+				baseUrl: "https://github.com/mglsj/simple-ncert/edit/main/",
 			},
 			sidebar: [
 				{
