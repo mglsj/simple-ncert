@@ -1,7 +1,7 @@
 ---
 title: 1. Exception Handling in Python
 ---
-import { Card, Code } from '@astrojs/starlight/components';
+import { Card, Code, LinkButton } from '@astrojs/starlight/components';
 
 <Card>
     _I like my code to be elegant and efficient. The logic should be
@@ -196,7 +196,13 @@ import program_11 from './program_1.1.py?raw';
     <Code title="Program 1-1: Use of assert statement" lang="python" code={program_11}/>
 </div>
 
-
+<LinkButton 
+    href="https://marimo.app/l/7fnw4k"
+    icon="external"
+    iconPlacement="start"
+>
+    Run Code
+</LinkButton>
 
 In the code, the assert statement checks for the value of the variable number.
 In case the number gets a negative value, `AssertionError` will be thrown, and
