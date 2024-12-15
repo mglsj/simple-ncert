@@ -1,0 +1,8 @@
+>>>
+RESTART: Path_to_file\Program2-3.py
+Enter data to save in the text file: I am interested to learn about
+Computer Science
+Do you wish to enter more data?(y/n): y
+Enter data to save in the text file: Python is easy to learn
+Do you wish to enter more data?(y/n): n
+>>>

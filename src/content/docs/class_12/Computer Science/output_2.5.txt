@@ -1,0 +1,12 @@
+>>>
+RESTART: Path_to_file\Program2-5.py
+WRITING DATA IN THE FILE
+Enter a sentence I am a student of class XII
+Do you wish to enter more data? (y/n): y
+Enter a sentence my school contact number is 4390xxx8
+Do you wish to enter more data? (y/n): n
+The byte position of file object is 67
+READING DATA FROM THE FILE
+I am a student of class XII
+my school contact number is 4390xxx8
+>>>

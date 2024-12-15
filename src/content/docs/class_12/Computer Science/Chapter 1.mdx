@@ -1,17 +1,18 @@
 ---
 title: 1. Exception Handling in Python
 ---
-import { Card, Code, LinkButton } from '@astrojs/starlight/components';
+import PythonCode from '@/components/PythonCode.astro';
+import IdCard from '@/components/IdCard.astro';
 
-<Card>
-    _I like my code to be elegant and efficient. The logic should be
+<IdCard id="quote">
+    _"I like my code to be elegant and efficient. The logic should be
     straightforward to make it hard for bugs to hide, the dependencies minimal to
     ease maintenance, error handling complete according to an articulated
     strategy, and performance close to optimal so as not to tempt people to make
-    the code messy with unprincipled optimization. Clean code does one thing well._
+    the code messy with unprincipled optimization. Clean code does one thing well."_
     <br/>
-    — Bjarne Stroustrup
-</Card>
+    — [Bjarne Stroustrup](https://en.wikipedia.org/wiki/Bjarne_Stroustrup)
+</IdCard>
 
 In this Chapter
 
@@ -83,8 +84,7 @@ reason along with the raised exception name. The programmer then has to take
 appropriate action to handle it. Some of the commonly occurring built-in
 exceptions that can be raised in Python are explained in [Table 1.1](#table-11).
 
-<div id="table-11">
-    <Card title="Table 1.1 Built-in exceptions in Python">
+<IdCard id="table-11" title="Table 1.1 Built-in exceptions in Python">
 
 | S. No | Name of the Built-in Exception | Explanation                                                                                                                                              |
 | ----- | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -101,8 +101,7 @@ exceptions that can be raised in Python are explained in [Table 1.1](#table-11).
 | 11    | `TypeError`                    | It is raised when an operator is supplied with a value of incorrect data type.                                                                           |
 | 12    | `OverFlowError`                | It is raised when the result of a calculation exceeds the maximum limit for numeric data type.                                                           |
 
-    </Card>
-</div>
+</IdCard>
 
 Figure 1.4 shows the built-in exceptions viz, `ZeroDivisionError`, `NameError`, and
 `TypeError` raised by the Python interpreter in different situations.
@@ -181,28 +180,13 @@ immediately after the assert keyword. If this expression is false, an
 `AssertionError` exception is raised which can be handled like any other
 exception. Consider the code given in [Program 1-1](#program-11).
 
-{/* ```py title="Program 1-1: Use of assert statement"
-print("use of assert statement")
-def negativecheck(number):
-    assert(number>=0), "OOPS... Negative Number"
-    print(number*number)
-print (negativecheck(100))
-print (negativecheck(-350))
-``` */}
-
 import program_11 from './program_1.1.py?raw';
 
-<div id="program-11">
-    <Code title="Program 1-1: Use of assert statement" lang="python" code={program_11}/>
-</div>
-
-<LinkButton 
-    href="https://marimo.app/l/7fnw4k"
-    icon="external"
-    iconPlacement="start"
->
-    Run Code
-</LinkButton>
+<PythonCode
+    id="program-11"
+    title="Program 1-1: Use of assert statement"
+    code={program_11}
+/>
 
 In the code, the assert statement checks for the value of the variable number.
 In case the number gets a negative value, `AssertionError` will be thrown, and
@@ -299,9 +283,11 @@ Consider the [Program 1-2](#program-12) given below:
 
 import program_12 from './program_1.2.py?raw';
 
-<div id="program-12">
-    <Code title="Program 1-2 Using try..except block" lang="python" code={program_12}/>
-</div>
+<PythonCode
+    id="program-12"
+    title="Program 1-2 Using try..except block"
+    code={program_12}
+/>
 
 In [Program 1-2](#program-12), the `ZeroDivisionError` exception is handled. If the user enters
 any non-zero value as denominator, the quotient will be displayed along with the
@@ -323,22 +309,11 @@ single try block as shown in the [Program 1-3](#program-13).
 
 import program_13 from './program_1.3.py?raw';
 
-<div id="program-13">
-    <Code title="Program 1-3 Use of multiple except clauses" lang="python" code={program_13}/>
-</div>
-
-{/* ```py title="Program 1-3 Use of multiple except clauses"
-print ("Handling multiple exceptions")
-try:
-    numerator=50
-    denom=int(input("Enter the denominator: "))
-    print (numerator/denom)
-    print ("Division performed successfully")
-except ZeroDivisionError:
-    print ("Denominator as ZERO is not allowed")
-except ValueError:
-    print ("Only INTEGERS should be entered")
-``` */}
+<PythonCode
+    id="program-13"
+    title="Program 1-3 Use of multiple except clauses"
+    code={program_13}
+/>
 
 In the code, two types of exceptions (`ZeroDivisionError` and `ValueError`) are
 handled using two `except` blocks for a single `try` block. When an exception is
@@ -353,23 +328,11 @@ output given in Figure 1.11 explains this.
 
 import program_14 from './program_1.4.py?raw';
 
-<div id="program-14">
-    <Code title="Program 1-4 Use of except without specifying an exception" lang="python" code={program_14}/>
-</div>
-
-{/* ```py title="Program 1-4 Use of except without specifying an exception"
-print ("Handling exceptions without naming them")
-try:
-    numerator=50
-    denom=int(input("Enter the denominator"))
-    quotient=(numerator/denom)
-    print ("Division performed successfully")
-except ValueError:
-    print ("Only INTEGERS should be entered")
-except:
-    print("OOPS.....SOME EXCEPTION RAISED")
-```
- */}
+<PythonCode
+    id="program-14"
+    title="Program 1-4 Use of except without specifying an exception"
+    code={program_14}
+/>
 
 If the above code is executed, and the denominator entered is 0 (zero) , the
 handler for `ZeroDivisionError` exception will be searched. Since it is not
@@ -387,25 +350,11 @@ In this case, the statements inside the `else` clause will be executed. [Program
 
 import program_15 from './program_1.5.py?raw';
 
-<div id="program-15">
-    <Code title="Program 1-5 Use of else clause" lang="python" code={program_15}/>
-</div>
-
-
-{/* ```py title="Program 1-5 Use of else clause"
-print ("Handling exception using try...except...else")
-try:
-    numerator=50
-    denom=int(input("Enter the denominator: "))
-    quotient=(numerator/denom)
-    print ("Division performed successfully")
-except ZeroDivisionError:
-    print ("Denominator as ZERO is not allowed")
-except ValueError:
-    print ("Only INTEGERS should be entered")
-else:
-    print ("The result of division operation is ", quotient)
-``` */}
+<PythonCode
+    id="program-15"
+    title="Program 1-5 Use of else clause"
+    code={program_15}
+/>
 
 ## 1.7 `finally` clause
 
@@ -418,26 +367,11 @@ after all `except` blocks and the `else` block.
 
 import program_16 from './program_1.6.py?raw';
 
-<div id="program-16">
-    <Code title="Program 1-6 Use of finally clause" lang="python" code={program_16}/>
-</div>
-
-{/* ```py title="Program 1-6 Use of finally clause"
-print ("Handling exception using try...except...else...finally")
-try:
-    numerator=50
-    denom=int(input("Enter the denominator: "))
-    quotient=(numerator/denom)
-    print ("Division performed successfully")
-except ZeroDivisionError:
-    print ("Denominator as ZERO is not allowed")
-except ValueError:
-    print ("Only INTEGERS should be entered")
-else:
-    print ("The result of division operation is ", quotient)
-finally:
-    print ("OVER AND OUT")
-``` */}
+<PythonCode
+    id="program-16"
+    title="Program 1-6 Use of finally clause"
+    code={program_16}
+/>
 
 In the above program, the message "`OVER AND OUT`" will be displayed
 irrespective of whether an exception is raised or not.
@@ -455,24 +389,11 @@ also the `finally` clause will be executed first. Consider the code given in
 
 import program_17 from './program_1.7.py?raw';
 
-<div id="program-17">
-    <Code title="Program 1-7 Recovering through finally clause" lang="python" code={program_17}/>
-</div>
-
-{/* ```py title="Program 1-7 Recovering through finally clause"
-print (" Practicing for try block")
-try:
-    numerator=50
-    denom=int(input("Enter the denominator"))
-    quotient=(numerator/denom)
-    print ("Division performed successfully")
-except ZeroDivisionError:
-    print ("Denominator as ZERO is not allowed")
-else:
-    print ("The result of division operation is ", quotient)
-finally:
-    print ("OVER AND OUT")
-``` */}
+<PythonCode
+    id="program-16"
+    title="Program 1-7 Recovering through finally clause"
+    code={program_17}
+/>
 
 While executing the above code, if we enter a non-numeric data as input, the
 `finally` block will be executed. So, the message "`OVER AND OUT`" will be

@@ -1,0 +1,13 @@
+enter person’s code to enter in queue :P1
+enter person’s code to enter in queue :P2
+person removed from the queue is :p1
+number of people in the queue is :1
+enter person’s code to enter in queue :P3
+enter person’s code to enter in queue :P4
+enter person’s code to enter in queue :P5
+Now we are going to remove remaining people from the queue
+person removed from the queue is :p2
+person removed from the queue is :p3
+person removed from the queue is :p4
+person removed from the queue is :p5
+Queue is empty

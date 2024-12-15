@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+
 // https://astro.build/config
 export default defineConfig({
 	markdown: {
@@ -12,9 +13,7 @@ export default defineConfig({
 	base: "/simple-ncert/",
 	integrations: [
 		starlight({
-			customCss: [
-				"./src/styles/global.css",
-			],
+			customCss: ["@/styles/global.css"],
 			title: "Simple NCERT",
 			social: {
 				github: "https://github.com/mglsj/simple-ncert",
@@ -25,7 +24,7 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: "Class 12",
-					autogenerate: { directory: "class 12" },
+					autogenerate: { directory: "class_12" },
 				},
 			],
 			tableOfContents: {
@@ -33,8 +32,8 @@ export default defineConfig({
 				maxHeadingLevel: 5,
 			},
 			components: {
-				Head: './src/components/Head.astro',
-			}
+				Head: "@/components/Head.astro",
+			},
 		}),
 	],
 });

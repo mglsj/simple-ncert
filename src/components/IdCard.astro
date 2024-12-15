@@ -1,0 +1,16 @@
+---
+import { Card } from "@astrojs/starlight/components";
+
+interface Props {
+	id?: string;
+	title?: string;
+}
+
+const { id, title } = Astro.props;
+---
+
+<div id={id}>
+	<Card title={title || ""}>
+		<slot />
+	</Card>
+</div>

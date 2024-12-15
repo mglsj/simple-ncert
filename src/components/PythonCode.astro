@@ -1,0 +1,30 @@
+---
+import { Code, FileTree } from "@astrojs/starlight/components";
+import IdCard from "@/components/IdCard.astro";
+import RunCode from "@/components/RunPythonCode.astro";
+
+
+interface Props {
+	id: string;
+	title: string;
+	code: string;
+	output?: string;
+}
+
+const { id, title, code, output } = Astro.props;
+---
+
+<IdCard id={id} title={title}>
+	<Code lang="python" code={code} />
+	{output && (
+        <p>Output:</p>
+        <Code lang="txt" code={output} />
+    )}
+	{Astro.slots.has('default') && (
+		<p>File Tree:</p>
+		<FileTree>
+			<slot />
+		</FileTree>
+	)}
+	<RunCode code={code} />
+</IdCard>

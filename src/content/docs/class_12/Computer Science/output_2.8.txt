@@ -1,0 +1,26 @@
+>>>
+RESTART: Path_to_file\Program2-8.py
+WORKING WITH BINARY FILES
+Enter Records of Employees
+RECORD No. 1
+Employee number : 11
+Employee Name : D N Ravi
+Basic Salary : 32600
+Allowances : 4400
+TOTAL SALARY : 37000
+Do you wish to enter more records (y/n)? y
+RECORD No. 2
+Employee number : 12
+Employee Name : Farida Ahmed
+Basic Salary : 38250
+Allowances : 5300
+TOTAL SALARY : 43550
+Do you wish to enter more records (y/n)? n
+Record entry OVER
+Size of binary file (in bytes): 216
+Now reading the employee records from the file
+Record Number : 1
+[11, 'D N Ravi', 32600, 4400, 37000]
+Record Number : 2
+[12, 'Farida Ahmed', 38250, 5300, 43550]
+>>>

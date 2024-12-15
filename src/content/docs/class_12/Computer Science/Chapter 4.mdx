@@ -1,27 +1,32 @@
 ---
 title: 4. Queue
 ---
+import { Steps } from '@astrojs/starlight/components';                                                                                                      
+   import PythonCode from '@/components/PythonCode.astro';
+import IdCard from '@/components/IdCard.astro';
 
-> “We could say we want the Web to reflect a vision of the world where
-> everything is done democratically. To do that, we get computers to talk with
-> each other in such a way as to promote that ideal.”
->
-> — Tim Berners-Lee
+<IdCard id="quote">
+  _"We could say we want the Web to reflect a vision of the world where
+  everything is done democratically. To do that, we get computers to talk with
+  each other in such a way as to promote that ideal."_
+  <br/>
+  — [Sir Tim Berners-Lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee)
+</IdCard>
 
 In this Chapter
 
-- Introduction to Queue
-- Operations on Queue
-- Implementation of Queue using Python
-- Introduction to Deque
-- Implementation of Deque using Python
+- [Introduction to Queue](#41-introduction-to-queue)
+- [Operations on Queue](#42-operations-on-queue)
+- [Implementation of Queue using Python](#43-implementation-of-queue-using-python)
+- [Introduction to Deque](#44-introduction-to-deque)
+- [Implementation of Deque using Python](#45-implementation-of-deque-using-python)
 
 ## 4.1 Introduction to Queue
 
-In the previous chapter we learned about a data structure called Stack, which
-works on Last-In- First-Out (LIFO) principle. In this chapter, we will learn
-about another data structure called Queue which works on First-In-First-Out
-(FIFO) principle. Queue is an ordered linear list of elements, having different
+In the previous chapter we learned about a data structure called **Stack**, which
+works on **Last-In-First-Out (LIFO)** principle. In this chapter, we will learn
+about another data structure called **Queue** which works on **First-In-First-Out
+(FIFO)** principle. Queue is an ordered linear list of elements, having different
 ends for adding and removing elements in it.
 
 Examples of queue in our everyday life include students standing in a queue for
@@ -30,13 +35,13 @@ morning assembly, customers forming a queue at the cash counter in a bank
 
 ### 4.1.1 First In First Out (FIFO)
 
-Queue follows the principle of First In First Out (FIFO), since the element
+Queue follows the principle of **First In First Out (FIFO)**, since the element
 entering first in the queue will be the first one to come out of it. Thus, the
 element that has been longest in the queue will be removed first. It is also
-known as a First Come First Served (FCFS) approach. Queue is an arrangement in
-which new objects/items always get added at one end, usually called the REAR,
+known as a **First Come First Served (FCFS)** approach. Queue is an arrangement in
+which new objects/items always get added at one end, usually called the **REAR**,
 and objects/items always get removed from the other end, usually called the
-FRONT of the queue. REAR is also known as TAIL and FRONT as HEAD of a queue.
+**FRONT** of the queue. **REAR** is also known as **TAIL** and **FRONT** as **HEAD** of a queue.
 
 ### 4.1.2 Applications of Queue
 
@@ -84,24 +89,23 @@ you suggest some strategy to ensure service to all as per their urgency?
 Following the FIFO approach, data structure queue supports the following
 operations:
 
-- ENQUEUE: is used to insert a new element to the queue at the rear end. We can
+- **ENQUEUE**: is used to insert a new element to the queue at the rear end. We can
   insert elements in the queue till there is space in the queue for adding more
   elements. Inserting elements beyond capacity of the queue will result in an
-  exception - known as Overflow.
-- DEQUEUE: is used to remove one element at a time from the front of the queue.
+  exception known as _**Overflow**_.
+- **DEQUEUE**: is used to remove one element at a time from the front of the queue.
   We can delete elements from a queue until it is empty, trying to delete an
-  element from an empty queue will result in exception
-- known as Underflow.
+  element from an empty queue will result in exception known as _**Underflow**_.
 
 To perform enqueue and dequeue efficiently on a queue, following operations are
 also required:
 
-- IS EMPTY : used to check whether the queue has any element or not, so as to
+- **IS EMPTY**: used to check whether the queue has any element or not, so as to
   avoid Underflow exception while performing dequeue operation.
 
-- PEEK : used to view elements at the front of the queue, without removing it
+- **PEEK**: used to view elements at the front of the queue, without removing it
   from the queue.
-- IS FULL : used to check whether any more elements can be added to the queue or
+- **IS FULL**: used to check whether any more elements can be added to the queue or
   not, to avoid Overflow exceptions while performing enqueue operation.
 
 Figure 4.3 shows the various stages of a simple queue containing alphabets. In
@@ -121,92 +125,88 @@ There are many ways in which queues can be implemented in a computer program,
 one way is using the list data type of Python. For creating a queue structure in
 the program, following functions need to be defined:
 
-- Let’s create a queue named myQueue. We can create it by assigning an empty
-  list.
+<Steps>
 
-```py
-myQueue = list()
-```
+1. Let's create a queue named `myQueue`. We can create it by assigning an empty
+   list.
+   ```py
+   myQueue = list()
+   ```
 
-- A function (enqueue) to insert a new element at the end of queue. The function
-  has two parameters
-- name of the queue and element which is to be inserted in the queue.
+2. A function (`enqueue`) to insert a new element at the end of queue. The
+   function has two parameters name of the queue and element which is to be
+   inserted in the queue.
+   ```py
+   def enqueue(myQueue, element):
+       myQueue.append(element)
+   ```
+   :::note
 
-```py
-def enqueue(myQueue, element):
-    myQueue.append(element)
-```
+   `append()` function always adds an element at the end of the list, hence Rear
+   of queue.
 
-:::note
+   :::
 
-`append()` function always adds an element at the end of the list, hence Rear of
-queue.
+3. We don't need to implement `Is Full`, as Python being a dynamic language,
+   does not ask for the creation of list having fixed size. Hence, we will never
+   encounter a situation when the queue is full.
 
-:::
+4. A function (`isEmpty`) to check, if the queue has an element or not? This can
+   be done by checking the length of the queue. The function has a parameter --
+   name of the queue and returns `True` if the queue is empty `False` otherwise.
+   ```py
+   def isEmpty(myQueue):
+       if len(myQueue)==0: 
+           return True
+       else:
+           return False
+   ```
+   :::caution[Think and Reflect]
 
-- We don’t need to implement `Is Full`, as Python being a dynamic language, does
-  not ask for the creation of list having fixed size. Hence, we will never
-  encounter a situation when the queue is full.
-- A function (`isEmpty`) to check, if the queue has an element or not? This can
-  be done by checking the length of the queue. The function has a parameter --
-  name of the queue and returns True if the queue is empty False otherwise.
+   Can you implement a queue data structure using tuple or dictionary?
 
-```py
-def isEmpty(myQueue):
-    if len(myQueue)==0: 
-        return True
-    else:
-        return False
-```
+   :::
 
-:::caution[Think and Reflect]
+5. A function (`dequeue`) to delete an element from the front of the queue. It
+   has one parameter - name of the queue and returns the deleted element. The
+   function first checks if the queue is empty or not, for successful deletion.
+   ```py
+   def dequeue(myQueue):
+       if not (isEmpty(myQueue)):
+           return myQueue.pop(0) 
+       else:
+           print(“Queue is empty”)
+   ```
+   :::note
 
-Can you implement a queue data structure using tuple or dictionary?
+   The `pop()` function with `index[0]` will delete the element from the
+   beginning of the list, hence Front of queue.
 
-:::
+   :::
 
-- A function (`dequeue`) to delete an element from the front of the queue. It
-  has one parameter - name of the queue and returns the deleted element. The
-  function first checks if the queue is empty or not, for successful deletion.
+6. A function (`size`) to get the number of elements in the queue. We can use
+   the `len()` function of Python's list to find the number of elements in the
+   queue. The function has one parameter - name of the queue and returns the
+   number of elements in the queue.
+   ```py
+   def size(myQueue):
+       return len(myQueue)
+   ```
 
-```py
-def dequeue(myQueue):
-    if not (isEmpty(myQueue)):
-        return myQueue.pop(0) 
-    else:
-        print(“Queue is empty”)
-```
+7. A function (`peek`) to simply read, but not to delete, the element at the
+   front end of the queue. For this, we can read the element at `index[0]` of
+   the queue. The function has one parameter - name of the queue and returns the
+   value of element at Front if queue is not empty, `None` otherwise.
+   ```py
+   def peek(myQueue):
+       if isEmpty(myQueue):
+           print("Queue is empty")
+           return None
+       else:
+           return myQueue[0]
+   ```
 
-:::note
-
-The `pop()` function with index[0] will delete the element from the beginning of
-the list, hence Front of queue.
-
-:::
-
-- A function (`size`) to get the number of elements in the queue. We can use the
-  len() function of Python’s list to find the number of elements in the queue.
-  The function has one parameter - name of the queue and returns the number of
-  elements in the queue.
-
-```py
-def size(myQueue):
-    return len(myQueue)
-```
-
-- A function (`peek`) to simply read, but not to delete, the element at the
-  front end of the queue. For this, we can read the element at index[0] of the
-  queue. The function has one parameter - name of the queue and returns the
-  value of element at Front if queue is not empty, None otherwise.
-
-```py
-def peek(myQueue):
-    if isEmpty(myQueue):
-        print('Queue is empty')
-        return None
-    else:
-        return myQueue[0]
-```
+</Steps>
 
 :::tip[Now you know]
 
@@ -249,80 +249,20 @@ it.
 
 Now, let us write the code for the above scenario of the bank.
 
-```py title"Program 4-1"
-myQueue = list()
+import program_41 from './program_4.1.py?raw';
+import output_41 from './output_4.1.txt?raw';
 
-# each person to be assigned a code as P1, P2, P3,...
+<PythonCode
+    id="program-41"
+    title="Program 4-1 Implementation of Queue in Python"
+    code={program_41}
+	output={output_41}
+/>
 
-element = input("enter person’s code to enter in queue :”)
-
-enqueue(myQueue,element)
-
-element = input("enter person’s code for insertion in queue :")
-
-enqueue(myQueue,element)
-
-print("person removed from queue is:", dequeue(myQueue))
-
-print(“Number of people in the queue is :”,size(myQueue))
-
-element = input("enter person’s code to enter in queue :")
-
-enqueue(myQueue,element)
-
-element = input("enter person’s code to enter in queue :")
-
-enqueue(myQueue,element)
-
-element = input("enter person’s code to enter in queue :")
-
-enqueue(myQueue,element)
-
-
-
-
-print("Now we are going to remove remaining people from the 
-queue")
-
-while not isEmpty(myQueue):
-
- print("person removed from queue is ", 
-dequeue(myQueue))
-```
-
-Output
-
-```
-enter person’s code to enter in queue :P1
-
-enter person’s code to enter in queue :P2
-
-person removed from the queue is :p1
-
-number of people in the queue is :1
-
-enter person’s code to enter in queue :P3
-
-enter person’s code to enter in queue :P4
-
-enter person’s code to enter in queue :P5
-
-Now we are going to remove remaining people from the queue
-
-person removed from the queue is :p2
-
-person removed from the queue is :p3
-
-person removed from the queue is :p4
-
-person removed from the queue is :p5
-
-Queue is empty
-```
 
 ## 4.4 Introduction to Deque
 
-Deque (pronounced as “deck”) is an arrangement in which addition and removal of
+**Deque** (pronounced as “deck”) is an arrangement in which addition and removal of
 element(s) can happen from any end, i.e. head/front or tail/rear. This data
 structure does not apply any restriction on the side from which addition/removal
 of elements should happen, so it can be used to implement stack or queue in the
@@ -391,36 +331,38 @@ it will behave as
 
 ### 4.4.2 Operations on Deque
 
-- INSERTFRONT: This operation is used to insert a new element at the front of
+- **INSERTFRONT**: This operation is used to insert a new element at the front of
   the deque.
-- INSERTREAR: This operation is the same as a normal queue, i.e. insert a new
+- **INSERTREAR**: This operation is the same as a normal queue, i.e. insert a new
   element at the rear of the deque.
-- DELETIONFRONT: This operation is the same as normal queue, i.e. to remove an
+- **DELETIONFRONT**: This operation is the same as normal queue, i.e. to remove an
   element from the front of the deque.
-- DELETIONREAR: This operation is used to remove one element at a time from the
+- **DELETIONREAR**: This operation is used to remove one element at a time from the
   rear of the deque.
 
 To perform above operations efficiently on a deque, we will need all supporting
 operations used in normal queue viz Is Empty, Peek, Size.
 
-Let’s understand how these operations work for checking whether a string is
+Let's understand how these operations work for checking whether a string is
 palindrome or not, using a deque through the following algorithm.
 
-**Algorithm 4.1**
+<IdCard id="algorithm-41" title="Algorithm 4.1">
+  <Steps>
 
-```algo
-Step 1: Start traversing string (madam) from left side, a character at a time.
+1. Start traversing string (madam) from left side, a character at a time.
 
-Step 2: Insert the character in deque as normal queue using INSERTREAR.
+2. Insert the character in deque as normal queue using `INSERTREAR`.
 
-Step 3: Repeat Step 1 and Step 2 for all characters of string (madam)
+3. REPEAT Step 1 and Step 2 for all characters of string (madam)
 
-Step 4: Remove one character from the front and one character from the rear end of deque using DELETIONFRONT and DELETIONREAR we can do it.
+4. Remove one character from the front and one character from the rear end of deque using `DELETIONFRONT` and `DELETIONREAR` we can do it.
 
-Step 5: Match these two removed characters. 
+5. Match these two removed characters. 
 
-Step 6: If they are same then repeat Step 4 and 5 till deque is empty or left with only one character,  eventually string is Palindrome else stop as string is not palindrome
-```
+6. If they are same then REPEAT Step 4 and 5 till deque is empty or left with only one character, eventually string is Palindrome else stop as string is not palindrome
+
+  </Steps>
+</IdCard>
 
 ## 4.5 Implementation of Deque Using Python
 
@@ -428,138 +370,82 @@ Like queue, deque is also an ordered linear list, hence we use list data type to
 create deque in our program. The program should have the following functions/
 statement(s) defined in it:
 
-- A statement to create deque, with name myDeque.
+<Steps>
 
-```py
-myDeque = list()
-```
+1. A statement to create deque, with name myDeque.
 
-- A function `insertFront()`, to insert an element at the front of deque having
-  two parameters - name of deque and element to be inserted. As the element is
-  to be inserted in the beginning, we will use `insert()` with index 0 for it.
+   ```py
+   myDeque = list()
+   ```
 
-```py
-def insertFront(myDeque, element):
-    myDeque.insert(0,element)
-```
+2. A function `insertFront()`, to insert an element at the front of deque having
+   two parameters - name of deque and element to be inserted. As the element is
+   to be inserted in the beginning, we will use `insert()` with index 0 for it.
 
-- A function `insertRear()`, to insert an element at the rear of deque. It’s
-  implementation will be the same as `enqueue()` of normal queue requiring two
-  parameters same as `insertFront()`.
-- A function `isEmpty()`, to check the presence of element(s) in deque will be
-  the same as the function, with the same name, defined for normal queue.
-- A function `deletionRear()`, to delete an element from the rear of the deque.
-  It only requires the name of deque and returns the deleted element. We will
-  use pop() without parameter(s) to delete the last element of the deque.
+   ```py
+   def insertFront(myDeque, element):
+       myDeque.insert(0, element)
+   ```
 
-```py
- def deletionRear(myDeque):
+3. A function `insertRear()`, to insert an element at the rear of deque. It's
+   implementation will be the same as `enqueue()` of normal queue requiring two
+   parameters same as `insertFront()`.
 
- if not (isEmpty()):
+4. A function `isEmpty()`, to check the presence of element(s) in deque will be
+   the same as the function, with the same name, defined for normal queue.
 
- return myDeque.pop() 
-# removing data from end of list
+5. A function `deletionRear()`, to delete an element from the rear of the deque.
+   It only requires the name of deque and returns the deleted element. We will
+   use `pop()` without parameter(s) to delete the last element of the deque.
 
- else :
+   ```py
+   def deletionRear(myDeque):
+       if not (isEmpty()):
+           return myDeque.pop()  # removing data from end of list
+       else:
+           print("Deque empty")
+   ```
 
- print(“Deque empty”)
-```
+6. A function `deletionFront()`, to delete an element from the front of deque.
+   It's implementation will be the same as `dequeue()` of normal queue.
 
-- A function `deletionFront()`, to delete an element from the front of deque.
-  It’s implementation will be the same as `dequeue()` of normal queue.
-- A function `getFront()`, to read value from the front of deque, without
-  removing it from the queue when the queue is not empty. It accepts the name of
-  deque as parameter and returns a copy of value.
+7. A function `getFront()`, to read value from the front of deque, without
+   removing it from the queue when the queue is not empty. It accepts the name
+   of deque as parameter and returns a copy of value.
 
-```py
- def getFront(mydeque):
+   ```py
+   def getFront(mydeque):
+       if not (isEmpty()):
+           return mydeque[0]
+       else:
+           print("Queue empty")
+   ```
 
- if not (isEmpty()):
+8. A function `getRear()`, to read value from the rear of the deque, without
+   removing it from the deque. The function accepts deque as argument and
+   returns a copy of value, when the queue is not empty.
 
- return mydeque[0] 
+   ```py
+   def getRear(mydeque):
+       if not (isEmpty()):
+           return mydeque[len(mydeque) - 1]
+       else:
+           print("Deque empty")
+   ```
 
- else :
+</Steps>
 
- print(“ Queue empty”)
-```
+Let us write a `main()`, function to invoke various Deque functions :
 
-- A function getRear(), to read value from the rear of the deque, without
-  removing it from the deque. The function accepts deque as argument and returns
-  a copy of value, when the queue is not empty.
+import program_42 from './program_4.2.py?raw';
+import output_42 from './output_4.2.txt?raw';
 
-```py
-def getRear(mydeque):
-    if not (isempty()):
-        return mydeque[len(mydeque)-1]
-    else :
-        print("Deque empty")
-```
-
-Let us write a main(), function to invoke various Deque functions :
-
-```py title"Program 4-2 Implementation of Deque in Python"
-def insertFront(myDeque,element):
-    myDeque.insert(0,element)
-
-def getFront(myDeque):
-    if not (isEmpty(myDeque)):
-        return myDeque[0]
-    else:
-        print("Queue underflow")
-    else:
-        return myDeque.pop(0)
-
-def main():
-    dQu = list()
-
-    choice = int(input('enter 1 to use as normal queue 2 otherwise : '))
-
-    if choice == 1:
-        element = input("data for insertion at rear ")
-        insertRear(dQu,element)
-        element = getFront(dQu)
-        print("data at the beginning of queue is ", element)
-        element = input("data for insertion at front ")
-        insertRear(dQu,element)
-        print('data removed from front of queue is ', deletionFront(dQu))
-        print('data removed from front of queue is ', deletionFront(dQu))
-```
-
-Output
-
-```
-enter 1 to use as normal queue 2 otherwise : 1
-
-data for insertion at rear 23
-
-data at the beginning of queue is 23
-
-data for insertion at rear 45
-
-data removed from front of queue is 23
-
-data removed from front of queue is 45
-
-Queue underflow
-
-data removed from front of queue is None
-
-enter 1 to use as normal queue 2 otherwise : 2
-
-data for insertion at front 34
-
-data at the end of queue is 34
-
-data for insertion at front 56
-
-data removed from rear of queue is 34
-
-data removed from rear of queue is 56
-
-Queue underflow
-
-data removed from rear of queue is None
-```
+<PythonCode
+    id="program-42"
+    title="Program 4-2 Implementation of Deque in Python"
+    code={program_42}
+	output={output_42}
+/>
 
 ---
 
@@ -570,7 +456,7 @@ data removed from rear of queue is None
 - Queue is an ordered linear data structure, following FIFO strategy.
 - Front and Rear are used to indicate beginning and end of queue.
 - In Python, the use of predefined methods takes care of Front and Rear.
-- Insertion in a queue happens at the rear end. Notes Deletion happens at the
+- Insertion in a queue happens at the rear end. Deletion happens at the
   front.
 - Insertion operation is known as enqueue and deletion operation is known as
   dequeue.
@@ -597,12 +483,12 @@ Fill in the blank
 3. Insertion operation in a queue is called ______________ and deletion
    operation in a queue is called ____________________.
 4. Deletion of elements is performed from _______________ end of the queue.
-5. Elements ‘A’,’S’,’D’ and ‘F’ are present in the queue, and they are deleted
+5. Elements 'A','S','D' and 'F' are present in the queue, and they are deleted
    one at a time, ________________________ is the sequence of element received.
 6. _______________ is a data structure where elements can be added or removed at
    either end, but not in the middle.
-7. A deque contains ‘z’,’x’,’c’,’v’ and ‘b’ . Elements received after deletion
-   are ‘z’,’b’,’v’,’x’ and ‘c’. ________ __________________________ is the
+7. A deque contains 'z','x','c','v' and 'b' . Elements received after deletion
+   are 'z','b','v','x' and 'c'. ________ __________________________ is the
    sequence of deletion operation performed on deque.
 
 ### Question 2
@@ -626,7 +512,7 @@ How does FIFO describe queue?
 ### Question 4
 
 Write a menu driven python program using queue, to implement movement of
-shuttlecock in it’s box.
+shuttlecock in it's box.
 
 ### Question 5
 
@@ -669,6 +555,8 @@ deletionRear()
 ### Question 8
 
 Write a python program to check whether the given string is palindrome or not,
-using deque. (Hint : refer to algorithm 4.1)
+using deque. 
+
+(**Hint**: refer to [algorithm 4.1](#algorithm-41))
 
 ---
