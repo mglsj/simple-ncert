@@ -3,17 +3,32 @@ interface Props {
 	id?: string;
 	title: string;
 	invertable?: boolean;
+	reverseInvert?: boolean;
 }
 
 const {
 	id = Math.random().toString(16).slice(2),
 	title,
 	invertable = false,
+	reverseInvert = false,
 } = Astro.props;
 
 const raw_style = `
 <style>
 	:root[data-theme="dark"] {
+		figure#${id} {
+			img {
+				filter: invert(1);
+				-webkit-filter: invert(1);
+			}
+		}
+	}
+</style>
+`;
+
+const reverse_raw_style = `
+<style>
+	:root[data-theme="light"] {
 		figure#${id} {
 			img {
 				filter: invert(1);
@@ -36,4 +51,5 @@ const raw_style = `
 	</center>
 </figure>
 
-{invertable && <Fragment set:html={raw_style} />}
+{invertable && !reverseInvert && <Fragment set:html={raw_style} />}
+{invertable && reverseInvert && <Fragment set:html={reverse_raw_style} />}
