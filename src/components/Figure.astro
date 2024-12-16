@@ -6,8 +6,10 @@ interface Props {
 	reverseInvert?: boolean;
 }
 
+import crypto from "node:crypto";
+
 const {
-	id = Math.random().toString(16).slice(2),
+	id = `figure-${crypto.randomUUID({ disableEntropyCache: true })}`,
 	title,
 	invertable = false,
 	reverseInvert = false,
