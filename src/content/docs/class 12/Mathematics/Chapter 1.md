@@ -1,5 +1,6 @@
 ---
 title: 1. Relations and Functions
+prev: false
 ---
 
 > There is no permanent place in the world for ugly mathematics ... . It may be

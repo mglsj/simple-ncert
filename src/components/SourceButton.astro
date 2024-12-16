@@ -1,0 +1,19 @@
+---
+import { LinkButton } from "@astrojs/starlight/components";
+
+interface Props {
+	source: string;
+}
+
+const { source } = Astro.props;
+---
+
+<LinkButton
+	href={`https://ncert.nic.in/textbook/pdf/${source}.pdf`}
+	target="_blank"
+	icon="seti:pdf"
+	variant="secondary"
+	iconPlacement="start"
+>
+	Source
+</LinkButton>

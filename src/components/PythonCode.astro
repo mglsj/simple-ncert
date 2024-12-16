@@ -18,7 +18,7 @@ const { id, title, code, output } = Astro.props;
 	<Code lang="python" code={code} />
 	{output && (
         <p>Output:</p>
-        <Code lang="txt" code={output} />
+        <Code lang="ansi" code={output} />
     )}
 	{Astro.slots.has('default') && (
 		<p>File Tree:</p>
