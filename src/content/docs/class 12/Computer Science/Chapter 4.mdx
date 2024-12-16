@@ -2,7 +2,9 @@
 title: 4. Queue
 ---
 import { Steps } from '@astrojs/starlight/components';                                                                                                      
- import PythonCode from '@/components/PythonCode.astro';
+
+import Figure from '@/components/Figure.astro';
+import PythonCode from '@/components/PythonCode.astro';
 import IdCard from '@/components/IdCard.astro';
 import SourceButton from '@/components/SourceButton.astro';
 
@@ -34,7 +36,19 @@ ends for adding and removing elements in it.
 
 Examples of queue in our everyday life include students standing in a queue for
 morning assembly, customers forming a queue at the cash counter in a bank
-(Figure 4.1), vehicles queued at fuel pumps (Figure 4.2), etc.
+([Figure 4.1](#figure-41)), vehicles queued at fuel pumps ([Figure 4.2](#figure-42)), etc.
+
+<Figure id="figure-41" title="Figure 4.1: Queue of people at a bank">
+  <centre>
+    ![Queue of people at a bank](./fig_4.1.webp)
+  </centre>
+</Figure>
+
+<Figure id="figure-42" title="Figure 4.2: Queue of cars in a petrol pump">
+  <centre>
+    ![Queue of cars in a petrol pump](./fig_4.2.webp)
+  </centre>
+</Figure>
 
 ### 4.1.1 First In First Out (FIFO)
 
@@ -53,13 +67,13 @@ and objects/items always get removed from the other end, usually called the
 - If a train ticket is in the waiting list (such as W/L1), it means the ticket
   is in a queue of tickets waiting to get confirmed, as per the increasing order
   of waiting numbers. If a confirmed ticket is cancelled, the W/ L1 numbered
-  ticket is removed from the FRONT of the waiting queue and confirmed.
+  ticket is removed from the **FRONT **of the waiting queue and confirmed.
 - Sometimes on calling a customer service centre, the Interactive Voice Response
   System (IVRS) tells us to wait till a support person is available. Here the
   call is put into a queue of customers waiting to be serviced.
 - Imagine there is a single-lane one-way road, then the vehicle that entered
   first will exit first, following the concept of queue. Likewise, vehicles in a
-  highway toll tax booth are served following the principle of FIFO.
+  highway toll tax booth are served following the principle of **FIFO**.
 
 **(B) Following are some examples of application of queue in computer science:**
 
@@ -71,12 +85,12 @@ and objects/items always get removed from the other end, usually called the
   jobs, seeking to use the processor. But we know that a processor can handle
   only one task at a time. Therefore, in a multitasking operating system, jobs
   are lined up (queued) and then given access to the processor according to some
-  order. The simplest way is to give access to the processor on a FIFO basis,
+  order. The simplest way is to give access to the processor on a **FIFO** basis,
   that is according to the order in which the jobs arrive with a request for the
   processor.
 - When we send print commands from multiple files from the same computer or from
   different computers using a shared printer. The OS puts these print requests
-  in a queue and sends them to the printer one by one on a FIFO basis.
+  in a queue and sends them to the printer one by one on a **FIFO** basis.
 
 :::caution[Think and Reflect]
 
@@ -111,8 +125,14 @@ also required:
 - **IS FULL**: used to check whether any more elements can be added to the queue or
   not, to avoid Overflow exceptions while performing enqueue operation.
 
-Figure 4.3 shows the various stages of a simple queue containing alphabets. In
+[Figure 4.3](#figure-43) shows the various stages of a simple queue containing alphabets. In
 the figure, Front of the queue is on the left and Rear on the right.
+
+<Figure id="figure-43" title="Figure 4.3: Various Stages of Stack Operations">
+  <centre>
+    ![Various Stages of Stack Operations](./fig_4.3.webp)
+  </centre>
+</Figure>
 
 :::tip[Now you know]
 
@@ -272,6 +292,12 @@ of elements should happen, so it can be used to implement stack or queue in the
 program. It is also known as Double ended queue, because it permits insertion,
 deletion operations from any end.
 
+<Figure id="figure-44" title="Figure 4.4: Basic deque structure displaying head and tail to implement stack or queue.">
+  <centre>
+    ![Basic deque structure displaying head and tail to implement stack or queue.](./fig_4.4.webp)
+  </centre>
+</Figure>
+
 ### 4.4.1 Applications of Deque
 
 - At a train ticket purchasing counter, a normal queue of people is formed for
@@ -357,13 +383,25 @@ palindrome or not, using a deque through the following algorithm.
 2. Insert the character in deque as normal queue using `INSERTREAR`.
 
 3. REPEAT Step 1 and Step 2 for all characters of string (madam)
+   <Figure id="figure-45" title="Figure 4.5: Status of Deque after 4th iteration">
+    <centre>
+    ![Status of Deque after 4th iteration](./fig_4.5.webp)
+    </centre>
+   </Figure>
 
-4. Remove one character from the front and one character from the rear end of deque using `DELETIONFRONT` and `DELETIONREAR` we can do it.
+4. Remove one character from the front and one character from the rear end of
+   deque using `DELETIONFRONT` and `DELETIONREAR` we can do it.
+   <Figure id="figure-46" title="Figure 4.6: Status of Deque after removing one character from both the ends.">
+    <centre>
+    ![Status of Deque after removing one character from both the ends.](./fig_4.6.webp)
+    </centre>
+   </Figure>
+5. Match these two removed characters.
 
-5. Match these two removed characters. 
-
-6. If they are same then REPEAT Step 4 and 5 till deque is empty or left with only one character, eventually string is Palindrome else stop as string is not palindrome
-
+6. If they are same then REPEAT Step 4 and 5 till deque is empty or left with
+   only one character, eventually string is Palindrome else stop as string is
+   not palindrome
+   
   </Steps>
 </IdCard>
 

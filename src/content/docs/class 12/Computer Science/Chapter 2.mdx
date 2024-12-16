@@ -3,6 +3,7 @@ title: 2. File Handling in Python
 ---
 import PythonCode from '@/components/PythonCode.astro';
 import IdCard from '@/components/IdCard.astro';
+import Figure from '@/components/Figure.astro';
 import SourceButton from '@/components/SourceButton.astro';
 
 <SourceButton source="lecs102"/>
@@ -74,9 +75,9 @@ sequence of bytes consisting of 0s and 1s. In ASCII, UNICODE or any other
 encoding scheme, the value of each character of the text file is stored as
 bytes. So, while opening a text file, the text editor translates each ASCII
 value and shows us the equivalent character that is readable by the human being.
-For example, the ASCII value 65 (binary equivalent 1000001) will be displayed by
-a text editor as the letter 'A' since the number 65 in ASCII character set
-represents 'A'.
+For example, the ASCII value $65$ (binary equivalent $1000001$) will be displayed by
+a text editor as the letter _'A'_ since the number $65$ in ASCII character set
+represents _'A'_.
 
 Each line of a text file is terminated by a special character, called the End of
 Line (`EOL`). For example, the default `EOL` character in Python is the newline
@@ -257,7 +258,7 @@ For a newly created file, is there any difference between `write()` and
 
 :::
 
-### 2.4.1 The write() method
+### 2.4.1 The `write()` method
 
 `write()` method takes a string as an argument and writes it to the text file.
 It returns the number of characters being written on single execution of the
@@ -307,7 +308,7 @@ and when required
 
 :::
 
-### 2.4.2 The writelines() method
+### 2.4.2 The `writelines()` method
 
 This method is used to write multiple strings to a file. We need to pass an
 iterable object like lists, tuple, etc. containing strings to the `writelines()`
@@ -323,15 +324,15 @@ of characters written in the file. The following code explains the use of
 ```
 
 On opening `myfile.txt`, using notepad, its content will appear as shown in
-Figure 2.1.
+[Figure 2.1](#figure-21).
 
-```txt title="myfile.txt"
+<Figure id="figure-21" title="Figure 2.1: Contents of myfile.txt">
+```txt title="mtfile.txt"
 Hello everyone
 Writing multiline strings
 This is the third line
 ```
-
-_Figure 2.1: Contents of myfile.txt_
+</Figure>
 
 :::danger[Activity 2.3]
 
