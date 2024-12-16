@@ -21,12 +21,6 @@ export default defineConfig({
 			editLink: {
 				baseUrl: "https://github.com/mglsj/simple-ncert/edit/main/",
 			},
-			sidebar: [
-				{
-					label: "Class 12",
-					autogenerate: { directory: "class-12" },
-				},
-			],
 			tableOfContents: {
 				minHeadingLevel: 2,
 				maxHeadingLevel: 5,
