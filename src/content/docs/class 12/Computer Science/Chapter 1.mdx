@@ -3,6 +3,7 @@ title: 1. Exception Handling in Python
 ---
 import PythonCode from '@/components/PythonCode.astro';
 import IdCard from '@/components/IdCard.astro';
+import Figure from '@/components/Figure.astro';
 
 <IdCard id="quote">
     _"I like my code to be elegant and efficient. The logic should be
@@ -43,10 +44,11 @@ programming language while writing a program. These errors are also known as
 parsing errors. On encountering a syntax error, the interpreter does not execute
 the program unless we rectify the errors, save and rerun the program. When a
 syntax error is encountered while working in shell mode, Python displays the
-name of the error and a small description about the error as shown in Figure
-1.1.
+name of the error and a small description about the error as shown in [Figure
+1.1](#figure-11).
 
-```ansi
+<Figure id="figure-11" title="Figure 1.1: A syntax error displayed in Python shell mode">
+```ansi title="Python 3.13 (64-bit)"
 Python 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
 [35m[1m>>> [0mmarks=10
@@ -59,13 +61,29 @@ Type "help", "copyright", "credits" or "license" for more information.
 [35m[1mSyntaxError[0m: [35mMissing parentheses in call to 'print'. Did you mean print(...)?[0m
 [35m[1m>>> [0m
 ```
+</Figure>
 
 So, a syntax error is reported by the Python interpreter giving a brief
 explanation about the error and a suggestion to rectify it.
 
 Similarly, when a syntax error is encountered while running a program in script
-mode as shown in Figure 1.2, a dialog box specifying the name of the error
-(Figure 1.3) and a small description about the error is displayed.
+mode as shown in [Figure 1.2](#figure-12), a dialog box specifying the name of the error
+([Figure 1.3](#figure-13)) and a small description about the error is displayed.
+
+<Figure id="figure-12" title="Figure 1.2: An error in the script ">
+```python title="Error in the script"
+def test():
+    marks=20
+    if marks>10:
+      print "GOOD SCORE"
+```
+</Figure>
+
+<Figure id="figure-13" title="Figure 1.3: Error dialog box">
+  <center>
+    ![Error dialog box](./fig_1.3.png)
+  </center>
+</Figure>
 
 ## 1.3 Exceptions
 
@@ -81,7 +99,7 @@ not terminate abnormally. Therefore, while designing a program, a programmer may
 anticipate such erroneous situations that may arise during its execution and can
 address them by including appropriate code to handle that exception.
 
-It is to be noted that SyntaxError shown at Figures 1.1 and 1.3 is also an
+It is to be noted that `SyntaxError` shown at [Figures 1.1](#figure-11) and [1.3](#figure-13) is also an
 exception. But, all other exceptions are generated when a program is
 syntactically correct.
 
@@ -117,8 +135,34 @@ exceptions that can be raised in Python are explained in [Table 1.1](#table-11).
 
 </IdCard>
 
-Figure 1.4 shows the built-in exceptions viz, `ZeroDivisionError`, `NameError`, and
+[Figure 1.4](#figure-14) shows the built-in exceptions viz, `ZeroDivisionError`, `NameError`, and
 `TypeError` raised by the Python interpreter in different situations.
+
+<Figure id="figure-14" title="Figure 1.4: Example of built-in exceptions">
+```ansi title="Python 3.13 (64-bit)"
+Python 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+[35m[1m>>> [0mprint (50/0)
+Traceback (most recent call last):
+  File [35m"<python-input-0>"[0m, line [35m1[0m, in [35m<module>[0m
+    print ([31m50[0m[31m[1m/[0m[31m0[0m)
+           [31m~~[0m[31m[1m^[0m[31m~[0m
+[35m[1mZeroDivisionError[0m: [35mdivision by zero[0m
+[35m[1m>>> [0mprint (var+40)
+Traceback (most recent call last):
+  File [35m"<python-input-1>"[0m, line [35m1[0m, in [35m<module>[0m
+    print ([31m[1mvar[0m+40)
+           [31m[1m^^^[0m
+[35m[1mNameError[0m: [35mname 'var' is not defined. Did you mean: 'vars'?[0m
+[35m[1m>>> [0m10+'5'
+Traceback (most recent call last):
+  File [35m"<python-input-2>"[0m, line [35m1[0m, in [35m<module>[0m
+    [31m10[0m[31m[1m+[0m[31m'5'[0m
+    [31m~~[0m[31m[1m^[0m[31m~~~[0m
+[35m[1mTypeError[0m: [35munsupported operand type(s) for +: 'int' and 'str'[0m
+[35m[1m>>> [0m
+```
+</Figure>
 
 A programmer can also create custom exceptions to suit one's requirements. These
 are called user-defined exceptions. We will learn how to handle exceptions in
@@ -145,12 +189,25 @@ raise exception-name[(optional argument)]
 ```
 
 The argument is generally a string that is displayed when the exception is
-raised. For example, when an exception is raised as shown in Figure 1.5, the
+raised. For example, when an exception is raised as shown in [Figure 1.5](#figure-15), the
 message `"OOPS : An Exception has occurred"` is displayed along with a brief
 description of the error.
 
+<Figure id="figure-15" title="Figure 1.5: Use of the raise statement to throw an exception">
+```ansi title="Python 3.13 (64-bit)"
+Python 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+[35m[1m>>> [0mraise Exception ("OOPS!! An Exception has occured")
+Traceback (most recent call last):
+  File [35m"<python-input-0>"[0m, line [35m1[0m, in [35m<module>[0m
+    raise Exception ("OOPS!! An Exception has occured")
+[35m[1mException[0m: [35mOOPS!! An Exception has occured[0m
+[35m[1m>>> [0m
+```
+</Figure>
+
 The error detected may be a built-in exception or may be a user-defined one.
-Consider the example given in Figure 1.6 that uses the `raise` statement to
+Consider the example given in [Figure 1.6](#figure-16) that uses the `raise` statement to
 raise a built-in exception called `IndexError`.
 
 :::note
@@ -160,21 +217,40 @@ error message explicitly.
 
 :::
 
-In Figure 1.6, since the value of variable length is greater than the length of
+In [Figure 1.6](#figure-16), since the value of variable length is greater than the length of
 the list numbers, an `IndexError` exception will be raised. The statement
 following the raise statement will not be executed. So the message `"NO
 EXECUTION"` will not be displayed in this case.
 
-As we can see in Figure 1.6, in addition to the error message displayed, Python
+As we can see in [Figure 1.6](#figure-16), in addition to the error message displayed, Python
 also displays a stack Traceback. This is a structured block of text that
 contains information about the sequence of function calls that have been made in
-the branch of execution of code in which the exception was raised. In Figure
-1.6, the error has been encountered in the most recently called function that
+the branch of execution of code in which the exception was raised. In [Figure
+1.6](#figure-16), the error has been encountered in the most recently called function that
 has been executed.
+
+<Figure id="figure-16" title="Figure 1.6: Use of raise statement with built-in exception">
+```ansi title="Python 3.13 (64-bit)"
+Python 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+[35m[1m>>> [0mnumber=[40,50,60,70]
+[35m[1m>>> [0mlength=10
+[35m[1m>>> [0mif length>len(number):
+[35m[1m... [0m    raise IndexError
+[35m[1m... [0m    print ("NO EXECUTION")
+[35m[1m... [0melse:
+[35m[1m... [0m    print(length)
+[35m[1m... [0m    
+Traceback (most recent call last):
+  File [35m"<python-input-2>"[0m, line [35m2[0m, in [35m<module>[0m
+    raise IndexError
+[35m[1mIndexError[0m
+```
+</Figure>
 
 :::note
 
-We will learn about Stack in Chapter 3.
+We will learn about Stack in [Chapter 3](../chapter-3).
 
 :::
 
@@ -202,11 +278,33 @@ import program_11 from './program_1.1.py?raw';
     code={program_11}
 />
 
+<Figure id="figure-17" title="Figure 1.7: Output of Program 1-1">
+```ansi title="Python 3.13 (64-bit)" {5-16}
+Python 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+[35m[1m>>> [0m
+= RESTART: ...\class 12\Computer Science\program_1.1.py
+use of assert statement
+10000
+None
+Traceback (most recent call last):
+  File [35m"...\class 12\Computer Science\program_1.1.py"[0m, 
+    line [35m10[0m, in [35m<module>[0m
+    print([31mnegativecheck[0m[31m[1m(-350)[0m)
+          [31m~~~~~~~~~~~~~[0m[31m[1m^^^^^^[0m
+  File [35m"...\class 12\Computer Science\program_1.1.py"[0m,
+    line [35m5[0m, in [35mnegativecheck[0m
+    assert [31m[1mnumber >= 0[0m, "OOPS... Negative Number"
+           [31m[1m^^^^^^^^^^^[0m
+[35m[1m>>> [0m
+```
+</Figure>
+
 In the code, the assert statement checks for the value of the variable number.
 In case the number gets a negative value, `AssertionError` will be thrown, and
 subsequent statements will not be executed. Hence, on passing a negative value
 (`-350`) as an argument, it results in `AssertionError` and displays the message
-`"OOPS…. Negative Number"`. The output of the code is shown in Figure 1.7.
+`"OOPS…. Negative Number"`. The output of the code is shown in [Figure 1.7](#figure-17).
 
 ## 1.6 Handling Exceptions
 
@@ -269,7 +367,29 @@ known as catching the exception. If the runtime system is not able to find an
 appropriate exception after searching all the methods in the call stack, then
 the program execution stops.
 
-The flowchart in Figure 1.8 describes the exception handling process.
+The flowchart in [Figure 1.8](#figure-18) describes the exception handling process.
+
+<Figure id="figure-18" title="Figure 1.8: Steps of handling exception">
+  <center>
+    ![Steps of handling exception](./fig_1.8.png)
+  </center>
+</Figure>
+
+{/* ```mermaid
+flowchart TD
+    A["An error encountered in a method"] --> B["Create exception object"]
+    B --> C["Exception is raised"]
+    C --> D["Runtime system searches for exception handler in the current method"]
+
+    D -->|Found| E["Executes the code<br>(Catching an Exception)"]
+    D -->|Not Found| F["Searches for methods in call stack in reverse sequence<br>(Forwarding the exception)"]
+
+    F -->|Found| E
+    F -->|Not Found| G["Program terminates"]
+
+    class A,B,C,D,E,F,G process;
+    class ThrowingException external
+``` */}
 
 ### 1.6.3 Catching Exceptions
 
@@ -305,17 +425,44 @@ import program_12 from './program_1.2.py?raw';
 
 In [Program 1-2](#program-12), the `ZeroDivisionError` exception is handled. If the user enters
 any non-zero value as denominator, the quotient will be displayed along with the
-message "`Division performed successfully`", as shown in Figure 1.10. The except
+message "`Division performed successfully`", as shown in [Figure 1.10](#figure-110). The except
 clause will be skipped in this case. So, the next statement after the
 try..except block is executed and the message "`OUTSIDE try.. except block`" is
 displayed.
 
-However, if the user enters the value of denom as zero (0), then the execution
+However, if the user enters the value of `denom` as zero (0), then the execution
 of the `try` block will stop. The control will shift to the `except` block and
 the message "`Denominator as Zero…. not allowed`" will be displayed, as shown in
-Figure 1.11. Thereafter, the statement following the try..except block is
+[Figure 1.11](#figure-111). Thereafter, the statement following the try..except block is
 executed and the message "`OUTSIDE try..except block`" is displayed in this case
 also.
+
+<Figure id="figure-19" title="Figure 1.9: Output without an error">
+```ansi title="Python 3.13 (64-bit)" {5-8}
+Python 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+[35m[1m>>> [0m
+= RESTART: ...\class 12\Computer Science\program_1.2.py
+Practicing for try block
+Enter the denominator12
+4.166666666666667
+Division performed successfully
+[35m[1m>>> [0m
+```
+</Figure>
+
+<Figure id="figure-110" title="Figure 1.10: Output with exception raised">
+```ansi title="Python 3.13 (64-bit)" {5-7}
+Python 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+[35m[1m>>> [0m
+= RESTART: ...\class 12\Computer Science\program_1.2.py
+Practicing for try block
+Enter the denominator0
+Denominator as ZERO.... not allowed
+[35m[1m>>> [0m
+```
+</Figure>
 
 Sometimes, a single piece of code might be suspected to have more than one type
 of error. For handling such situations, we can have multiple except blocks for a
@@ -338,7 +485,7 @@ However, if an exception is raised for which no handler is created by the
 programmer, then such an exception can be handled by adding an except clause
 without specifying any exception. This except clause should be added as the last
 clause of the `try..except` block. The [Program 1-4](#program-14) given below along with the
-output given in Figure 1.11 explains this.
+output given in [Figure 1.11](#figure-111) explains this.
 
 import program_14 from './program_1.4.py?raw';
 
@@ -352,6 +499,20 @@ If the above code is executed, and the denominator entered is 0 (zero) , the
 handler for `ZeroDivisionError` exception will be searched. Since it is not
 present, the last except clause (without any specified exception) will be
 executed , so the message "`OOPS.....SOME EXCEPTION RAISED`" will be displayed.
+
+<Figure id="figure-111" title="Figure 1.11: Output of Program 1-4">
+```ansi title="Python 3.13 (64-bit)" {5-8}
+Python 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+[35m[1m>>> [0m
+= RESTART: ...\class 12\Computer Science\program_1.4.py
+Handling exceptions without naming them
+Enter the denominator0
+OOPS.....SOME EXCEPTION RAISED
+unrecognized DEC mode: 9001
+[35m[1m>>> [0m
+```
+</Figure>
 
 ### 1.6.4 `try...except...else` clause
 
@@ -369,6 +530,20 @@ import program_15 from './program_1.5.py?raw';
     title="Program 1-5 Use of else clause"
     code={program_15}
 />
+
+<Figure id="figure-112" title="Figure 1.12: Output of Program 1-5">
+```ansi title="Python 3.13 (64-bit)" {5-8}
+Python 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+[35m[1m>>> [0m
+= RESTART: ...\class 12\Computer Science\program_1.5.py
+Handling exception using try...except...else
+Enter the denominator: 5
+Division performed successfully
+The result of division operation is  10.0
+[35m[1m>>> [0m
+```
+</Figure>
 
 ## 1.7 `finally` clause
 
@@ -412,7 +587,24 @@ import program_17 from './program_1.7.py?raw';
 While executing the above code, if we enter a non-numeric data as input, the
 `finally` block will be executed. So, the message "`OVER AND OUT`" will be
 displayed. Thereafter the exception for which handler is not present will be
-re-raised. The output of [Program 1-7](#program-17) is shown in Figure 1.13.
+re-raised. The output of [Program 1-7](#program-17) is shown in [Figure 1.13](#figure-113).
+
+<Figure id="figure-113" title="Figure 1.12: Output of Program 1-7">
+```ansi title="Python 3.13 (64-bit)" {5-11}
+Python 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+[35m[1m>>> [0m
+= RESTART: ...\class 12\Computer Science\program_1.7.py
+ Practicing for try block
+Enter the denominatorvar
+OVER AND OUT
+Traceback (most recent call last):
+  File [35m"...\class 12\Computer Science\program_1.7.py"[0m, line [35m4[0m, 
+    in [35m<module>[0m denom = int(input("Enter the denominator"))
+[35m[1mValueError[0m: [35minvalid literal for int() with base 10: 'var'[0m
+[35m[1m>>> [0m
+```
+</Figure>
 
 After execution of `finally` block, Python transfers the control to a previously
 entered `try` or to the next higher level default exception handler. In such a
