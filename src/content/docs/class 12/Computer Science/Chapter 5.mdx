@@ -1,10 +1,12 @@
 ---
 title: 5. Sorting
 ---
-import { Steps } from '@astrojs/starlight/components';                                                                                                                                           
+import { Steps } from '@astrojs/starlight/components';                                                                                                                                             
+
 import PythonCode from '@/components/PythonCode.astro';
 import IdCard from '@/components/IdCard.astro';
 import SourceButton from '@/components/SourceButton.astro';
+import Figure from '@/components/Figure.astro';
 
 <SourceButton source="lecs105"/>
 
@@ -77,15 +79,25 @@ the element at index 0 is compared with the element at index 1. If the first
 element is bigger, it is swapped with the second. Else, no change is done. Next,
 the element at index 1 is compared with the element at index 2. This continues
 till the end of the list is reached. After the first pass, the largest element
-will reach the end of the list as shown in Figure 5.1 with green colour.
+will reach the end of the list as shown in [Figure 5.1](#figure-51) with green colour.
+
+<Figure 
+  id="figure-51" 
+  title="Figure 5.1: Comparisons done in different passes of Bubble sort"
+  invertable={true}
+>
+  <centre>
+    ![Comparisons done in different passes of Bubble sort](./fig_5.1.webp)
+  </centre>
+</Figure>
 
 :::caution[Think and Reflect]
 
-In Figure 5.1, we can see that the list got sorted in the 4th pass itself. Still
+In [Figure 5.1](#figure-51), we can see that the list got sorted in the 4th pass itself. Still
 the bubble sort technique made a redundant 5th pass which did not result in any
 swap. If there is no swapping in any pass, it means the list is already sorted,
 hence the sorting operation needs to be stopped. Can you think of making any
-improvement in the Algorithm 5.1 so that it stops when the list becomes sorted?
+improvement in the [Algorithm 5.1](#algorithm-51) so that it stops when the list becomes sorted?
 
 :::
 
@@ -156,7 +168,17 @@ in ascending order. In this Figure, elements being compared are shown using
 arrows and the smaller element in a comparison is highlighted with blue colour.
 The sorted elements are highlighted —
 
-The following is an algorithm for the selection sort that takes numList as a
+<Figure 
+  id="figure-52" 
+  title="Figure 5.2: Comparisons done in different passes of Selection sort"
+  invertable={true}
+>
+  <centre>
+    ![Comparisons done in different passes of Selection sort](./fig_5.2.webp)
+  </centre>
+</Figure>
+
+The following is an algorithm for the selection sort that takes `numList` as a
 list consisting of n elements, and sorts the list in ascending order:
 
 Algorithm 5.2 shows the steps followed for the selection sort that takes `numList`
@@ -241,6 +263,16 @@ which elements are arranged in ascending order.
 
 Figure 5.3 demonstrates the working of the insertion sort to arrange a list in
 ascending order.
+
+<Figure 
+  id="figure-53" 
+  title="Figure 5.3: Comparisons done in different passes of Insertion sort"
+  invertable={true}
+>
+  <centre>
+    ![Comparisons done in different passes of Insertion sort](./fig_5.3.webp)
+  </centre>
+</Figure>
 
 Let us consider that numList is a list consisting of n elements. [Algorithm 5.3](#algorithm-53)
 sorts the list numList in ascending order using insertion sort technique.

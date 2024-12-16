@@ -2,9 +2,27 @@
 interface Props {
 	id?: string;
 	title: string;
+	invertable?: boolean;
 }
 
-const { id, title } = Astro.props;
+const {
+	id = Math.random().toString(16).slice(2),
+	title,
+	invertable = false,
+} = Astro.props;
+
+const raw_style = `
+<style>
+	:root[data-theme="dark"] {
+		figure#${id} {
+			img {
+				filter: invert(1);
+				-webkit-filter: invert(1);
+			}
+		}
+	}
+</style>
+`;
 ---
 
 <figure id={id}>
@@ -17,3 +35,5 @@ const { id, title } = Astro.props;
 		</figcaption>
 	</center>
 </figure>
+
+{invertable && <Fragment set:html={raw_style} />}
