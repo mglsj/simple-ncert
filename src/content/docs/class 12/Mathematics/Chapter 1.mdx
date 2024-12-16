@@ -2,27 +2,40 @@
 title: 1. Relations and Functions
 prev: false
 ---
+import IdCard from '@/components/IdCard.astro';
+import Figure from '@/components/Figure.astro';
+import SourceButton from '@/components/SourceButton.astro';
 
-> There is no permanent place in the world for ugly mathematics ... . It may be
-> very hard to define mathematical beauty but that is just as true of beauty of
-> any kind, we may not know quite what we mean by a beautiful poem, but that
-> does not prevent us from recognising one when we read it.
+<SourceButton source=""/>
+
+<IdCard id="quote">
+  _There is no permanent place in the world for ugly mathematics ... . It may be
+  very hard to define mathematical beauty but that is just as true of beauty of
+  any kind, we may not know quite what we mean by a beautiful poem, but that
+  does not prevent us from recognising one when we read it._
+  <br/>
+  — G. H. HARDY
+</IdCard>
+
+<Figure
+  id="portrait"
+  invertable={false}
 >
-> — G. H. HARDY
+    <center>
+      ![Lejeune Dirichlet](lejeune_dirichlet.jpg)
+    </center>
+    <center>
+      **[Lejeune Dirichlet](https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet)**\
+      **(1805-1859)**
+    </center>
+</Figure>
 
-<center>
-
-![Lejeune Dirichlet](lejeune_dirichlet.jpg)
-**[Lejeune Dirichlet](https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet)\
-(1805-1859)**
-
-</center>
 
 ## 1.1 Introduction
 
 Recall that the notion of relations and functions, domain, co-domain and range
 have been introduced in Class XI along with different types of specific real
-valued functions and their graphs. The concept of the term ‘relation’ in
+valued functions and their graphs. The concept of the term 'relation' in
 mathematics has been drawn from the meaning of relation in English language,
 according to which two objects or quantities are related if there is a
 recognisable connection or link between the two objects or quantities. Let $A$
@@ -58,10 +71,16 @@ $R' = \{(a, b) : | a - b | ≥ 0\}$ is the whole set $A × A$, as all pairs
 $(a, b)$ in $A × A$ satisfy $| a - b | ≥ 0$. These two extreme examples lead us
 to the following definitions.
 
+<IdCard>
+
 #### Definition 1
 
 A relation $R$ in a set $A$ is called _**empty relation**_, if no element of $A$
 is related to any element of $A$, i.e., $R = φ ⊂ A × A$.
+
+</IdCard>
+
+<IdCard>
 
 #### Definition 2
 
@@ -70,6 +89,8 @@ of $A$ is related to every element of $A$, i.e., $R = A × A$.
 
 Both the empty relation and the universal relation are some times called
 _**trivial relations**_.
+
+</IdCard>
 
 #### Example 1
 
@@ -107,6 +128,8 @@ Mathematics, is an _**equivalence relation**_. To study equivalence relation, we
 first consider three types of relations, namely reflexive, symmetric and
 transitive.
 
+<IdCard>
+
 #### Definition 3
 
 A relation $R$ in a set $A$ is called
@@ -117,10 +140,16 @@ A relation $R$ in a set $A$ is called
 - (iii) _**transitive**_, if $(a_1, a_2) ∈ R$ and $(a_2, a_3) ∈ R$ implies that
   $(a_1, a_3) ∈ R$, for all $a_1, a_2, a_2 ∈ A$.
 
+</IdCard>
+
+<IdCard>
+
 #### Definition 4
 
 A relation $R$ in a set $A$ is said to be an _**equivalence relation**_ if $R$
 is reflexive, symmetric and transitive.
+
+</IdCard>
 
 #### Example 2
 
@@ -151,7 +180,13 @@ symmetric but neither reflexive nor transitive.
 <details>
 <summary>Solution</summary>
 
-![Fig 1.1](fig_1.1.webp)
+<Figure
+  id="figure-11"
+  title="Fig 1.1"
+  invertable={true}
+>
+  ![Fig 1.1](fig_1.1.webp)
+</Figure>
 
 $R$ is not reflexive, as a line $L_1$ can not be perpendicular to itself, i.e.,
 $(L_1, L_1) ∉ R$. $R$ is symmetric as $(L_1, L_2) ∈ R$
@@ -342,7 +377,7 @@ to any element of $\{2, 4\}$.
 
 ### 1.1 Question 9
 
-Show that each of the relation R in the set A = {x ∈ Z : 0 ≤ x ≤ 12}, given by
+Show that each of the relation 4 in the set $A = \{x ∈ Z : 0 ≤ x ≤ 12\}$, given by
 
 - (i) $R = \{(a, b) : |a - b|$ is a multiple of $4\}$
 - (ii) $R = \{(a, b) : a = b\}$ is an equivalence relation. Find the set of all
@@ -427,12 +462,14 @@ like to study different types of functions.
 Consider the functions $f_1$, $f_2$, $f_3$ and $f_4$ given by the following
 diagrams.
 
-In Fig 1.2, we observe that the images of distinct elements of $X_1$ under the
+In [Fig 1.2](#figure-12), we observe that the images of distinct elements of $X_1$ under the
 function $f_1$ are distinct, but the image of two distinct elements $1$ and $2$
 of $X_1$ under $f_2$ is same, namely $b$. Further, there are some elements like
 $e$ and $f$ in $X_2$ which are not images of any element of $X1$ under $f_1$,
 while all elements of $X3$ are images of some elements of $X1$ under $f_3$. The
 above observations lead to the following definitions:
+
+<IdCard>
 
 #### Definition 5
 
@@ -441,8 +478,12 @@ the images of distinct elements of $X$ under $f$ are distinct, i.e., for every
 $x_1, x_2 ∈ X, f(x_1) = f(x_2)$ implies $x_1 = x_2$. Otherwise, $f$ is called
 _**many-one**_.
 
-The function $f_1$ and $f_4$ in Fig 1.2 (i) and (iv) are one-one and the
-function $f_2$ and $f3_3$ in Fig 1.2 (ii) and (iii) are many-one.
+</IdCard>
+
+The function $f_1$ and $f_4$ in [Fig 1.2](#figure-12) (i) and (iv) are one-one and the
+function $f_2$ and $f3_3$ in [Fig 1.2](#figure-12) (ii) and (iii) are many-one.
+
+<IdCard>
 
 #### Definition 6
 
@@ -450,13 +491,19 @@ A function $f : X → Y$ is said to be _**onto**_ (or _**surjective**_), if ever
 element of $Y$ is the image of some element of $X$ under f, i.e., for every
 $y ∈ Y$, there exists an element $x$ in $X$ such that $f(x) = y$.
 
-![Fig 1.2](fig_1.2.webp)
+</IdCard>
 
-The function $f_3$ and $f_4$ in Fig 1.2 (iii), (iv) are onto and the function
-$f_1$ in Fig 1.2 (i) is not onto as elements $e$, $f$ in $X_2$ are not the image
+The function $f_3$ and $f_4$ in [Fig 1.2](#figure-12) (iii), (iv) are onto and the function
+$f_1$ in [Fig 1.2](#figure-12) (i) is not onto as elements $e$, $f$ in $X_2$ are not the image
 of any element in $X1$ under $f_1$.
 
-Fig 1.2 (i) to (iv)
+<Figure
+  id="figure-12"
+  title="Fig 1.2 (i) to (iv)"
+  invertable={true}
+>
+  ![Fig 1.2](fig_1.2.webp)
+</Figure>
 
 :::note[Remark]
 
@@ -464,16 +511,20 @@ $f : X → Y$ is onto if and only if Range of $f = Y$.
 
 :::
 
+<IdCard>
+
 #### Definition 7
 
-A function $f : X → Y$ is said to be one-one and onto (or bijective), if $f$ is
+A function $f : X → Y$ is said to be one-one and onto (or _**bijective**_), if $f$ is
 both one-one and onto.
 
-The function $f_4$ in Fig 1.2 (iv) is one-one and onto.
+</IdCard>
+
+The function $f_4$ in [Fig 1.2](#figure-12) (iv) is one-one and onto.
 
 #### Example 7
 
-Let A be the set of all $50$ students of Class X in a school. Let $f : A → ℕ$ be
+Let $A$ be the set of all $50$ students of Class X in a school. Let $f : A → ℕ$ be
 function defined by $f(x) =$ roll number of the student $x$. Show that $f$ is
 one-one but not onto.
 
@@ -509,7 +560,13 @@ Prove that the function $f : ℝ → ℝ$, given by $f(x) = 2x$, is one-one and 
 <details>
 <summary>Solution</summary>
 
-![Fig 1.3](fig_1.3.webp)
+<Figure
+  id="figure-13"
+  title="Fig 1.3"
+  invertable={true}
+>
+  ![Fig 1.3](fig_1.3.webp)
+</Figure>
 
 $f$ is one-one, as $f(x_1) = f(x_2) ⇒ 2x_1 = 2x_2 ⇒ x_1 = x_2$. Also, given any
 real number $y$ in $ℝ$, there exists $\frac{y}{2}$ in $ℝ$ such that
@@ -539,7 +596,13 @@ nor onto.
 <details>
 <summary>Solution</summary>
 
-![Fig 1.4](fig_1.4.webp)
+<Figure
+  id="figure-14"
+  title="Fig 1.4"
+  invertable={true}
+>
+  ![Fig 1.4](fig_1.4.webp)
+</Figure>
 
 Since $f(-1) = 1 = f (1)$, $f$ is not one-one. Also, the element $-2$ in the
 co-domain $ℝ$ is not image of any element $x$ in the domain $ℝ$ (Why?).
@@ -713,13 +776,23 @@ Let $f : ℝ → ℝ$ be defined as $f(x) = 3x$. Choose the correct answer.
 
 ## 1.4 Composition of Functions and Invertible Function
 
+<IdCard>
+
 #### Definition 8
 
 Let $f : A → B$ and $g : B → C$ be two functions. Then the composition of $f$
 and $g$, denoted by $gof$, is defined as the function $gof : A → C$ given by
 $gof(x) = g(f(x))$, $∀ x ∈ A$.
 
-![Fig 1.5](fig_1.5.webp)
+</IdCard>
+
+<Figure
+  id="figure-15"
+  title="Fig 1.5"
+  invertable={true}
+>
+  ![Fig 1.5](fig_1.5.webp)
+</Figure>
 
 #### Example 15
 
@@ -767,11 +840,15 @@ $x = 0$. Hence, $gof ≠ fog$.
 
 </details>
 
+<IdCard>
+
 #### Definition 9
 
 A function $f : X → Y$ is defined to be _**invertible**_, if there exists a
 function $g : Y → X$ such that $gof = I_X$ and $fog = I_Y$. The function $g$ is
 called the inverse of $f$ and is denoted by $f^{-1}$.
+
+</IdCard>
 
 Thus, if $f$ is invertible, then $f$ must be one-one and onto and conversely, if
 $f$ is one-one and onto, then $f$ must be invertible. This fact significantly
@@ -1124,11 +1201,13 @@ The main features of this chapter are as follows:
 
 ---
 
+<IdCard>
+
 ## Historical Note
 
 The concept of function has evolved over a long period of time starting from
 [R. Descartes](https://en.wikipedia.org/wiki/Ren%C3%A9_Descartes) (1596-1650),
-who used the word ‘function’ in his manuscript
+who used the word 'function' in his manuscript
 [_**“Geometrie”**_](https://en.wikipedia.org/wiki/La_G%C3%A9om%C3%A9trie) in
 1637 to mean some positive integral power $x^n$ of a variable $x$ while studying
 geometrical curves like _hyperbola_, _parabola_ and _ellipse_.
@@ -1140,12 +1219,12 @@ successive use of algebraic operations or by any other operations. Later
 [G. W. Leibnitz](https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz)
 (1646-1716) in his manuscript
 [_**“Methodus tangentium inversa, seu de functionibus”**_](https://docslib.org/doc/12906580/the-inverse-method-of-tangents-a-dialogue-between-leibniz-and)
-written in 1673 used the word ‘function’ to mean a quantity varying from point
+written in 1673 used the word 'function' to mean a quantity varying from point
 to point on a curve such as the coordinates of a point on the curve, the slope
 of the curve, the tangent and the normal to the curve at a point. However, in
-his manuscript _**“Historia”**_ (1714), Leibnitz used the word ‘function’ to
+his manuscript _**“Historia”**_ (1714), Leibnitz used the word 'function' to
 mean quantities that depend on a variable. He was the first to use the phrase
-‘function of $x$’.
+'function of $x$'.
 [John Bernoulli](https://en.wikipedia.org/wiki/Johann_Bernoulli) (1667-1748)
 used the notation $φx$ for the first time in 1718 to indicate a function of x.
 But the general adoption of symbols like $f$, $F$, $φ$, $ψ$ ... to represent
@@ -1165,5 +1244,7 @@ theoretic definition of function presently used, was given after set theory was
 developed by [Georg Cantor](https://en.wikipedia.org/wiki/Georg_Cantor)
 (1845-1918). The set theoretic definition of function known to us presently is
 simply an abstraction of the definition given by Dirichlet in a rigorous manner.
+
+</IdCard>
 
 ---
