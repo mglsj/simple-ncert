@@ -24,7 +24,7 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: "Class 12",
-					autogenerate: { directory: "class_12" },
+					autogenerate: { directory: "class-12" },
 				},
 			],
 			tableOfContents: {
