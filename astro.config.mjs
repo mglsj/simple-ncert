@@ -47,6 +47,22 @@ export default defineConfig({
 					lang: "hi",
 				},
 			},
+			sidebar: [
+				{
+					label: "Class 12",
+					translations: {
+						hi: "कक्षा 12",
+					},
+					autogenerate: { directory: "class 12" },
+				},
+				{
+					label: "Class 11",
+					translations: {
+						hi: "कक्षा 11",
+					},
+					autogenerate: { directory: "class 11" },
+				},
+			],
 		}),
 	],
 });
