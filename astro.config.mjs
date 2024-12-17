@@ -1,13 +1,14 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import remarkMath from "remark-math";
+import remarkCustomHeaderId from "remark-custom-header-id";
 import rehypeKatex from "rehype-katex";
 import rehypeMermaid from "rehype-mermaid";
 
 // https://astro.build/config
 export default defineConfig({
 	markdown: {
-		remarkPlugins: [remarkMath],
+		remarkPlugins: [remarkMath, remarkCustomHeaderId],
 		rehypePlugins: [
 			rehypeKatex,
 			[rehypeMermaid, { strategy: "img-svg", dark: true }],
@@ -18,7 +19,10 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			customCss: ["@/styles/global.css"],
-			title: "Simple NCERT",
+			title: {
+				en: "Simple NCERT",
+				hi: "सरल एनसीईआरटी",
+			},
 			social: {
 				github: "https://github.com/mglsj/simple-ncert",
 			},
@@ -31,6 +35,17 @@ export default defineConfig({
 			},
 			components: {
 				Head: "@/components/Head.astro",
+			},
+			defaultLocale: "root",
+			locales: {
+				root: {
+					label: "English",
+					lang: "en",
+				},
+				hi: {
+					label: "हिन्दी",
+					lang: "hi",
+				},
 			},
 		}),
 	],
