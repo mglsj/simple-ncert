@@ -18,7 +18,13 @@ export default defineConfig({
 	base: "/simple-ncert/",
 	integrations: [
 		starlight({
-			customCss: ["@/styles/global.css"],
+			customCss: [
+				"@fontsource-variable/noto-serif-devanagari",
+				"@fontsource-variable/noto-sans-devanagari",
+				"@fontsource-variable/noto-sans",
+				"@fontsource-variable/noto-serif",
+				"@/styles/global.css",
+			],
 			title: {
 				en: "Simple NCERT",
 				hi: "सरल एनसीईआरटी",

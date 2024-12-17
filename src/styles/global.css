@@ -1,3 +1,16 @@
-/* .MathJax svg {
-	display: inline !important;
-} */
+:root {
+	--sl-font: "Noto Sans Devanagari Variable", "Noto Sans Variable", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--sl-font);
+}
+
+main {
+	font-family: "Noto Serif Devanagari Variable", "Noto Serif Variable", serif !important;
+}
