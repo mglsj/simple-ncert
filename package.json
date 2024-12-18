@@ -22,7 +22,8 @@
 		"rehype-mermaid": "^3.0.0",
 		"remark-custom-header-id": "^1.0.0",
 		"remark-math": "^6.0.0",
-		"sharp": "^0.33.5"
+		"sharp": "^0.33.5",
+		"starlight-sidebar-topics-dropdown": "^0.2.2"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4"

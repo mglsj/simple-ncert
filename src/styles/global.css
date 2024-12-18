@@ -1,5 +1,6 @@
 :root {
 	--sl-font: "Noto Sans Devanagari Variable", "Noto Sans Variable", sans-serif;
+	/* --sl-color-text: var(--sl-color-gray-1); */
 }
 
 h1,
@@ -12,5 +13,10 @@ h6 {
 }
 
 main {
-	font-family: "Noto Serif Devanagari Variable", "Noto Serif Variable", serif !important;
+	letter-spacing: 0.02rem;
+	line-height: 1.6;
+}
+
+p:not(.title) {
+	text-align: justify;
 }

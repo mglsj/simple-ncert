@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import starlightSidebarTopicsDropdown from "starlight-sidebar-topics-dropdown";
 import remarkMath from "remark-math";
 import remarkCustomHeaderId from "remark-custom-header-id";
 import rehypeKatex from "rehype-katex";
@@ -53,21 +54,64 @@ export default defineConfig({
 					lang: "hi",
 				},
 			},
-			sidebar: [
-				{
-					label: "Class 12",
-					translations: {
-						hi: "कक्षा 12",
+			// sidebar: [
+			// 	{
+			// 		label: "Class 12",
+			// 		translations: {
+			// 			hi: "कक्षा 12",
+			// 		},
+			// 		autogenerate: { directory: "class 12" },
+			// 	},
+			// 	{
+			// 		label: "Class 11",
+			// 		translations: {
+			// 			hi: "कक्षा 11",
+			// 		},
+			// 		autogenerate: { directory: "class 11" },
+			// 	},
+			// ],
+			plugins: [
+				starlightSidebarTopicsDropdown([
+					{
+						label: {
+							en: "Class 12",
+							hi: "कक्षा 12",
+						},
+						icon: "open-book",
+						link: "/class-12/",
+						items: [
+							{
+								label: "Computer Science",
+								autogenerate: { directory: "class 12/Computer Science" },
+							},
+							{
+								label: "Mathematics",
+								translations: {
+									hi: "गणित",
+								},
+								autogenerate: { directory: "class 12/Mathematics" },
+							},
+							{
+								label: "English",
+								autogenerate: { directory: "class 12/English" },
+							},
+						],
 					},
-					autogenerate: { directory: "class 12" },
-				},
-				{
-					label: "Class 11",
-					translations: {
-						hi: "कक्षा 11",
+					{
+						label: {
+							en: "Class 11",
+							hi: "कक्षा 11",
+						},
+						link: "/class-11/",
+						icon: "open-book",
+						items: [
+							{
+								label: "Computer Science",
+								autogenerate: { directory: "class 11/Computer Science" },
+							},
+						],
 					},
-					autogenerate: { directory: "class 11" },
-				},
+				]),
 			],
 		}),
 	],
