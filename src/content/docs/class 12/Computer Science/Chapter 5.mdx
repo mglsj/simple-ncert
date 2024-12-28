@@ -1,31 +1,26 @@
 ---
 title: 5. Sorting
+source: lecs105
 ---
-import { Steps } from '@astrojs/starlight/components';                                                                                                                                             
 
-import PythonCode from '@/components/PythonCode.astro';
-import IdCard from '@/components/IdCard.astro';
-import SourceButton from '@/components/SourceButton.astro';
-import Figure from '@/components/Figure.astro';
+import { Steps } from '@astrojs/starlight/components';                                                                                        
+      
+import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary } from "@/components/markdown";
 
-<SourceButton source="lecs105"/>
-
-<IdCard>
-  _"Every one of today's smartphones has thousands of times more processing power
-  than the computers that guided astronauts to the moon."_
-  <br/>
-  — [Peter Thiel](https://en.wikipedia.org/wiki/Peter_Thiel)
-</IdCard>
+<Quote author="Peter Thiel" href="https://en.wikipedia.org/wiki/Peter_Thiel">
+"Every one of today's smartphones has thousands of times more processing power
+than the computers that guided astronauts to the moon."
+</Quote>
 
 In this Chapter
 
-- [Introduction](#51-introduction)
-- [Bubble Sort](#52-bubble-sort)
-- [Selection Sort](#53-selection-sort)
-- [Insertion Sort](#54-insertion-sort)
-- [Time Complexity of Algorithms](#55-time-complexity-of-algorithms)
+- [Introduction](#section-5.1)
+- [Bubble Sort](#section-5.2)
+- [Selection Sort](#section-5.3)
+- [Insertion Sort](#section-5.4)
+- [Time Complexity of Algorithms](#section-5.5)
 
-## 5.1 Introduction
+## 5.1 Introduction ||section-5.1||
 
 **Sorting** is the process of ordering or arranging a given collection of elements
 in some particular order. We can sort a collection of numbers in ascending
@@ -46,8 +41,8 @@ needed to find an element from an unsorted list. Sorting is an important area of
 study in computer science, and many sorting algorithms have been developed and
 analysed from their performance point of view. In this chapter, we will learn
 about three sorting methods and implement them using Python. Bubble sort is
-discussed in [section 5.2](#52-bubble-sort), followed by discussion on selection sort and insertion
-sort in [section 5.3](#53-selection-sort) and [5.4](#54-insertion-sort), respectively
+discussed in [section 5.2](#section-5.2), followed by discussion on selection sort and insertion
+sort in [section 5.3](#section-5.3) and [5.4](#section-5.4), respectively
 
 :::caution[Think and Reflect]
 
@@ -56,7 +51,7 @@ computers?
 
 :::
 
-## 5.2 Bubble Sort
+## 5.2 Bubble Sort ||section-5.2||
 
 The first sorting technique we are going to understand is **Bubble sort**. It sorts
 a given list of elements by repeatedly comparing the adjacent elements and
@@ -71,7 +66,7 @@ being 'bubbled up'. Hence the name Bubble sort. This sorted element is not
 considered in the remaining passes and thus the list of elements gets reduced in
 successive passes.
 
-Figure 5.1 demonstrates the working of the bubble sort method to arrange a list
+[Figure 5.1](#figure-5.1) demonstrates the working of the bubble sort method to arrange a list
 in ascending order. Let us consider a list having 6 elements as `numList = [8, 7,
 13, 1, -9, 4]`. In the figure, elements being compared are highlighted with blue
 colour and sorted elements are highlighted with green colour. To begin sorting,
@@ -79,72 +74,69 @@ the element at index 0 is compared with the element at index 1. If the first
 element is bigger, it is swapped with the second. Else, no change is done. Next,
 the element at index 1 is compared with the element at index 2. This continues
 till the end of the list is reached. After the first pass, the largest element
-will reach the end of the list as shown in [Figure 5.1](#figure-51) with green colour.
+will reach the end of the list as shown in [Figure 5.1](#figure-5.1) with green colour.
 
 <Figure 
-  id="figure-51" 
+  id="5.1" 
   title="Figure 5.1: Comparisons done in different passes of Bubble sort"
   invertable={true}
 >
   <centre>
-    ![Comparisons done in different passes of Bubble sort](./fig_5.1.webp)
+    ![Comparisons done in different passes of Bubble sort](./res/fig_5.1.webp)
   </centre>
 </Figure>
 
 :::caution[Think and Reflect]
 
-In [Figure 5.1](#figure-51), we can see that the list got sorted in the 4th pass itself. Still
+In [Figure 5.1](#figure-5.1), we can see that the list got sorted in the 4th pass itself. Still
 the bubble sort technique made a redundant 5th pass which did not result in any
 swap. If there is no swapping in any pass, it means the list is already sorted,
 hence the sorting operation needs to be stopped. Can you think of making any
-improvement in the [Algorithm 5.1](#algorithm-51) so that it stops when the list becomes sorted?
+improvement in the [Algorithm 5.1](#algorithm-5.1) so that it stops when the list becomes sorted?
 
 :::
 
-[Algorithm 5.1](#algorithm-51) shows the steps followed for the bubble sort that takes `numList` as
+[Algorithm 5.1](#algorithm-5.1) shows the steps followed for the bubble sort that takes `numList` as
 a list of `n` elements, and sorts the list in ascending order:
 
-<IdCard id="algorithm-51" title="Algorithm 5.1: Bubble Sort">
-`BUBBLE_SORT(numList, n)`
+<Algorithm id="5.1" title="Algorithm 5.1: Bubble Sort">
+  `BUBBLE_SORT(numList, n)`
   <Steps>
+    1. SET `i = 0` 
 
-1. SET `i = 0` 
+    2. WHILE `i < n` REPEAT STEPS 3 to 8
 
-2. WHILE `i < n` REPEAT STEPS 3 to 8
+    3. SET `j = 0`
 
-3. SET `j = 0`
+    4. WHILE `j < n - i - 1`, REPEAT STEPS 5 to 7
 
-4. WHILE `j < n - i - 1`, REPEAT STEPS 5 to 7
+    5. IF `numList[j] > numList[j+1]` THEN
 
-5. IF `numList[j] > numList[j+1]` THEN
+    6. `swap(numList[j], numList[j+1])`
 
-6. `swap(numList[j], numList[j+1])`
+    7. SET `j = j + 1`
 
-7. SET `j = j + 1`
-
-8. SET `i = i + 1`
-
+    8. SET `i = i + 1`
   </Steps>
-</IdCard>
+</Algorithm>
 
-:::danger[Activity 5.1]
-
-[Algorithm 5.1](#algorithm-51) sorts a list in ascending order. Write a bubble sort algorithm to
+<Activity title="Activity 5.1">
+[Algorithm 5.1](#algorithm-5.1) sorts a list in ascending order. Write a bubble sort algorithm to
 sort a list in descending order?
+</Activity>
 
-:::
+import program_5_1 from './res/program_5.1.py?raw';
+import output_5_1 from './res/output_5.1.txt?raw';
 
-import program_51 from './program_5.1.py?raw';
-import output_51 from './output_5.1.txt?raw';
-
-<PythonCode
-    id="program-51"
-    title="Program 5-1 Implementation of bubble sort using Python."
-    code={program_51}
-	output={output_51}
+<Program
+  id="5.1"
+  title="Program 5-1 Implementation of bubble sort using Python."
+  code={program_5_1}
+  output={output_5_1}
 />
 
-## 5.3 Selection Sort
+
+## 5.3 Selection Sort ||section-5.3||
 
 **Selection sort** is another sorting technique. To sort a list having $n$ elements,
 the selection sort makes $(n-1)$ number of passes through the list. The list is
@@ -163,57 +155,55 @@ sorted list, and the unsorted list reduces by one element for the third pass.
 
 This process continues until $n-1$ smallest elements are found and moved to their
 respective places. The nth element is the last, and it is already in place.
-Figure 5.2 demonstrates the working of selection sort method to arrange a list
+[Figure 5.2](#figure-5.3) demonstrates the working of selection sort method to arrange a list
 in ascending order. In this Figure, elements being compared are shown using
 arrows and the smaller element in a comparison is highlighted with blue colour.
 The sorted elements are highlighted —
 
 <Figure 
-  id="figure-52" 
+  id="5.2" 
   title="Figure 5.2: Comparisons done in different passes of Selection sort"
   invertable={true}
 >
   <centre>
-    ![Comparisons done in different passes of Selection sort](./fig_5.2.webp)
+    ![Comparisons done in different passes of Selection sort](./res/fig_5.2.webp)
   </centre>
 </Figure>
 
 The following is an algorithm for the selection sort that takes `numList` as a
 list consisting of n elements, and sorts the list in ascending order:
 
-Algorithm 5.2 shows the steps followed for the selection sort that takes `numList`
+[Algorithm 5.2](#algorithm-5.2) shows the steps followed for the selection sort that takes `numList`
 as a list of `n` elements, and sorts the list in ascending order:
 
-<IdCard id="algorithm-52" title="Algorithm 5.2: Selection Sort">
-`SELECTION_SORT(numList, n)`
+<Algorithm id="5.2" title="Algorithm 5.2: Selection Sort">
+  `SELECTION_SORT(numList, n)`
   <Steps>
+    1. SET `i = 0`
 
-1. SET `i = 0`
+    2. WHILE `i < n` REPEAT STEPS 3 to 11
 
-2. WHILE `i < n` REPEAT STEPS 3 to 11
+    3. SET `min = i`, `flag = 0`
 
-3. SET `min = i`, `flag = 0`
+    4. SET `j= i + 1`
 
-4. SET `j= i + 1`
+    5. WHILE `j < n`, REPEAT STEPS 6 to 10
 
-5. WHILE `j < n`, REPEAT STEPS 6 to 10
+    6. IF `numList[j] < numList[min]` THEN
 
-6. IF `numList[j] < numList[min]` THEN
+    7. `min = j`
 
-7. `min = j`
+    8. `flag = 1`
 
-8. `flag = 1`
+    9. IF `flag = 1` THEN
 
-9. IF `flag = 1` THEN
+    10. `swap(numList[i], numList[min])`
 
-10. `swap(numList[i], numList[min])`
-
-11. SET `i = i + 1`
-
+    11. SET `i = i + 1`
   </Steps>
-</IdCard>
+</Algorithm>
 
-:::danger[Activity 5.2]
+<Activity title="Activity 5.2">
 
 Consider a list of 10 elements:
 
@@ -222,19 +212,19 @@ Consider a list of 10 elements:
 Determine the partially sorted list after four complete passes of selection
 sort.
 
-:::
+</Activity>
 
-import program_52 from './program_5.2.py?raw';
-import output_52 from './output_5.2.txt?raw';
+import program_5_2 from './res/program_5.2.py?raw';
+import output_5_2 from './res/output_5.2.txt?raw';
 
-<PythonCode
-    id="program-52"
+<Program
+    id="5.2"
     title="Program 5-2 Implementation of selection sort using Python."
-    code={program_52}
-	output={output_52}
+    code={program_5_2}
+  output={output_5_2}
 />
 
-## 5.4 Insertion Sort
+## 5.4 Insertion Sort ||section-5.4||
 
 **Insertion sort** is another sorting algorithm that can arrange elements of a given
 list in ascending or descending order. Like Selection sort, in Insertion sort
@@ -261,48 +251,46 @@ This continues till all the elements in unsorted lists are inserted at
 appropriate positions in the sorted list. This results into a sorted list in
 which elements are arranged in ascending order.
 
-Figure 5.3 demonstrates the working of the insertion sort to arrange a list in
+[Figure 5.3](#figure-5.3) demonstrates the working of the insertion sort to arrange a list in
 ascending order.
 
 <Figure 
-  id="figure-53" 
+  id="5.3" 
   title="Figure 5.3: Comparisons done in different passes of Insertion sort"
   invertable={true}
 >
   <centre>
-    ![Comparisons done in different passes of Insertion sort](./fig_5.3.webp)
+    ![Comparisons done in different passes of Insertion sort](./res/fig_5.3.webp)
   </centre>
 </Figure>
 
-Let us consider that numList is a list consisting of n elements. [Algorithm 5.3](#algorithm-53)
+Let us consider that numList is a list consisting of n elements. [Algorithm 5.3](#algorithm-5.3)
 sorts the list numList in ascending order using insertion sort technique.
 
-<IdCard id="algorithm-53" title="Algorithm 5.3: Insertion Sort">
-`INSERTION_SORT(numList, n)`
+<Algorithm id="5.3" title="Algorithm 5.3: Insertion Sort">
+  `INSERTION_SORT(numList, n)`
   <Steps>
+    1. SET `i=1 `
 
-1. SET `i=1 `
+    2. WHILE `i< n`, REPEAT STEPS 3 to 9
 
-2. WHILE `i< n`, REPEAT STEPS 3 to 9
+    3. `temp = numList[i]`
 
-3. `temp = numList[i]`
+    4. SET `j = i-1`
 
-4. SET `j = i-1`
+    5. WHILE `j> = 0` and `numList[j]>temp`, REPEAT STEPS 6 to 7
 
-5. WHILE `j> = 0` and `numList[j]>temp`, REPEAT STEPS 6 to 7
+    6. `numList[j+1] = numList[j]` 
 
-6. `numList[j+1] = numList[j]` 
+    7. SET `j = j - 1`
 
-7. SET `j = j - 1`
+    8. `numList[j+1] = temp` #insert temp at position j
 
-8. `numList[j+1] = temp` #insert temp at position j
-
-9. set `i = i + 1`
-
+    9. set `i = i + 1`
   </Steps>
-</IdCard>
+</Algorithm>
 
-:::danger[Activity 5.3]
+<Activity title="Activity 5.3">
 
 Consider a list of 10 elements:
 
@@ -311,19 +299,19 @@ Consider a list of 10 elements:
 Determine the partially sorted list after three complete passes of insertion
 sort.
 
-:::
+</Activity>
 
-import program_53 from './program_5.3.py?raw';
-import output_53 from './output_5.3.txt?raw';
+import program_5_3 from './res/program_5.3.py?raw';
+import output_5_3 from './res/output_5.3.txt?raw';
 
-<PythonCode
-    id="program-53"
-    title="Program 5-3 Implementation of insertion sort using Python."
-    code={program_53}
-	output={output_53}
+<Program
+  id="5.3"
+  title="Program 5-3 Implementation of insertion sort using Python."
+  code={program_5_3}
+  output={output_5_3}
 />
 
-## 5.5 Time Complexity of Algorithms
+## 5.5 Time Complexity of Algorithms ||section-5.5||
 
 We have studied that there can be more than one approach to solve a problem
 using a computer. In Class XI, we compared four different algorithms to check
@@ -371,8 +359,7 @@ time complexity of $n^2$.
 
 ## Summary
 
-:::note[Summary]
-
+<Summary>
 - The process of placing or rearranging a collection of elements into a
   particular order is known as sorting.
 - Bubble sort is the simplest sorting algorithm that works by repeatedly
@@ -386,8 +373,7 @@ time complexity of $n^2$.
   playing cards.
 - Complexity analysis is performed to explain how an algorithm will perform when
   the input grows larger.
-
-:::
+</Summary>
 
 ---
 
@@ -449,12 +435,12 @@ than 90% of people who took the test.
 Steps to calculate the $x^{th}$ percentile:
 
 <Steps>
-1. Order all the values in the data set from smallest to largest using Selection
-  Sort. In general any of the sorting methods can be used.
-2. Calculate index by multiplying $x$ percent by the total number of values, $n$. For
-  example: to find $90^{th}$ percentile for 120 students: $0.90*120 = 108$
-3. Ensure that the index is a whole number by using `math.round()`
-4. Display the value at the index obtained in Step 3.
+  1. Order all the values in the data set from smallest to largest using Selection
+    Sort. In general any of the sorting methods can be used.
+  2. Calculate index by multiplying $x$ percent by the total number of values, $n$. For
+    example: to find $90^{th}$ percentile for 120 students: $0.90*120 = 108$
+  3. Ensure that the index is a whole number by using `math.round()`
+  4. Display the value at the index obtained in Step 3.
 </Steps>
 
 The corresponding value in the list is the $x^{th}$ percentile.

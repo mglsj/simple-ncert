@@ -1,35 +1,30 @@
 ---
 title: 3. Stack
+source: lecs103
 ---
-import { Steps } from '@astrojs/starlight/components';
 
-import Figure from '@/components/Figure.astro';                                                                                                                      
-import IdCard from '@/components/IdCard.astro';
-import SourceButton from '@/components/SourceButton.astro';
-import PythonCode from '@/components/PythonCode.astro';
+import { Steps } from '@astrojs/starlight/components';                                                                                        
+      
+import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary } from "@/components/markdown";
 
-<SourceButton source="lecs103"/>
-
-<IdCard id="quote">
-  _"We're going to be able to ask our computers to monitor things for us, and
+<Quote author="Steve Jobs" href="https://en.wikipedia.org/wiki/Steve_Jobs">
+  "We're going to be able to ask our computers to monitor things for us, and
   when certain conditions happen, are triggered, the computers will take certain
-  actions and inform us after the fact."_
-  <br/>
-  — [Steve Jobs](https://en.wikipedia.org/wiki/Steve_Jobs)
-</IdCard>
+  actions and inform us after the fact."
+</Quote>
 
 In this Chapter
 
-- [Introduction](#31introduction)
-- [Stack](#32stack)
-- [Operations on Stack](#33operations-on-stack)
-- [Implementation of Stack in python](#34implementation-of-stack-in-python)
-- [Notations for arithmetic expressions](#35notations-for-arithmetic-expressions)
-- [Conversion from infix to postfix notation](#36conversion-from-infix-to-postfix-notation)
-- [Evaluation of postfix expressIon](#37evaluation-of-postfix-expression)
+- [Introduction](#section-3.1)
+- [Stack](#section-3.2)
+- [Operations on Stack](#section-3.3)
+- [Implementation of Stack in python](#section-3.4)
+- [Notations for arithmetic expressions](#section-3.5)
+- [Conversion from infix to postfix notation](#section-3.6)
+- [Evaluation of postfix expressIon](#section-3.7)
 
 
-## 3.1	Introduction
+## 3.1	Introduction ||section-3.1||
 
 We have learnt about different data types in Python for handling values in Class
 XI. Recall that `String`, `List`, `Set`, `Tuple`, etc. are the sequence data types that
@@ -61,10 +56,10 @@ Binary Trees, Heaps, Graph, Sparse Matrix, etc.
 
 :::
 
-## 3.2	Stack
+## 3.2	Stack ||section-3.2||
 
 We have seen piles of books in the library or stack of plates at home ([Figure
-3.1](#figure-31)). To put another book or another plate in such a pile, we always place (add
+3.1](#figure-3.1)). To put another book or another plate in such a pile, we always place (add
 to the pile) the object at the top only. Likewise, to remove a book or a plate
 from such a pile, we always remove (delete from the pile) the object from the
 top only. This is because in a large pile, it is inconvenient to add or remove
@@ -75,12 +70,12 @@ _**Last-In-First-out (LIFO)**_ principle. That is, the element which was inserte
 (the most recent element) will be the first one to be taken out from the stack.
 
 <Figure 
-  id="figure-31" 
+  id="3.1" 
   title="Figure 3.1: Stack of plates and books"
   invertable={false}
 >
   <centre>
-    ![Stack of plates and books](./fig_3.1.webp)
+    ![Stack of plates and books](./res/fig_3.1.webp)
   </centre>
 </Figure>
 
@@ -97,7 +92,7 @@ How does a compiler or an interpreter handle function calls in a program?
 
 :::
 
-### 3.2.1	Applications of Stack
+### 3.2.1	Applications of Stack ||section-3.2.1||
 
 Some of the applications of stack in real-life are:
 
@@ -141,7 +136,7 @@ free memory that can be allocated among programs/ applications to be executed?
   properly nested. In case of parentheses are mismatched, the compiler needs to
   throw an error. To handle matching of parentheses, stack is used.
 
-## 3.3	Operations on Stack
+## 3.3	Operations on Stack ||section-3.3||
 
 As explained in the previous section, a stack is a mechanism that implements
 LIFO arrangement hence elements are added and deleted from the stack at one end
@@ -149,7 +144,7 @@ only. The end from which elements are added or deleted is called **TOP** of the
 stack. Two fundamental operations performed on the stack are **PUSH** and **POP**. In
 this section, we will learn about them and implement them using Python.
 
-### 3.3.1	**PUSH** and **POP** Operations
+### 3.3.1	**PUSH** and **POP** Operations ||section-3.3.1||
 
 - **PUSH** adds a new element at the **TOP** of the stack. It is an insertion operation.
   We can add elements to a stack until it is full. A stack is full when no more
@@ -167,16 +162,16 @@ stack of glasses assuming that each glass is numbered. Visual representations of
 **PUSH** and **POP** operations on a stack of glasses are shown in [Figure 3.2](#figure-32).
 
 <Figure 
-  id="figure-32" 
+  id="3.2" 
   title="Figure 3.2: PUSH and POP operations on the stack of glasses"
   invertable={true}
 >
   <centre>
-    ![PUSH and POP operations on the stack of glasses](./fig_3.2.webp)
+    ![PUSH and POP operations on the stack of glasses](./res/fig_3.2.webp)
   </centre>
 </Figure>
 
-## 3.4	Implementation of Stack In python
+## 3.4 Implementation of Stack In python ||section-3.4||
 
 We have learnt so far that a stack is a linear and ordered collection of
 elements. The simple way to implement a stack in Python is using the data type
@@ -284,18 +279,18 @@ The program shall define the following functions to perform these operations:
 Once we define the above functions we can use the following Python code to
 implement a stack of glasses.
 
-import program_3_stack from './program_3.stack.py?raw';
-import output_3_stack from './output_3.stack.txt?raw';
+import program_3_stack from './res/program_3.stack.py?raw';
+import output_3_stack from './res/output_3.stack.txt?raw';
 
-<PythonCode
-    id="program-3-stack"
-    title="Program 3: Implementation of Stack in Python"
-    code={program_3_stack}
+<Program
+  id="3.stack"
+  title="Program 3: Implementation of Stack in Python"
+  code={program_3_stack}
 	output={output_3_stack}
 />
 
 
-## 3.5	Notations for Arithmetic Expressions
+## 3.5	Notations for Arithmetic Expressions ||section-3.5||
 
 We write arithmetic expressions using operators in between operands, like $x + y$,
 $2 - 3 * y,$ etc. and use parentheses $()$ to order the evaluation of operators in
@@ -313,20 +308,18 @@ By reversing this logic, we can write an expression by putting operators after
 their operands. For example, $x+y$ can be written as $xy+$. This is called reverse
 polish notation or postfix notation. To summarise, any arithmetic expression can
 be represented in any of the three notations viz. Infix, Prefix and Postfix and
-are listed in Table 3.1 with examples.
+are listed in [Table 3.1](#table-3.1) with examples.
 
-<IdCard id="table-31" title="Table 3.1 Infix, Prefix and Postfix Notations">
-  
+<Table id="3.1" title="Table 3.1 Infix, Prefix and Postfix Notations">
 | Type of Expression           | Description                                            | Example                                                |
 | ---------------------------- | ------------------------------------------------------ | ------------------------------------------------------ |
 | **Infix**                    | Operators are placed in between the operands           | $x * y + z$ <br/> $3 *(4 + 5)$ <br/> $(x + y)/(z * 5)$ |
 | **Prefix (Polish)**          | Operators are placed before the corresponding operands | $+z*xy$ <br/> $*3+45$ <br/> $/+xy*z5$                  |
-| **Postfix (Reverse Polish)** | Operators are placed after the corresponding operands  | $xy\_z+$ <br/> $345+\_$ <br/> $xy+z5*/$                  |
-  
-</IdCard>
+| **Postfix (Reverse Polish)** | Operators are placed after the corresponding operands  | $xy\_z+$ <br/> $345+\_$ <br/> $xy+z5*/$                |
+</Table>
 
 
-## 3.6	Conversion from Infix to Postfix notation
+## 3.6	Conversion from Infix to Postfix notation ||section-3.6||
 
 It is easy for humans to evaluate an _infix_ expression. Consider an _infix_
 expression $x + y / z$. While going from left to right we first encounter $+$
@@ -351,11 +344,11 @@ expression using stack.
 
 During such conversion, a stack is used to keep track of the operators
 encountered in the _infix_ expression. A variable of string type is used to
-store the equivalent _postfix_ expression. [Algorithm 3.1](#algorithm-31) converts an expression
+store the equivalent _postfix_ expression. [Algorithm 3.1](#algorithm-3.1) converts an expression
 in _infix_ notation to _postfix_ notation:
 
-<IdCard 
-  id="algorithm-31" 
+<Algorithm 
+  id="3.1" 
   title="Algorithm 3.1: Conversion of expression from infix to postfix notation"
   >
   <Steps>
@@ -384,13 +377,12 @@ in _infix_ notation to _postfix_ notation:
 6. OUTPUT `postExp`
 
   </Steps>
-</IdCard>
+</Algorithm>
 
-
-#### Example 3.1
+<Example id="3.1" title="Example 3.1">
 
 Let us now use this algorithm to convert a given infix expression $(x + y)/(z*8)$
-into equivalent postfix expression using a stack. [Figure 3.3](#figure-33) shows the steps to
+into equivalent postfix expression using a stack. [Figure 3.3](#figure-3.3) shows the steps to
 be followed on encountering an operator or an operand in the given infix
 expression. Note here that stack is used to track the operators and parentheses,
 and a string variable contains the equivalent postfix expression. Initially both
@@ -400,24 +392,27 @@ each character in the given infix expression has been processed, the string will
 contain the equivalent postfix expression.
 
 <Figure 
-  id="figure-33" 
+  id="3.3" 
   title="Figure 3.3: Conversion of infix expression (x + y)/(z*8) to postfix notation"
   invertable={true}
 >
   <centre>
-    ![](./fig_3.3.a.webp)
-    ![](./fig_3.3.b.png)
+    ![](./res/fig_3.3.a.webp)
+    ![](./res/fig_3.3.b.png)
   </centre>
 </Figure>
 
-## 3.7	Evaluation of Postfix expression
+</Example>
+
+## 3.7 Evaluation of Postfix expression ||section-3.7||
 
 Stacks can be used to evaluate an expression in postfix notation. For
 simplification, we are assuming that operators used in expressions are binary
-operators. The detailed step by step procedure is given in [Algorithm 3.2](#algorithm-32).
+operators. The detailed step by step procedure is given in 
+[Algorithm 3.2](#algorithm-3.2).
 
-<IdCard 
-  id="algorithm-32" 
+<Algorithm 
+  id="3.2" 
   title="Algorithm 3.2: Evaluation of postfix expression"
   >
   <Steps>
@@ -438,23 +433,24 @@ operators. The detailed step by step procedure is given in [Algorithm 3.2](#algo
    ELSE OUTPUT "Invaild Postfix expression"
 
   </Steps>
-</IdCard>
+</Algorithm>
 
-#### Example 3.2
+<Example id="3.2" title="Example 3.2">
 
-[Figure 3.4](#figure-34) shows the step-by-step process of evaluation of the postfix
-expression $7 8 2 * 4 / +$ using [Algorithm 3.2](#algorithm-32).
+[Figure 3.4](#figure-3.4) shows the step-by-step process of evaluation of the postfix
+expression $7 8 2 * 4 / +$ using [Algorithm 3.2](#algorithm-3.2).
 
 <Figure 
-  id="figure-34" 
+  id="3.4" 
   title="Figure 3.4: Evaluation of postfix expression 7 8 2 * 4 / +"
   invertable={true}
 >
   <centre>
-    ![Evaluation of postfix expression 7 8 2 * 4 / +](./fig_3.4.webp)
+    ![Evaluation of postfix expression 7 8 2 * 4 / +](./res/fig_3.4.webp)
   </centre>
 </Figure>
 
+</Example>
 
 :::caution[Think and Reflect]
 
@@ -466,8 +462,7 @@ Write an algorithm to evaluate any prefix expression using a stack.
 
 ## Summary
 
-:::note[Summary]
-
+<Summary>
 - Stack is a data structure in which insertion and deletion is done from one end
   only, usually referred to a**s TOP.**
 - Stack follows **LIFO** principle using which an element inserted in the last will
@@ -492,8 +487,7 @@ Write an algorithm to evaluate any prefix expression using a stack.
   notation, only operators are PUSHed onto the Stack.
 - When evaluating any Postfix expression using Stack, only operands are PUSHed
   onto it.
-
-:::
+</Summary>
 
 ---
 

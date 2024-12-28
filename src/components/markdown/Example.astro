@@ -1,0 +1,13 @@
+---
+interface Props {
+	id?: string;
+	title: string;
+}
+
+import crypto from "node:crypto";
+const { id = crypto.randomUUID({ disableEntropyCache: true }), title } =
+	Astro.props;
+---
+
+<h5 id={`example-${id}`} set:html={title} />
+<slot />

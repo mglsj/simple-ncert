@@ -1,0 +1,63 @@
+---
+import FigureCaption from "../partials/FigureCaption.astro";
+
+interface Props {
+	id?: string;
+	title: string;
+	invertable?: boolean;
+	reverseInvert?: boolean;
+}
+
+import crypto from "node:crypto";
+
+const {
+	id = crypto.randomUUID({ disableEntropyCache: true }),
+	title,
+	invertable = false,
+	reverseInvert = false,
+} = Astro.props;
+
+const invertable_style = `
+<style>
+	:root[data-theme="dark"] {
+		figure#${`figure-${id.replace(".", "\\.")}`} {
+			img {
+				filter: invert(1);
+				-webkit-filter: invert(1);
+			}
+		}
+	}
+</style>
+`;
+
+const reverse_invertable_style = `
+<style>
+	:root[data-theme="light"] {
+		figure#${`figure-${id.replace(".", "\\.")}`} {
+			img {
+				filter: invert(1);
+				-webkit-filter: invert(1);
+			}
+		}
+	}
+</style>
+`;
+---
+
+<figure id={`figure-${id}`}>
+	<slot />
+	{
+		title && (
+			<figcaption>
+				<FigureCaption caption={title} />
+			</figcaption>
+		)
+	}
+</figure>
+
+{invertable && !reverseInvert && <Fragment set:html={invertable_style} />}
+{
+	invertable && reverseInvert && (
+		<Fragment set:html={reverse_invertable_style} />
+	)
+}

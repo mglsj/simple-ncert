@@ -1,0 +1,57 @@
+---
+import { Card } from "@/components/markdown";
+import { Code, FileTree } from "@astrojs/starlight/components";
+
+interface Props {
+	id?: string;
+    lang?: string;
+	title: string;
+	code?: string;
+	output?: string;
+	codeFile?: Promise<{ default: string }>;
+	outputFile?: Promise<{ default: string }>;
+}
+import crypto from "node:crypto";
+const { 
+    id=crypto.randomUUID({ disableEntropyCache: true }), 
+    title, 
+    lang="python", 
+    code, 
+    output, 
+	codeFile,
+	outputFile
+} = Astro.props;
+
+let raw_code = "";
+if (code) {
+	raw_code = code;
+}
+else if (codeFile) {
+	raw_code = (await codeFile).default;
+} else {
+	throw new Error("No code or codeFile provided");
+}
+
+let raw_output = "";
+if (output) {
+	raw_output = output;
+}
+else if (outputFile) {
+	raw_output = (await outputFile).default;
+}
+---
+
+<Card title={title} id={`program-${id}`} heading={5}>
+	<Code lang={lang} code={raw_code} />
+	{raw_output && (
+        <p>Output:</p>
+        <Code lang="ansi" code={raw_output} />
+    )}
+	{Astro.slots.has('default') && (
+		<p>File Tree:</p>
+		<FileTree>
+			<slot />
+		</FileTree>
+	)}
+	<!-- <RunCode code={code} /> -->
+</Card>

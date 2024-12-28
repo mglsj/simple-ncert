@@ -1,33 +1,29 @@
 ---
 title: 4. Intruduction To Problem Solving
+source: kecs101
 ---
-import { Steps } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';   
 
-import PythonCode from '@/components/PythonCode.astro';
-import IdCard from '@/components/IdCard.astro';
-import Figure from '@/components/Figure.astro';
-import SourceButton from '@/components/SourceButton.astro';
+import { Card, Quote, Figure, Activity, Table, Summary, Example } from "@/components/markdown";
 
-<IdCard id="quote">
-  _"Computer Science is a science of abstraction -creating the right model for a
-  problem and devising the appropriate mechanizable techniques to solve it."_
-  <br/> 
-  -- A. Aho and J. Ullman
-</IdCard>
+<Quote author="A. Aho and J. Ullman">
+  "Computer Science is a science of abstraction -creating the right model for a
+  problem and devising the appropriate mechanizable techniques to solve it."
+</Quote>
 
 In this chapter
 
-- [Introduction](#41-introduction)
-- [Steps for Problem Solving](#42-steps-for-problem-solving)
-- [Algorithm](#43-algorithm)
-- [Representation of Algorithms](#44-representation-of-algorithms)
-- [Flow of Control](#45-flow-of-control)
-- [Verifying Algorithms](#46-verifying-algorithms)
-- [Comparison of Algorithms](#47-comparison-of-algorithms)
-- [Coding](#48-coding)
-- [Decomposition](#49-decomposition)
+- [Introduction](#section-4.1)
+- [Steps for Problem Solving](#section-4.2)
+- [Algorithm](#section-4.3)
+- [Representation of Algorithms](#section-4.4)
+- [Flow of Control](#section-4.5)
+- [Verifying Algorithms](#section-4.6)
+- [Comparison of Algorithms](#section-4.7)
+- [Coding](#section-4.8)
+- [Decomposition](#section-4.9)
 
-## 4.1 IntroductIon
+## 4.1 Introduction ||section-4.1||
 
 Today, computers are all around us. We use them for doing various tasks in a
 faster and more accurate manner. For example, using a computer or smartphone, we
@@ -62,7 +58,7 @@ of input provided.
 
 :::
 
-### 4.2 Steps for Problem Solving
+### 4.2 Steps for Problem Solving ||section-4.2||
 
 Suppose while driving, a vehicle starts making a strange noise. We might not
 know how to solve the problem right away. First, we need to identify from where
@@ -81,7 +77,7 @@ solution in terms of a program or software. Key steps required for solving a
 problem using a computer are shown in Figure 4.1 and are discussed in following
 subsections.
 
-### 4.2.1 Analysing the problem
+### 4.2.1 Analysing the problem ||section-4.2.1||
 
 It is important to clearly understand a problem before we begin to find the
 solution for it. If we are not clear as to what is to be solved, we may end up
@@ -91,7 +87,7 @@ components of the problem and decide the core functionalities that our solution
 should have. By analysing a problem, we would be able to figure out what are the
 inputs that our program should accept and the outputs that it should produce.
 
-### 4.2.2 Developing an Algorithm
+### 4.2.2 Developing an Algorithm ||section-4.2.2||
 
 It is essential to device a solution before writing a program code for a given
 problem. The solution is represented in natural language and is called an
@@ -109,9 +105,9 @@ required task.
 We start with a tentative solution plan and keep on refining the algorithm until
 the algorithm is able to capture all the aspects of the desired solution. For a
 given problem, more than one algorithm is possible and we have to select the
-most suitable solution. The algorithm is discussed in [section 4.3](#43-algorithm).
+most suitable solution. The algorithm is discussed in [section 4.3](#section-4.3).
 
-### 4.2.3 Coding
+### 4.2.3 Coding ||section-4.2.3||
 
 After finalising the algorithm, we need to convert the algorithm into the format
 which can be understood by the computer to generate the desired solution.
@@ -119,9 +115,9 @@ Different high level programming languages can be used for writing a program.
 
 It is equally important to record the details of the coding procedures followed
 and document the solution. This is helpful when revisiting the programs at a
-later stage. Coding is explained in detail in [section 4.8](#48-coding).
+later stage. Coding is explained in detail in [section 4.8](#section-4.8).
 
-### 4.2.4 Testing and Debugging
+### 4.2.4 Testing and Debugging ||section-4.2.4||
 
 The program created should be tested on various parameters. The program should
 meet the requirements of the user. It must respond within the expected time. It
@@ -142,12 +138,12 @@ from time to time. The maintenance of the solution, thus, involves fixing the
 problems faced by the user, answering the queries of the user and even serving
 the request for addition or modification of features.
 
-:::danger[Activity 4.1 ]
+<Activity title="Activity 4.1">
 
 What sequence of steps will you follow to compute the LCM of two numbers? The
 origin of the term Algorithm is traced to Persian astronomer and
 
-:::
+</Activity>
 
 :::tip[Now you know]
 
@@ -157,7 +153,7 @@ Latin translation of Al- Khwarizmi was called 'Algorithmi'.
 
 :::
 
-## 4.3 Algorithm
+## 4.3 Algorithm ||section-4.3||
 
 In our day-to-day life we perform activities by following certain sequence of
 steps. Examples of activities include getting ready for school, making
@@ -196,7 +192,7 @@ called an algorithm. It will lead to the desired result in a finite amount of
 time, if followed correctly. Algorithm has a definite beginning and a definite
 end, and consists of a finite number of steps.
 
-### 4.3.1 Why do we need an Algorithm?
+### 4.3.1 Why do we need an Algorithm? ||section-4.3.1||
 
 A programmer writes a program to instruct the computer to do certain tasks as
 desired. The computer then follows the steps written in the program code.
@@ -233,7 +229,7 @@ following:**
 - Processing or computation to be performed to get the desired result
 - The output desired by the user
 
-## 4.4 Representation of Algorithms
+## 4.4 Representation of Algorithms ||section-4.4||
 
 Using their algorithmic thinking skills, the software designers or programmers
 analyse the problem and identify the logical steps that need to be followed to
@@ -246,25 +242,16 @@ represent an algorithm while keeping in mind the following:
   details
 - it clearly reveals the flow of control during execution of the program
 
-### 4.4.1 Flowchart — Visual Representation of Algorithms
+### 4.4.1 Flowchart — Visual Representation of Algorithms ||section-4.4.1||
 
 A flowchart is a visual representation of an algorithm. A flowchart is a diagram
 made up of boxes, diamonds and other shapes, connected by arrows. Each shape
 represents a step of the solution process and the arrow represents the order or
 link among the steps.
 
-There are standardised symbols to draw flowcharts. Some are given in [Table 4.1](#table-41).
+There are standardised symbols to draw flowcharts. Some are given in [Table 4.1](#table-4.1).
 
-<IdCard id="table-41" title="Table 4.1 Shapes or symbols to draw flow charts">
-{/* 
-| Flowchart symbol | Function     | Description                                                                                                                                      |
-| ---------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-|                  | Start/End    | Also called "Terminator" symbol. It indicates where the flow starts and ends.                                                                    |
-|                  | Process      | Also called “Action Symbol,” it represents a process,action, or a single step.                                                                   |
-|                  | Decision     | A decision or branching point, usually a yes/no or true/false question is asked, and based on the answer, the path gets split into two branches. |
-|                  | Input/Output | Also called data symbol, this parallelogram shape is used                                                                                        |
-|                  | Arrow        | Connector to show order of flow between shapes.                                                                                                  | */}
-
+<Table id="4.1" title="Table 4.1 Shapes or symbols to draw flow charts">
 <table>
     <tr>
         <th style="vertical-align: middle !importnat;">Flowchart symbol</th>
@@ -348,9 +335,9 @@ flowchart LR
         <td style="vertical-align: middle !important;">Connector to show order of flow between shapes.</td>
     </tr>
 </table>
-</IdCard>
+</Table>
 
-#### Example 4.1
+<Example id="4.1" title="Example 4.1">
 
 Write an algorithm to find the square of a number.
 
@@ -392,19 +379,21 @@ flowchart TD
 </center>
 </Figure>
 
+</Example>
+
 :::caution[Think and Reflect]
 
 What will happen if an algorithm does not stop after a finite number of steps?
 
 :::
 
-:::danger[Activity 4.2]
+<Activity title="Activity 4.2">
 
 Draw a flowchart that represents the attainment of your career goal.
 
-:::
+</Activity>
 
-#### Example 4.2:
+<Example id="4.2" title="Example 4.2">
 
 Draw a flowchart to solve the problem of a non-functioning light bulb
 
@@ -433,15 +422,15 @@ flowchart TD
 ```
 </center>
 </Figure>
+</Example>
 
-
-:::danger[Activity 4.3]
+<Activity title="Activity 4.3">
 
 Write a pseudocode for creating a scoreboard for a hockey match.
 
-:::
+</Activity>
 
-### 4.4.2 Pseudocode
+### 4.4.2 Pseudocode ||section-4.4.2||
 
 A pseudocode (pronounced _Soo-doh-kohd_) is another way of representing an
 algorithm. It is considered as a non-formal language that helps programmers to
@@ -461,7 +450,7 @@ writing pseudocode:
 - WHILE
 - TRUE/FALSE
 
-#### Example 4.3:
+<Example id="4.3" title="Example 4.3">
 
 Write an algorithm to display the sum of two numbers entered by user, using both
 pseudocode and flowchart.
@@ -494,8 +483,9 @@ flowchart TD
 ```
 </center>
 </Figure>
+</Example>
 
-#### Example 4.4:
+<Example id="4.4" title="Example 4.4">
 
 Write an algorithm to calculate area and perimeter of a rectangle, using both
 pseudocode and flowchart.
@@ -530,6 +520,7 @@ flowchart TD
 ```
 </center>
 </Figure>
+</Example>
 
 _**(A) Benefits of Pseudocode**_
 
@@ -541,15 +532,15 @@ are difficult to read and understand, but pseudocode helps them to review the
 steps to confirm that the proposed implementation is going to achieve the desire
 output.
 
-## 4.5 Flow of Control
+## 4.5 Flow of Control ||section-4.5||
 
 The flow of control depicts the flow of events as represented in the flow chart.
 The events can flow in a sequence, or on branch based on a decision or even
 repeat some part for a finite number of times.
 
-### 4.5.1 Sequence
+### 4.5.1 Sequence ||section-4.5.1||
 
-If we look at the [examples 4.3](#example-43) and [4.4](#example-44), the statements are executed one after
+If we look at the [examples 4.3](#example-4.3) and [4.4](#example-4.4), the statements are executed one after
 another, i.e., in a sequence. Such algorithms where all the steps are executed
 one after the other are said to execute in sequence. However, statements in an
 algorithm may not always execute in a sequence. We may sometimes require the
@@ -557,7 +548,7 @@ algorithm to either do some routine tasks in a repeated manner or behave
 differently depending on the outcomes of previous steps. In this section, we are
 going to learn how to write algorithms for such situations.
 
-### 4.5.2 Selection
+### 4.5.2 Selection ||section-4.5.2||
 
 Consider the map of a neighbourhood as shown in Figure 4.6. Let us assume that
 the pink building with the red roof is the school; the yellow painted house at
@@ -572,7 +563,7 @@ making is involved?
 
 :::
 
-With reference to [Figure 4.6](#figure-46), let us answer the following questions:
+With reference to [Figure 4.6](#figure-4.6), let us answer the following questions:
 
 - Is there a predefined route for walking from home to school?
 
@@ -622,10 +613,10 @@ condition is true/fulfilled
 ```
 
 There are situations where we also need to take action when the condition is not
-fulfilled ([Figure 4.7](#figure-47)). To represent that, we can write:
+fulfilled ([Figure 4.7](#figure-4.7)). To represent that, we can write:
 
 <Figure 
-  id="figure-47" 
+  id="4.7" 
   title="Figure 4.7: Actions depending on true or false of a condition"
   invertable={true}
   reverseInvert={true}
@@ -654,7 +645,7 @@ otherwise
 In programming languages, 'otherwise' is represented using Else keyword. Hence,
 a true/false conditional is written using if-else block in actual programs.
 
-#### Example 4.5:
+<Example id="4.5" title="Example 4.5">
 
 Let us write an algorithm to check whether a number is odd or even.
 
@@ -697,8 +688,9 @@ flowchart TD
 ```
 </center>
 </Figure>
+</Example>
 
-#### Example 4.6:
+<Example id="4.6" title="Example 4.6">
 
 Let us write a pseudocode and draw a flowchart where multiple conditions are
 checked to categorise a person as either child ($<13$), teenager ($>=13$ but $<20$) or
@@ -747,8 +739,9 @@ flowchart TD
 ```
 </center>
 </Figure>
+</Example>
 
-#### Example 4.7:
+<Example id="4.7" title="Example 4.7">
 
 Algorithm for a card game called "Dragons and Wizards".
 
@@ -807,8 +800,9 @@ IF Dpoint > Wpoint THEN
 ELSE 
   PRINT "Wizard team is the winner"
 ```
+</Example>
 
-### 4.5.3 Repetition
+### 4.5.3 Repetition ||section-4.5.3||
 
 When giving directions to go someplace, we say something like, "walk 50 steps
 then turn right". Or "Walk till the next crossing then take a right turn".
@@ -833,7 +827,7 @@ or iteration is involved?
 
 :::
 
-#### Example 4.8:
+<Example id="4.8" title="Example 4.8">
 
 Write pseudocode and draw a flowchart to accept 5 numbers and find their
 average.
@@ -877,8 +871,9 @@ flowchart TD
 ```
 </center>
 </Figure>
+</Example>
 
-In example 4.8, a counter called "count" keeps track of number of times the loop
+In [example 4.8](#example-4.8), a counter called "count" keeps track of number of times the loop
 has been repeated. After every iterationof the loop, the value of count is
 incremented by 1 until it performs the set number of repetitions, given in the
 iteration condition.
@@ -887,7 +882,7 @@ There are situations when we are not aware beforehand about the number of times
 a set of statements need to be repeated. Such requirements of unknown number of
 repetitions are handled using WHILE construct.
 
-#### Example 4.9:
+<Example id="4.9" title="Example 4.9">
 
 rite pseudocode and draw flowchart to accept numbers till the user enters 0 and
 then find their average.
@@ -933,24 +928,25 @@ flowchart TD
 ```
 </center>
 </Figure>
+</Example>
 
 In this example, we do not know how many numbers a user is going to enter before
 entering 0. This is handled by checking the condition repeatedly till the
 condition becomes false.
 
-:::danger[Activity 4.4]
+<Activity title="Activity 4.4">
 
-Let us answer the following questions using the pesudocode given in example 4.9:
+Let us answer the following questions using the pesudocode given in [example 4.9](#example-4.9):
 
 1. What will the sum when the input are 6, 7, 4, 8, 2, 5, 0, 3, 1.
 1. What will be the value of count?
 1. Why did we use the input statement to enter num twice?
 1. Why did we divide sum by count?
-1. Can there be any other approach? :::
+1. Can there be any other approach?
 
-:::
+</Activity>
 
-## 4.6 Verifying Algorithms
+## 4.6 Verifying Algorithms ||section-4.6||
 
 Can you imagine what would happen if a banking software does not work correctly?
 Suppose functioning of the online money transfer module is not programmed
@@ -995,13 +991,13 @@ Why is verification of algorithm an important step in problem solving?
 
 :::
 
-:::danger[Activity 4.5]
+<Activity title="Activity 4.5">
 
 Write an algorithm to take as input the measurement of length and breadth in
 feet and inches (e.g., 5 ft 6 inch) of a rectangular shape and calculate its
 area and perimeter.
 
-:::
+</Activity>
 
 Write an algorithm to calculate the time taken to go from place A to C (T_total)
 via B where time taken to go from A to B ($T1$) and B to C ($T2$) are given. That
@@ -1060,7 +1056,7 @@ if there are errors in the algorithm, then the software developed will not run.
 Hence, it is important to verify an algorithm since the effort required to catch
 and fix a mistake is minimal.
 
-## 4.7 Comparison of Algorithm
+## 4.7 Comparison of Algorithm ||section-4.7||
 
 There can be more than one approach to solve a problem using computer and hence
 we can have more than one algorithm. Then one may ask which algorithm should be
@@ -1119,7 +1115,7 @@ respectively. The choice of an algorithm over another is done depending on how
 efficient they are in terms of proecssing time required (time complexity) and
 the memory they utilise (space complexity).
 
-## 4.8 Coding
+## 4.8 Coding ||section-4.8||
 
 Once an algorithm is finalised, it should be coded in a high-level programming
 language as selected by the programmer. The ordered set of instructions are
@@ -1159,7 +1155,7 @@ players, traffic signals or vehicles, medical equipments and other smart
 devices. In such cases, we have to look for other specialised programming tools
 or sometimes write programs in assembly languages.
 
-## 4.9 Decomposition
+## 4.9 Decomposition ||section-4.9||
 
 Sometimes a problem may be complex, that is, its solution is not directly
 derivable. In such cases, we need to decompose it into simpler parts. Let us
@@ -1170,12 +1166,12 @@ effectively.
 
 The basic idea of solving a complex problem by decomposition is to 'decompose'
 or break down a complex problem into smaller sub problems as shown in [Figure
-4.12](#figure-412). These sub problems are relatively easier to solve than the original
+4.12](#figure-4.12). These sub problems are relatively easier to solve than the original
 problem. Finally, the subproblems are combined in a logical way to obtain the
 solution for the bigger, main problem.
 
 <Figure 
-  id="figure-412" 
+  id="4.12" 
   title="Figure 4.12: Railway reservation system"
 >
 <center>
@@ -1203,8 +1199,7 @@ their correctness and integrate them to get the complete solution.
 
 ## Summary
 
-:::note[Summary]
-
+<Summary>
 - An algorithm is defined as a step-by-step procedure designed to perform an
   operation which will lead to the desired result, if followed correctly.
 - Algorithms have a definite beginning and a definite end, and a finite number
@@ -1225,8 +1220,7 @@ their correctness and integrate them to get the complete solution.
   more than one algorithm for a particular problem.
 - The choice of algorithm should be made on the basis of time and space
   complexity.
-
-:::
+</Summary>
 
 ---
 

@@ -5,6 +5,9 @@ import remarkMath from "remark-math";
 import remarkCustomHeaderId from "remark-custom-header-id";
 import rehypeKatex from "rehype-katex";
 import rehypeMermaid from "rehype-mermaid";
+import starlightImageZoom from "starlight-image-zoom";
+
+import sidebarData from "./sidebar.ts";
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,6 +22,18 @@ export default defineConfig({
 	base: "/simple-ncert/",
 	integrations: [
 		starlight({
+			head: [
+				{
+					tag: "link",
+					attrs: {
+						rel: "stylesheet",
+						href: "https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css",
+						integrity:
+							"sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ",
+						crossorigin: "anonymous",
+					},
+				},
+			],
 			customCss: [
 				"@fontsource-variable/noto-serif-devanagari",
 				"@fontsource-variable/noto-sans-devanagari",
@@ -26,6 +41,9 @@ export default defineConfig({
 				"@fontsource-variable/noto-serif",
 				"@/styles/global.css",
 			],
+			components: {
+				PageTitle: "@/components/starlight/PageTitle.astro",
+			},
 			title: {
 				en: "Simple NCERT",
 				hi: "सरल एनसीईआरटी",
@@ -40,9 +58,6 @@ export default defineConfig({
 				minHeadingLevel: 2,
 				maxHeadingLevel: 5,
 			},
-			components: {
-				Head: "@/components/Head.astro",
-			},
 			defaultLocale: "root",
 			locales: {
 				root: {
@@ -54,64 +69,9 @@ export default defineConfig({
 					lang: "hi",
 				},
 			},
-			// sidebar: [
-			// 	{
-			// 		label: "Class 12",
-			// 		translations: {
-			// 			hi: "कक्षा 12",
-			// 		},
-			// 		autogenerate: { directory: "class 12" },
-			// 	},
-			// 	{
-			// 		label: "Class 11",
-			// 		translations: {
-			// 			hi: "कक्षा 11",
-			// 		},
-			// 		autogenerate: { directory: "class 11" },
-			// 	},
-			// ],
 			plugins: [
-				starlightSidebarTopicsDropdown([
-					{
-						label: {
-							en: "Class 12",
-							hi: "कक्षा 12",
-						},
-						icon: "open-book",
-						link: "/class-12/",
-						items: [
-							{
-								label: "Computer Science",
-								autogenerate: { directory: "class 12/Computer Science" },
-							},
-							{
-								label: "Mathematics",
-								translations: {
-									hi: "गणित",
-								},
-								autogenerate: { directory: "class 12/Mathematics" },
-							},
-							{
-								label: "English",
-								autogenerate: { directory: "class 12/English" },
-							},
-						],
-					},
-					{
-						label: {
-							en: "Class 11",
-							hi: "कक्षा 11",
-						},
-						link: "/class-11/",
-						icon: "open-book",
-						items: [
-							{
-								label: "Computer Science",
-								autogenerate: { directory: "class 11/Computer Science" },
-							},
-						],
-					},
-				]),
+				starlightImageZoom(),
+				starlightSidebarTopicsDropdown(sidebarData),
 			],
 		}),
 	],

@@ -1,32 +1,27 @@
 ---
 title: 4. Queue
+source: lecs104
 ---
-import { Steps } from '@astrojs/starlight/components';                                                                                                      
 
-import Figure from '@/components/Figure.astro';
-import PythonCode from '@/components/PythonCode.astro';
-import IdCard from '@/components/IdCard.astro';
-import SourceButton from '@/components/SourceButton.astro';
+import { Steps } from '@astrojs/starlight/components';                                                                                        
+      
+import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary } from "@/components/markdown";
 
-<SourceButton source="lecs104"/>
-
-<IdCard id="quote">
-  _"We could say we want the Web to reflect a vision of the world where
+<Quote author="Sir Tim Berners-Lee" href="https://en.wikipedia.org/wiki/Tim_Berners-Lee">
+  "We could say we want the Web to reflect a vision of the world where
   everything is done democratically. To do that, we get computers to talk with
-  each other in such a way as to promote that ideal."_
-  <br/>
-  — [Sir Tim Berners-Lee](https://en.wikipedia.org/wiki/Tim_Berners-Lee)
-</IdCard>
+  each other in such a way as to promote that ideal."
+</Quote>
 
 In this Chapter
 
-- [Introduction to Queue](#41-introduction-to-queue)
-- [Operations on Queue](#42-operations-on-queue)
-- [Implementation of Queue using Python](#43-implementation-of-queue-using-python)
-- [Introduction to Deque](#44-introduction-to-deque)
-- [Implementation of Deque using Python](#45-implementation-of-deque-using-python)
+- [Introduction to Queue](#section-4.1)
+- [Operations on Queue](#section-4.2)
+- [Implementation of Queue using Python](#section-4.3)
+- [Introduction to Deque](#section-4.4)
+- [Implementation of Deque using Python](#section-4.5)
 
-## 4.1 Introduction to Queue
+## 4.1 Introduction to Queue ||section-4.1||
 
 In the previous chapter we learned about a data structure called **Stack**, which
 works on **Last-In-First-Out (LIFO)** principle. In this chapter, we will learn
@@ -36,29 +31,29 @@ ends for adding and removing elements in it.
 
 Examples of queue in our everyday life include students standing in a queue for
 morning assembly, customers forming a queue at the cash counter in a bank
-([Figure 4.1](#figure-41)), vehicles queued at fuel pumps ([Figure 4.2](#figure-42)), etc.
+([Figure 4.1](#figure-4.1)), vehicles queued at fuel pumps ([Figure 4.2](#figure-4.2)), etc.
 
 <Figure 
-  id="figure-41" 
+  id="4.1" 
   title="Figure 4.1: Queue of people at a bank"
   invertable={false}
 >
   <centre>
-    ![Queue of people at a bank](./fig_4.1.webp)
+    ![Queue of people at a bank](./res/fig_4.1.webp)
   </centre>
 </Figure>
 
 <Figure 
-  id="figure-42" 
+  id="4.2" 
   title="Figure 4.2: Queue of cars in a petrol pump"
   invertable={false}
 >
   <centre>
-    ![Queue of cars in a petrol pump](./fig_4.2.webp)
+    ![Queue of cars in a petrol pump](./res/fig_4.2.webp)
   </centre>
 </Figure>
 
-### 4.1.1 First In First Out (FIFO)
+### 4.1.1 First In First Out (FIFO) ||section-4.1.1||
 
 Queue follows the principle of **First In First Out (FIFO)**, since the element
 entering first in the queue will be the first one to come out of it. Thus, the
@@ -68,7 +63,7 @@ which new objects/items always get added at one end, usually called the **REAR**
 and objects/items always get removed from the other end, usually called the
 **FRONT** of the queue. **REAR** is also known as **TAIL** and **FRONT** as **HEAD** of a queue.
 
-### 4.1.2 Applications of Queue
+### 4.1.2 Applications of Queue ||section-4.1.2||
 
 **(A) The concept of queue has many applications in real-life:**
 
@@ -109,7 +104,7 @@ you suggest some strategy to ensure service to all as per their urgency?
 
 :::
 
-## 4.2 Operations on Queue
+## 4.2 Operations on Queue ||section-4.2||
 
 Following the FIFO approach, data structure queue supports the following
 operations:
@@ -133,16 +128,16 @@ also required:
 - **IS FULL**: used to check whether any more elements can be added to the queue or
   not, to avoid Overflow exceptions while performing enqueue operation.
 
-[Figure 4.3](#figure-43) shows the various stages of a simple queue containing alphabets. In
+[Figure 4.3](#figure-4.3) shows the various stages of a simple queue containing alphabets. In
 the figure, Front of the queue is on the left and Rear on the right.
 
 <Figure 
-  id="figure-43" 
+  id="4.3" 
   title="Figure 4.3: Various Stages of Stack Operations"
   invertable={true}
 >
   <centre>
-    ![Various Stages of Stack Operations](./fig_4.3.webp)
+    ![Various Stages of Stack Operations](./res/fig_4.3.webp)
   </centre>
 </Figure>
 
@@ -154,7 +149,7 @@ index[n-1] as Front and fix the opposite end as Rear.
 
 :::
 
-## 4.3 Implementation of Queue using Python
+## 4.3 Implementation of Queue using Python ||section-4.3||
 
 There are many ways in which queues can be implemented in a computer program,
 one way is using the list data type of Python. For creating a queue structure in
@@ -269,33 +264,29 @@ cash counter. Usually, following are the events that occur in queue:
 - Cashier calls Next and realises that there are no more people to be served -
   underflow situation happens
 
-:::danger[Activity 4.1]
+<Activity title="Activity 4.1">
+How can you avoid printing of `None`, 
+when trying to print an empty queue?
+</Activity>
 
-How can you avoid printing of None, when trying to print an empty queue?
-
-:::
-
-:::danger[Activity 4.2]
-
-What if the content of the complete queue is to be listed? Write a function for
-it.
-
-:::
+<Activity title="Activity 4.2">
+What if the content of the complete queue is to be listed?
+Write a function for it.
+</Activity>
 
 Now, let us write the code for the above scenario of the bank.
 
-import program_41 from './program_4.1.py?raw';
-import output_41 from './output_4.1.txt?raw';
+import program_4_1 from './res/program_4.1.py?raw';
+import output_4_1 from './res/output_4.1.txt?raw';
 
-<PythonCode
-    id="program-41"
-    title="Program 4-1 Implementation of Queue in Python"
-    code={program_41}
-	output={output_41}
+<Program
+  id="4.1"
+  title="Program 4-1 Implementation of Queue in Python"
+  code={program_4_1}
+	output={output_4_1}
 />
 
-
-## 4.4 Introduction to Deque
+## 4.4 Introduction to Deque ||section-4.4||
 
 **Deque** (pronounced as “deck”) is an arrangement in which addition and removal of
 element(s) can happen from any end, i.e. head/front or tail/rear. This data
@@ -305,16 +296,16 @@ program. It is also known as Double ended queue, because it permits insertion,
 deletion operations from any end.
 
 <Figure 
-  id="figure-44" 
+  id="4.4" 
   title="Figure 4.4: Basic deque structure displaying head and tail to implement stack or queue."
   invertable={true}
 >
   <centre>
-    ![Basic deque structure displaying head and tail to implement stack or queue.](./fig_4.4.webp)
+    ![Basic deque structure displaying head and tail to implement stack or queue.](./res/fig_4.4.webp)
   </centre>
 </Figure>
 
-### 4.4.1 Applications of Deque
+### 4.4.1 Applications of Deque ||section-4.4.1||
 
 - At a train ticket purchasing counter, a normal queue of people is formed for
   purchasing a ticket. A person at the front purchased the ticket and left the
@@ -344,8 +335,7 @@ science:
   no character left or only one character left in deque. In either case, string
   is palindrome.
 
-:::danger[Activity 4.3]
-
+<Activity title="Activity 4.3">
 In a deque, if insertion and deletion of elements is done from the same end, it
 will behave as
 
@@ -356,11 +346,9 @@ will behave as
 3. List
 
 4. None of the above
+</Activity>
 
-:::
-
-:::danger[Activity 4.4]
-
+<Activity title="Activity 4.4">
 In a deque, if insertion and deletion of elements is done from the opposite end,
 it will behave as
 
@@ -371,10 +359,9 @@ it will behave as
 3. List
 
 4. None of the above
+</Activity>
 
-:::
-
-### 4.4.2 Operations on Deque
+### 4.4.2 Operations on Deque ||section-4.4.2||
 
 - **INSERTFRONT**: This operation is used to insert a new element at the front of
   the deque.
@@ -391,7 +378,7 @@ operations used in normal queue viz Is Empty, Peek, Size.
 Let's understand how these operations work for checking whether a string is
 palindrome or not, using a deque through the following algorithm.
 
-<IdCard id="algorithm-41" title="Algorithm 4.1">
+<Algorithm id="4.1" title="Algorithm 4.1">
   <Steps>
 
 1. Start traversing string (madam) from left side, a character at a time.
@@ -400,24 +387,24 @@ palindrome or not, using a deque through the following algorithm.
 
 3. REPEAT Step 1 and Step 2 for all characters of string (madam)
    <Figure 
-    id="figure-45" 
+    id="4.5" 
     title="Figure 4.5: Status of Deque after 4th iteration"
     invertable={true}
     >
     <centre>
-    ![Status of Deque after 4th iteration](./fig_4.5.webp)
+    ![Status of Deque after 4th iteration](./res/fig_4.5.webp)
     </centre>
    </Figure>
 
 4. Remove one character from the front and one character from the rear end of
    deque using `DELETIONFRONT` and `DELETIONREAR` we can do it.
    <Figure 
-    id="figure-46" 
+    id="4.6" 
     title="Figure 4.6: Status of Deque after removing one character from both the ends."
     invertable={true}
     >
     <centre>
-    ![Status of Deque after removing one character from both the ends.](./fig_4.6.webp)
+    ![Status of Deque after removing one character from both the ends.](./res/fig_4.6.webp)
     </centre>
    </Figure>
 5. Match these two removed characters.
@@ -425,11 +412,11 @@ palindrome or not, using a deque through the following algorithm.
 6. If they are same then REPEAT Step 4 and 5 till deque is empty or left with
    only one character, eventually string is Palindrome else stop as string is
    not palindrome
-   
-  </Steps>
-</IdCard>
 
-## 4.5 Implementation of Deque Using Python
+  </Steps>
+</Algorithm>
+
+## 4.5 Implementation of Deque Using Python ||section-4.5||
 
 Like queue, deque is also an ordered linear list, hence we use list data type to
 create deque in our program. The program should have the following functions/
@@ -502,22 +489,21 @@ statement(s) defined in it:
 
 Let us write a `main()`, function to invoke various Deque functions :
 
-import program_42 from './program_4.2.py?raw';
-import output_42 from './output_4.2.txt?raw';
+import program_4_2 from './res/program_4.2.py?raw';
+import output_4_2 from './res/output_4.2.txt?raw';
 
-<PythonCode
-    id="program-42"
-    title="Program 4-2 Implementation of Deque in Python"
-    code={program_42}
-	output={output_42}
+<Program
+  id="4.2"
+  title="Program 4-2 Implementation of Deque in Python"
+  code={program_4_2}
+	output={output_4_2}
 />
 
 ---
 
 ## Summary
 
-:::note[Summary]
-
+<Summary>
 - Queue is an ordered linear data structure, following FIFO strategy.
 - Front and Rear are used to indicate beginning and end of queue.
 - In Python, the use of predefined methods takes care of Front and Rear.
@@ -531,8 +517,7 @@ import output_42 from './output_4.2.txt?raw';
 - A deque can support both stack and queue operations.
 - Other operations supported by deque are insertfront, insertrear, deletefront,
   deleterear, getfront, getrear, isempty and isfull.
-
-:::
+</Summary>
 
 ---
 
@@ -622,6 +607,6 @@ deletionRear()
 Write a python program to check whether the given string is palindrome or not,
 using deque. 
 
-(**Hint**: refer to [algorithm 4.1](#algorithm-41))
+(**Hint**: refer to [algorithm 4.1](#algorithm-4.1))
 
 ---

@@ -5,8 +5,14 @@ next: false
 tableOfContents: false
 ---
 
-import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import ShowcaseImage from "@/components/ShowcaseImge.astro"
 
-<CardGrid>
-	<LinkCard title="Flamingo" description="Textbook for Class 12 (Core Course)" icon="pencil" href="flamingo/"/>
-</CardGrid>
+<ShowcaseImage
+  entries={[
+    {
+      thumbnail: import('./Flamingo/lefl1cc.jpg'),
+      href: 'flamingo/',
+      title: 'Flamingo',
+    }, 
+  ]}
+/>

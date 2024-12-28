@@ -1,0 +1,9 @@
+How many elements in your list? 4
+Enter each element and press enter:
+12
+23
+3
+-45
+The List contents are: [12, 23, 3, -45]
+Enter the number to be searched:23
+Number 23 is present at position 2

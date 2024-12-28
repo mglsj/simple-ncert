@@ -16,7 +16,3 @@ main {
 	letter-spacing: 0.02rem;
 	line-height: 1.6;
 }
-
-p:not(.title) {
-	text-align: justify;
-}

@@ -1,35 +1,32 @@
 ---
 title: 2. File Handling in Python
+source: lecs102
 ---
-import PythonCode from '@/components/PythonCode.astro';
-import IdCard from '@/components/IdCard.astro';
-import Figure from '@/components/Figure.astro';
-import SourceButton from '@/components/SourceButton.astro';
 
-<SourceButton source="lecs102"/>
+import { Steps } from '@astrojs/starlight/components';                                                                                        
+      
+import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary } from "@/components/markdown";
 
-<IdCard id="quote">
-    _"There are many ways of trying to understand programs. People often rely too
+<Quote author="Robin Milner" href="https://en.wikipedia.org/wiki/Robin_Milner">
+    "There are many ways of trying to understand programs. People often rely too
     much on one way, which is called "debugging" and consists of running a partly-
     understood program to see if it does what you expected. Another way, which ML
     advocates, is to install some means of understanding in the very programs
-    themselves."_
-    <br/>
-    — [Robin Milner](https://en.wikipedia.org/wiki/Robin_Milner)
-</IdCard>
+    themselves." 
+  </Quote>
 
 In this Chapter
 
-- [Introduction to Files](#21-introduction-to-files)
-- [Types of Files](#22-types-of-files)
-- [Opening and Closing a Text File](#23-opening-and-closing-a-text-file)
-- [Writing to a Text File](#24-writing-to-a-text-file)
-- [Reading from a Text File](#25-reading-from-a-text-file)
-- [Setting Offsets in a File](#26-setting-offsets-in-a-file)
-- [Creating and Traversing a Text File](#27-creating-and-traversing-a-text-file)
-- [The Pickle Module](#28-the-pickle-module)
+- [Introduction to Files](#section-2.1)
+- [Types of Files](#section-2.2)
+- [Opening and Closing a Text File](#section-2.3)
+- [Writing to a Text File](#section-2.4)
+- [Reading from a Text File](#section-2.5)
+- [Setting Offsets in a File](#section-2.6)
+- [Creating and Traversing a Text File](#section-2.7)
+- [The Pickle Module](#section-2.8)
 
-## 2.1 Introduction to Files
+## 2.1 Introduction to Files ||section-2.1||
 
 We have so far created programs in Python that accept the input, manipulate it
 and display the output. But that output is available only during execution of
@@ -55,7 +52,7 @@ settings, font type and size, date of creation and modification, etc.
 
 :::
 
-## 2.2. Types of Files
+## 2.2. Types of Files ||section-2.2||
 
 Computers store every file as a collection of 0s and 1s i.e., in binary form.
 Therefore, every file is basically just a series of bytes stored one after the
@@ -64,7 +61,7 @@ text file consists of human readable characters, which can be opened by any text
 editor. On the other hand, binary files are made up of non-human readable
 characters and symbols, which require specific programs to access its contents.
 
-### 2.2.1 Text File
+### 2.2.1 Text File ||section-2.2.1||
 
 A text file can be understood as a sequence of characters consisting of
 alphabets, numbers and other special symbols. Files with extensions like `.txt`,
@@ -87,16 +84,14 @@ it displays the remaining file contents starting from a new line. Contents in a
 text file are usually separated by whitespace, but comma (,) and tab (`\t`) are
 also commonly used to separate values in a text file.
 
-:::danger[Activity 2.1]
-
+<Activity title="Activity 2.1">
 Create a text file using notepad and write your name and save it. Now, create a
 `.docx` file using Microsoft Word and write your name and save it as well. Check
 and compare the file size of both the files. You will find that the size of `.txt`
 file is in bytes whereas that of `.docx` is in KBs.
+</Activity>
 
-:::
-
-### 2.2.2 Binary Files
+### 2.2.2 Binary Files ||section-2.2.2||
 
 Binary files are also stored in terms of bytes (0s and 1s), but unlike text
 files, these bytes do not represent the ASCII values of characters. Rather, they
@@ -111,7 +106,7 @@ application. Also, it is difficult to remove any error which may occur in the
 binary file as the stored contents are not human readable. We can read and write
 both text and binary files through Python programs.
 
-## 2.3 Opening and Closing a text file
+## 2.3 Opening and Closing a text file ||section-2.3||
 
 In real world applications, computer programs deal with data coming from
 different sources like databases, CSV files, HTML, XML, JSON, etc. We broadly
@@ -120,7 +115,7 @@ include creating and opening a file, writing data in a file, traversing a file,
 reading data from a file and so on. Python has the io module that contains
 different functions for handling files.
 
-### 2.3.1 Opening a file
+### 2.3.1 Opening a file ||section-2.3.1||
 
 To open a file in Python, we use the `open()` function. The syntax of `open()` is as
 follows:
@@ -167,15 +162,15 @@ file access modes that can be used with the `open()` method. The file offset
 position in the table refers to the position of the file object when the file is
 opened in a particular mode.
 
-:::danger[Activity 2.2]
+<Activity title="Activity 2.2">
 
 Some of the other file access modes are `rb+`, `wb`, `w+`, `ab`, `ab+`. Find out
 for what purpose each of these are used. Also, find the file offset positions in
 each case.
 
-:::
-<IdCard id="table-21" title="Table 2.1: File Open Modes">
+</Activity>
 
+<Table id="2.1" title="Table 2.1: File Open Modes">
 | File Mode      | Description                                                                                                                                                              | File Offset position  |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------- |
 | `r`            | Opens the file in read-only mode.                                                                                                                                        | Beginning of the file |
@@ -185,8 +180,7 @@ each case.
 | `wb+` or `+wb` | Opens the file in read, write and binary mode. If the file already exists, the contents will be overwritten. If the file doesn't exist, then a new file will be created. | Beginning of the file |
 | `a`            | Opens the file in append mode. If the file doesn't exist, then a new file will be created.                                                                               | End of the file       |
 | `a+` or `+a`   | Opens the file in append and read mode. If the file doesn't exist, then it will create a new file.                                                                       | End of the file       |
-
-</IdCard>
+</Table>
 
 
 Consider the following example.
@@ -200,7 +194,7 @@ modes. The file object will be at the end of the file. That means we can write
 data at the end of the file and at the same time we can also read data from the
 file using the file object named `myObject`.
 
-### 2.3.2 Closing a file
+### 2.3.2 Closing a file ||section-2.3.2||
 
 Once we are done with the read/write operations on a file, it is a good practice
 to close the file. Python provides a `close()` method to do so. While closing a
@@ -217,7 +211,7 @@ the file before it is closed. Hence, it is always advised to close the file once
 our work is done. Also, if the file object is re-assigned to some other file,
 the previous file is automatically closed.
 
-### 2.3.3 Opening a file using with clause
+### 2.3.3 Opening a file using with clause ||section-2.3.3||
 
 In Python, we can also open a file using `with` clause. The syntax of with
 clause is:
@@ -239,7 +233,7 @@ with open("myfile.txt","r+") as myObject:
 Here, we don't have to close the file explicitly using `close()` statement.
 Python will automatically close the file.
 
-## 2.4 Writing to a text File
+## 2.4 Writing to a text File ||section-2.4||
 
 For writing to a file, we first need to open it in write or append mode. If we
 open an existing file in write mode, the previous data will be erased, and the
@@ -258,7 +252,7 @@ For a newly created file, is there any difference between `write()` and
 
 :::
 
-### 2.4.1 The `write()` method
+### 2.4.1 The `write()` method ||section-2.4.1||
 
 `write()` method takes a string as an argument and writes it to the text file.
 It returns the number of characters being written on single execution of the
@@ -308,7 +302,7 @@ and when required
 
 :::
 
-### 2.4.2 The `writelines()` method
+### 2.4.2 The `writelines()` method ||section-2.4.2||
 
 This method is used to write multiple strings to a file. We need to pass an
 iterable object like lists, tuple, etc. containing strings to the `writelines()`
@@ -324,9 +318,9 @@ of characters written in the file. The following code explains the use of
 ```
 
 On opening `myfile.txt`, using notepad, its content will appear as shown in
-[Figure 2.1](#figure-21).
+[Figure 2.1](#figure-2.1).
 
-<Figure id="figure-21" title="Figure 2.1: Contents of myfile.txt">
+<Figure id="2.1" title="Figure 2.1: Contents of myfile.txt">
 ```txt title="mtfile.txt"
 Hello everyone
 Writing multiline strings
@@ -334,12 +328,10 @@ This is the third line
 ```
 </Figure>
 
-:::danger[Activity 2.3]
-
+<Activity title="Activity 2.3">
 Run the above code by replacing `writelines()` with `write()` and see what
 happens.
-
-:::
+</Activity>
 
 :::caution[Think and Reflect]
 
@@ -348,13 +340,13 @@ written to the file or an error will be generated?
 
 :::
 
-## 2.5 Reading from a text File
+## 2.5 Reading from a text File ||section-2.5||
 
 We can write a program to read the contents of a file. Before reading a file, we
 must make sure that the file is opened in `r`, `r+`, `w+` or `a+` mode. There
 are three ways to read the contents of a file:
 
-### 2.5.1 The `read()` method
+### 2.5.1 The `read()` method ||section-2.5.1||
 
 This method is used to read a specified number of bytes of data from a data
 file. The syntax of `read()` method is:
@@ -385,7 +377,7 @@ This is the third line
 >>> myobject.close()
 ```
 
-### 2.5.2 The `readline([n])` method
+### 2.5.2 The `readline([n])` method ||section-2.5.2||
 
 This method reads one complete line from a file where each line terminates with
 a newline (`\n`) character. It can also be used to read a specified number (n)
@@ -413,14 +405,14 @@ To read the entire file line by line using the `readline()`, we can use a loop.
 This process is known as looping/ iterating over a file object. It returns an
 empty string when `EOF` is reached.
 
-:::danger[Activity 2.4]
+<Activity title="Activity 2.4">
 
 Create a file having multiline data and use `readline()` with an iterator to
 read the contents of the file line by line
 
-:::
+</Activity>
 
-### 2.5.3 The `readlines()` method
+### 2.5.3 The `readlines()` method ||section-2.5.3||
 
 The method reads all the lines and returns the lines along with newline as a
 list of strings. The following example uses `readlines()` to read data from the
@@ -470,41 +462,35 @@ Let us now write a program that accepts a string from the user and writes it to
 a text file. Thereafter, the same program reads the text file and displays it on
 the screen.
 
-import program_21 from './program_2.1.py?raw';
-import output_21 from './output_2.1.txt?raw';
+import program_2_1 from './res/program_2.1.py?raw';
+import output_2_1 from './res/output_2.1.txt?raw';
 
-<PythonCode
-    id="program-21"
-    title="Program 2-1 Writing and reading to a text file"
-    code={program_21}
-	output={output_21}
+<Program
+  id="2.1"
+  title="Program 2-1 Writing and reading to a text file"
+  code={program_2_1}
+	output={output_2_1}
 >
 
 - root
   - program_2.1.py
   - testfile.txt
 
-</PythonCode>
+</Program>
 
-In [Program 2.1](#program-21), the file named `testfile.txt` is opened in write mode and the
+In [Program 2.1](#program-2.1), the file named `testfile.txt` is opened in write mode and the
 file handle named fobject is returned. The string is accepted from the user and
 written in the file using `write()`. Then the file is closed and again opened in
 read mode. Data is read from the file and displayed till the end of file is
 reached.
 
-{/* Output of [Program 2-1](#program-21):
-
-```
-
-``` */}
-
-## 2.6 Setting offsets in a file
+## 2.6 Setting offsets in a file ||section-2.6||
 
 The functions that we have learnt till now are used to access the data
 sequentially from a file. But if we want to access data in a random fashion,
 then Python gives us `seek()` and `tell()` functions to do so.
 
-### 2.6.1 The `tell()` method
+### 2.6.1 The `tell()` method ||section-2.6.1||
 
 This function returns an integer that specifies the current position of the file
 object in the file. The position so specified is the byte position from the
@@ -515,7 +501,7 @@ of using `tell()` is:
 file_object.tell()
 ```
 
-### 2.6.2 The `seek()` method
+### 2.6.2 The `seek()` method ||section-2.6.2||
 
 This method is used to position the file object at a particular position in a
 file. The syntax of `seek()` is:
@@ -536,26 +522,26 @@ It can have any of the following values:
 By default, the value of `reference_point` is 0, i.e. the offset is counted from
 the beginning of the file. For example, the statement `fileObject.seek(5,0)`
 will position the file object at 5th byte position from the beginning of the
-file. The code in [Program 2-2](#program-22) below demonstrates the usage of `seek()` and
+file. The code in [Program 2-2](#program-2.2) below demonstrates the usage of `seek()` and
 `tell()`.
 
-import program_22 from './program_2.2.py?raw';
-import output_22 from './output_2.2.txt?raw';
+import program_2_2 from './res/program_2.2.py?raw';
+import output_2_2 from './res/output_2.2.txt?raw';
 
-<PythonCode
-    id="program-22"
-    title="Program 2-2 Application of seek() and tell()"
-    code={program_22}
-    output={output_22}            
+<Program
+  id="2.2"
+  title="Program 2-2 Application of seek() and tell()"
+  code={program_2_2}
+  output={output_2_2}            
 >
 
 - root
   - program_2.2.py
   - testfile.txt
 
-</PythonCode>
+</Program>
 
-## 2.7 Creating and Traversing a Text File
+## 2.7 Creating and Traversing a Text File ||section-2.7||
 
 Having learnt various methods that help us to open and close a file, read and
 write data in a text file, find the position of the file object and move the
@@ -563,7 +549,7 @@ file object at a desired location, let us now perform some basic operations on a
 text file. To perform these operations, let us assume that we will be working
 with `practice.txt`.
 
-### 2.7.1 Creating a file and writing data
+### 2.7.1 Creating a file and writing data ||section-2.7.1||
 
 To create a text file, we use the `open()` method and provide the filename and
 the mode. If the file already exists with the same name, the `open()` function
@@ -572,48 +558,44 @@ in write mode (`w`), then all the existing contents of file will be lost, and an
 empty file will be created with the same name. But, if the file is created in
 append mode (a), then the new data will be written after the existing data. In
 both cases, if the file does not exist, then a new empty file will be created.
-In [Program 2-3](#program-23), a file, `practice.txt` is opened in write (`w`) mode and three
+In [Program 2-3](#program-2.3), a file, `practice.txt` is opened in write (`w`) mode and three
 sentences are stored in it as shown in the output screen that follows it.
 
-import program_23 from './program_2.3.py?raw';
-import output_23 from './output_2.3.txt?raw';
+import program_2_3 from './res/program_2.3.py?raw';
+import output_2_3 from './res/output_2.3.txt?raw';
 
-<PythonCode
-    id="program-23"
-    title="Program 2-3 To create a text file and write data in it"
-    code={program_23}
-    output={output_23}
+<Program
+  id="program-23"
+  title="Program 2-3 To create a text file and write data in it"
+  code={program_2_3}
+  output={output_2_3}
 >
-
 - root
   - program_2.3.py
   - practice.txt
+</Program>
 
-</PythonCode>
-
-### 2.7.2 Traversing a file and displaying data
+### 2.7.2 Traversing a file and displaying data ||section-2.7.2||
 
 To read and display data that is stored in a text file, we will refer to the
 previous example where we have created the file practice.txt. The file will be
 opened in read mode and reading will begin from the beginning of the file.
 
-import program_24 from './program_2.4.py?raw';
-import output_24 from './output_2.4.txt?raw';
+import program_2_4 from './res/program_2.4.py?raw';
+import output_2_4 from './res/output_2.4.txt?raw';
 
-<PythonCode
-    id="program-24"
-    title="Program 2-4 To display data from a text file"
-    code={program_24}
-    output={output_24}
+<Program
+  id="program-24"
+  title="Program 2-4 To display data from a text file"
+  code={program_2_4}
+  output={output_2_4}
 >
-
 - root
   - program_2.4.py
   - practice.txt
+</Program>
 
-</PythonCode>
-
-In [Program 2-4](#program-24), the `readline()` is used in the while loop to read the data line
+In [Program 2-4](#program-2.4), the `readline()` is used in the while loop to read the data line
 by line from the text file. The lines are displayed using the `print()`. As the
 end of file is reached, the `readline()` will return an empty string. Finally,
 the file is closed using the `close()`.
@@ -623,27 +605,25 @@ for reading the file. Now let us create one single program to read and write
 data using a single file object. Since both the operations have to be performed
 using a single file object, the file will be opened in `w+` mode.
 
-import program_25 from './program_2.5.py?raw';
-import output_25 from './output_2.5.txt?raw';
+import program_2_5 from './res/program_2.5.py?raw';
+import output_2_5 from './res/output_2.5.txt?raw';
 
-<PythonCode
-    id="program-25"
-    title="Program 2-5 To perform reading and writing operation in a text file"
-    code={program_25}
-    output={output_25}
+<Program
+  id="2.5"
+  title="Program 2-5 To perform reading and writing operation in a text file"
+  code={program_2_5}
+  output={output_2_5}
 >
-
 - root
   - program_2.5.py
   - report.txt
+</Program>
 
-</PythonCode>
 
-
-In [Program 2-5](#program-2), the file will be read till the time end of file is not reached
+In [Program 2-5](#program-2.5), the file will be read till the time end of file is not reached
 and the output as shown in below is displayed.
 
-## 2.8 The `pickle` module
+## 2.8 The `pickle` module ||section-2.8||
 
 We know that Python considers everything as an object. So, all data types
 including list, tuple, dictionary, etc. are also considered as objects. During
@@ -672,7 +652,7 @@ and similarly, data are not read but loaded. The `pickle` Module must be importe
 to load and dump data. The `pickle` module provides two methods - `dump()` and
 `load()` to work with binary files for pickling and unpickling, respectively.
 
-### 2.8.1 The `dump()` method
+### 2.8.1 The `dump()` method ||section-2.8.1||
 
 This method is used to convert (pickling) Python objects for writing data in a
 binary file. The file in which data are to be dumped, needs to be opened in
@@ -685,25 +665,23 @@ dump(data_object, file_object)
 ```
 
 where data_object is the object that has to be dumped to the file with the file
-handle named `file_object`. For example, [Program 2-6](#program-26) writes the record of a
+handle named `file_object`. For example, [Program 2-6](#program-2.6) writes the record of a
 student (roll_no, name, gender and marks) in the binary file named mybinary.dat
 using the `dump()`. We need to close the file after pickling.
 
-import program_26 from './program_2.6.py?raw';
+import program_2_6 from './res/program_2.6.py?raw';
 
-<PythonCode
-    id="program-26"
-    title="Program 2-6 Pickling data in Python"
-    code={program_26}
+<Program
+  id="2.6"
+  title="Program 2-6 Pickling data in Python"
+  code={program_2_6}
 >
-
 - root
   - program_2.6.py
   - mybinary.dat
+</Program>
 
-</PythonCode>
-
-### 2.8.2 The `load()` method
+### 2.8.2 The `load()` method ||section-2.8.2||
 
 This method is used to load (unpickling) data from a binary file. The file to be
 loaded is opened in binary read (`rb`) mode. Syntax of `load()` is as follows:
@@ -714,61 +692,56 @@ Store_object = load(file_object)
 
 Here, the pickled Python object is loaded from the file having a file handle
 named `file_object` and is stored in a new file handle called `store_object`.
-The [Program 2-7](#program-27) demonstrates how to read data from the file `mybinary.dat` using
+The [Program 2-7](#program-2.7) demonstrates how to read data from the file `mybinary.dat` using
 the `load()`.
 
-import program_27 from './program_2.7.py?raw';
-import output_27 from './output_2.7.txt?raw';
+import program_2_7 from './res/program_2.7.py?raw';
+import output_2_7 from './res/output_2.7.txt?raw';
 
-<PythonCode
-    id="program-27"
-    title="Program 2-7 Unpickling data in Python"
-    code={program_27}
-    output={output_27}
+<Program
+  id="2.7"
+  title="Program 2-7 Unpickling data in Python"
+  code={program_2_7}
+  output={output_2_7}
 >
-
 - root
   - program_2.7.py
   - mybinary.dat
+</Program>
 
-</PythonCode>
-
-### 2.8.3 File handling using `pickle` module
+### 2.8.3 File handling using `pickle` module ||section-2.8.3||
 
 As we read and write data in a text file, similarly we will be adding and
-displaying data for a binary file. [Program 2-8](#program-28) accepts a record of an employee
+displaying data for a binary file. [Program 2-8](#program-2.8) accepts a record of an employee
 from the user and appends it in the binary file tv. Thereafter, the records are
 read from the binary file and displayed on the screen using the same object. The
 user may enter as many records as they wish to. The program also displays the
 size of binary files before starting with the reading process.
 
-import program_28 from './program_2.8.py?raw';
-import output_28 from './output_2.8.txt?raw';
+import program_2_8 from './res/program_2.8.py?raw';
+import output_2_8 from './res/output_2.8.txt?raw';
 
-<PythonCode
-    id="program-28"
-    title="Program 2-8 To perform basic operations on a binary file using pickle module"
-    code={program_28}
-    output={output_28}
+<Program
+  id="program-28"
+  title="Program 2-8 To perform basic operations on a binary file using pickle module"
+  code={program_2_8}
+  output={output_2_8}
 >
-
 - root
   - program_2.8.py
   - empfile.dat
-
-</PythonCode>
+</Program>
 
 As each employee record is stored as a list in the file `empfile.dat`, hence
 while reading the file, a list is displayed showing record of each employee.
-Notice that in [Program 2-8](#program-28), we have also used `try...except` block to handle the
+Notice that in [Program 2-8](#program-2.8), we have also used `try...except` block to handle the
 end-of-file exception.
 
 ---
 
 ## Summary
 
-:::note[Summary]
-
+<Summary>
 - A file is a named location on a secondary storage media where data are
   permanently stored for later access.
 - A text file contains only textual information consisting of alphabets, numbers
@@ -804,8 +777,7 @@ end-of-file exception.
   stream.
 - `dump()` method is used to write the objects in a binary file.
 - `load()` method is used to read data from a binary file.
-
-:::
+</Summary>
 
 ---
 

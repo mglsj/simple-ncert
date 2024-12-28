@@ -1,0 +1,24 @@
+---
+interface Props {
+	caption: string;
+}
+
+const { caption } = Astro.props;
+---
+
+<figcaption>
+	<center>
+		<em>
+			<span set:html={caption} />
+		</em>
+	</center>
+</figcaption>
+
+<style>
+	figcaption {
+		border: 1px solid var(--sl-color-gray-5);
+		padding: 0.5rem;
+		background-color: var(--sl-color-gray-6);
+		font-size: var(--sl-text-xs);
+	}
+</style>

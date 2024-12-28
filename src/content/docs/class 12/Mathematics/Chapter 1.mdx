@@ -1,28 +1,24 @@
 ---
 title: 1. Relations and Functions
 prev: false
+source: "lemh101"
 ---
-import IdCard from '@/components/IdCard.astro';
-import Figure from '@/components/Figure.astro';
-import SourceButton from '@/components/SourceButton.astro';
 
-<SourceButton source=""/>
+import { Card, Quote, Figure, Example, Definition, Summary } from "@/components/markdown";
 
-<IdCard id="quote">
-  _There is no permanent place in the world for ugly mathematics ... . It may be
+<Quote author="G. H. Hardy">
+  There is no permanent place in the world for ugly mathematics ... . It may be
   very hard to define mathematical beauty but that is just as true of beauty of
   any kind, we may not know quite what we mean by a beautiful poem, but that
-  does not prevent us from recognising one when we read it._
-  <br/>
-  — G. H. HARDY
-</IdCard>
+  does not prevent us from recognising one when we read it.
+</Quote>
 
 <Figure
   id="portrait"
   invertable={false}
 >
     <center>
-      ![Lejeune Dirichlet](lejeune_dirichlet.jpg)
+      ![Lejeune Dirichlet](./res/lejeune_dirichlet.jpg)
     </center>
     <center>
       **[Lejeune Dirichlet](https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet)**\
@@ -31,7 +27,7 @@ import SourceButton from '@/components/SourceButton.astro';
 </Figure>
 
 
-## 1.1 Introduction
+## 1.1 Introduction ||section-1.1||
 
 Recall that the notion of relations and functions, domain, co-domain and range
 have been introduced in Class XI along with different types of specific real
@@ -60,7 +56,7 @@ functions are special kind of relations.
 In this chapter, we will study different types of relations and functions,
 composition of functions, invertible functions and binary operations.
 
-### 1.2 Types of Relations
+### 1.2 Types of Relations ||section-1.2||
 
 In this section, we would like to study different types of relations. We know
 that a relation in a set $A$ is a subset of $A × A$. Thus, the empty set $φ$ and
@@ -71,18 +67,14 @@ $R' = \{(a, b) : | a - b | ≥ 0\}$ is the whole set $A × A$, as all pairs
 $(a, b)$ in $A × A$ satisfy $| a - b | ≥ 0$. These two extreme examples lead us
 to the following definitions.
 
-<IdCard>
-
-#### Definition 1
+<Definition id="1" title="Definition 1">
 
 A relation $R$ in a set $A$ is called _**empty relation**_, if no element of $A$
 is related to any element of $A$, i.e., $R = φ ⊂ A × A$.
 
-</IdCard>
+</Definition>
 
-<IdCard>
-
-#### Definition 2
+<Definition id="2" title="Definition 2">
 
 A relation $R$ in a set $A$ is called _**universal relation**_, if each element
 of $A$ is related to every element of $A$, i.e., $R = A × A$.
@@ -90,9 +82,9 @@ of $A$ is related to every element of $A$, i.e., $R = A × A$.
 Both the empty relation and the universal relation are some times called
 _**trivial relations**_.
 
-</IdCard>
+</Definition>
 
-#### Example 1
+<Example id="1" title="Example 1">
 
 Let $A$ be the set of all students of a boys school. Show that the relation $R$
 in $A$ given by $R = \{(a, b) : a$ is sister of $b\}$ is the empty relation and
@@ -109,6 +101,7 @@ the school has to be less than 3 meters. This shows that $R' = A × A$ is the
 universal relation.
 
 </details>
+</Example>
 
 :::note[Remark]
 
@@ -128,9 +121,7 @@ Mathematics, is an _**equivalence relation**_. To study equivalence relation, we
 first consider three types of relations, namely reflexive, symmetric and
 transitive.
 
-<IdCard>
-
-#### Definition 3
+<Definition id="3" title="Definition 3">
 
 A relation $R$ in a set $A$ is called
 
@@ -140,18 +131,16 @@ A relation $R$ in a set $A$ is called
 - (iii) _**transitive**_, if $(a_1, a_2) ∈ R$ and $(a_2, a_3) ∈ R$ implies that
   $(a_1, a_3) ∈ R$, for all $a_1, a_2, a_2 ∈ A$.
 
-</IdCard>
+</Definition>
 
-<IdCard>
-
-#### Definition 4
+<Definition id="4" title="Definition 4">
 
 A relation $R$ in a set $A$ is said to be an _**equivalence relation**_ if $R$
 is reflexive, symmetric and transitive.
 
-</IdCard>
+</Definition>
 
-#### Example 2
+<Example id="2" title="Example 2">
 
 Let T be the set of all triangles in a plane with $R$ a relation in $T$ given by
 $R = \{(T1, T2) : T1$ is congruent to $T2\}$. Show that $R$ is an equivalence
@@ -170,8 +159,9 @@ congruent to $T_3 ⇒ T_1$ is congruent to $T_3 ⇒ (T_1, T_3) ∈ R$. Therefore
 is an equivalence relation.
 
 </details>
+</Example>
 
-#### Example 3
+<Example id="3" title="Example 3">
 
 Let $L$ be the set of all lines in a plane and R be the relation in $L$ defined
 as $R = \{(L_1, L_2) : L_1$ is perpendicular to $L_2\}$. Show that $R$ is
@@ -181,11 +171,11 @@ symmetric but neither reflexive nor transitive.
 <summary>Solution</summary>
 
 <Figure
-  id="figure-11"
+  id="1.1"
   title="Fig 1.1"
   invertable={true}
 >
-  ![Fig 1.1](fig_1.1.webp)
+  ![Fig 1.1](./res/fig_1.1.webp)
 </Figure>
 
 $R$ is not reflexive, as a line $L_1$ can not be perpendicular to itself, i.e.,
@@ -203,8 +193,9 @@ $L_1$ is parallel to $L_3$, i.e., $(L_1, L_2) ∈ R, (L_2, L_3) ∈ R$ but
 $(L_1, L_3) ∉ R$.
 
 </details>
+</Example>
 
-#### Example 4
+<Example id="4" title="Example 4">
 
 Show that the relation $R$ in the set $\{1, 2, 3\}$ given by
 $R = \{(1, 1), (2, 2), (3, 3), (1, 2), (2, 3)\}$ is reflexive but neither
@@ -218,8 +209,9 @@ not symmetric, as $(1, 2) ∈ R$ but $(2, 1) ∉ R$. Similarly, $R$ is not
 transitive, as $(1, 2) ∈ R$ and $(2, 3) ∈ R$ but $(1, 3) ∉ R$.
 
 </details>
+</Example>
 
-#### Example 5
+<Example id="5" title="Example 5">
 
 Show that the relation R in the set $ℤ$ of integers given by
 
@@ -238,8 +230,9 @@ $a - c = (a - b) + (b - c)$ is even (Why?). So, $(a - c)$ is divisible by $2$.
 This shows that $R$ is transitive. Thus, $R$ is an equivalence relation in $ℤ$.
 
 </details>
+</Example>
 
-In Example 5, note that all even integers are related to zero, as $(0, ± 2)$,
+In [Example 5](#example-5), note that all even integers are related to zero, as $(0, ± 2)$,
 $(0, ± 4)$ etc., lie in $R$ and no odd integer is related to $0$, as $(0, ± 1)$,
 $(0, ± 3)$ etc., do not lie in $R$. Similarly, all odd integers are related to
 one and no even integer is related to one. Therefore, the set $E$ of all even
@@ -282,7 +275,7 @@ which are related to $1$ and $A_3$ coincides with the set of all integers in $�
 which are related to $2$. Thus, $A_1 = [0], A_2 = [1]$ and $A_3 = [2]$. In fact,
 $A_1 = [3r]$, $A_2 = [3r + 1]$ and $A_3 = [3r + 2]$, for all $r ∈ ℤ$.
 
-#### Example 6
+<Example id="6" title="Example 6">
 
 Let $R$ be the relation defined in the set $A = \{1, 2, 3, 4, 5, 6, 7\}$ by
 $R = \{(a, b) :$ both $a$ and $b$ are either odd or even$\}$. Show that $R$ is
@@ -306,12 +299,12 @@ can be related to any element of $\{2, 4, 6\}$, as elements of $\{1, 3, 5, 7\}$
 are odd, while elements of $\{2, 4, 6\}$ are even.
 
 </details>
-
+</Example>
 ---
 
-## EXERCISE 1.1
+## EXERCISE 1.1 ||exercise-1.1||
 
-### 1.1 Question 1
+### 1.1 Question 1 ||1.1-question-1||
 
 Determine whether each of the following relations are reflexive, symmetric and
 transitive:
@@ -336,38 +329,38 @@ transitive:
   - (d) $R = \{(x, y) : x$ is wife of $y\}$
   - (e) $R = \{(x, y) : x$ is father of $y\}$
 
-### 1.1 Question 2
+### 1.1 Question 2 ||1.1-question-2||
 
 Show that the relation $R$ in the set $R$ of real numbers, defined as
 $R = \{(a, b) : a ≤ b2\}$ is neither reflexive nor symmetric nor transitive.
 
-### 1.1 Question 3
+### 1.1 Question 3 ||1.1-question-3||
 
 Check whether the relation $R$ defined in the set $\{1, 2, 3, 4, 5, 6\}$ as
 $R = \{(a, b) : b = a + 1\}$ is reflexive, symmetric or transitive.
 
-### 1.1 Question 4
+### 1.1 Question 4 ||1.1-question-4||
 
 Show that the relation $R$ in $R$ defined as $R = \{(a, b) : a ≤ b\}$, is
 reflexive and transitive but not symmetric.
 
-### 1.1 Question 5
+### 1.1 Question 5 ||1.1-question-5||
 
 Check whether the relation $R$ in $R$ defined by $R = \{(a, b) : a ≤ b3\}$ is
 reflexive,symmetric or transitive.
 
-### 1.1 Question 6
+### 1.1 Question 6 ||1.1-question-6||
 
 Show that the relation $R$ in the set $\{1, 2, 3\}$ given by
 $R = \{(1, 2), (2, 1)\}$ is symmetric but neither reflexive nor transitive.
 
-### 1.1 Question 7
+### 1.1 Question 7 ||1.1-question-7||
 
 Show that the relation R in the set A of all the books in a library of a
 college, given by $R = \{(x, y) : x$ and $y$ have same number of pages$\}$ is an
 equivalence relation.
 
-### 1.1 Question 8
+### 1.1 Question 8 ||1.1-question-8||
 
 Show that the relation $R$ in the set $A = \{1, 2, 3, 4, 5\}$ given by
 $R = \{(a, b) : |a - b|$ is even$\}$, is an equivalence relation. Show that all
@@ -375,7 +368,7 @@ the elements of $\{1, 3, 5\}$ are related to each other and all the elements of
 $\{2, 4\}$ are related to each other. But no element of $\{1, 3, 5\}$ is related
 to any element of $\{2, 4\}$.
 
-### 1.1 Question 9
+### 1.1 Question 9 ||1.1-question-9||
 
 Show that each of the relation 4 in the set $A = \{x ∈ Z : 0 ≤ x ≤ 12\}$, given by
 
@@ -383,7 +376,7 @@ Show that each of the relation 4 in the set $A = \{x ∈ Z : 0 ≤ x ≤ 12\}$, 
 - (ii) $R = \{(a, b) : a = b\}$ is an equivalence relation. Find the set of all
   elements related to 1 in each case.
 
-### 1.1 Question 10
+### 1.1 Question 10 ||1.1-question-10||
 
 Give an example of a relation. Which is
 
@@ -393,7 +386,7 @@ Give an example of a relation. Which is
 - (iv) Reflexive and transitive but not symmetric.
 - (v) Symmetric and transitive but not reflexive.
 
-### 1.1 Question 11
+### 1.1 Question 11 ||1.1-question-11||
 
 Show that the relation $R$ in the set $A$ of points in a plane given by
 $R = \{(P, Q) :$ distance of the point $P$ from the origin is same as the
@@ -401,7 +394,7 @@ distance of the point $Q$ from the origin$\}$, is an equivalence relation.
 Further, show that the set of all points related to a point $P ≠ (0, 0)$ is the
 circle passing through $P$ with origin as centre.
 
-### 1.1 Question 12
+### 1.1 Question 12 ||1.1-question-12||
 
 Show that the relation R defined in the set A of all triangles as
 $R = \{(T_1, T_2) : T_1$ is similar to $T_2\}$, is equivalence relation.
@@ -409,21 +402,21 @@ Consider three right angle triangles $T_1$ with sides $3, 4, 5$, $T_2$ with
 sides $5, 12, 13$ and $T_3$ with sides $6, 8, 10$. Which triangles among $T_1$,
 $T_2$ and $T_3$ are related?
 
-### 1.1 Question 13
+### 1.1 Question 13 ||1.1-question-13||
 
 Show that the relation $R$ defined in the set $A$ of all polygons as
 $R = \{(P_1, P_2) : P_1$ and $P_2$ have same number of sides$\}$, is an
 equivalence relation. What is the set of all elements in $A$ related to the
 right angle triangle $T$ with sides $3$, $4$ and $5$?
 
-### 1.1 Question 14
+### 1.1 Question 14 ||1.1-question-14||
 
 Let $L$ be the set of all lines in $XY$ plane and $R$ be the relation in $L$
 defined as $R = \{(L_1, L_2) : L_1$ is parallel to $L_2\}$. Show that $R$ is an
 equivalence relation. Find the set of all lines related to the line
 $y = 2x + 4$.
 
-### 1.1 Question 15
+### 1.1 Question 15 ||1.1-question-15||
 
 Let $R$ be the relation in the set $\{1, 2, 3, 4\}$ given by
 $R = \{(1, 2), (2, 2), (1, 1), (4,4), (1, 3), (3, 3), (3, 2)\}$. Choose the
@@ -434,7 +427,7 @@ correct answer.
 - (C) $R$ is symmetric and transitive but not reflexive.
 - (D) $R$ is an equivalence relation.
 
-### 1.1 Question 16
+### 1.1 Question 16 ||1.1-question-16||
 
 Let $R$ be the relation in the set $N$ given by
 $R = \{(a, b) : a = b - 2, b > 6\}$. Choose the correct answer.
@@ -446,7 +439,7 @@ $R = \{(a, b) : a = b - 2, b > 6\}$. Choose the correct answer.
 
 ---
 
-## 1.3 Types of Functions
+## 1.3 Types of Functions ||section-1.3||
 
 The notion of a function along with some special functions like identity
 function, constant function, polynomial function, rational function, modulus
@@ -462,47 +455,43 @@ like to study different types of functions.
 Consider the functions $f_1$, $f_2$, $f_3$ and $f_4$ given by the following
 diagrams.
 
-In [Fig 1.2](#figure-12), we observe that the images of distinct elements of $X_1$ under the
+In [Fig 1.2](#figure-1.2), we observe that the images of distinct elements of $X_1$ under the
 function $f_1$ are distinct, but the image of two distinct elements $1$ and $2$
 of $X_1$ under $f_2$ is same, namely $b$. Further, there are some elements like
 $e$ and $f$ in $X_2$ which are not images of any element of $X1$ under $f_1$,
 while all elements of $X3$ are images of some elements of $X1$ under $f_3$. The
 above observations lead to the following definitions:
 
-<IdCard>
-
-#### Definition 5
+<Definition id="5" title="Definition 5">
 
 A function $f : X → Y$ is defined to be _**one-one**_ (or _**injective**_), if
 the images of distinct elements of $X$ under $f$ are distinct, i.e., for every
 $x_1, x_2 ∈ X, f(x_1) = f(x_2)$ implies $x_1 = x_2$. Otherwise, $f$ is called
 _**many-one**_.
 
-</IdCard>
+</Definition>
 
-The function $f_1$ and $f_4$ in [Fig 1.2](#figure-12) (i) and (iv) are one-one and the
-function $f_2$ and $f3_3$ in [Fig 1.2](#figure-12) (ii) and (iii) are many-one.
+The function $f_1$ and $f_4$ in [Fig 1.2](#figure-1.2) (i) and (iv) are one-one and the
+function $f_2$ and $f3_3$ in [Fig 1.2](#figure-1.2) (ii) and (iii) are many-one.
 
-<IdCard>
-
-#### Definition 6
+<Definition id="6" title="Definition 6">
 
 A function $f : X → Y$ is said to be _**onto**_ (or _**surjective**_), if every
 element of $Y$ is the image of some element of $X$ under f, i.e., for every
 $y ∈ Y$, there exists an element $x$ in $X$ such that $f(x) = y$.
 
-</IdCard>
+</Definition>
 
-The function $f_3$ and $f_4$ in [Fig 1.2](#figure-12) (iii), (iv) are onto and the function
-$f_1$ in [Fig 1.2](#figure-12) (i) is not onto as elements $e$, $f$ in $X_2$ are not the image
+The function $f_3$ and $f_4$ in [Fig 1.2](#figure-1.2) (iii), (iv) are onto and the function
+$f_1$ in [Fig 1.2](#figure-1.2) (i) is not onto as elements $e$, $f$ in $X_2$ are not the image
 of any element in $X1$ under $f_1$.
 
 <Figure
-  id="figure-12"
+  id="1.2"
   title="Fig 1.2 (i) to (iv)"
   invertable={true}
 >
-  ![Fig 1.2](fig_1.2.webp)
+  ![Fig 1.2](./res/fig_1.2.webp)
 </Figure>
 
 :::note[Remark]
@@ -511,18 +500,16 @@ $f : X → Y$ is onto if and only if Range of $f = Y$.
 
 :::
 
-<IdCard>
-
-#### Definition 7
+<Definition id="7" title="Definition 7">
 
 A function $f : X → Y$ is said to be one-one and onto (or _**bijective**_), if $f$ is
 both one-one and onto.
 
-</IdCard>
+</Definition>
 
-The function $f_4$ in [Fig 1.2](#figure-12) (iv) is one-one and onto.
+The function $f_4$ in [Fig 1.2](#figure-1.2) (iv) is one-one and onto.
 
-#### Example 7
+<Example id="7" title="Example 7">
 
 Let $A$ be the set of all $50$ students of Class X in a school. Let $f : A → ℕ$ be
 function defined by $f(x) =$ roll number of the student $x$. Show that $f$ is
@@ -538,9 +525,9 @@ number of any student of the class, so that $51$ can not be image of any element
 of $X$ under $f$. Hence, $f$ is not onto.
 
 </details>
+</Example>
 
-#### Example 8
-
+<Example id="8" title="Example 8">
 Show that the function $f : ℕ → ℕ$, given by $f(x) = 2x$, is one-one but not
 onto.
 
@@ -552,8 +539,9 @@ Further, f is not onto, as for $1 ∈ ℕ$, there does not exist any $x$ in $ℕ
 that $f(x) = 2x = 1$.
 
 </details>
+</Example>
 
-#### Example 9
+<Example id="9" title="Example 9">
 
 Prove that the function $f : ℝ → ℝ$, given by $f(x) = 2x$, is one-one and onto.
 
@@ -561,11 +549,11 @@ Prove that the function $f : ℝ → ℝ$, given by $f(x) = 2x$, is one-one and 
 <summary>Solution</summary>
 
 <Figure
-  id="figure-13"
+  id="1.3"
   title="Fig 1.3"
   invertable={true}
 >
-  ![Fig 1.3](fig_1.3.webp)
+  ![Fig 1.3](./res/fig_1.3.webp)
 </Figure>
 
 $f$ is one-one, as $f(x_1) = f(x_2) ⇒ 2x_1 = 2x_2 ⇒ x_1 = x_2$. Also, given any
@@ -573,8 +561,9 @@ real number $y$ in $ℝ$, there exists $\frac{y}{2}$ in $ℝ$ such that
 $f(\frac{y}{2}) = 2⋅(\frac{y}{2}) = y$. Hence, $f$ is onto.
 
 </details>
+</Example>
 
-#### Example 10
+<Example id="10" title="Example 10">
 
 Show that the function $f : ℕ → ℕ$, given by $f (1) = f (2) = 1$ and
 $f(x) = x - 1$, for every $x > 2$, is onto but not one-one.
@@ -587,8 +576,9 @@ $y ∈ ℕ, y ≠ 1$, we can choose $x$ as $y + 1$ such that
 $f(y + 1) = y + 1 - 1 = y$. Also for $1 ∈ ℕ$, we have $f(1) = 1$.
 
 </details>
+</Example>
 
-#### Example 11
+<Example id="11" title="Example 11">
 
 Show that the function $f : ℝ → ℝ$, defined as $f(x) = x^2$, is neither one-one
 nor onto.
@@ -597,11 +587,11 @@ nor onto.
 <summary>Solution</summary>
 
 <Figure
-  id="figure-14"
+  id="1.4"
   title="Fig 1.4"
   invertable={true}
 >
-  ![Fig 1.4](fig_1.4.webp)
+  ![Fig 1.4](./res/fig_1.4.webp)
 </Figure>
 
 Since $f(-1) = 1 = f (1)$, $f$ is not one-one. Also, the element $-2$ in the
@@ -609,8 +599,9 @@ co-domain $ℝ$ is not image of any element $x$ in the domain $ℝ$ (Why?).
 Therefore $f$ is not onto.
 
 </details>
+</Example>
 
-#### Example 12
+<Example id="12" title="Example 12">
 
 Show that $f : ℕ → ℕ$, given by
 
@@ -639,8 +630,9 @@ $2r+ 2$ in the domain $ℕ$ and any even number $2r$ in the co-domain $ℕ$ is t
 image of $2r - 1$ in the domain $ℕ$. Thus, $f$ is onto.
 
 </details>
+</Example>
 
-#### Example 13
+<Example id="13" title="Example 13">
 
 Show that an onto function $f : \{1, 2, 3\} → \{1, 2, 3\}$ is always one-one.
 
@@ -654,8 +646,9 @@ elements of the co-domain $\{1, 2, 3\}$, showing that $f$ is not onto, a
 contradiction. Hence, $f$ must be one-one.
 
 </details>
+</Example>
 
-#### Example 14
+<Example id="14" title="Example 14">
 
 Show that a one-one function $f : \{1, 2, 3\} → \{1, 2, 3\}$ must be onto.
 
@@ -667,6 +660,7 @@ different elements of the co-domain $\{1, 2, 3\}$ under $f$. Hence, $f$ has to
 be onto.
 
 </details>
+</Example>
 
 :::note[Remark]
 
@@ -681,16 +675,16 @@ this is a characteristic difference between a finite and an infinite set.
 
 ---
 
-## EXERCISE 1.2
+## EXERCISE 1.2 ||exercise-1.2||
 
-### 1.2 Question 1
+### 1.2 Question 1 ||1.2-question-1||
 
 Show that the function $f : ℝ_* → ℝ_*$ defined by $f(x) = \frac{1}{x}$ is
 one-one and onto, where $ℝ_*$ is the set of all non-zero real numbers. Is the
 result true, if the domain $ℝ_*$ is replaced by $ℕ$ with co-domain being same as
 $ℝ_*$?
 
-### 1.2 Question 2
+### 1.2 Question 2 ||1.2-question-2||
 
 Check the injectivity and surjectivity of the following functions:
 
@@ -700,29 +694,29 @@ Check the injectivity and surjectivity of the following functions:
 - (iv) $f : ℕ → ℕ$ given by $f(x) = x^3$
 - (v) $f : ℤ → ℤ$ given by $f(x) = x^3$
 
-### 1.2 Question 3
+### 1.2 Question 3 ||1.2-question-3||
 
 Prove that the Greatest Integer Function $f : ℝ → ℝ$, given by $f(x) = [x]$, is
 neither one-one nor onto, where $[x]$ denotes the greatest integer less than or
 equal to $x$.
 
-### 1.2 Question 4
+### 1.2 Question 4 ||1.2-question-4||
 
 Show that the Modulus Function $f : ℝ → ℝ$, given by $f(x) = |x|$, is neither
 one- one nor onto, where $|x|$ is $x$, if $x$ is positive or $0$ and $|x|$ is
 $-x$, if $x$ is negative.
 
-### 1.2 Question 5
+### 1.2 Question 5 ||1.2-question-5||
 
 Show that the Signum Function $f : ℝ → ℝ$, given by is neither one-one nor onto.
 
-### 1.2 Question 6
+### 1.2 Question 6 ||1.2-question-6||
 
 Let $A = \{1, 2, 3\}$, $B = \{4, 5, 6, 7\}$ and let
 $f = \{(1, 4), (2, 5), (3, 6)\}$ be a function from $A$ to $B$. Show that $f$ is
 one-one.
 
-### 1.2 Question 7
+### 1.2 Question 7 ||1.2-question-7||
 
 In each of the following cases, state whether the function is one-one, onto or
 bijective. Justify your answer.
@@ -730,12 +724,12 @@ bijective. Justify your answer.
 - (i) $f : ℝ → ℝ$ defined by $f(x) = 3 - 4x$
 - (ii) $f : ℝ → ℝ$ defined by $f(x) = 1 + x^2$
 
-### 1.2 Question 8
+### 1.2 Question 8 ||1.2-question-8||
 
 Let $A$ and $B$ be sets. Show that $f : A × B → B × A$ such that
 $f(a, b) = (b, a)$ is bijective function.
 
-### 1.2 Question 9
+### 1.2 Question 9 ||1.2-question-9||
 
 Let $f : ℕ → ℕ$ be defined by
 
@@ -748,13 +742,13 @@ $$
 
 State whether the function $f$ is bijective. Justify your answer.
 
-### 1.2 Question 10
+### 1.2 Question 10 ||1.2-question-10||
 
 Let $A = ℝ - \{3\}$ and $B = ℝ - \{1\}$. Consider the function $f : A → B$
 defined by $f(x) = \frac{x-2}{x-3}$. Is $f$ one-one and onto? Justify your
 answer.
 
-### 1.2 Question 11
+### 1.2 Question 11 ||1.2-question-11||
 
 Let $f : ℝ → ℝ$ be defined as $f(x) = x^4$. Choose the correct answer.
 
@@ -763,7 +757,7 @@ Let $f : ℝ → ℝ$ be defined as $f(x) = x^4$. Choose the correct answer.
 - (C) $f$ is one-one but not onto
 - (D) $f$ is neither one-one nor onto.
 
-### 1.2 Question 12
+### 1.2 Question 12 ||1.2-question-12||
 
 Let $f : ℝ → ℝ$ be defined as $f(x) = 3x$. Choose the correct answer.
 
@@ -774,27 +768,25 @@ Let $f : ℝ → ℝ$ be defined as $f(x) = 3x$. Choose the correct answer.
 
 ---
 
-## 1.4 Composition of Functions and Invertible Function
+## 1.4 Composition of Functions and Invertible Function ||section-1.4||
 
-<IdCard>
-
-#### Definition 8
+<Definition id="8" title="Definition 8">
 
 Let $f : A → B$ and $g : B → C$ be two functions. Then the composition of $f$
 and $g$, denoted by $gof$, is defined as the function $gof : A → C$ given by
 $gof(x) = g(f(x))$, $∀ x ∈ A$.
 
-</IdCard>
+</Definition>
 
 <Figure
-  id="figure-15"
+  id="1.5"
   title="Fig 1.5"
   invertable={true}
 >
-  ![Fig 1.5](fig_1.5.webp)
+  ![Fig 1.5](./res/fig_1.5.webp)
 </Figure>
 
-#### Example 15
+<Example id="15" title="Example 15">
 
 Let
 
@@ -824,9 +816,9 @@ $gof(4) = g(f(4)) = g(5) = 11$
 and $gof(5) = g (5) = 11$.
 
 </details>
+</Example>
 
-#### Example 16
-
+<Example id="16" title="Example 16">
 Find $gof$ and $fog$, if $f : ℝ → ℝ$ and $g : ℝ → ℝ$ are given by
 $f (x) = cos x$ and $g
 (x) = 3x^2$. Show that $gof ≠ fog$.
@@ -839,23 +831,22 @@ $fog(x) = f(g(x)) = f(3x^2) = cos(3x^2)$. Note that $3cos^2(x) ≠ cos(3x^2)$, f
 $x = 0$. Hence, $gof ≠ fog$.
 
 </details>
+</Example>
 
-<IdCard>
-
-#### Definition 9
+<Definition id="9" title="Definition 9">
 
 A function $f : X → Y$ is defined to be _**invertible**_, if there exists a
 function $g : Y → X$ such that $gof = I_X$ and $fog = I_Y$. The function $g$ is
 called the inverse of $f$ and is denoted by $f^{-1}$.
 
-</IdCard>
+</Definition>
 
 Thus, if $f$ is invertible, then $f$ must be one-one and onto and conversely, if
 $f$ is one-one and onto, then $f$ must be invertible. This fact significantly
 helps for proving a function $f$ to be invertible by showing that $f$ is one-one
 and onto, specially when the actual inverse of $f$ is not to be determined.
 
-#### Example 17
+<Example id="17" title="Example 17">
 
 Let $f : ℕ → Y$ be a function defined as $f(x) = 4x + 3$, where,
 $Y = \{y ∈ ℕ: y = 4x + 3$ for some $x ∈ ℕ\}$. Show that $f$ is invertible. Find
@@ -878,10 +869,11 @@ This shows that $gof = I_ℕ$ and $fog = I_Y$, which implies that $f$ is
 invertible and $g$ is the inverse of $f$.
 
 </details>
+</Example>
 
-## Miscellaneous Examples
+## Miscellaneous Examples ||section-1.M||
 
-#### Example 18
+<Example id="18" title="Example 18">
 
 If $R_1$ and $R_2$ are equivalence relations in a set $A$, show that $R_1 ∩ R_2$
 is also an equivalence relation.
@@ -913,8 +905,9 @@ This shows that $R_1 ∩ R_2$ is transitive.
 Thus, $R_1 ∩ R_2$ is an equivalence relation.
 
 </details>
+</Example>
 
-#### Example 19
+<Example id="19" title="Example 19">
 
 Let $R$ be a relation on the set $A$ of ordered pairs of positive integers
 defined by $(x, y) R (u, v)$ if and only if $xv = yu$. Show that $R$ is an
@@ -949,8 +942,9 @@ Thus, $R$ is transitive.
 Thus, $R$ is an equivalence relation.
 
 </details>
+</Example>
 
-#### Example 20
+<Example id="20" title="Example 20">
 
 Let $X = \{1, 2, 3, 4, 5, 6, 7, 8, 9\}$.
 
@@ -993,8 +987,9 @@ $⇒ \{x, y\} ∈ R_1$. This shows that $R_2 ⊂ R_1$.
 Hence, $R_1 = R_2$.
 
 </details>
+</Example>
 
-#### Example 21
+<Example id="21" title="Example 21">
 
 Let $f : X → Y$ be a function. Define a relation $R$ in $X$ given by
 $R = \{(a, b): f(a) = f(b)\}$. Examine whether $R$ is an equivalence relation or
@@ -1025,8 +1020,9 @@ $⇒ (a, c) ∈ R$, which implies that $R$ is transitive.
 Hence, $R$ is an equivalence relation.
 
 </details>
+</Example>
 
-#### Example 22
+<Example id="22" title="Example 22">
 
 Find the number of all one-one functions from set $A = \{1, 2, 3\}$ to itself.
 
@@ -1039,8 +1035,9 @@ itself is same as total number of permutations on three symbols $1, 2, 3$ which
 is $3! = 6$.
 
 </details>
+</Example>
 
-#### Example 23
+<Example id="23" title="Example 23">
 
 Let $A = \{1, 2, 3\}$. Then show that the number of relations containing
 $(1, 2)$ and $(2, 3)$ which are reflexive and transitive but not symmetric is
@@ -1060,8 +1057,9 @@ transitivity and in the process, the relation will become symmetric also which
 is not required. Thus, the total number of desired relations is three.
 
 </details>
+</Example>
 
-#### Example 24
+<Example id="24" title="Example 24">
 
 Show that the number of equivalence relation in the set $\{1, 2, 3\}$ containing
 $(1, 2)$ and $(2, 1)$ is two.
@@ -1079,8 +1077,9 @@ than $R_1$ is the universal relation. This shows that the total number of
 equivalence relations containing $(1, 2)$ and $(2, 1)$ is two.
 
 </details>
+</Example>
 
-#### Example 25
+<Example id="25" title="Example 25">
 
 Consider the identity function $I_ℕ : ℕ → ℕ$ defined as $I_ℕ(x) = x ∀ x ∈ ℕ$.
 Show that although $I_ℕ$ is onto but $I ℕ + I ℕ : ℕ → ℕ$ defined as
@@ -1095,8 +1094,9 @@ $3$ in the co-domain $ℕ$ such that there does not exist any $x$ in the domain
 $ℕ$ with $(I_ℕ + I_ℕ)(x) = 2x = 3$.
 
 </details>
+</Example>
 
-#### Example 26
+<Example id="26" title="Example 26">
 
 Consider a function $f : [0,\frac{π}{2}] → ℝ$ given by $f(x) = sin(x)$ and
 $g : [0,\frac{π}{2}] → ℝ$ given by $g(x) = cos(x)$. Show that $f$ and $g$ are
@@ -1114,21 +1114,22 @@ $(f + g)(\frac{π}{2}) = sin(\frac{π}{2}) + cos(\frac{π}{2}) = 1$.
 Therefore, $f + g$ is not one-one.
 
 </details>
+</Example>
 
 ---
 
-## Miscellaneous Exercise on Chapter 1
+## Miscellaneous Exercise on Chapter 1 ||exercise-1.M||
 
-### 1.M Question 1
+### 1.M Question 1 ||1.M-question-1||
 
 Show that the function $f : ℝ → \{x ∈ ℝ : - 1 < x < 1\}$ defined by
 $f(x) = \frac{x}{1+|x|}$, $x ∈ R$ is one one and onto function.
 
-### 1.M Question 2
+### 1.M Question 2 ||1.M-question-2||
 
 Show that the function $f : ℝ → ℝ$ given by $f(x) = x^3$ is injective.
 
-### 1.M Question 3
+### 1.M Question 3 ||1.M-question-3||
 
 Given a non empty set $X$, consider $P(X)$ which is the set of all subsets of
 $X$. Define the relation $R$ in $P(X)$ as follows:
@@ -1136,12 +1137,12 @@ $X$. Define the relation $R$ in $P(X)$ as follows:
 For subsets $A$, $B$ in $P(X)$, $ARB$ if and only if $A ⊂ B$. Is $R$ an
 equivalence relation on $P(X)$? Justify your answer.
 
-### 1.M Question 4
+### 1.M Question 4 ||1.M-question-4||
 
 Find the number of all onto functions from the set $\{1, 2, 3,......, n\}$ to
 itself.
 
-### 1.M Question 5
+### 1.M Question 5 ||1.M-question-5||
 
 Let $A = \{- 1, 0, 1, 2\}$, $B = \{- 4, - 2, 0, 2\}$ and $f, g : A → B$ be
 functions defined by $f(x) = x^2 - x, x ∈ A$ and
@@ -1150,7 +1151,7 @@ $g(x) = 2|x-\frac{1}{2}|-1, x ∈ A$. Are $f$ and $g$ equal? Justify your answer
 (Hint: One may note that two functions $f : A → B$ and $g : A → B$ such that
 $f(a) = g(a) ∀ a ∈ A$, are called equal functions).
 
-### 1.M Question 6
+### 1.M Question 6 ||1.M-question-6||
 
 Let $A = \{1, 2, 3\}$. Then number of relations containing $(1, 2)$ and $(1, 3)$
 which are reflexive and symmetric but not transitive is
@@ -1160,7 +1161,7 @@ which are reflexive and symmetric but not transitive is
 - (C) 3
 - (D) 4
 
-### 1.M Question 7
+### 1.M Question 7 ||1.M-question-7||
 
 Let $A = \{1, 2, 3\}$. Then number of equivalence relations containing $(1, 2)$
 is
@@ -1174,6 +1175,7 @@ is
 
 ## Summary
 
+<Summary>
 In this chapter, we studied different types of relations and equivalence
 relation, composition of functions, invertible functions and binary operations.
 The main features of this chapter are as follows:
@@ -1198,10 +1200,11 @@ The main features of this chapter are as follows:
 - Given a finite set $X$, a function $f : X → X$ is one-one (respectively onto)
   if and only if $f$ is onto (respectively one-one). This is the characteristic
   property of a finite set. This is not true for infinite set
+</Summary>
 
 ---
 
-<IdCard>
+<Card>
 
 ## Historical Note
 
@@ -1245,6 +1248,6 @@ developed by [Georg Cantor](https://en.wikipedia.org/wiki/Georg_Cantor)
 (1845-1918). The set theoretic definition of function known to us presently is
 simply an abstraction of the definition given by Dirichlet in a rigorous manner.
 
-</IdCard>
+</Card>
 
 ---

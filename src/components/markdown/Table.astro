@@ -1,0 +1,30 @@
+---
+import { Card } from "@/components/markdown";
+import TableHeading from "../partials/TableHeading.astro";
+
+interface Props {
+	id?: string;
+	title?: string;
+}
+
+import crypto from "node:crypto";
+const { id = crypto.randomUUID({ disableEntropyCache: true }), title } =
+	Astro.props;
+---
+
+<Card id={`table-${id}`}>
+	{title && <TableHeading title={title} />}
+	<center>
+		<slot />
+	</center>
+</Card>
+
+<style is:global>
+	th,
+	td {
+		code,
+		.katex {
+			white-space: nowrap;
+		}
+	}
+</style>
