@@ -20,45 +20,16 @@ const {
 	halfWidth = false,
 	center = false,
 } = Astro.props;
-
-const half_width_style = `
-<style>
-		figure#${`figure-${id.replace(".", "\\.")}`} {
-			img {
-				width: 50%;
-			}
-		}
-</style>
-`;
-
-const invertable_style = `
-<style>
-	:root[data-theme="dark"] {
-		figure#${`figure-${id.replace(".", "\\.")}`} {
-			img {
-				filter: invert(1);
-				-webkit-filter: invert(1);
-			}
-		}
-	}
-</style>
-`;
-
-const reverse_invertable_style = `
-<style>
-	:root[data-theme="light"] {
-		figure#${`figure-${id.replace(".", "\\.")}`} {
-			img {
-				filter: invert(1);
-				-webkit-filter: invert(1);
-			}
-		}
-	}
-</style>
-`;
 ---
 
-<figure id={`figure-${id}`}>
+<figure
+	id={`figure-${id}`}
+	class:list={[
+		invertable && !reverseInvert && "img-invertable",
+		invertable && reverseInvert && "img-reverse-invertable",
+		halfWidth && "img-half-width",
+	]}
+>
 	{
 		center || halfWidth ? (
 			<center>
@@ -76,13 +47,3 @@ const reverse_invertable_style = `
 		)
 	}
 </figure>
-
-{halfWidth && <Fragment set:html={half_width_style} />}
-
-{invertable && !reverseInvert && <Fragment set:html={invertable_style} />}
-
-{
-	invertable && reverseInvert && (
-		<Fragment set:html={reverse_invertable_style} />
-	)
-}

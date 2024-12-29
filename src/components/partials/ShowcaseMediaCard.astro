@@ -3,14 +3,15 @@ interface Props {
 	description?: string;
 	href?: string;
 	title: string;
+	class?: string;
 }
 
-const { description, href, title } = Astro.props;
+const { class: className, description, href, title } = Astro.props;
 
 const Element = href ? "a" : "div";
 ---
 
-<div class="not-content sl-flex">
+<div class:list={["not-content sl-flex", className]}>
 	<Element {href} class="starlight-showcases-media-card">
 		<div class="starlight-showcases-media-asset">
 			<slot />
@@ -44,7 +45,10 @@ const Element = href ? "a" : "div";
 	}
 
 	.starlight-showcases-media-asset :global(img) {
-		max-height: 400px;
+		aspect-ratio: 1/1;
+		height: 200px;
+		max-height: 200px;
+		width: 100%;
 		max-width: 100%;
 		object-fit: contain;
 	}

@@ -1,6 +1,5 @@
 :root {
 	--sl-font: "Noto Sans Devanagari Variable", "Noto Sans Variable", sans-serif;
-	/* --sl-color-text: var(--sl-color-gray-1); */
 }
 
 h1,
@@ -15,4 +14,28 @@ h6 {
 main {
 	letter-spacing: 0.02rem;
 	line-height: 1.6;
+}
+
+:root[data-theme="dark"] {
+	.img-invertable {
+		img {
+			filter: invert(1);
+			-webkit-filter: invert(1);
+		}
+	}
+}
+
+:root[data-theme="light"] {
+	.img-reverse-invertable {
+		img {
+			filter: invert(1);
+			-webkit-filter: invert(1);
+		}
+	}
+}
+
+.img-half-width {
+	img {
+		width: 50%;
+	}
 }

@@ -13,10 +13,43 @@ hero:
 
 import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-<CardGrid>
-	<LinkCard title="Prose 1" icon="pencil" href="chapter-01/"/>
-  <LinkCard title="Prose 2" icon="pencil" href="chapter-02/"/>
+import ShowcaseImage from "@/components/ShowcaseImge.astro"
 
-  <LinkCard title="Poetry 1" icon="pencil" href="chapter-11/"/>
-  <LinkCard title="Poetry 2" icon="pencil" href="chapter-12/"/>
-</CardGrid>
+## Prose
+
+<ShowcaseImage
+  entries={[
+    {
+      thumbnail: import('./res/icon_01.png'),
+      href: 'chapter-01/',
+      title: 'Prose 1',
+      invertable: true,
+    },
+    {
+      thumbnail: import('./res/icon_02.png'),
+      href: 'chapter-02/',
+      title: 'Prose 2',
+      invertable: true,
+    },
+  ]}
+/>
+
+## Poetry
+
+<ShowcaseImage
+  entries={[
+    {
+      thumbnail: import('./res/icon_11.png'),
+      href: 'chapter-11/',
+      title: 'Poetry 1',
+      invertable: true,
+    },
+    {
+      thumbnail: import('./res/icon_12.png'),
+      href: 'chapter-12/',
+      title: 'Poetry 2',
+      invertable: true,
+    }
+  ]}
+/>
+
