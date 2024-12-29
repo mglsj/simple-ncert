@@ -1,7 +1,4 @@
->>>
-RESTART: Path_to_file\Program2-1.py
 Enter the contents to be written in the file:
 roll_numbers = [1, 2, 3, 4, 5, 6]
 Now reading the contents of the file:
 roll_numbers = [1, 2, 3, 4, 5, 6]
->>>

@@ -1,5 +1,2 @@
->>>
-RESTART: Path_to_file\Program2-7.py
 The data that were stored in file are:
 [1, 'Geetika', 'F', 26]
->>>

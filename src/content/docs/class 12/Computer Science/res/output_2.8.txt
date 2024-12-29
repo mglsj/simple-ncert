@@ -1,5 +1,3 @@
->>>
-RESTART: Path_to_file\Program2-8.py
 WORKING WITH BINARY FILES
 Enter Records of Employees
 RECORD No. 1
@@ -23,4 +21,3 @@ Record Number : 1
 [11, 'D N Ravi', 32600, 4400, 37000]
 Record Number : 2
 [12, 'Farida Ahmed', 38250, 5300, 43550]
->>>

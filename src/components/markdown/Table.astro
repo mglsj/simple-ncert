@@ -5,18 +5,28 @@ import TableHeading from "../partials/TableHeading.astro";
 interface Props {
 	id?: string;
 	title?: string;
+	center?: boolean;
 }
 
 import crypto from "node:crypto";
-const { id = crypto.randomUUID({ disableEntropyCache: true }), title } =
-	Astro.props;
+const {
+	id = crypto.randomUUID({ disableEntropyCache: true }),
+	title,
+	center = true,
+} = Astro.props;
 ---
 
 <Card id={`table-${id}`}>
 	{title && <TableHeading title={title} />}
-	<center>
-		<slot />
-	</center>
+	{
+		center ? (
+			<center>
+				<slot />
+			</center>
+		) : (
+			<slot />
+		)
+	}
 </Card>
 
 <style is:global>
