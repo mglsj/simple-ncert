@@ -23,6 +23,9 @@ main {
 			-webkit-filter: invert(1);
 		}
 	}
+	.figure-light {
+		display: none;
+	}
 }
 
 :root[data-theme="light"] {
@@ -32,10 +35,19 @@ main {
 			-webkit-filter: invert(1);
 		}
 	}
+	.figure-dark {
+		display: none;
+	}
 }
 
 .img-half-width {
 	img {
 		width: 50%;
+	}
+}
+
+.img-full-width {
+	img {
+		width: 100%;
 	}
 }

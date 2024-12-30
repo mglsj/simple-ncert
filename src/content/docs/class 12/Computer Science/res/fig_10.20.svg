@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 269.2 107.34">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #231f20;
+      }
+
+      .cls-3, .cls-4 {
+        fill: none;
+      }
+
+      .cls-2 {
+        font-family: BookmanOldStyle, 'Bookman Old Style';
+        font-size: 8.61px;
+      }
+
+      .cls-5 {
+        letter-spacing: .02em;
+      }
+
+      .cls-6 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-7 {
+        letter-spacing: .02em;
+      }
+
+      .cls-8 {
+        letter-spacing: .03em;
+      }
+
+      .cls-9 {
+        letter-spacing: 0em;
+      }
+
+      .cls-4 {
+        stroke: #231f20;
+        stroke-miterlimit: 10;
+        stroke-width: .86px;
+      }
+
+      .cls-10 {
+        fill: #8ac0e8;
+      }
+
+      .cls-11 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-3" width="269.2" height="107.34"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-3" width="269.2" height="107.34"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <rect class="cls-10" x="206.79" y="44.93" width="61.98" height="61.98"/>
+    <g class="cls-11">
+      <rect class="cls-4" x="206.79" y="44.93" width="61.98" height="61.98"/>
+    </g>
+    <text class="cls-2" transform="translate(97.42 79.75)"><tspan x="0" y="0">www.ncert.nic.in</tspan></text>
+    <text class="cls-2" transform="translate(226.93 73.08)"><tspan x="0" y="0">DNS </tspan></text>
+    <text class="cls-2" transform="translate(224.43 82.55)"><tspan x="0" y="0">Server</tspan></text>
+    <text class="cls-2" transform="translate(99.47 61.19)"><tspan x="0" y="0">164.100.60.233</tspan></text>
+    <text class="cls-2" transform="translate(18.69 7.24)"><tspan x="0" y="0">User</tspan></text>
+    <rect class="cls-10" x=".43" y="44.93" width="61.98" height="61.98"/>
+    <g class="cls-6">
+      <rect class="cls-4" x=".43" y="44.93" width="61.98" height="61.98"/>
+    </g>
+    <text class="cls-2" transform="translate(11.62 73.08)"><tspan x="0" y="0">H</tspan></text>
+    <text class="cls-2" transform="translate(18.72 73.08)"><tspan class="cls-5" x="0" y="0">TT</tspan><tspan class="cls-7" x="11.09" y="0">P i</tspan><tspan x="22.41" y="0">n</tspan></text>
+    <text class="cls-2" transform="translate(11.36 82.55)"><tspan class="cls-7" x="0" y="0">Br</tspan><tspan class="cls-5" x="10.59" y="0">ow</tspan><tspan class="cls-8" x="22.53" y="0">se</tspan><tspan class="cls-9" x="31.92" y="0">r</tspan></text>
+    <line class="cls-4" x1="72.51" y1="66.12" x2="187.24" y2="66.12"/>
+    <polygon class="cls-1" points="185.98 70.41 193.42 66.12 185.98 61.83 185.98 70.41"/>
+    <line class="cls-4" x1="29.23" y1="13.64" x2="29.23" y2="36.26"/>
+    <polygon class="cls-1" points="24.93 35 29.23 42.44 33.52 35 24.93 35"/>
+    <line class="cls-4" x1="193.42" y1="84.2" x2="78.69" y2="84.2"/>
+    <polygon class="cls-1" points="79.95 79.91 72.51 84.2 79.95 88.49 79.95 79.91"/>
+  </g>
+</svg>

@@ -16,16 +16,17 @@ import { Card, Quote, Figure, Example, Definition, Summary } from "@/components/
 <Figure
   id="portrait"
   invertable={false}
+  halfWidth={true}
+  images={[
+    {
+      src: import("./res/lejeune_dirichlet.jpg"),
+      alt: "Lejeune Dirichlet",
+    },
+  ]}
 >
-    <center>
-      ![Lejeune Dirichlet](./res/lejeune_dirichlet.jpg)
-    </center>
-    <center>
-      **[Lejeune Dirichlet](https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet)**\
-      **(1805-1859)**
-    </center>
+  **[Lejeune Dirichlet](https://en.wikipedia.org/wiki/Peter_Gustav_Lejeune_Dirichlet)**\
+  **(1805-1859)**
 </Figure>
-
 
 ## 1.1 Introduction ||section-1.1||
 
@@ -39,14 +40,14 @@ be the set of students of Class XII of a school and $B$ be the set of students
 of Class XI of the same school. Then some of the examples of relations from $A$
 to $B$ are
 
-- (i) $\{(a, b) ∈ A × B: a$ is brother of $b\}$,
-- (ii) $\{(a, b) ∈ A × B: a$ is sister of $b\}$,
-- (iii) $\{(a, b) ∈ A × B:$ age of $a$ is greater than age of $b\}$,
-- (iv) $\{(a, b) ∈ A × B:$ total marks obtained by $a$ in the final examination
+- (i) $\{(a, b) ∈ A \times B: a$ is brother of $b\}$,
+- (ii) $\{(a, b) ∈ A \times B: a$ is sister of $b\}$,
+- (iii) $\{(a, b) ∈ A \times B:$ age of $a$ is greater than age of $b\}$,
+- (iv) $\{(a, b) ∈ A \times B:$ total marks obtained by $a$ in the final examination
   is less than the total marks obtained by $b$ in the final examination$\}$,
-- (v) $\{(a, b) ∈ A × B: a$ lives in the same locality as $b\}$. However,
+- (v) $\{(a, b) ∈ A \times B: a$ lives in the same locality as $b\}$. However,
   abstracting from this, we define mathematically a relation $R$ from $A$ to $B$
-  as an arbitrary subset of $A × B$.
+  as an arbitrary subset of $A \times B$.
 
 If $(a, b) ∈ R$, we say that a is related to b under the relation $R$ and we
 write as $a R b$. In general, $(a, b) ∈ R$, we do not bother whether there is a
@@ -59,25 +60,25 @@ composition of functions, invertible functions and binary operations.
 ### 1.2 Types of Relations ||section-1.2||
 
 In this section, we would like to study different types of relations. We know
-that a relation in a set $A$ is a subset of $A × A$. Thus, the empty set $φ$ and
-$A × A$ are two extreme relations. For illustration, consider a relation $R$ in
+that a relation in a set $A$ is a subset of $A \times A$. Thus, the empty set $φ$ and
+$A \times A$ are two extreme relations. For illustration, consider a relation $R$ in
 the set $A = \{1, 2, 3, 4\}$ given by $R = \{(a, b): a - b = 10\}$. This is the
 empty set, as no pair $(a, b)$ satisfies the condition $a - b = 10$. Similarly,
-$R' = \{(a, b) : | a - b | ≥ 0\}$ is the whole set $A × A$, as all pairs
-$(a, b)$ in $A × A$ satisfy $| a - b | ≥ 0$. These two extreme examples lead us
+$R' = \{(a, b) : | a - b | ≥ 0\}$ is the whole set $A \times A$, as all pairs
+$(a, b)$ in $A \times A$ satisfy $| a - b | ≥ 0$. These two extreme examples lead us
 to the following definitions.
 
 <Definition id="1" title="Definition 1">
 
 A relation $R$ in a set $A$ is called _**empty relation**_, if no element of $A$
-is related to any element of $A$, i.e., $R = φ ⊂ A × A$.
+is related to any element of $A$, i.e., $R = φ ⊂ A \times A$.
 
 </Definition>
 
 <Definition id="2" title="Definition 2">
 
 A relation $R$ in a set $A$ is called _**universal relation**_, if each element
-of $A$ is related to every element of $A$, i.e., $R = A × A$.
+of $A$ is related to every element of $A$, i.e., $R = A \times A$.
 
 Both the empty relation and the universal relation are some times called
 _**trivial relations**_.
@@ -97,7 +98,7 @@ meters$\}$ is the universal relation.
 Since the school is boys school, no student of the school can be sister of any
 student of the school. Hence, $R = φ$, showing that $R$ is the empty relation.
 It is also obvious that the difference between heights of any two students of
-the school has to be less than 3 meters. This shows that $R' = A × A$ is the
+the school has to be less than 3 meters. This shows that $R' = A \times A$ is the
 universal relation.
 
 </details>
@@ -726,7 +727,7 @@ bijective. Justify your answer.
 
 ### 1.2 Question 8 ||1.2-question-8||
 
-Let $A$ and $B$ be sets. Show that $f : A × B → B × A$ such that
+Let $A$ and $B$ be sets. Show that $f : A \times B → B \times A$ such that
 $f(a, b) = (b, a)$ is bijective function.
 
 ### 1.2 Question 9 ||1.2-question-9||
@@ -1180,8 +1181,8 @@ In this chapter, we studied different types of relations and equivalence
 relation, composition of functions, invertible functions and binary operations.
 The main features of this chapter are as follows:
 
-- _**Empty relation**_ is the relation $R$ in $X$ given by $R = φ ⊂ X × X$.
-- _**Universal relation**_ is the relation $R$ in $X$ given by $R = X × X$.
+- _**Empty relation**_ is the relation $R$ in $X$ given by $R = φ ⊂ X \times X$.
+- _**Universal relation**_ is the relation $R$ in $X$ given by $R = X \times X$.
 - _**Reflexive relation**_ $R$ in $X$ is a relation with $(a, a) ∈ R ∀ a ∈ X$.
 - _**Symmetric relation**_ $R$ in $X$ is a relation satisfying $(a, b) ∈ R$
   implies $(b, a) ∈  R$.

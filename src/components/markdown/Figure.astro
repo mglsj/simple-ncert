@@ -1,5 +1,6 @@
 ---
 import FigureCaption from "../partials/FigureCaption.astro";
+import FigureImage, { type ImageEntry } from "../partials/FigureImage.astro";
 
 interface Props {
 	id?: string;
@@ -8,7 +9,14 @@ interface Props {
 	reverseInvert?: boolean;
 	halfWidth?: boolean;
 	center?: boolean;
+	images?: ImageSrcEntry[];
 }
+
+type ImageSrcEntry = {
+	src: Promise<{ default: ImageMetadata }>;
+	srcDark?: Promise<{ default: ImageMetadata }>;
+	alt: string;
+};
 
 import crypto from "node:crypto";
 
@@ -19,7 +27,16 @@ const {
 	reverseInvert = false,
 	halfWidth = false,
 	center = false,
+	images: sources = [],
 } = Astro.props;
+
+const images: ImageEntry[] = await Promise.all(
+	sources.map(async (source) => ({
+		image: (await source.src).default,
+		imageDark: (source.srcDark && (await source.srcDark).default) || null,
+		alt: source.alt,
+	})),
+);
 ---
 
 <figure
@@ -27,18 +44,17 @@ const {
 	class:list={[
 		invertable && !reverseInvert && "img-invertable",
 		invertable && reverseInvert && "img-reverse-invertable",
-		halfWidth && "img-half-width",
+		halfWidth ? "img-half-width" : "img-full-width",
 	]}
 >
-	{
-		center || halfWidth ? (
-			<center>
-				<slot />
-			</center>
-		) : (
-			<slot />
-		)
-	}
+	{(center || halfWidth) && <Fragment set:html={`<center>`} />}
+
+	{images?.map((entry) => <FigureImage entry={entry} />)}
+
+	<slot />
+
+	{(center || halfWidth) && <Fragment set:html={`</center>`} />}
+
 	{
 		title && (
 			<figcaption>

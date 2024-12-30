@@ -1,0 +1,29 @@
+---
+import Image from "astro/components/Image.astro";
+
+type ImageEntry = {
+	image: ImageMetadata;
+	imageDark: ImageMetadata | null;
+	alt: string;
+};
+
+export type { ImageEntry };
+
+interface Props {
+	entry: ImageEntry;
+}
+
+const { entry } = Astro.props;
+---
+
+<Image
+	src={entry.image}
+	alt={entry.alt}
+	class={entry.imageDark !== null ? "figure-light" : ""}
+/>
+
+{
+	entry.imageDark && (
+		<Image src={entry.imageDark} alt={entry.alt} class="figure-dark" />
+	)
+}

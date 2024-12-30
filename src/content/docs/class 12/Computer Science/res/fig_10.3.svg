@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 467.21 277.27">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: BookmanOldStyle, 'Bookman Old Style';
+        font-size: 8.51px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        fill: #231f20;
+      }
+
+      .cls-5 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        font-size: 7.99px;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        font-family: BookmanOldStyle-Bold, 'Bookman Old Style';
+        font-weight: 700;
+      }
+
+      .cls-6 {
+        fill: #f47b20;
+      }
+
+      .cls-7 {
+        fill: #603913;
+      }
+
+      .cls-3 {
+        font-size: 7.99px;
+      }
+
+      .cls-8 {
+        stroke: #231f20;
+        stroke-width: .94px;
+      }
+
+      .cls-8, .cls-9 {
+        fill: none;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-9 {
+        stroke: #603913;
+        stroke-width: 1.89px;
+      }
+
+      .cls-4 {
+        font-size: 7.99px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <line class="cls-8" x1="50.36" y1="42.75" x2="50.36" y2="126.32"/>
+    <line class="cls-8" x1="239.71" y1="41.25" x2="239.71" y2="126.32"/>
+    <line class="cls-9" x1="17.87" y1="126.83" x2="461.24" y2="126.83"/>
+    <path class="cls-7" d="M18.12,131.81c-2.75,0-4.98-2.23-4.98-4.98s2.23-4.98,4.98-4.98,4.98,2.23,4.98,4.98-2.23,4.98-4.98,4.98"/>
+    <path class="cls-7" d="M460.99,131.81c2.75,0,4.97-2.23,4.97-4.98s-2.23-4.98-4.97-4.98-4.98,2.23-4.98,4.98,2.23,4.98,4.98,4.98"/>
+    <path class="cls-6" d="M57.9,126.61c0,4.04-3.28,7.32-7.32,7.32s-7.32-3.28-7.32-7.32,3.28-7.32,7.32-7.32,7.32,3.28,7.32,7.32"/>
+    <line class="cls-8" x1="98.55" y1="133.49" x2="98.55" y2="173.14"/>
+    <path class="cls-6" d="M105.61,126.61c0,4.04-3.28,7.32-7.32,7.32s-7.32-3.28-7.32-7.32,3.28-7.32,7.32-7.32,7.32,3.28,7.32,7.32"/>
+    <path class="cls-6" d="M201.25,126.61c0,4.04-3.28,7.32-7.32,7.32s-7.32-3.28-7.32-7.32,3.28-7.32,7.32-7.32,7.32,3.28,7.32,7.32"/>
+    <line class="cls-8" x1="143.51" y1="87.49" x2="143.51" y2="119.44"/>
+    <line class="cls-8" x1="284.9" y1="133.19" x2="284.9" y2="168.7"/>
+    <path class="cls-6" d="M150.66,126.61c0,4.04-3.28,7.32-7.32,7.32s-7.32-3.28-7.32-7.32,3.28-7.32,7.32-7.32,7.32,3.28,7.32,7.32"/>
+    <path class="cls-6" d="M292,126.61c0,4.04-3.28,7.32-7.32,7.32s-7.32-3.28-7.32-7.32,3.28-7.32,7.32-7.32,7.32,3.28,7.32,7.32"/>
+    <path class="cls-6" d="M381.21,126.61c0,4.04-3.28,7.32-7.32,7.32s-7.32-3.28-7.32-7.32,3.28-7.32,7.32-7.32,7.32,3.28,7.32,7.32"/>
+    <line class="cls-8" x1="330.45" y1="87.56" x2="330.45" y2="119.51"/>
+    <path class="cls-6" d="M337.77,126.61c0,4.04-3.28,7.32-7.32,7.32s-7.32-3.28-7.32-7.32,3.28-7.32,7.32-7.32,7.32,3.28,7.32,7.32"/>
+    <text class="cls-1" transform="translate(61.11 182.49)"><tspan x="0" y="0">ARPANET became </tspan></text>
+    <text class="cls-1" transform="translate(71.15 192.7)"><tspan x="0" y="0">functional by </tspan></text>
+    <text class="cls-1" transform="translate(53.37 202.91)"><tspan x="0" y="0">connecting UCLA and </tspan></text>
+    <text class="cls-1" transform="translate(91.23 213.12)"><tspan x="0" y="0">SRI</tspan></text>
+    <text class="cls-1" transform="translate(238.87 176.45)"><tspan x="0" y="0">Domain Name System </tspan></text>
+    <text class="cls-1" transform="translate(262.35 186.66)"><tspan x="0" y="0">introduced</tspan></text>
+    <text class="cls-1" transform="translate(148.05 223.52)"><tspan x="0" y="0">The term Internet was </tspan></text>
+    <text class="cls-1" transform="translate(179.19 233.73)"><tspan x="0" y="0">coined, </tspan></text>
+    <text class="cls-1" transform="translate(145.34 254.15)"><tspan x="0" y="0">First commercial use of </tspan></text>
+    <text class="cls-1" transform="translate(147.03 264.36)"><tspan x="0" y="0">ARPANET, was started </tspan></text>
+    <text class="cls-1" transform="translate(147.71 274.57)"><tspan x="0" y="0">in the name of Telenet</tspan></text>
+    <text class="cls-1" transform="translate(6.55 7.15)"><tspan x="0" y="0">The idea of Advanced </tspan></text>
+    <text class="cls-1" transform="translate(0 17.36)"><tspan x="0" y="0">Research Project Agency </tspan></text>
+    <text class="cls-1" transform="translate(4.43 27.57)"><tspan x="0" y="0">Network (ARPANET) is </tspan></text>
+    <text class="cls-1" transform="translate(19.83 37.78)"><tspan x="0" y="0">conceptualized</tspan></text>
+    <text class="cls-1" transform="translate(194.63 17.21)"><tspan x="0" y="0">TCP/IP introduced as </tspan></text>
+    <text class="cls-1" transform="translate(196.25 27.42)"><tspan x="0" y="0">standard protocol on </tspan></text>
+    <text class="cls-1" transform="translate(219.31 37.63)"><tspan x="0" y="0">ARPANET</tspan></text>
+    <text class="cls-1" transform="translate(93.49 54.27)"><tspan x="0" y="0">Roy Tomlinson develops </tspan></text>
+    <text class="cls-1" transform="translate(97.92 64.48)"><tspan x="0" y="0">network messaging or </tspan></text>
+    <text class="cls-1" transform="translate(106.76 74.69)"><tspan x="0" y="0">E-mail. Symbol @</tspan></text>
+    <text class="cls-1" transform="translate(103.62 84.9)"><tspan x="0" y="0">comes to mean &quot;at&quot;</tspan></text>
+    <rect class="cls-5" x="315.95" y="101.98" width="28.99" height="9.76"/>
+    <text class="cls-2" transform="translate(319.89 109.63) rotate(.49)"><tspan x="0" y="0">1986</tspan></text>
+    <line class="cls-8" x1="417.95" y1="30.59" x2="417.95" y2="119.81"/>
+    <text class="cls-1" transform="translate(295.91 41.56)"><tspan x="0" y="0">National Science </tspan></text>
+    <text class="cls-1" transform="translate(291.99 51.77)"><tspan x="0" y="0">Foundation brings </tspan></text>
+    <text class="cls-1" transform="translate(288.34 61.98)"><tspan x="0" y="0">connectivity to more </tspan></text>
+    <text class="cls-1" transform="translate(281.36 72.18)"><tspan x="0" y="0">people with its NSFNET </tspan></text>
+    <text class="cls-1" transform="translate(312.92 82.39)"><tspan x="0" y="0">program</tspan></text>
+    <rect class="cls-5" x="403.46" y="83.34" width="28.99" height="9.76"/>
+    <text class="cls-2" transform="translate(407.39 90.99) rotate(.49)"><tspan x="0" y="0">1997</tspan></text>
+    <rect class="cls-5" x="84.05" y="146.21" width="28.99" height="9.76"/>
+    <text class="cls-1" transform="translate(375.76 7.37)"><tspan x="0" y="0">First version of Wi-fi </tspan></text>
+    <text class="cls-1" transform="translate(371.42 17.58)"><tspan x="0" y="0">(802.11) standard was </tspan></text>
+    <text class="cls-1" transform="translate(395.41 27.78)"><tspan x="0" y="0">introduced</tspan></text>
+    <rect class="cls-5" x="225.21" y="90.44" width="28.99" height="9.76"/>
+    <line class="cls-8" x1="194.07" y1="133.78" x2="194.07" y2="215.36"/>
+    <line class="cls-8" x1="373.88" y1="133.93" x2="373.88" y2="213.15"/>
+    <rect class="cls-5" x="359.39" y="161.72" width="28.99" height="9.76"/>
+    <text class="cls-4" transform="translate(363.35 168.9) rotate(.1)"><tspan x="0" y="0">1990</tspan></text>
+    <rect class="cls-5" x="270.4" y="147.69" width="28.99" height="9.76"/>
+    <text class="cls-4" transform="translate(272.7 154.87) rotate(.1)"><tspan x="0" y="0">1983</tspan></text>
+    <text class="cls-3" transform="translate(88.01 153.78) rotate(-.2)"><tspan x="0" y="0">1969</tspan></text>
+    <text class="cls-2" transform="translate(228.94 97.2) rotate(.49)"><tspan x="0" y="0">1982</tspan></text>
+    <text class="cls-1" transform="translate(334.41 220.31)"><tspan x="0" y="0">The Berners-Lee at </tspan></text>
+    <text class="cls-1" transform="translate(325.82 230.52)"><tspan x="0" y="0">CERN developed HTML </tspan></text>
+    <text class="cls-1" transform="translate(329.9 240.73)"><tspan x="0" y="0">and URL, thus giving </tspan></text>
+    <text class="cls-1" transform="translate(322.84 250.94)"><tspan x="0" y="0">birth to World Wide Web </tspan></text>
+    <text class="cls-1" transform="translate(361.38 261.15)"><tspan x="0" y="0">(www)</tspan></text>
+    <rect class="cls-5" x="35.86" y="84.36" width="28.99" height="9.76"/>
+    <text class="cls-2" transform="translate(40.48 91.12) rotate(.49)"><tspan x="0" y="0">1961</tspan></text>
+    <rect class="cls-5" x="129.01" y="101" width="28.99" height="9.76"/>
+    <text class="cls-2" transform="translate(133.21 108.64) rotate(.49)"><tspan x="0" y="0">1971</tspan></text>
+    <rect class="cls-5" x="179.57" y="172.84" width="28.99" height="9.76"/>
+    <text class="cls-4" transform="translate(181.87 180.02) rotate(.1)"><tspan x="0" y="0">1974</tspan></text>
+    <path class="cls-6" d="M246.96,126.61c0,4.04-3.28,7.32-7.32,7.32s-7.32-3.28-7.32-7.32,3.28-7.32,7.32-7.32,7.32,3.28,7.32,7.32"/>
+    <path class="cls-6" d="M425.28,126.61c0,4.04-3.28,7.32-7.32,7.32s-7.32-3.28-7.32-7.32,3.28-7.32,7.32-7.32,7.32,3.28,7.32,7.32"/>
+  </g>
+</svg>

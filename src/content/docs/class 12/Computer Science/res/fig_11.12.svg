@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 451.24 136">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #231f20;
+        stroke-miterlimit: 10;
+        stroke-width: .53px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #eb1d25;
+      }
+
+      .cls-4 {
+        fill: #096eb2;
+      }
+
+      .cls-5 {
+        fill: #00b04d;
+      }
+
+      .cls-6 {
+        fill: #231f20;
+        font-family: BookmanOldStyle, 'Bookman Old Style';
+        font-size: 10px;
+      }
+
+      .cls-7 {
+        fill: #58595b;
+      }
+
+      .cls-8 {
+        fill: #fff200;
+      }
+
+      .cls-9 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-10 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <polygon class="cls-2" points="384.21 23.79 9.76 23.79 9.76 71.29 443.08 71.29 443.08 23.79 384.21 23.79"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="-99.37" y1="719.33" x2="-98.37" y2="719.33" gradientTransform="translate(43069.13 311747.53) scale(433.32 -433.32)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ed1c24"/>
+      <stop offset=".14" stop-color="#ed1e23"/>
+      <stop offset=".2" stop-color="#ed2522"/>
+      <stop offset=".25" stop-color="#ee3220"/>
+      <stop offset=".3" stop-color="#f0451d"/>
+      <stop offset=".33" stop-color="#f25d18"/>
+      <stop offset=".37" stop-color="#f47b14"/>
+      <stop offset=".4" stop-color="#f79e0e"/>
+      <stop offset=".43" stop-color="#fbc607"/>
+      <stop offset=".46" stop-color="#fff200"/>
+      <stop offset=".54" stop-color="#fdf100"/>
+      <stop offset=".57" stop-color="#f6ef02"/>
+      <stop offset=".59" stop-color="#eaeb06"/>
+      <stop offset=".61" stop-color="#d9e60b"/>
+      <stop offset=".62" stop-color="#c3e012"/>
+      <stop offset=".64" stop-color="#a8d81b"/>
+      <stop offset=".65" stop-color="#87ce25"/>
+      <stop offset=".66" stop-color="#62c331"/>
+      <stop offset=".67" stop-color="#37b63f"/>
+      <stop offset=".68" stop-color="#09a84e"/>
+      <stop offset=".68" stop-color="#00a651"/>
+      <stop offset=".79" stop-color="#00a44f"/>
+      <stop offset=".83" stop-color="#00a049"/>
+      <stop offset=".85" stop-color="#008e63"/>
+      <stop offset=".89" stop-color="#007983"/>
+      <stop offset=".93" stop-color="#006a9a"/>
+      <stop offset=".97" stop-color="#0061a8"/>
+      <stop offset="1" stop-color="#005ead"/>
+    </linearGradient>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g class="cls-10">
+      <rect class="cls-9" x="9.76" y="23.79" width="433.32" height="47.5"/>
+    </g>
+    <polygon class="cls-1" points="443.08 71.29 9.76 71.29 9.76 23.79 384.21 23.79 443.08 23.79 443.08 71.29"/>
+    <text class="cls-6" transform="translate(100.4 120.82)"><tspan x="0" y="0">Radio</tspan></text>
+    <text class="cls-6" transform="translate(98.8 132.82)"><tspan x="0" y="0">Waves</tspan></text>
+    <text class="cls-6" transform="translate(6.9 8.4)"><tspan x="0" y="0">3</tspan></text>
+    <text class="cls-6" transform="translate(0 20.01)"><tspan x="0" y="0">KHz</tspan></text>
+    <text class="cls-6" transform="translate(198.49 8.4)"><tspan x="0" y="0">1</tspan></text>
+    <text class="cls-6" transform="translate(191.19 20.01)"><tspan x="0" y="0">GHz</tspan></text>
+    <text class="cls-6" transform="translate(293.1 8.4)"><tspan x="0" y="0">300</tspan></text>
+    <text class="cls-6" transform="translate(292 20.01)"><tspan x="0" y="0">GHz</tspan></text>
+    <text class="cls-6" transform="translate(374.91 8.4)"><tspan x="0" y="0">400</tspan></text>
+    <text class="cls-6" transform="translate(374.71 20.01)"><tspan x="0" y="0">THz</tspan></text>
+    <text class="cls-6" transform="translate(432.44 8.4)"><tspan x="0" y="0">900</tspan></text>
+    <text class="cls-6" transform="translate(432.24 20.01)"><tspan x="0" y="0">THz</tspan></text>
+    <text class="cls-6" transform="translate(227.18 120.82)"><tspan x="0" y="0">Microwaves</tspan></text>
+    <text class="cls-6" transform="translate(330.07 120.82)"><tspan x="0" y="0">Infrared</tspan></text>
+    <text class="cls-6" transform="translate(334.17 132.82)"><tspan x="0" y="0">Waves</tspan></text>
+    <text class="cls-6" transform="translate(400.08 120.82)"><tspan x="0" y="0">Light</tspan></text>
+    <text class="cls-6" transform="translate(396.98 132.82)"><tspan x="0" y="0">Waves</tspan></text>
+    <path class="cls-1" d="M201.59,71.29V23.79M301.87,71.29V23.79M384.21,71.29V23.79"/>
+    <polygon class="cls-7" points="110.75 88.56 116.97 74.45 123.13 88.56 119.44 88.56 119.44 109.29 114.98 109.29 114.98 88.56 110.75 88.56"/>
+    <polygon class="cls-7" points="251.93 88.56 258.14 74.45 264.3 88.56 260.61 88.56 260.61 109.29 256.15 109.29 256.15 88.56 251.93 88.56"/>
+    <polygon class="cls-7" points="346.11 88.56 352.33 74.45 358.49 88.56 354.8 88.56 354.8 109.29 350.34 109.29 350.34 88.56 346.11 88.56"/>
+    <polygon class="cls-7" points="408.93 88.56 415.14 74.45 421.31 88.56 417.61 88.56 417.61 109.29 413.16 109.29 413.16 88.56 408.93 88.56"/>
+    <polygon class="cls-3" points="108.11 85.39 114.33 71.29 120.49 85.39 116.8 85.39 116.8 106.12 112.34 106.12 112.34 85.39 108.11 85.39"/>
+    <polygon class="cls-8" points="249.29 85.39 255.5 71.29 261.66 85.39 257.97 85.39 257.97 106.12 253.52 106.12 253.52 85.39 249.29 85.39"/>
+    <polygon class="cls-5" points="343.47 85.39 349.69 71.29 355.85 85.39 352.16 85.39 352.16 106.12 347.71 106.12 347.71 85.39 343.47 85.39"/>
+    <polygon class="cls-4" points="406.29 85.39 412.5 71.29 418.67 85.39 414.98 85.39 414.98 106.12 410.52 106.12 410.52 85.39 406.29 85.39"/>
+  </g>
+</svg>

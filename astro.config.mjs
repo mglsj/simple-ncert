@@ -15,7 +15,10 @@ export default defineConfig({
 		remarkPlugins: [remarkMath, remarkCustomHeaderId],
 		rehypePlugins: [
 			rehypeKatex,
-			[rehypeMermaid, { strategy: "img-svg", dark: true }],
+			[
+				rehypeMermaid,
+				{ strategy: "img-svg", dark: true, colorScheme: "light" },
+			],
 		],
 	},
 	site: "https://mglsj.github.io/",
@@ -70,7 +73,7 @@ export default defineConfig({
 				},
 			},
 			plugins: [
-				starlightImageZoom(),
+				// starlightImageZoom(),
 				starlightSidebarTopicsDropdown(sidebarData),
 			],
 		}),
