@@ -73,7 +73,7 @@ export default defineConfig({
 				},
 			},
 			plugins: [
-				// starlightImageZoom(),
+				starlightImageZoom(),
 				starlightSidebarTopicsDropdown(sidebarData),
 			],
 		}),
