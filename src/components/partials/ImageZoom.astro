@@ -1,0 +1,12 @@
+---
+import { STARLIGHT_IMAGE_ZOOM_ZOOMABLE_TAG } from "node_modules/starlight-image-zoom/libs/constants";
+---
+
+<STARLIGHT_IMAGE_ZOOM_ZOOMABLE_TAG>
+	<slot />
+	<button aria-label="Zoom image">
+		<svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+			<use href="#starlight-image-zoom-icon-zoom"></use>
+		</svg>
+	</button>
+</STARLIGHT_IMAGE_ZOOM_ZOOMABLE_TAG>
