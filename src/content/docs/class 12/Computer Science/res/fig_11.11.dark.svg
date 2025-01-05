@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 449.69 165.35">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5 {
+        fill: none;
+      }
+
+      .cls-2, .cls-4, .cls-5 {
+        stroke: #fff;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-6 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-4 {
+        stroke-width: .96px;
+      }
+
+      .cls-8 {
+        fill: #a7a9ac;
+      }
+
+      .cls-9 {
+        fill: #231f20;
+        font-family: BookmanOldStyle, 'Bookman Old Style';
+        font-size: 12px;
+      }
+
+      .cls-5 {
+        stroke-width: 1.5px;
+      }
+
+      .cls-10 {
+        fill: #b9d989;
+      }
+
+      .cls-11 {
+        fill: #47c8f5;
+      }
+
+      .cls-12 {
+        fill: #c8c6e0;
+      }
+
+      .cls-13 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-14 {
+        fill: #e0d898;
+      }
+
+      .cls-15 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-3" width="449.69" height="165.35"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-3" width="449.69" height="165.35"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="cls-3" width="449.69" height="165.35"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-3" width="449.69" height="165.35"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <rect class="cls-11" x="313.74" y=".5" width="54.33" height="14.67"/>
+    <g class="cls-15">
+      <rect class="cls-2" x="313.74" y=".5" width="54.33" height="14.67"/>
+    </g>
+    <rect class="cls-11" x="390.5" y="69.5" width="58.67" height="14.67"/>
+    <g class="cls-6">
+      <rect class="cls-2" x="390.5" y="69.5" width="58.67" height="14.67"/>
+    </g>
+    <rect class="cls-10" x=".5" y="65.5" width="54.33" height="14.67"/>
+    <g class="cls-13">
+      <rect class="cls-2" x=".5" y="65.5" width="54.33" height="14.67"/>
+    </g>
+    <rect class="cls-8" x="61.83" y="28.83" width="317.33" height="86"/>
+    <rect class="cls-5" x="61.83" y="28.83" width="317.33" height="86"/>
+    <rect class="cls-14" x="62.17" y="54.83" width="317.33" height="38"/>
+    <rect class="cls-2" x="62.17" y="54.83" width="317" height="38"/>
+    <line class="cls-2" x1="71.17" y1="54.9" x2="98.89" y2="88.4"/>
+    <polygon class="cls-1" points="95.7 89.77 101.96 92.1 100.85 85.51 95.7 89.77"/>
+    <line class="cls-2" x1="101.64" y1="92.1" x2="129.37" y2="58.6"/>
+    <polygon class="cls-1" points="131.32 61.48 132.44 54.9 126.17 57.22 131.32 61.48"/>
+    <line class="cls-2" x1="56.5" y1="72.17" x2="67.71" y2="58.6"/>
+    <polygon class="cls-1" points="69.66 61.49 70.77 54.9 64.51 57.23 69.66 61.49"/>
+    <line class="cls-2" x1="130.85" y1="54.9" x2="158.58" y2="88.4"/>
+    <polygon class="cls-1" points="155.38 89.77 161.64 92.1 160.53 85.51 155.38 89.77"/>
+    <line class="cls-2" x1="161.33" y1="92.1" x2="189.05" y2="58.6"/>
+    <polygon class="cls-1" points="191 61.48 192.12 54.9 185.85 57.22 191 61.48"/>
+    <line class="cls-2" x1="190.53" y1="54.9" x2="218.26" y2="88.4"/>
+    <polygon class="cls-1" points="215.06 89.77 221.33 92.1 220.21 85.51 215.06 89.77"/>
+    <line class="cls-2" x1="221.01" y1="92.1" x2="248.73" y2="58.6"/>
+    <polygon class="cls-1" points="250.69 61.48 251.8 54.9 245.54 57.22 250.69 61.48"/>
+    <line class="cls-2" x1="250.22" y1="54.9" x2="277.94" y2="88.4"/>
+    <polygon class="cls-1" points="274.74 89.77 281.01 92.1 279.89 85.51 274.74 89.77"/>
+    <line class="cls-2" x1="280.69" y1="92.1" x2="308.42" y2="58.6"/>
+    <polygon class="cls-1" points="310.37 61.48 311.48 54.9 305.22 57.22 310.37 61.48"/>
+    <line class="cls-2" x1="309.9" y1="54.9" x2="337.62" y2="88.4"/>
+    <polygon class="cls-1" points="334.43 89.77 340.69 92.1 339.58 85.51 334.43 89.77"/>
+    <line class="cls-2" x1="370.56" y1="54.9" x2="384.42" y2="71.48"/>
+    <polygon class="cls-1" points="381.23 72.87 387.5 75.17 386.35 68.58 381.23 72.87"/>
+    <line class="cls-2" x1="340.38" y1="92.1" x2="368.1" y2="58.6"/>
+    <polygon class="cls-1" points="370.05 61.48 371.17 54.9 364.9 57.22 370.05 61.48"/>
+    <line class="cls-4" x1="339.83" y1="15.17" x2="339.83" y2="62.5"/>
+    <polygon class="cls-1" points="337.35 60.62 339.83 61.67 342.31 60.62 339.83 66.5 337.35 60.62"/>
+    <line class="cls-4" x1="126.17" y1="132.17" x2="126.17" y2="108.83"/>
+    <polygon class="cls-1" points="128.65 110.71 126.17 109.66 123.69 110.71 126.17 104.83 128.65 110.71"/>
+    <text class="cls-9" transform="translate(6.5 76.5)"><tspan x="0" y="0">Sender</tspan></text>
+    <text class="cls-9" transform="translate(324.6 11.17)"><tspan x="0" y="0">Glass</tspan></text>
+    <text class="cls-9" transform="translate(396.18 80.17)"><tspan x="0" y="0">Receiver</tspan></text>
+    <rect class="cls-12" x="84.5" y="130.83" width="105.33" height="34"/>
+    <g class="cls-7">
+      <rect class="cls-2" x="84.5" y="130.83" width="105.33" height="34"/>
+    </g>
+    <text class="cls-9" transform="translate(91.5 145.17)"><tspan x="0" y="0">Cladding of less</tspan></text>
+    <text class="cls-9" transform="translate(91.5 159.57)"><tspan x="0" y="0">dense material</tspan></text>
+  </g>
+</svg>

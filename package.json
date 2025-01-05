@@ -7,7 +7,8 @@
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro"
+		"astro": "astro",
+		"postinstall": "cd ./packages/starlight-mermaid && pnpm install"
 	},
 	"dependencies": {
 		"@astrojs/starlight": "^0.30.3",
@@ -16,9 +17,7 @@
 		"@fontsource-variable/noto-serif": "^5.1.1",
 		"@fontsource-variable/noto-serif-devanagari": "^5.1.1",
 		"astro": "^5.1.2",
-		"playwright": "^1.49.1",
 		"rehype-katex": "^7.0.1",
-		"rehype-mermaid": "^3.0.0",
 		"remark-custom-header-id": "^1.0.0",
 		"remark-math": "^6.0.0",
 		"sharp": "^0.33.5",
@@ -27,5 +26,6 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4"
-	}
+	},
+	"packageManager": "pnpm@7.5.0"
 }

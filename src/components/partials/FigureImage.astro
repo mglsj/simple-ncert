@@ -17,23 +17,14 @@ interface Props {
 const { entry } = Astro.props;
 ---
 
-<ImageZoom>
-	<Image
-		src={entry.image}
-		alt={entry.alt}
-		class={entry.imageDark !== null ? "figure-light" : ""}
-		data-zoomable
-	/>
+<ImageZoom class={entry.imageDark !== null ? "figure-light" : ""}>
+	<Image src={entry.image} alt={entry.alt} data-zoomable />
 </ImageZoom>
+
 {
 	entry.imageDark && (
-		<ImageZoom>
-			<Image
-				src={entry.imageDark}
-				alt={entry.alt}
-				class="figure-dark"
-				data-zoomable
-			/>
+		<ImageZoom class="figure-dark">
+			<Image src={entry.imageDark} alt={entry.alt} data-zoomable />
 		</ImageZoom>
 	)
 }

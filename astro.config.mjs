@@ -4,22 +4,15 @@ import starlightSidebarTopicsDropdown from "starlight-sidebar-topics-dropdown";
 import remarkMath from "remark-math";
 import remarkCustomHeaderId from "remark-custom-header-id";
 import rehypeKatex from "rehype-katex";
-import rehypeMermaid from "rehype-mermaid";
 import starlightImageZoom from "starlight-image-zoom";
-
+import starlightMermaid from "./packages/starlight-mermaid";
 import sidebarData from "./sidebar.ts";
 
 // https://astro.build/config
 export default defineConfig({
 	markdown: {
 		remarkPlugins: [remarkMath, remarkCustomHeaderId],
-		rehypePlugins: [
-			rehypeKatex,
-			[
-				rehypeMermaid,
-				{ strategy: "img-svg", dark: true, colorScheme: "light" },
-			],
-		],
+		rehypePlugins: [rehypeKatex, starlightMermaid],
 	},
 	site: "https://mglsj.github.io/",
 	base: "/simple-ncert/",
@@ -43,9 +36,10 @@ export default defineConfig({
 				"@fontsource-variable/noto-sans",
 				"@fontsource-variable/noto-serif",
 				"@/styles/global.css",
+				"./packages/starlight-mermaid/styles.css",
 			],
 			components: {
-				PageTitle: "@/components/starlight/PageTitle.astro",
+				PageTitle: "@/components/overrides/PageTitle.astro",
 			},
 			title: {
 				en: "Simple NCERT",

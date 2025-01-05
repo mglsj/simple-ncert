@@ -194,9 +194,17 @@ simplex communication as shown in the [Figure 11.3](#figure-11.3). One can
 control fans, lights, fridge, oven etc. while sitting in the office or driving a
 car.
 
-<Figure id="11.3" title="Figure 11.3: Simplex communication">
-![Simplex communication](./res/fig_11.3.svg)
-</Figure>
+<Figure 
+  id="11.3" 
+  title="Figure 11.3: Simplex communication"
+  images={[
+    { 
+      src: import('./res/fig_11.3.svg'),
+      srcDark: import('./res/fig_11.3.dark.svg'),
+      alt: "Simplex communication"
+    }
+  ]}
+/>
 
 ### 11.4.2 Half-duplex Communication ||section-11.4.2||
 
@@ -211,9 +219,17 @@ communication can be found in walkie-talkie where one can press the push-to-talk
 button and talk. This enables the transmitter and turns off the receiver in that
 device and others can only listen.
 
-<Figure id="11.4" title="Figure 11.4: Half-duplex communication">
-![Half-duplex where communication occurs in two different moments.](./res/fig_11.4.svg)
-</Figure>
+<Figure 
+  id="11.4" 
+  title="Figure 11.4: Half-duplex communication"
+  images={[
+    {
+      src: import('./res/fig_11.4.svg'),
+      srcDark: import('./res/fig_11.4.dark.svg'),
+      alt: "Half-duplex communication"
+    }
+  ]}
+/>
 
 ### 11.4.3 Full-duplex Communication ||section-11.4.3||
 
@@ -227,9 +243,17 @@ can be done either by using two physically separate simplex lines — one for
 sending and other for receiving, or the capacity of the single channel is shared
 between the signals travelling in different directions.
 
-<Figure id="11.5" title="Figure 11.5: Full duplex transmission of data">
-![Full duplex transmission of data](./res/fig_11.5.svg)
-</Figure>
+<Figure 
+  id="11.5" 
+  title="Figure 11.5: Full duplex transmission of data"
+  images={[
+    {
+      src: import('./res/fig_11.5.svg'),
+      srcDark: import('./res/fig_11.5.dark.svg'),
+      alt: "Full duplex transmission of data"
+    }
+  ]}
+/>
 
 :::tip
 
@@ -297,9 +321,13 @@ electric current from switch to the fan or bulb. Two men are talking as shown in
 <Figure id="11.6" 
   title="Figure 11.6: Two person communicating" 
   invertable={true}
->
-![Two person communicating](./res/fig_11.6.svg)
-</Figure>
+  images={[
+    {
+      src: import('./res/fig_11.6.svg'),
+      alt: "Two person communicating"
+    }
+  ]}
+/>
 
 In data communication, transmission media are the links that carry messages
 between two or more communicating devices. Transmission can be classified as
@@ -314,8 +342,35 @@ media.
 In unguided transmission, data travels in air in terms of electromagnetic waves
 using an antenna. They are also known as wireless media.
 
-<Figure id="11.7" title="Figure 11.7: Classification of communication media">
-![Classification of communication media](./res/fig_10.17.svg)
+<Figure 
+  id="11.7" 
+  title="Figure 11.7: Classification of communication media"
+>
+```mermaid
+flowchart
+  A["Communication Media"]
+  B["Wired Media"]
+  C["Wireless Media (Electromagnetic waves)"]
+
+  A --> B
+  A --> C
+
+  B1["Twisted Pair Cable"]
+  B2["Co-axial Cable"]
+  B3["Fiber-Optic Cable"]
+
+  B --> B1
+  B --> B2
+  B --> B3
+
+  C1["Radio Waves"]
+  C2["Micro Waves"]
+  C3["Infrared Waves"]
+
+  C --> C1
+  C --> C2
+  C --> C3
+```
 </Figure>
 
 Dish-shaped antennas are used for sending and receiving data at longer
@@ -339,9 +394,17 @@ structure. Both the copper wires are insulated with plastic covers. Usually, a
 number of such pairs are combined together and covered with a protective outer
 wrapping, as shown in [Figure 11.8](#figure-11.8).
 
-<Figure id="11.8" title="Figure 11.8: Twisted pair of cables">
-![Twisted pair of cables](./res/fig_11.8.svg)
-</Figure>
+<Figure 
+  id="11.8" 
+  title="Figure 11.8: Twisted pair of cables"
+  images={[
+    {
+      src: import('./res/fig_11.8.svg'),
+      srcDark: import('./res/fig_11.8.dark.svg'),
+      alt: "Twisted pair of cables"
+    }
+  ]}
+/>
 
 Each of the twisted pairs act as a single communication link. The use of twisted
 configuration minimises the effect of electrical interference from similar pairs
@@ -349,9 +412,17 @@ close by. Twisted pairs are less expensive and most commonly used in telephone
 lines and LANs. These cables are of two types: Unshielded twisted-pair (UTP) and
 Shielded twisted-pair (STP), as shown in [Figure 11.9](#figure-11.9).
 
-<Figure id="11.9" title="Figure 11.9: UTP Cable and STP Cable">
-![UTP Cable and STP Cable](./res/fig_11.9.svg)
-</Figure>
+<Figure 
+  id="11.9" 
+  title="Figure 11.9: UTP Cable and STP Cable"
+  images={[
+    {
+      src: import('./res/fig_11.9.svg'),
+      srcDark: import('./res/fig_11.9.dark.svg'),
+      alt: "UTP Cable and STP Cable"
+    }
+  ]}
+/>
 
 :::tip
 
@@ -372,9 +443,17 @@ shielded design that allows the cable's copper core to transmit data quickly,
 without interference of environmental factors. These types of cables are used to
 carry signals of higher frequencies to a longer distance.
 
-<Figure id="11.10" title="Figure 11.10: A coaxial cable">
-![A coaxial cable](./res/fig_11.10.svg)
-</Figure>
+<Figure 
+  id="11.10" 
+  title="Figure 11.10: A coaxial cable"
+  images={[
+    {
+      src: import('./res/fig_11.10.svg'),
+      srcDark: import('./res/fig_11.10.dark.svg'),
+      alt: "A coaxial cable"
+    }
+  ]}
+/>
 
 :::tip
 
@@ -396,9 +475,17 @@ longer distances and electromagnetic noise cannot affect the cable. However,
 optic fibers are expensive and unidirectional. Two cables are required for full
 duplex communication.
 
-<Figure id="11.11" title="Figure 11.11: Fiber optic cable">
-![Fiber optic cable](./res/fig_11.11.svg)
-</Figure>
+<Figure 
+  id="11.11" 
+  title="Figure 11.11: Fiber optic cable"
+  images={[
+    {
+      src: import('./res/fig_11.11.svg'),
+      srcDark: import('./res/fig_11.11.dark.svg'),
+      alt: "Fiber optic cable"
+    }
+  ]}
+/>
 
 :::tip
 
@@ -426,9 +513,17 @@ waves and Visible or Light waves, according to their frequency ranges. Some of
 the properties of each wave are listed in [Table 11.1](#table-11.1). of these,
 three are useful for wireless communication.
 
-<Figure id="11.12" title="Figure 11.12: Electromagnetic waves spectrum">
-![Electromagnetic waves spectrum](./res/fig_11.12.svg)
-</Figure>
+<Figure 
+  id="11.12" 
+  title="Figure 11.12: Electromagnetic waves spectrum"
+  images={[
+    {
+      src: import('./res/fig_11.12.svg'),
+      srcDark: import('./res/fig_11.12.dark.svg'),
+      alt: "Electromagnetic waves spectrum"
+    }
+  ]}
+/>
 
 <Table id="11.1" title="Table 11.1: Classification of transmission waves and their properties">
 | Transmission Waves | Properties                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
@@ -474,9 +569,17 @@ connecting to a wired router, switch, or hub. The APs are connected to a wired
 network, and all the devices communicate or access the Internet through an
 access point.
 
-<Figure id="11.13" title="Figure 11.13: Access point creating a wireless LAN">
-![Access point creating a wireless LAN](./res/fig_11.13.svg)
-</Figure>
+<Figure 
+  id="11.13" 
+  title="Figure 11.13: Access point creating a wireless LAN"
+  images={[
+    {
+      src: import('./res/fig_11.13.svg'),
+      srcDark: import('./res/fig_11.13.dark.svg'),
+      alt: "Access point creating a wireless LAN"
+    }
+  ]}
+/>
 
 Wi-Fi gives users the flexibility to move around within the network area while
 being connected to the network. Following are some of the benefits of WLAN:
@@ -574,9 +677,17 @@ the transmitted data packets will collide if computers are sending data
 simultaneously through the same link resulting in the loss or corruption of
 data.
 
-<Figure id="11.14" title="Figure 11.14: Speed mismatch between two computers can result into loss of data">
-![Speed mismatch between two computers can result into loss of data](./res/fig_11.14.svg)
-</Figure>
+<Figure 
+  id="11.14" 
+  title="Figure 11.14: Speed mismatch between two computers can result into loss of data"
+  images={[
+    {
+      src: import('./res/fig_11.14.svg'),
+      srcDark: import('./res/fig_11.14.dark.svg'),
+      alt: "Speed mismatch between two computers can result into loss of data"
+    }
+  ]}
+/>
 
 **Protocols also define:**
 

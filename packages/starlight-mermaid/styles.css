@@ -1,0 +1,11 @@
+:root[data-theme="dark"] {
+	.mermaid-light {
+		display: none;
+	}
+}
+
+:root[data-theme="light"] {
+	.mermaid-dark {
+		display: none;
+	}
+}

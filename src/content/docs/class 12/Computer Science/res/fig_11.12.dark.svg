@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 452.2 137">
+  <!-- Generator: Adobe Illustrator 29.1.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 142)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: #096eb2;
+      }
+
+      .st1 {
+        fill: #fff200;
+      }
+
+      .st2 {
+        fill: #fff;
+        font-family: BookmanOldStyle, 'Bookman Old Style';
+        font-size: 10px;
+        isolation: isolate;
+      }
+
+      .st3 {
+        fill: #eb1d25;
+      }
+
+      .st4 {
+        fill: #58595b;
+      }
+
+      .st5 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: .5px;
+      }
+
+      .st6 {
+        fill: #00b04d;
+      }
+
+      .st7 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="-830.2" y1="-109.7" x2="-829.2" y2="-109.7" gradientTransform="translate(359743.5 47601.8) scale(433.3)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ed1c24"/>
+      <stop offset=".1" stop-color="#ed1e23"/>
+      <stop offset=".2" stop-color="#ed2522"/>
+      <stop offset=".2" stop-color="#ee3220"/>
+      <stop offset=".3" stop-color="#f0451d"/>
+      <stop offset=".3" stop-color="#f25d18"/>
+      <stop offset=".4" stop-color="#f47b14"/>
+      <stop offset=".4" stop-color="#f79e0e"/>
+      <stop offset=".4" stop-color="#fbc607"/>
+      <stop offset=".5" stop-color="#fff200"/>
+      <stop offset=".5" stop-color="#fdf100"/>
+      <stop offset=".6" stop-color="#f6ef02"/>
+      <stop offset=".6" stop-color="#eaeb06"/>
+      <stop offset=".6" stop-color="#d9e60b"/>
+      <stop offset=".6" stop-color="#c3e012"/>
+      <stop offset=".6" stop-color="#a8d81b"/>
+      <stop offset=".7" stop-color="#87ce25"/>
+      <stop offset=".7" stop-color="#62c331"/>
+      <stop offset=".7" stop-color="#37b63f"/>
+      <stop offset=".7" stop-color="#09a84e"/>
+      <stop offset=".7" stop-color="#00a651"/>
+      <stop offset=".8" stop-color="#00a44f"/>
+      <stop offset=".8" stop-color="#00a049"/>
+      <stop offset=".8" stop-color="#008e63"/>
+      <stop offset=".9" stop-color="#007983"/>
+      <stop offset=".9" stop-color="#006a9a"/>
+      <stop offset="1" stop-color="#0061a8"/>
+      <stop offset="1" stop-color="#005ead"/>
+    </linearGradient>
+  </defs>
+  <rect class="st7" x="10.3" y="24.3" width="433.3" height="47.5"/>
+  <polygon class="st5" points="443.6 71.8 10.3 71.8 10.3 24.3 384.7 24.3 443.6 24.3 443.6 71.8"/>
+  <text class="st2" transform="translate(100.9 121.3)"><tspan x="0" y="0">Radio</tspan></text>
+  <text class="st2" transform="translate(99.3 133.3)"><tspan x="0" y="0">Waves</tspan></text>
+  <text class="st2" transform="translate(7.4 8.9)"><tspan x="0" y="0">3</tspan></text>
+  <text class="st2" transform="translate(.5 20.5)"><tspan x="0" y="0">KHz</tspan></text>
+  <text class="st2" transform="translate(199 8.9)"><tspan x="0" y="0">1</tspan></text>
+  <text class="st2" transform="translate(191.7 20.5)"><tspan x="0" y="0">GHz</tspan></text>
+  <text class="st2" transform="translate(293.6 8.9)"><tspan x="0" y="0">300</tspan></text>
+  <text class="st2" transform="translate(292.5 20.5)"><tspan x="0" y="0">GHz</tspan></text>
+  <text class="st2" transform="translate(375.4 8.9)"><tspan x="0" y="0">400</tspan></text>
+  <text class="st2" transform="translate(375.2 20.5)"><tspan x="0" y="0">THz</tspan></text>
+  <text class="st2" transform="translate(432.9 8.9)"><tspan x="0" y="0">900</tspan></text>
+  <text class="st2" transform="translate(432.7 20.5)"><tspan x="0" y="0">THz</tspan></text>
+  <text class="st2" transform="translate(227.7 121.3)"><tspan x="0" y="0">Microwaves</tspan></text>
+  <text class="st2" transform="translate(330.6 121.3)"><tspan x="0" y="0">Infrared</tspan></text>
+  <text class="st2" transform="translate(334.7 133.3)"><tspan x="0" y="0">Waves</tspan></text>
+  <text class="st2" transform="translate(400.6 121.3)"><tspan x="0" y="0">Light</tspan></text>
+  <text class="st2" transform="translate(397.5 133.3)"><tspan x="0" y="0">Waves</tspan></text>
+  <path class="st5" d="M202.1,71.8V24.3M302.4,71.8V24.3M384.7,71.8V24.3"/>
+  <polygon class="st4" points="111.2 89.1 117.5 74.9 123.6 89.1 119.9 89.1 119.9 109.8 115.5 109.8 115.5 89.1 111.2 89.1"/>
+  <polygon class="st4" points="252.4 89.1 258.6 74.9 264.8 89.1 261.1 89.1 261.1 109.8 256.6 109.8 256.6 89.1 252.4 89.1"/>
+  <polygon class="st4" points="346.6 89.1 352.8 74.9 359 89.1 355.3 89.1 355.3 109.8 350.8 109.8 350.8 89.1 346.6 89.1"/>
+  <polygon class="st4" points="409.4 89.1 415.6 74.9 421.8 89.1 418.1 89.1 418.1 109.8 413.7 109.8 413.7 89.1 409.4 89.1"/>
+  <polygon class="st3" points="108.6 85.9 114.8 71.8 121 85.9 117.3 85.9 117.3 106.6 112.8 106.6 112.8 85.9 108.6 85.9"/>
+  <polygon class="st1" points="249.8 85.9 256 71.8 262.2 85.9 258.5 85.9 258.5 106.6 254 106.6 254 85.9 249.8 85.9"/>
+  <polygon class="st6" points="344 85.9 350.2 71.8 356.4 85.9 352.7 85.9 352.7 106.6 348.2 106.6 348.2 85.9 344 85.9"/>
+  <polygon class="st0" points="406.8 85.9 413 71.8 419.2 85.9 415.5 85.9 415.5 106.6 411 106.6 411 85.9 406.8 85.9"/>
+</svg>

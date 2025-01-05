@@ -2,7 +2,7 @@
 import { STARLIGHT_IMAGE_ZOOM_ZOOMABLE_TAG } from "node_modules/starlight-image-zoom/libs/constants";
 ---
 
-<STARLIGHT_IMAGE_ZOOM_ZOOMABLE_TAG>
+<STARLIGHT_IMAGE_ZOOM_ZOOMABLE_TAG class={Astro.props.class}>
 	<slot />
 	<button aria-label="Zoom image">
 		<svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
@@ -10,3 +10,10 @@ import { STARLIGHT_IMAGE_ZOOM_ZOOMABLE_TAG } from "node_modules/starlight-image-
 		</svg>
 	</button>
 </STARLIGHT_IMAGE_ZOOM_ZOOMABLE_TAG>
+
+<style is:global>
+	starlight-image-zoom-zoomable {
+		margin: 0 !important;
+		display: block !important;
+	}
+</style>
