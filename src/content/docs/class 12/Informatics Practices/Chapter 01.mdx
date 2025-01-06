@@ -1,0 +1,1945 @@
+---
+title: 1. Querying and SQL Functions
+prev: false
+source: leip101
+---
+
+import { Example, Card, Figure, Quote, Activity, Table, Summary, Think } from "@/components/markdown";
+
+<Quote author="Lev Manovich" href="https://en.wikipedia.org/wiki/Lev_Manovich">
+"Any unique image that you desire probably already exists on the internet or in
+some database... The problem today is no longer how to create the right image,
+but how to find an already existing one"
+</Quote>
+
+In this chapter
+
+- [Introduction](#section-1.1)
+- [Functions in SQL](#section-1.2)
+- [Group By in SQL](#section-1.3)
+- [Operations on Relations](#section-1.4)
+- [Using Two Relations in a Query](#section-1.5)
+
+---
+
+## 1.1 Introduction ||section-1.1||
+
+In Class XI, we have understood database concepts and learned how to create
+databases using MySQL. We have also learnt how to populate, manipulate and
+retrieve data from a database using SQL queries.
+
+In this chapter, we are going to learn more SQL commands which are required to
+perform various queries in a database. We will understand how to use single row
+functions, multiple row functions, arranging records in ascending or descending
+order, grouping records based on some criteria, and working on multiple tables
+using SQL.
+
+Let us create a database called CARSHOWROOM, having the schema as shown in
+[Figure 1.1](#figure-1.1). It has the following four relations:
+
+- **INVENTORY:** Stores name, price, model, year of manufacturing, and fuel type
+  for each car in inventory of the showroom,
+
+- **CUSTOMER:** Stores customer Id, name, address, phone number and email for
+  each customer,
+
+- **SALE:** Stores the invoice number, car Id, customer id, sale date, mode of
+  payment, sales person's employee Id, and selling price of the car sold,
+
+- **EMPLOYEE:** Stores employee Id, name, date of birth, date of joining,
+  designation, and salary of each employee in the showroom.
+
+<Figure
+    id="1.1"
+    title="Figure 1.1 Schema diagram of database CARSHOWROOM"
+    images={[
+        {
+            src: import("./res/fig_1.1.svg"),
+            srcDark: import("./res/fig_1.1.dark.svg"),
+            alt: "Schema diagram of database CARSHOWROOM"
+        }
+    ]}
+/>
+
+The records of the four relations are shown in [Tables 1.1](#table-1.1), [1.2](#table-1.2), 
+[1.3](#table-1.3), and [1.4](#table-1.4) respectively.
+
+<Table id="1.1" title="Table 1.1 INVENTORY" center={false}>
+```sql
+SELECT * FROM INVENTORY;
+```
+
+```ansi
++-------+--------+-----------+-----------+-----------------+----------+
+| CarId | CarName| Price     | Model     | YearManufacture | Fueltype |
++-------+--------+-----------+-----------+-----------------+----------+
+| D001  | Car1   | 582613.00 | LXI       | 2017            | Petrol   |
+| D002  | Car1   | 673112.00 | VXI       | 2018            | Petrol   |
+| B001  | Car2   | 567031.00 | Sigma1.2  | 2019            | Petrol   |
+| B002  | Car2   | 647858.00 | Delta1.2  | 2018            | Petrol   |
+| E001  | Car3   | 355205.00 | 5 STR STD | 2017            | CNG      |
+| E002  | Car3   | 654914.00 | CARE      | 2018            | CNG      |
+| S001  | Car4   | 514000.00 | LXI       | 2017            | Petrol   |
+| S002  | Car4   | 614000.00 | VXI       | 2018            | Petrol   |
++-------+--------+-----------+-----------+-----------------+----------+
+8 rows in set (0.00 sec)
+```
+</Table>
+
+<Table id="1.2" title="Table 1.2 CUSTOMER" center={false}>
+```sql
+SELECT * FROM CUSTOMER;
+```
+```ansi
++-------+--------------+------------------------+------------+---------------------+
+|CustId | CustName     | CustAdd                | Phone      | Email               |
++-------+--------------+------------------------+------------+---------------------+
+| C0001 | AmitSaha     | L-10, Pitampura        | 4564587852 | amitsaha2@gmail.com |
+| C0002 | Rehnuma      | J-12, SAKET            | 5527688761 | rehnuma@hotmail.com |
+| C0003 | CharviNayyar | 10/9, FF, Rohini       | 6811635425 | charvi123@yahoo.com |
+| C0004 | Gurpreet     | A-10/2, SF, MayurVihar | 3511056125 | gur_singh@yahoo.com |
++-------+--------------+------------------------+------------+---------------------+
+4 rows in set (0.00 sec)
+```
+</Table>
+
+<Table id="1.3" title="Table 1.3 SALE" center={false}>
+```sql
+SELECT * FROM SALE;
+```
+```ansi
++-----------+-------+--------+------------+--------------+-------+-----------+
+| InvoiceNo | CarId | CustId | SaleDate   | PaymentMode  | EmpID | SalePrice |
++-----------+-------+--------+------------+--------------+-------+-----------+
+| I00001    | D001  | C0001  | 2019-01-24 | Credit Card  | E004  | 613247.00 |
+| I00002    | S001  | C0002  | 2018-12-12 | Online       | E001  | 590321.00 |
+| I00003    | S002  | C0004  | 2019-01-25 | Cheque       | E010  | 604000.00 |
+| I00004    | D002  | C0001  | 2018-10-15 | Bank Finance | E007  | 659982.00 |
+| I00005    | E001  | C0003  | 2018-12-20 | Credit Card  | E002  | 369310.00 |
+| I00006    | S002  | C0002  | 2019-01-30 | Bank Finance | E007  | 620214.00 |
++-----------+-------+--------+------------+--------------+-------+-----------+
+6 rows in set (0.00 sec)
+```
+</Table>
+
+<Table id="1.4" title="Table 1.4 EMPLOYEE" center={false}>
+```sql
+SELECT * FROM EMPLOYEE;
+```
+```ansi
++-------+----------+------------+------------+--------------+--------+
+| EmpID | EmpName  | DOB        | DOJ        | Designation  | Salary |
++-------+----------+------------+------------+--------------+--------+
+| E001  | Rushil   | 1994-07-10 | 2017-12-12 | Salesman     | 25550  |
+| E002  | Sanjay   | 1990-03-12 | 2016-06-05 | Salesman     | 33100  |
+| E003  | Zohar    | 1975-08-30 | 1999-01-08 | Peon         | 20000  |
+| E004  | Arpit    | 1989-06-06 | 2010-12-02 | Salesman     | 39100  |
+| E006  | Sanjucta | 1985-11-03 | 2012-07-01 | Receptionist | 27350  |
+| E007  | Mayank   | 1993-04-03 | 2017-01-01 | Salesman     | 27352  |
+| E010  | Rajkumar | 1987-02-26 | 2013-10-23 | Salesman     | 31111  |
++-------+----------+------------+------------+--------------+--------+
+7 rows in set (0.00 sec)
+```
+</Table>
+
+## 1.2 Functions in SQL ||section-1.2||
+
+We know that a function is used to perform some particular task and it returns
+zero or more values as a result. Functions are useful while writing SQL queries
+also. Functions can be applied to work on single or multiple records (rows) of a
+table. Depending on their application in one or multiple rows, SQL functions are
+categorised as Single row functions and Aggregate functions.
+
+### 1.2.1 Single Row Functions ||section-1.2.1||
+
+These are also known as Scalar functions. Single row functions are applied on a
+single value and return a single value. [Figure 1.2](#figure-1.2) lists different single row
+functions under three categories — Numeric (Math), String, Date and Time. Math
+functions accept numeric value as input, and return a numeric value as a result.
+String functions accept character value as input, and return either character or
+numeric values as output. Date and time functions accept date and time values as
+input, and return numeric or string, or date and time values as output.
+
+<Figure
+    id="1.2"
+    title="Figure 1.2 Three categories of single row functions in SQL"
+    images={[
+        {
+            src: import("./res/fig_1.2.svg"),
+            srcDark: import("./res/fig_1.2.dark.svg"),
+            alt: "Three categories of single row functions in SQL"
+        }
+    ]}
+/>
+
+#### (A) Numeric Functions ||section-1.2.1.a||
+
+Three commonly used numeric functions are `POWER()`, `ROUND()` and `MOD()`.
+Their usage along with syntax is given in [Table 1.5](#table-1.5).
+
+<Table id="1.5" title="Table 1.5 Numeric Functions" center={false}>
+
+<table>
+    <tr>
+        <th>Function </th>
+        <th>Description </th>
+        <th>Example with output </th>
+    </tr>
+    <tr>
+        <td>
+            `POWER(X,Y)`
+            can also be written as
+            `POW(X,Y)`
+        </td>
+        <td>
+            Calculates X to the power Y.
+        </td>
+        <td>
+            ```sql
+            SELECT POWER(2,3);
+            ```
+            ```
+            8
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `ROUND(N,D)`
+        </td>
+        <td>
+            Rounds off number N to D
+            number of decimal places.
+            
+            Note: If D=0, then it rounds
+            off the number to the nearest
+            integer.
+        </td>
+        <td>
+            ```sql
+            SELECT ROUND(2912.564, 1);
+            ```
+            ```
+            2912.6
+            ```
+            ```sql
+            SELECT ROUND(283.2);
+            ```
+            ```
+            283
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `MOD(A, B)`
+        </td>
+        <td>
+            Returns the remainder
+            after dividing number A by
+            number B.
+        </td>
+        <td>
+            ```sql
+            SELECT MOD(21, 2);
+            ```
+            ```
+            1
+            ```
+        </td>
+    </tr>
+</table>
+
+</Table>
+
+<Example id="1.1" title="Example 1.1">
+
+In order to increase sales, suppose the car dealer decides to offer his
+customers to pay the total amount in 10 easy EMIs (equal monthly installments).
+Assume that EMIs are required to be in multiples of 10,000. For that, the dealer
+wants to list the CarID and Price along with the following data from the
+Inventory table:
+
+- a) Calculate GST as 12% of Price and display the result after rounding it off
+  to one decimal place.
+
+<Card>
+```sql
+SELECT ROUND(12 / 100 * Price, 1) "GST"
+FROM INVENTORY;
+```
+```ansi
++---------+ 
+| GST     | 
++---------+ 
+| 69913.6 | 
+| 80773.4 | 
+| 68043.7 | 
+| 77743.0 | 
+| 42624.6 | 
+| 78589.7 | 
+| 61680.0 | 
+| 73680.0 | 
++---------+
+8 rows in set (0.00 sec)
+```
+</Card>
+
+- b) Add a new column FinalPrice to the table inventory, which will have the
+  value as sum of Price and 12% of the GST.
+
+<Card>
+```sql
+ALTER TABLE INVENTORY
+ADD FinalPrice Numeric(10, 1);
+```
+```ansi
+Query OK, 8 rows affected (0.03 sec) 
+Records: 8 Duplicates: 0 Warnings: 0
+```
+</Card>
+
+<Card>
+```sql
+UPDATE INVENTORY
+SET FinalPrice = Price + Round(Price * 12 / 100, 1);
+```
+```ansi
+Query OK, 8 rows affected (0.01 sec)
+Rows matched: 8 Changed: 8 Warnings: 0
+```
+</Card>
+
+<Card>
+```sql
+SELECT * FROM INVENTORY;
+```
+```ansi
++-------+--------+-----------+----------+---------------+----------+-------------+ 
+| CarId |CarName | Price     | Model    |YearManufacture| FuelType | FinalPric   | 
++-------+--------+-----------+----------+---------------+----------+-------------+ 
+| D001  |Car1    | 582613.00 | LXI      | 2017          | Petrol   | 652526.6    | 
+| D002  |Car1    | 673112.00 | VXI      | 2018          | Petrol   | 753885.4    | 
+| B001  |Car2    | 567031.00 | Sigma1.2 | 2019          | Petrol   | 635074.7    | 
+| B002  |Car2    | 647858.00 | Delta1.2 | 2018          | Petrol   | 725601.0    | 
+| E001  |Car3    | 355205.00 | 5STR STD | 2017          | CNG      | 397829.6    | 
+| E002  |Car3    | 654914.00 | CARE     | 2018          | CNG      | 733503.7    | 
+| S001  |Car4    | 514000.00 | LXI      | 2017          | Petrol   | 575680.0    | 
+| S002  |Car4    | 614000.00 | VXI      | 2018          | Petrol   | 687680.0    | 
++-------+--------+-----------+----------+---------------+----------+-------------+ 
+8 rows in set (0.00 sec)
+```
+</Card>
+
+- c) Calculate and display the amount to be paid each month (in multiples
+  of 1000) which is to be calculated after dividing the FinalPrice of the car
+  into 10 instalments.
+
+- d) After dividing the amount into EMIs, find out the remaining amount to be
+  paid immediately, by performing modular division. Following SQL query can be
+  used to solve the above mentioned problems:
+
+<Card>
+```sql
+select CarId,
+    FinalPrice,
+    ROUND((FinalPriceMOD(FinalPrice, 10000)) / 10, 0) "EMI",
+    MOD(FinalPrice, 10000) "Remaining Amount"
+FROM INVENTORY;
+```
+```ansi
++-------+------------+-------+------------------+ 
+| CarId | FinalPrice | EMI   | Remaining Amount | 
++-------+------------+-------+------------------+ 
+| D001  | 652526.6   | 65000 | 2526.6           | 
+| D002  | 753885.4   | 75000 | 3885.4           | 
+| B001  | 635074.7   | 63000 | 5074.7           | 
+| B002  | 725601.0   | 72000 | 5601.0           | 
+| E001  | 397829.6   | 39000 | 7829.6           | 
+| E002  | 733503.7   | 73000 | 3503.7           | 
+| S001  | 575680.0   | 57000 | 5680.0           | 
+| S002  | 687680.0   | 68000 | 7680.0           | 
++-------+------------+-------+------------------+ 
+8 rows in set (0.00 sec)
+```
+</Card>
+</Example>
+
+<Example id="1.2" title="Example 1.2">
+
+- a) Let us now add a new column Commission to the SALE table. The column
+  Commission should have a total length of 7 in which 2 decimal places to be
+  there.
+
+<Card>
+```sql
+ALTER TABLE SALE
+ADD(Commission Numeric(7, 2));
+```
+```ansi
+Query OK, 6 rows affected (0.34 sec) 
+Records: 6 Duplicates: 0 Warnings: 0
+```
+</Card>
+
+- b) Let us now calculate commission for sales agents as 12 per cent of the
+  SalePrice, insert the values to the newly added column Commission and then
+  display records of the table SALE where commission > 73000.
+
+<Card>
+```sql
+UPDATE SALE
+SET Commission = 12 / 100 * SalePrice;
+```
+```ansi
+Query OK, 6 rows affected (0.06 sec) 
+Rows matched: 6 Changed: 6 Warnings: 0
+```
+</Card>
+
+<Card>
+```sql
+SELECT *
+FROM SALE
+WHERE Commission > 73000;
+```
+```ansi
++---------------+------+--------+------------+--------------+-------+-----------+------------+ 
+| invoiceno     |carid | custid | saledate   | paymentmode  | empid | saleprice | Commission | 
++---------------+------+--------+------------+--------------+-------+-----------+------------+ 
+| I00001        |D001  | C0001  | 2019-01-24 | Credit Card  | E004  | 613247.00 | 73589.64   | 
+| I0000         |D002  | C0001  | 2018-10-15 | Bank Finance | E007  | 659982.00 | 79197.84   | 
+| I00006        |S002  | C0002  | 2019-01-30 | Bank Finance | E007  | 620214.00 | 74425.68   | 
++---------------+------+--------+------------+--------------+-------+-----------+------------+ 
+3 rows in set (0.02 sec)
+```
+</Card>
+
+- c) Display InvoiceNo, SalePrice and Commission such that commission value is
+  rounded off to 0.
+
+<Card>
+```sql
+SELECT InvoiceNo,
+    SalePrice,
+    Round(Commission, 0)
+FROM SALE;
+```
+```ansi
++-----------+-----------+---------------------+ 
+| InvoiceNo | SalePrice | Round(Commission,0) | 
++-----------+-----------+---------------------+ 
+| I00001    | 613247.00 | 73590               | 
+| I00002    | 590321.00 | 70839               | 
+| I00003    | 604000.00 | 72480               | 
+| I00004    | 659982.00 | 79198               | 
+| I00005    | 369310.00 | 44317               | 
+| I00006    | 620214.00 | 74426               |  
++-----------+-----------+---------------------+ 
+6 rows in set (0.00 sec)
+```
+</Card>
+</Example>
+
+<Activity id="1.1" title="Activity 1.1">
+Using the table SALE of CARSHOWROOM database, write SQL queries for the
+following:
+
+- a) Display the InvoiceNo and commission value rounded off to zero decimal
+  places.
+- b) Display the details of SALE where payment mode is credit card..
+</Activity>
+
+#### (B) String Functions ||section-1.2.1.b||
+
+String functions can perform various operations on alphanumeric data which are
+stored in a table. They can be used to change the case (uppercase to lowercase
+or vice-versa), extract a substring, calculate the length of a string and so on.
+String functions and their usage are shown in [Table 1.6](#table-1.6).
+
+<Table id="1.6" title="Table 1.6 String Functions" center={false}>
+<table>
+    <tr>
+        <th>Function </th>
+        <th>Description </th>
+        <th>Example with output </th>
+    </tr>
+    <tr>
+        <td>
+            `UCASE(string)`\
+            OR\
+            `UPPER(string)`
+        </td>
+        <td>
+            Converts string into uppercase.
+        </td>
+        <td>
+            ```sql
+            SELECT UCASE("Informatics Practices");
+            ```
+            ```
+            INFORMATICS PRACTICES
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `LCASE(string)`\
+            OR\
+            `LOWER(string)`
+        </td>
+        <td>
+            Converts string into lowercase.
+        </td>
+        <td>
+            ```sql
+            SELECT LOWER("Informatics Practices");
+            ```
+            ```
+            informatics practices
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `MID(string, pos, n)`\
+            OR\
+            `SUBSTRING(string, pos, n)`\
+            OR\
+            `SUBSTR(string, pos, n)`
+        </td>
+        <td>
+            Returns a substring of size n
+            starting from the specified position
+            (pos) of the string. If n is not
+            specified, it returns the substring
+            from the position pos till end of the
+            string.
+        </td>
+        <td>
+            ```sql
+            SELECT MID("Informatics", 3, 4);
+            ```
+            ```
+            form
+            ```
+            <br/>
+            ```sql
+            SELECT MID("Informatics",7);
+            ```
+            ```
+            atics
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `LENGTH(string)`
+        </td>
+        <td>
+            Return the number of characters
+            in the specified string.
+        </td>
+        <td>
+            ```sql
+            SELECT LENGTH("Informatics");
+            ```
+            ```
+            11
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `LEFT(string, N)`
+        </td>
+        <td>
+            Returns N number of characters
+            SELECT
+            from the left side of the string.
+        </td>
+        <td>
+            ```sql
+            LEFT("Computer", 4);
+            ```
+            ```
+            Comp
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `RIGHT(string, N)`
+        </td>
+        <td>
+            Returns N number of characters
+            SELECT
+            from the right side of the string.
+        </td>
+        <td>
+            ```sql
+            RIGHT("SCIENCE", 3);
+            ```
+            ```
+            NCE
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `INSTR(string, substring)`
+        </td>
+        <td>
+            Returns the position of the first
+            occurrence of the substring in
+            the given string.
+            Returns 0, if the
+            substring is not present in the
+            string.
+        </td>
+        <td>
+            ```sql
+            SELECT INSTR("Informatics", "ma");
+            ```
+            ```
+            6
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `LTRIM(string)`
+        </td>
+        <td>
+            Returns the given string after
+            removing leading white space
+            characters.
+        </td>
+        <td>
+            ```sql
+            SELECT LENGTH("  DELHI"),
+                LENGTH(LTRIM("  DELHI"));
+            ```
+            ```
+            +--------+--------+
+            | 7      | 5      |
+            +--------+--------+
+            1 row in set (0.00 sec)
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `RTRIM(string)`
+        </td>
+        <td>
+            Returns the given string after
+            removing trailing white space
+            characters.
+        </td>
+        <td>
+            ```sql
+            SELECT LENGTH("PEN  "),
+                LENGTH(RTRIM("PEN  "));
+            ```
+            ```
+            +--------+--------+
+            | 5      | 3      |
+            +--------+--------+
+            1 row in set (0.00 sec)
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `TRIM(string)`
+        </td>
+        <td>
+            Returns the given string after
+            removing both leading and trailing
+            white space characters.
+        </td>
+        <td>
+            ```sql
+            SELECT LENGTH("  MADAM  "),
+                LENGTH(TRIM("  MADAM  "));
+            ```
+            Output:
+            ```ansi
+            +--------+--------+
+            | 9      | 5      |
+            +--------+--------+
+            1 row in set (0.00 sec)
+            ```
+        </td>
+    </tr>
+</table>
+</Table>
+
+<Example id="1.3" title="Example 1.3">
+
+Let us use CUSTOMER relation shown in [Table 1.2](#table-1.2) to understand the working of
+string functions.
+
+- a) Display customer name in lower case and customer email in upper case from
+  table CUSTOMER.
+
+<Card>
+```sql
+SELECT LOWER(CustName),
+    UPPER(Email)
+FROM CUSTOMER;
+```
+```ansi
++-----------------+---------------------+ 
+| LOWER(CustName) | UPPER(Email)        | 
++-----------------+---------------------+ 
+| amitsaha        | AMITSAHA2@GMAIL.COM | 
+| rehnuma         | REHNUMA@HOTMAIL.COM | 
+| charvinayyar    | CHARVI123@YAHOO.COM | 
+| gurpreet        | GUR_SINGH@YAHOO.COM | 
++-----------------+---------------------+ 
+4 rows in set (0.00 sec)
+```
+</Card>
+
+- b) Display the length of the email and part of the email from the email ID
+  before the character '@'. Note - Do not print '@'.
+
+<Card>
+```sql
+SELECT LENGTH(Email),
+    LEFT(Email, INSTR(Email, "@") -1)
+FROM CUSTOMER;
+```
+```ansi
++---------------+----------------------------------+ 
+| LENGTH(Email) | LEFT(Email, INSTR(Email, "@")-1) | 
++---------------+----------------------------------+ 
+| 19            | amitsaha2                        | 
+| 19            | rehnuma                          | 
+| 19            | charvi123                        | 
+| 19            | gur_singh                        | 
++---------------+----------------------------------+ 
+4 rows in set (0.03 sec)
+```
+</Card>
+
+The function `INSTR` will return the position of "@" in the email address. So to
+print email id without "@" we have to use position -1.
+
+<Activity id="1.2" title="Activity 1.2">
+
+Using the table INVENTORY from CARSHOWROOM database, write sql queries for the
+following:
+
+- a) Convert the CarMake to uppercase if its value starts with the letter 'B'.
+- b) If the length of the car's model is greater than 4 then fetch the substring
+  starting from position 3 till the end from attribute Model.
+</Activity>
+
+- c) Let us assume that four digit area code is reflected in the mobile number
+starting from position number 1. For example, 2630 is the area code of mobile
+number 4726309212. Now, write the SQL query to display the area code of the
+customer living in Rohini.
+
+<Card>
+```sql
+SELECT MID(Phone, 3, 4)
+FROM CUSTOMER
+WHERE CustAdd like '%Rohini%';
+```
+```ansi
++----------------+
+| MID(Phone,3,4) |
++----------------+
+| 1163           |
++----------------+ 
+1 row in set (0.00 sec)
+```
+</Card>
+
+<Activity id="1.3" title="Activity 1.3">
+Using the table EMPLOYEE from CARSHOWROOM database, write SQL queries for the
+following:
+
+- a) Display employee name and the last 2 characters of his EmpId.
+- b) Display designation of employee and the position of character 'e' in
+  designation, if present.
+</Activity>
+
+- d) Display emails after removing the domain name extension ".com" from emails
+  of the customers.
+
+<Card>
+```sql
+SELECT TRIM(
+        ".com"
+        from Email
+    )
+FROM CUSTOMER;
+```
+```ansi
++-------------------------+
+| TRIM(".com" FROM Email) | 
++-------------------------+ 
+| amitsaha2@gmail         | 
+| rehnuma@hotmail         | 
+| charvi123@yahoo         | 
+| gur_singh@yahoo         | 
++-------------------------+ 
+4 rows in set (0.00 sec)
+```
+</Card>
+
+- e) Display details of all the customers having yahoo emails only.
+
+<Card>
+```sql
+SELECT *
+FROM CUSTOMER
+WHERE Email LIKE "%yahoo%";
+```
+```ansi
++--------+--------------+-----------------------+------------+---------------------+ 
+| CustID | CustName     | CustAdd               | Phone      | Email               | 
++--------+--------------+-----------------------+------------+---------------------+ 
+| C0003  | CharviNayyar | 10/9, FF, Rohini      | 6811635425 | charvi123@yahoo.com | 
+| C0004  | Gurpreet     | A-10/2,SF, MayurVihar | 3511056125 | gur_singh@yahoo.com | 
++--------+--------------+-----------------------+------------+---------------------+ 
+2 rows in set (0.00 sec)
+```
+</Card>
+</Example>
+
+#### (C) Date and Time Functions ||section-1.2.1.c||
+
+There are various functions that are used to perform operations on date and time
+data. Some of the operations include displaying the current date, extracting
+each element of a date (day, month and year), displaying day of the week and so
+on. [Table 1.7](#table-1.7) explains various date and time functions.
+
+<Table id="1.7" title="Table 1.7 Date Functions" center={false}>
+<table>
+    <tr>
+        <th>Function </th>
+        <th>Description </th>
+        <th>Example with output </th>
+    </tr>
+    <tr>
+        <td>
+            `NOW()`
+        </td>
+        <td>
+            It returns the current system date and time.
+        </td>
+        <td>
+            ```sql
+            SELECT NOW();
+            ```
+            ```
+            2019-07-11 19:41:17
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `DATE()`
+        </td>
+        <td>
+            It returns the date part
+            from the given date/
+            time expression.
+        </td>
+        <td>
+            ```sql
+            SELECT DATE(NOW());
+            ```
+            ```
+            2019-07-11
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `MONTH(date)`
+        </td>
+        <td>
+            It returns the month in
+            numeric form from the
+            date.
+        </td>
+        <td>
+            ```sql
+            SELECT MONTH(NOW());
+            ```
+            ```
+            7
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `MONTHNAME(date)`
+        </td>
+        <td>
+            It returns the month
+            name from the specified
+            date.
+        </td>
+        <td>
+            ```sql
+            SELECT MONTHNAME("2003-11-28");
+            ```
+            ```
+            November
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `YEAR(date)`
+        </td>
+        <td>
+            It returns the year from
+            the date.
+        </td>
+        <td>
+            ```sql
+            SELECT YEAR("2003-10-03");
+            ```
+            ```
+            2003
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `DAY(date)`
+        </td>
+        <td>
+            It returns the day part
+            from the date.
+        </td>
+        <td>
+            ```sql
+            SELECT DAY("2003-03-24");
+            ```
+            ```
+            24
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `DAYNAME(date)`
+        </td>
+        <td>
+            It returns the name of
+            the day from the date.
+        </td>
+        <td>
+            ```sql
+            SELECT DAYNAME("2019-07-11");
+            ```
+            ```
+            Thursday
+            ```
+        </td>
+    </tr>
+</table>
+</Table>
+
+<Example id="1.4" title="Example 1.4">
+
+Let us use the EMPLOYEE table of CARSHOWROOM database to illustrate the working
+of some of the date and time functions.
+
+- a) Select the day, month number and year of joining of all employees.
+
+<Card>
+```sql
+SELECT DAY(DOJ), MONTH(DOJ), YEAR(DOJ) FROM 
+EMPLOYEE;
+```
+```ansi
++----------+------------+-----------+ 
+| DAY(DOJ) | MONTH(DOJ) | YEAR(DOJ) | 
++----------+------------+-----------+ 
+| 12       | 12         | 2017      | 
+| 5        | 6          | 2016      | 
+| 8        | 1          | 1999      | 
+| 2        | 12         | 2010      | 
+| 1        | 7          | 2012      | 
+| 1        | 1          | 2017      | 
+| 23       | 10         | 2013      | 
++----------+------------+-----------+ 
+7 rows in set (0.03 sec)
+```
+</Card>
+
+<Activity id="1.4" title="Activity 1.4">
+Using the table EMPLOYEE of CARSHOWROOM database, list the day of birth for all
+employees whose salary is more than
+</Activity>
+
+- b) If the date of joining is not a Sunday, then display it in the following
+  format "Wednesday, 26, November, 1979."
+
+<Card>
+```sql
+SELECT DAYNAME(DOJ), DAY(DOJ), 
+MONTHNAME(DOJ), YEAR(DOJ) FROM EMPLOYEE WHERE 
+DAYNAME(DOJ)!='Sunday';
+```
+```ansi
++--------------+----------+----------------+-----------+ 
+| DAYNAME(DOJ) | DAY(DOJ) | MONTHNAME(DOJ) | YEAR(DOJ) | 
++--------------+----------+----------------+-----------+ 
+| Tuesday      | 12       | December       | 2017      | 
+| Friday       | 8        | January        | 1999      | 
+| Thursday     | 2        | December       | 2010      | 
+| Wednesday    | 23       | October        | 2013      | 
++--------------+----------+----------------+-----------+ 
+4 rows in set (0.00 sec)
+```
+</Card>
+</Example>
+
+<Think title="Think and Reflect">
+Can we use arithmetic operators ($+$, $-$, $*$, or $/$) on date functions?
+</Think>
+
+### 1.2.2 Aggregate Functions
+
+Aggregate functions are also called multiple row functions. These functions work
+on a set of records as a whole, and return a single value for each column of the
+records on which the function is applied. [Table 1.8](#table-1.8) shows the differences
+between single row functions and multiple row functions. [Table 1.9](#table-1.9) describes
+some of the aggregate functions along with their usage. Note that column must be
+of numeric type.
+
+<Table id="1.8" title="Table 1.8 Differences between Single row and Multiple row Functions" center={false}>
+| Single Row Functions                                                  | Multiple Row Functions                                                                   |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| It operates on a single row at a time.                                | It operates on groups of rows.                                                           |
+| It returns one result per row.                                        | It returns one result for a group of rows.                                               |
+| It can be used in Select, Where, and Order by clause.                 | It can be used in the select clause only.                                                |
+| Math, String and Date functions are examples of single row functions. | `Max()`, `Min()`, `Avg()`, `Sum()`, `Count()` and `Count(*)` are examples of multiple row functions. |
+</Table>
+
+<Table id="1.9" title="Table 1.9 Aggregate Functions" center={false}>
+<table>
+    <tr>
+        <th>Function</th>
+        <th>Description</th>
+        <th>Example with output</th>
+    </tr>
+    <tr>
+        <td>
+            `MAX(column)`
+        </td>
+        <td>
+            Returns the largest value from the specified column.
+        </td>
+        <td>
+            ```sql
+            SELECT MAX(Price) FROM INVENTORY;
+            ```
+            ```
+            673112.00
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `MIN(column)`
+        </td>
+        <td>
+            Returns the smallest value from the specified column.
+        </td>
+        <td>            
+            ```sql
+            SELECT MIN(Price) FROM INVENTORY;
+            ```
+            ```
+            355205.00
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `AVG(column)`
+        </td>
+        <td>
+            Returns the average of the values in the specified column.
+        </td>
+        <td>
+            ```sql
+            SELECT AVG(Price) FROM INVENTORY;
+            ```
+            ```
+            576091.625000
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `SUM(column)`
+        </td>
+        <td>
+            Returns the sum of the values for the specified column.
+        </td>
+        <td>
+            ```sql
+            SELECT SUM(Price) FROM INVENTORY;
+            ```
+            ```
+            4608733.00
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `COUNT(column)`
+        </td>
+        <td>
+            Returns the number of values in the specified column ignoring the NULL values.
+            
+            Note: In this example, let us consider
+            a MANAGER table having two
+            attributes and four records.
+        </td>
+        <td>
+            ```sql
+            SELECT * from MANAGER;
+            ```
+            ```
+            +------+---------+
+            | MNO  | MEMNAME |
+            +------+---------+
+            | 1    | AMIT    |
+            | 2    | KAVREET |
+            | 3    | KAVITA  |
+            | 4    | NULL    |
+            +------+---------+
+            4 rows in set (0.00 sec)
+            ```
+            <br/>
+            ```sql
+            SELECT COUNT(MEMNAME) FROM MANAGER;
+            ```
+            ```
+            +----------------+
+            | COUNT(MEMNAME) |
+            +----------------+
+            | 3              |
+            +----------------+
+            1 row in set (0.01 sec)
+            ```
+        </td>
+    </tr>
+    <tr>
+        <td>
+            `COUNT(*)`
+        </td>
+        <td>
+            Returns the number of records in a table.
+            
+            Note: In order to display the number of records that matches a particular criteria in the table, we have to use `COUNT(*)` with `WHERE` clause.
+        </td>
+        <td>
+            ```sql
+            SELECT COUNT(*) from MANAGER;
+            ```
+            ```
+            +----------+
+            | count(*) |
+            +----------+
+            | 4        |
+            +----------+
+            1 row in set (0.00 sec)
+            ```
+        </td>
+    </tr>
+</table>
+</Table>
+
+<Example id="1.5" title="Example 1.5">
+
+- a) Display the total number of records from table INVENTORY having a model as
+  VXI.
+
+<Card>
+```sql
+SELECT COUNT(*)
+FROM INVENTORY
+WHERE Model = "VXI";
+```
+```ansi
++----------+ 
+| COUNT(*) | 
++----------+ 
+| 2        | 
++----------+ 
+1 row in set (0.00 sec)
+```
+</Card>
+
+- b) Display the total number of different types of Models available from table
+INVENTORY.
+
+<Card>
+```sql
+SELECT COUNT(DISTINCT Model)
+FROM INVENTORY;
+```
+```ansi
++-----------------------+ 
+| COUNT(DISTINCT MODEL) | 
++-----------------------+
+| 6                     |
++-----------------------+
+1 row in set (0.09 sec)
+```
+</Card>
+
+- c) Display the average price of all the cars with Model LXI from table
+INVENTORY.
+
+<Card>
+```sql
+SELECT AVG(Price)
+FROM INVENTORY
+WHERE Model = "LXI";
+```
+```ansi
++---------------+
+| AVG(Price)    | 
++---------------+ 
+| 548306.500000 | 
++---------------+ 
+1 row in set (0.03 sec)
+```
+</Card>
+</Example>
+
+<Activity id="1.5" title="Activity 1.5">
+- a) Find sum of Sale Price of the cars purchased by the customer having ID
+C0001 from table SALE.
+- b) Find the maximum and minimum commission from the SALE table.
+</Activity>
+
+## 1.3 `GROUP BY` in SQL ||section-1.3||
+
+At times we need to fetch a group of rows on the basis of common values in a
+column. This can be done using a `GROUP BY` clause. It groups the rows together
+that contain the same values in a specified column. We can use the aggregate
+functions (`COUNT`, `MAX`, `MIN`, `AVG` and `SUM`) to work on the grouped values. HAVING
+Clause in SQL is used to specify conditions on the rows with `GROUP BY` clause.
+
+Consider the SALE table from the CARSHOWROOM database:
+
+<Card>
+```sql
+SELECT * FROM SALE;
+```
+```ansi
++-----------+------+-------+------------+------------------+------+------------+------------+ 
+|InvoiceNo  |CarId |CustId | SaleDate   | PaymentMode      |EmpID | SalePrice  | Commission | 
++-----------+------+-------+------------+------------------+------+------------+------------+ 
+|I00001     |D001  |C0001  |2019-01-24  | Credit Card      | E004 | 613247.00  | 73589.64   | 
+|I00002     |S001  |C0002  |2018-12-12  | Online           | E001 | 590321.00  | 70838.52   | 
+|I00003     |S002  |C0004  |2019-01-25  | Cheque           | E010 | 604000.00  | 72480.00   | 
+|I00004     |D002  |C0001  |2018-10-15  | Bank Finance     | E007 | 659982.00  | 79197.84   | 
+|I00005     |E001  |C0003  |2018-12-20  | Credit Card      | E002 | 369310.00  | 44317.20   | 
+|I00006     |S002  |C0002  |2019-01-30  | Bank Finance     | E007 | 620214.00  | 74425.68   | 
++-----------+------+-------+------------+------------------+------+------------+------------+ 
+6 rows in set (0.11 sec)
+```
+</Card>
+
+CarID, CustID, SaleDate, PaymentMode, EmpID, SalePrice are the columns that can
+have rows with the same values in it. So, `GROUP BY` clause can be used
+in these columns to find the number of records of a particular type (column), or
+to calculate the sum of the price of each car type.
+
+<Example id="1.6" title="Example 1.6">
+
+- a) Display the number of cars purchased by each customer from the SALE table.
+
+<Card>
+```sql
+SELECT CustID,
+    COUNT(*) "Number of Cars"
+FROM SALE
+GROUP BY CustID;
+```
+```ansi
++--------+----------------+ 
+| CustID | Number of Cars | 
++--------+----------------+ 
+| C0001 | 2 | 
+| C0002 | 2 | 
+| C0003 | 1 | 
+| C0004 | 1 | 
++--------+----------------+ 
+4 rows in set (0.00 sec)
+```
+</Card>
+
+- b) Display the customer Id and number of cars purchased if the customer
+  purchased more than 1 car from SALE table.
+
+<Card>
+```sql
+SELECT CustID,
+    COUNT(*)
+FROM SALE
+GROUP BY CustID
+HAVING Count(*) > 1;
+```
+```ansi
++--------+----------+ 
+| CustID | COUNT(*) | 
++--------+----------+ 
+| C0001  | 2        | 
+| C0002  | 2        | 
++--------+----------+ 
+2 rows in set (0.30 sec)
+```
+</Card>
+
+<Activity id="1.6" title="Activity 1.6">
+
+- a) List the total number of cars sold by each employee.
+- b) List the maximum sale made by each employee.
+
+</Activity>
+
+- c) Display the number of people in each category of payment mode from the
+  table SALE.
+
+<Card>
+```sql
+SELECT PaymentMode,
+    COUNT(PaymentMode)
+FROM SALE
+GROUP BY Paymentmode
+ORDER BY Paymentmode;
+```
+```ansi
++--------------+--------------------+ 
+| PaymentMode  | Count(PaymentMode) | 
++--------------+--------------------+ 
+| Bank Finance | 2                  | 
+| Cheque       | 1                  | 
+| Credit Card  | 2                  | 
+| Online       | 1                  | 
++--------------+--------------------+ 
+4 rows in set (0.00 sec)
+```
+</Card>
+
+- d) Display the PaymentMode and number of payments made using that mode more than
+once.
+
+<Card>
+```sql
+SELECT PaymentMode,
+    Count(PaymentMode)
+FROM SALE
+GROUP BY Paymentmode
+HAVING COUNT(*) > 1
+ORDER BY Paymentmode;
+```
+```ansi
++--------------+--------------------+ 
+| PaymentMode  | Count(PaymentMode) | 
++--------------+--------------------+ 
+| Bank Finance | 2                  | 
+| Credit Card  | 2                  | 
++--------------+--------------------+ 
+2 rows in set (0.00 sec)
+```
+</Card>
+</Example>
+
+## 1.4 Operations on Relations ||section-1.4||
+
+We can perform certain operations on relations like Union, Intersection, and Set
+Difference to merge the tuples of two tables. These three operations are binary
+operations as they work upon two tables. Note here, that these operations can
+only be applied if both the relations have the same number of attributes, and
+corresponding attributes in both tables have the same domain.
+
+### 1.4.1 UNION ($∪$) ||section-1.4.1||
+
+This operation is used to combine the selected rows of two tables at a time. If
+some rows are the same in both the tables, then the result of the Union
+operation will show those rows only once. [Figure 1.3](#figure-1.3) shows union of two sets.
+
+<Figure
+    id="1.3"
+    title="Figure 1.3 Union of two sets"
+    images={[
+        {
+            src: import("./res/fig_1.3.svg"),
+            srcDark: import("./res/fig_1.3.dark.svg"),
+            alt: "Union of two sets"
+        }
+    ]}
+    halfWidth={true}
+/>
+
+Let us consider two relations DANCE and MUSIC shown in [Tables 1.10](#table-1.10) and 
+[1.11](#table-1.11) respectively.
+
+<Table id="1.10" title="Table 1.10 DANCE" center={false}>
+```ansi
++------+--------+-------+ 
+| SNo  | Name   | Class | 
++------+--------+-------+ 
+| 1    | Aastha | 7A    | 
+| 2    | Mahira | 6A    | 
+| 3    | Mohit  | 7B    | 
+| 4    | Sanjay | 7A    | 
++------+--------+-------+
+```
+</Table>
+
+<Table id="1.11" title="Table 1.11 MUSIC" center={false}>
+```ansi
++------+---------+-------+ 
+| SNo  | Name    | Class | 
++------+---------+-------+ 
+| 1    | Mehak   | 8A    | 
+| 2    | Mahira  | 6A    | 
+| 3    | Lavanya | 7A    | 
+| 4    | Sanjay  | 7A    | 
+| 5    | Abhay   | 8A    | 
++------+---------+-------+
+```
+</Table>
+
+If we need the list of students participating in either of events, then we have
+to apply UNION operation (represented by symbol $∪$) on relations DANCE and
+MUSIC. The output of UNION operation is shown in [Table 1.12](#table-1.12).
+
+<Table id="1.12" title="Table 1.12 DANCE ∪ MUSIC" center={false}>
+```ansi
++-----+---------+-------+ 
+| SNo | Name    | Class | 
++-----+---------+-------+ 
+| 1   | Aastha  | 7A    | 
+| 2   | Mahira  | 6A    | 
+| 3   | Mohit   | 7B    | 
+| 4   | Sanjay  | 7A    | 
+| 1   | Mehak   | 8A    | 
+| 3   | Lavanya | 7A    | 
+| 5   | Abhay   | 8A    | 
++-----+---------+-------+
+```
+</Table>
+
+### 1.4.2 INTERSECT ($∩$) ||section-1.4.2||
+
+Intersect operation is used to get the common tuples from two tables and is
+represented by the symbol $∩$. [Figure 1.4](#figure-1.4) shows intersection of two sets.
+
+<Figure
+    id="1.4"
+    title="Figure 1.4 Intersection of two sets"
+    images={[
+        {
+            src: import("./res/fig_1.4.svg"),
+            srcDark: import("./res/fig_1.4.dark.svg"),
+            alt: "Intersection of two sets"
+        }
+    ]}
+    halfWidth={true}
+/>
+
+Suppose we have to display the list of students who are participating in both
+the events (DANCE and MUSIC), then intersection operation is to be applied on
+these two tables. The output of INTERSECT operation is shown in [Table 1.13](#table-1.13).
+
+<Table id="1.13" title="Table 1.13 DANCE ∩ MUSIC" center={false}>
+```ansi
++------+---------+-------+ 
+| SNo  | Name    | Class | 
++------+---------+-------+ 
+| 2    | Mahira  | 6A    | 
+| 4    | Sanjay  | 7A    | 
++------+---------+-------+
+```
+</Table>
+
+### 1.4.3 MINUS ($-$) ||section-1.4.3||
+
+This operation is used to get tuples/rows which are in the first table but not
+in the second table, and the operation is represented by the symbol $-$(minus).
+[Figure 1.5](#figure-1.5) shows minus operation (also called set difference) between two sets.
+
+<Figure
+    id="1.5"
+    title="Figure 1.5 Difference of two sets"
+    images={[
+        {
+            src: import("./res/fig_1.5.svg"),
+            srcDark: import("./res/fig_1.5.dark.svg"),
+            alt: "Difference of two sets"
+        }
+    ]}
+    halfWidth={true}
+/>
+
+Suppose, we want the list of students who are only participating in MUSIC and
+not in DANCE event. Then, we will use the MINUS operation, whose output is given
+in [Table 1.14](#table-1.14).
+
+<Table id="1.14" title="Table 1.14 DANCE - MUSIC" center={false}>
+```ansi
++------+---------+-------+ 
+| SNo  | Name    | Class | 
++------+---------+-------+ 
+| 1    | Mehak   | 8A    | 
+| 3    | Lavanya | 7A    | 
+| 5    | Abhay   | 8A    | 
++------+---------+-------+
+```
+</Table>
+
+### 1.4.4 Cartesian Product ||section-1.4.4||
+
+Cartesian product operation combines tuples from two relations. It results in
+all pairs of rows from the two input relations, regardless of whether or not
+they have the same values on common attributes. It is denoted as '$×$'.
+
+The degree of the resulting relation is calculated as the sum of the degrees of
+both the relations under consideration. The cardinality of the resulting
+relation is calculated as the product of the cardinality of relations on which
+cartesian product is applied. Let us use the relations DANCE and MUSIC to show
+the output of cartesian product. Note that both relations are of degree 3. The
+cardinality of relations DANCE and MUSIC is 4 and 5 respectively. Applying
+cartesian product on these two relations will result in a relation of degree 6
+and cardinality 20, as shown in [Table 1.15](#table-1.15).
+
+<Table id="1.15" title="Table 1.15 DANCE × MUSIC" center={false}>
+```ansi
++------+--------+-------+------+---------+-------+ 
+| SNo  | Name   | Class | SNo  | Name    | Class | 
++------+--------+-------+------+---------+-------+ 
+| 1    | Aastha | 7A    | 1    | Mehak   | 8A    | 
+| 2    | Mahira | 6A    | 1    | Mehak   | 8A    | 
+| 3    | Mohit  | 7B    | 1    | Mehak   | 8A    | 
+| 4    | Sanjay | 7A    | 1    | Mehak   | 8A    | 
+| 1    | Aastha | 7A    | 2    | Mahira  | 6A    | 
+| 2    | Mahira | 6A    | 2    | Mahira  | 6A    | 
+| 3    | Mohit  | 7B    | 2    | Mahira  | 6A    | 
+| 4    | Sanjay | 7A    | 2    | Mahira  | 6A    | 
+| 1    | Aastha | 7A    | 3    | Lavanya | 7A    | 
+| 2    | Mahira | 6A    | 3    | Lavanya | 7A    | 
+| 3    | Mohit  | 7B    | 3    | Lavanya | 7A    | 
+| 4    | Sanjay | 7A    | 3    | Lavanya | 7A    | 
+| 1    | Aastha | 7A    | 4    | Sanjay  | 7A    | 
+| 2    | Mahira | 6A    | 4    | Sanjay  | 7A    | 
+| 3    | Mohit  | 7B    | 4    | Sanjay  | 7A    | 
+| 4    | Sanjay | 7A    | 4    | Sanjay  | 7A    | 
+| 1    | Aastha | 7A    | 5    | Abhay   | 8A    | 
+| 2    | Mahira | 6A    | 5    | Abhay   | 8A    | 
+| 3    | Mohit  | 7B    | 5    | Abhay   | 8A    | 
+| 4    | Sanjay | 7A    | 5    | Abhay   | 8A    | 
++------+--------+-------+------+---------+-------+ 
+20 rows in set (0.03 sec)
+```
+</Table>
+
+## 1.5 Using two Relations in a Query ||section-1.5||
+
+Till now, we have written queries in SQL using a single relation only. In this
+section, we will learn to write queries using two relations.
+
+### 1.5.1 Cartesian product on two tables ||section-1.5.1||
+
+From the previous section, we learnt that application of operator cartesian
+product on two tables results in a table having all combinations of tuples from
+the underlying tables. When more than one table is to be used in a query, then
+we must specify the table names by separating commas in the `FROM` clause, as
+shown in [Example 1.7](#example-1.7). On execution of such a query, the DBMS (MySql) will first
+apply cartesian product on specified tables to have a single table. The
+following query of [Example 1.7](#example-1.7) applies cartesian product on the two tables DANCE
+and MUSIC:
+
+<Example id="1.7" title="Example 1.7">
+
+- a) Display all possible combinations of tuples of relations DANCE and MUSIC
+  ```sql
+  SELECT *
+  FROM DANCE,
+      MUSIC;
+  ```
+  As we are using SELECT * in the query, the output will be the Table 1.15
+  having degree 6 and cardinality 20.
+
+- b) From the all possible combinations of tuples of relations DANCE and MUSIC,
+  display only those rows such that the attribute name in both have the same
+  value.
+  ```sql
+  SELECT *
+  FROM DANCE D,
+      MUSIC M
+  WHERE D.Name = M.Name;
+  ```
+
+<Table id="1.16" title="Table 1.16 Tuples with same name" center={false}>
+```ansi
++------+--------+-------+------+--------+-------+ 
+| Sno  | Name   | Class | Sno  | Name   | class | 
++------+--------+-------+------+--------+-------+ 
+| 2    | Mahira | 6A    | 2    | Mahira | 6A    | 
+| 4    | Sanjay | 7A    | 4    | Sanjay | 7A    | 
++------+--------+-------+------+--------+-------+ 
+2 rows in set (0.00 sec)
+```
+</Table>
+</Example>
+
+Note that in this query we have used table aliases (D for DANCE and M for
+MUSIC), just like column aliases to refer to tables by shortened names. It is
+important to note that table alias is valid only for current query and the
+original table name cannot be used in the query if its alias is given in `FROM`
+clause.
+
+### 1.5.2 `JOIN` on two tables ||section-1.5.2||
+
+`JOIN` operation combines tuples from two tables on specified conditions. This is
+unlike cartesian product, which make all possible combinations of tuples. While
+using the `JOIN` clause of SQL, we specify conditions on the related attributes of
+two tables within the `FROM` clause. Usually, such an attribute is the primary key
+in one table and foreign key in another table. Let us create two tables UNIFORM
+(UCode, UName, UColor) and COST (UCode, Size, Price) in the SchoolUniform
+database. UCode is Primary Key in table UNIFORM. UCode and Size is the Composite
+Key in table COST. Therefore, Ucode is a common attribute between the two tables
+which can be used to fetch the common data from both the tables. Hence, we need
+to define Ucode as foreign key in the Price table while creating this table.
+
+<Table id="1.17" title="Table 1.17 Uniform table" center={false}>
+```ansi
++-------+-------+--------+ 
+| Ucode | Uname | Ucolor | 
++-------+-------+--------+ 
+| 1     | Shirt | White  | 
+| 2     | Pant  | Grey   | 
+| 3     | Tie   | Blue   | 
++-------+-------+--------+
+```
+</Table>
+
+<Table id="1.18" title="Table 1.18 Cost table" center={false}>
+```ansi
++-------+------+-------+ 
+| Ucode | Size | Price | 
++-------+------+-------+ 
+| 1     | L    | 580   | 
+| 1     | M    | 500   |  
+| 2     | L    | 890   | 
+| 2     | M    | 810   | 
++-------+------+-------+
+```
+</Table>
+
+<Example id="1.7" title="Example 1.7">
+
+List the UCode, UName, UColor, Size and Price of related tuples of tables
+UNIFORM and COST. The given query may be written in three different ways as
+given below:
+
+- a) Using condition in `WHERE` clause
+
+```sql
+SELECT *
+FROM UNIFORM U,
+    COST C
+WHERE U.UCode = C.UCode;
+```
+
+<Table id="1.19" title="Table 1.19 Output of the query" center={false}>
+```ansi
++-------+-------+--------+-------+---------+-------+ 
+| UCode | UName | UColor | Ucode | Size    | Price | 
++-------+-------+--------+-------+---------+-------+ 
+| 1     | Shirt | White  | 1     | L       | 580   | 
+| 1     | Shirt | White  | 1     | M       | 500   | 
+| 2     | Pant  | Grey   | 2     | L       | 890   | 
+| 2     | Pant  | Grey   | 2     | M       | 810   | 
++-------+-------+--------+-------+---------+-------+ 
+4 rows in set (0.08 sec)
+```
+</Table>
+
+As the attribute Ucode is in both tables, we need to use table alias to remove
+ambiguity. Hence, we have used qualifier with attribute UCode in `SELECT` and `FROM`
+clauses to indicate its scope.
+
+b) Explicit use of `JOIN` clause
+
+```sql
+SELECT *
+FROM UNIFORM U
+    JOIN COST C ON U.Ucode = C.Ucode;
+```
+
+The output of the query is the same as shown in [Table 1.19](#table-1.19). In this query, we
+have used `JOIN` clause explicitly along with condition in `FROM` clause. Hence, no
+condition needs to be given in WHERE clause.
+
+- c) Explicit use of `NATURAL JOIN` clause
+
+The output of queries (a) and (b) shown in [Table 1.19](#table-1.19) has a repetitive column
+Ucode having exactly the same values. This redundant column provides no
+additional information. There is an extension of `JOIN` operation called `NATURAL
+JOIN` which works similar to `JOIN` clause in SQL, but removes the redundant
+attribute. This operator can be used notes to join the contents of two tables
+iff there is one common attribute in both the tables. The above SQL query using
+`NATURAL JOIN` is shown below:
+
+<Card>
+```sql
+SELECT *
+FROM UNIFORM
+    NATURAL JOIN COST;
+```
+```ansi
++-------+-------+--------+------+-------+ 
+| UCode | UName | UColor | Size | Price | 
++-------+-------+--------+------+-------+ 
+| 1     | Shirt | White  | L    | 580   | 
+| 1     | Shirt | White  | M    | 500   | 
+| 2     | Pant  | Grey   | L    | 890   | 
+| 2     | Pant  | Grey   | M    | 810   | 
++-------+-------+--------+------+-------+ 
+4 rows in set (0.17 sec)
+```
+</Card>
+
+It is clear from the output that the result of this query is same as that of
+queries written in (a) and (b), except that the attribute Ucode appears only
+once.
+
+</Example>
+
+Following are some of the points to be considered while applying `JOIN` operations
+on two or more relations:
+
+- If two tables are to be joined on equality condition on the common attribute, 
+  then one may use JOIN with ON clause or `NATURAL JOIN` in `FROM` clause. If three tables 
+  are to be joined on equality condition, then two `JOIN` or `NATURAL JOIN` are required.
+- In general, N-1 joins are needed to combine N tables on equality condition.
+- With `JOIN` clause, we may use any relational operators to combine tuples of two
+  tables.
+
+---
+
+## Summary
+
+<Summary>
+- A Function is used to perform a particular task and return a value as a result.
+- Single row functions work on a single row to return a single value.
+- Multiple row functions work on a set of records as a whole and return a single value.
+- Numeric functions perform operations on numeric values and return numeric values.
+- String functions perform operations on character type values and return either character or numeric values.
+- Date and time functions allow us to deal with date type data values.
+- `GROUP BY` function is used to group the rows together that contain similar values
+  in a specified column. Some of the group functions are `COUNT`, `MAX`, `MIN`, `AVG` and
+  `SUM`.
+- Join is an operation which is used to combine rows from two or more tables based
+  on one or more common fields between them.
+</Summary>
+
+---
+
+## Exercise
+
+### Question 1
+
+Answer the following questions:
+
+- a) Define RDBMS. Name any two RDBMS software.
+- b) What is the purpose of the following clauses in a select statement?
+  - i) ORDER BY
+  - ii) HAVING
+- c) Site any two differences between Single_row functions and Aggregate
+  functions.
+- d) What do you understand by Cartesian Product?
+- e) Write the name of the functions to perform the following operations:
+  - i) To display the day like "Monday", "Tuesday", from the date when India got
+    independence.
+  - ii) To display the specified number of characters from a particular position
+    of the given string.
+  - iii) To display the name of the month in which you were born.
+  - iv) To display your name in capital letters.
+
+### Question 2
+
+Write the output produced by the following SQL commands:
+
+- a)
+  ```sql
+  SELECT POW(2,3);
+  ```
+
+- b)
+  ```sql
+  SELECT ROUND(123.2345, 2),
+      ROUND(342.9234, -1);
+  ```
+
+- c)
+  ```sql
+  SELECT LENGTH("Informatics Practices");
+  ```
+
+- d)
+  ```sql
+  SELECT YEAR("1979/11/26"),
+      MONTH("1979/11/26"),
+      DAY("1979/11/26"),
+      MONTHNAME("1979/11/26");
+  ```
+
+- e)
+  ```sql
+  SELECT LEFT("INDIA", 3),
+      RIGHT("Computer Science", 4);
+  ```
+
+- f)
+  ```sql
+  SELECT MID("Informatics", 3, 4),
+      SUBSTR("Practices", 3);
+  ```
+
+### Question 3
+
+Consider the following table named "Product", showing details of products being
+sold in a grocery shop.
+
+<Table>
+| PCode | PName         | UPrice | Manufacturer |
+| :---: | :-----------: | :----: | :----------: |
+| P01   | WashingPowder | 120    | Surf         |
+| P02   | Tooth Paste   | 54     | Colgate      |
+| P03   | Soap          | 25     | Lux          |
+| P04   | Tooth Paste   | 65     | Pepsodant    |
+| P05   | Soap          | 38     | Dove         |
+| P06   | Shampoo       | 245    | Dove         |
+</Table>
+
+- a) Write SQL queries for the following:
+  - i. Create the table Product with appropriate data types and constraints.
+  - ii. Identify the primary key in Product.
+  - iii. List the Product Code, Product name and price in descending order of
+    their product name. If PName is the same then display the data in ascending
+    order of price.
+  - iv. Add a new column Discount to the table Product.
+  - v. Calculate the value of the discount in the table Product as 10 per cent
+    of the UPrice for all those products where the UPrice is more than 100,
+    otherwise the discount will be 0.
+  - vi. Increase the price by 12 per cent for all the products manufactured by
+    Dove.
+  - vii.Display the total number of products manufactured by each manufacturer.
+
+- b) Write the output(s) produced by executing the following queries on the
+  basis of the information given above in the table Product:
+  - i.
+    ```sql
+    SELECT PName,
+        Average(UPrice)
+    FROM Product
+    GROUP BY Pname;
+    ```
+  - ii.
+    ```sql
+    SELECT DISTINCT Manufacturer
+    FROM Product;
+    ```
+  - iii.
+    ```sql
+    SELECT COUNT(DISTINCT PName)
+    FROM Product;
+    ```
+  - iv.
+    ```sql
+    SELECT PName,
+        MAX(UPrice),
+        MIN(UPrice)
+    FROM Product
+    GROUP BY PName;
+    ```
+
+### Question 4
+
+Using the CARSHOWROOM database given in the chapter, write the SQL queries for
+the following:
+
+- a) Add a new column Discount in the INVENTORY table.
+- b) Set appropriate discount values for all cars keeping in mind the following:
+  - (i) No discount is available on the LXI model.
+  - (ii) VXI model gives a 10% discount.
+  - (iii) A 12% discount is given on cars other than LXI model and VXI model.
+- c) Display the name of the costliest car with fuel type "Petrol".
+- d) Calculate the average discount and total discount available on Car4.
+- e) List the total number of cars having no discount.
+
+### Question 5
+
+Consider the following tables Student and Stream in the Streams_of_Students
+database. The primary key of the Stream table is StCode (stream code) which is
+the foreign key in the Student table. The primary key of the Student table is
+AdmNo (admission number).
+
+<Table>
+| AdmNo | Name     | StCode |
+| :---: | :------: | :----: |
+| 211   | Jay      | NULL   |
+| 241   | Aditya   | S03    |
+| 290   | Diksha   | S01    |
+| 333   | Jasqueen | S02    |
+| 356   | Vedika   | S01    |
+| 380   | Ashpreet | S03    |
+</Table>
+<Table>
+| StCode | Stream     |
+| :----: | :--------: |
+| S01    | Science    |
+| S02    | Commerce   |
+| S03    | Humanities |
+</Table>
+
+Write SQL queries for the following:
+
+- a) Create the database Streams_Of_Students.
+- b) Create the table Student by choosing appropriate data types based on the
+  data given in the table.
+- c) Identify the Primary keys from tables Student and Stream. Also, identify
+  the foreign key from the table Stream.
+- d) Jay has now changed his stream to Humanities. Write an appropriate SQL
+  query to reflect this change.
+- e) Display the names of students whose names end with the character 'a'. Also,
+  arrange the students in alphabetical order.
+- f) Display the names of students enrolled in Science and Humanities stream,
+  ordered by student name in alphabetical order, then by admission number in
+  ascending order (for duplicating names).
+- g) List the number of students in each stream having more than 1 student.
+- h) Display the names of students enrolled in different streams, where students
+  are arranged in descending order of admission number.
+- i) Show the Cartesian product on the Student and Stream table. Also mention
+  the degree and cardinality produced after applying the Cartesian product.
+- j) Add a new column 'TeacherIncharge" in the Stream table. Insert appropriate
+  data in each row.
+- k) List the names of teachers and students.
+- l) If Cartesian product is again applied on Student and Stream tables, what
+  will be the degree and cardinality of this modified table?
+
+---

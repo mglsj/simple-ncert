@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 404 251.37">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 11px;
+      }
+
+      .cls-1, .cls-2 {
+        font-family: BookmanOldStyle-Bold, 'Bookman Old Style';
+        font-weight: 700;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill: #231f20;
+      }
+
+      .cls-4 {
+        stroke: #009444;
+      }
+
+      .cls-4, .cls-5, .cls-6 {
+        fill: none;
+      }
+
+      .cls-4, .cls-6 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath-4);
+      }
+
+      .cls-8 {
+        fill: #8cc6ec;
+      }
+
+      .cls-9 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-10 {
+        clip-path: url(#clippath-5);
+      }
+
+      .cls-2, .cls-3 {
+        font-size: 10px;
+      }
+
+      .cls-11 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-12 {
+        fill: #009444;
+      }
+
+      .cls-3 {
+        font-family: BookmanOldStyle, 'Bookman Old Style';
+      }
+
+      .cls-6 {
+        stroke: #231f20;
+      }
+
+      .cls-13 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-14 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-5" width="404" height="251.37"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-5" width="404" height="251.37"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect class="cls-5" width="404" height="251.37"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-5" width="404" height="251.37"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect class="cls-5" width="404" height="251.37"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <rect class="cls-5" width="404" height="251.37"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <polyline class="cls-4" points="197.5 35.65 343 35.65 343 47.91"/>
+    <polygon class="cls-12" points="339.01 46.74 343 53.65 346.99 46.74 339.01 46.74"/>
+    <polyline class="cls-4" points="198 35.65 52.5 35.65 52.5 47.91"/>
+    <polygon class="cls-12" points="48.51 46.74 52.5 53.65 56.49 46.74 48.51 46.74"/>
+    <g class="cls-14">
+      <rect class="cls-6" x=".5" y="59.12" width="121" height="86.51"/>
+    </g>
+    <rect class="cls-8" x=".5" y="59.12" width="121" height="24.15"/>
+    <g class="cls-9">
+      <rect class="cls-6" x=".5" y="59.12" width="121" height="24.15"/>
+    </g>
+    <text class="cls-3" transform="translate(9.08 97.53)"><tspan x="0" y="0">POWER()</tspan></text>
+    <text class="cls-3" transform="translate(9.08 113.53)"><tspan x="0" y="0">ROUND()</tspan></text>
+    <text class="cls-3" transform="translate(9.08 129.53)"><tspan x="0" y="0">MOD()</tspan></text>
+    <text class="cls-2" transform="translate(9.08 74.59)"><tspan x="0" y="0">Numeric Function</tspan></text>
+    <g class="cls-13">
+      <rect class="cls-6" x="141.5" y="59.12" width="121" height="191.76"/>
+    </g>
+    <rect class="cls-8" x="141.5" y="59.12" width="121" height="24.15"/>
+    <rect class="cls-6" x="141.5" y="59.12" width="121" height="24.15"/>
+    <text class="cls-3" transform="translate(150.08 97.53)"><tspan x="0" y="0">UCASE()</tspan></text>
+    <text class="cls-3" transform="translate(150.08 113.53)"><tspan x="0" y="0">LCASE()</tspan></text>
+    <text class="cls-3" transform="translate(150.08 129.53)"><tspan x="0" y="0">MID()</tspan></text>
+    <text class="cls-3" transform="translate(150.08 145.53)"><tspan x="0" y="0">LENGTH()</tspan></text>
+    <text class="cls-3" transform="translate(150.08 161.53)"><tspan x="0" y="0">LEFT()</tspan></text>
+    <text class="cls-3" transform="translate(150.08 177.53)"><tspan x="0" y="0">RIGHT()</tspan></text>
+    <text class="cls-3" transform="translate(150.08 193.53)"><tspan x="0" y="0">INSTR()</tspan></text>
+    <text class="cls-3" transform="translate(150.08 209.53)"><tspan x="0" y="0">LTRIM()</tspan></text>
+    <text class="cls-3" transform="translate(150.08 225.53)"><tspan x="0" y="0">RTRIM()</tspan></text>
+    <text class="cls-3" transform="translate(150.08 241.53)"><tspan x="0" y="0">TRIM()</tspan></text>
+    <text class="cls-2" transform="translate(150.08 74.59)"><tspan x="0" y="0">String Function</tspan></text>
+    <g class="cls-11">
+      <rect class="cls-6" x="282.5" y="59.12" width="121" height="145.76"/>
+    </g>
+    <rect class="cls-8" x="282.5" y="59.12" width="121" height="24.15"/>
+    <g class="cls-7">
+      <rect class="cls-6" x="282.5" y="59.12" width="121" height="24.15"/>
+    </g>
+    <text class="cls-2" transform="translate(291.08 74.59)"><tspan x="0" y="0">Date Function</tspan></text>
+    <line class="cls-4" x1="198" y1="47.91" x2="198" y2="21.65"/>
+    <polygon class="cls-12" points="201.99 46.74 198 53.65 194.01 46.74 201.99 46.74"/>
+    <rect class="cls-8" x="107.92" y=".5" width="178.16" height="24.15"/>
+    <g class="cls-10">
+      <rect class="cls-6" x="107.92" y=".5" width="178.16" height="24.15"/>
+    </g>
+    <text class="cls-3" transform="translate(291.08 97.53)"><tspan x="0" y="0">NOW()</tspan></text>
+    <text class="cls-3" transform="translate(291.08 113.53)"><tspan x="0" y="0">DATE()</tspan></text>
+    <text class="cls-3" transform="translate(291.08 129.53)"><tspan x="0" y="0">MONTH()</tspan></text>
+    <text class="cls-3" transform="translate(291.08 145.53)"><tspan x="0" y="0">MONTHNAME()</tspan></text>
+    <text class="cls-3" transform="translate(291.08 161.53)"><tspan x="0" y="0">YEAR()</tspan></text>
+    <text class="cls-3" transform="translate(291.08 177.53)"><tspan x="0" y="0">DAY()</tspan></text>
+    <text class="cls-3" transform="translate(291.08 193.53)"><tspan x="0" y="0">DAYNAME()</tspan></text>
+    <text class="cls-1" transform="translate(137.6 15.21)"><tspan x="0" y="0">Single Row Function</tspan></text>
+  </g>
+</svg>

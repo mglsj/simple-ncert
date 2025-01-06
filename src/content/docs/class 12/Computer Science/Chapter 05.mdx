@@ -5,7 +5,7 @@ source: lecs105
 
 import { Steps } from '@astrojs/starlight/components';                                                                                        
       
-import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary } from "@/components/markdown";
+import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary, Think } from "@/components/markdown";
 
 <Quote author="Peter Thiel" href="https://en.wikipedia.org/wiki/Peter_Thiel">
 "Every one of today's smartphones has thousands of times more processing power
@@ -44,12 +44,13 @@ about three sorting methods and implement them using Python. Bubble sort is
 discussed in [section 5.2](#section-5.2), followed by discussion on selection sort and insertion
 sort in [section 5.3](#section-5.3) and [5.4](#section-5.4), respectively
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 Can you identify other examples where sorting plays an important role in
 computers?
 
-:::
+</Think>
 
 ## 5.2 Bubble Sort ||section-5.2||
 
@@ -86,7 +87,8 @@ will reach the end of the list as shown in [Figure 5.1](#figure-5.1) with green 
   </centre>
 </Figure>
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 In [Figure 5.1](#figure-5.1), we can see that the list got sorted in the 4th pass itself. Still
 the bubble sort technique made a redundant 5th pass which did not result in any
@@ -94,7 +96,7 @@ swap. If there is no swapping in any pass, it means the list is already sorted,
 hence the sorting operation needs to be stopped. Can you think of making any
 improvement in the [Algorithm 5.1](#algorithm-5.1) so that it stops when the list becomes sorted?
 
-:::
+</Think>
 
 [Algorithm 5.1](#algorithm-5.1) shows the steps followed for the bubble sort that takes `numList` as
 a list of `n` elements, and sorts the list in ascending order:
@@ -120,7 +122,7 @@ a list of `n` elements, and sorts the list in ascending order:
   </Steps>
 </Algorithm>
 
-<Activity title="Activity 5.1">
+<Activity id="5.1" title="Activity 5.1">
 [Algorithm 5.1](#algorithm-5.1) sorts a list in ascending order. Write a bubble sort algorithm to
 sort a list in descending order?
 </Activity>
@@ -203,7 +205,7 @@ as a list of `n` elements, and sorts the list in ascending order:
   </Steps>
 </Algorithm>
 
-<Activity title="Activity 5.2">
+<Activity id="5.2" title="Activity 5.2">
 
 Consider a list of 10 elements:
 
@@ -290,7 +292,7 @@ sorts the list numList in ascending order using insertion sort technique.
   </Steps>
 </Algorithm>
 
-<Activity title="Activity 5.3">
+<Activity id="5.3" title="Activity 5.3">
 
 Consider a list of 10 elements:
 

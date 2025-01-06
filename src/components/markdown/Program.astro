@@ -1,5 +1,6 @@
 ---
 import { Card } from "@/components/markdown";
+import { generateRandomId } from "@/lib/helpers";
 import { Code, FileTree } from "@astrojs/starlight/components";
 
 interface Props {
@@ -11,9 +12,9 @@ interface Props {
 	codeFile?: Promise<{ default: string }>;
 	outputFile?: Promise<{ default: string }>;
 }
-import crypto from "node:crypto";
+
 const { 
-    id=crypto.randomUUID({ disableEntropyCache: true }), 
+    id = generateRandomId(),
     title, 
     lang="python", 
     code, 

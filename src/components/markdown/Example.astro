@@ -4,9 +4,8 @@ interface Props {
 	title: string;
 }
 
-import crypto from "node:crypto";
-const { id = crypto.randomUUID({ disableEntropyCache: true }), title } =
-	Astro.props;
+import { generateRandomId } from "@/lib/helpers";
+const { id = generateRandomId(), title } = Astro.props;
 ---
 
 <h5 id={`example-${id}`} set:html={title} />

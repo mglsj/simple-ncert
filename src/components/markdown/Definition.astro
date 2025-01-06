@@ -1,14 +1,13 @@
 ---
 import { Card } from "@/components/markdown";
+import { generateRandomId } from "@/lib/helpers";
 
 interface Props {
 	id?: string;
 	title?: string;
 }
 
-import crypto from "node:crypto";
-const { id = crypto.randomUUID({ disableEntropyCache: true }), title } =
-	Astro.props;
+const { id = generateRandomId(), title } = Astro.props;
 ---
 
 <Card id={`definition-${id}`} title={title} heading={5}>

@@ -5,7 +5,7 @@ source: lecs102
 
 import { Steps } from '@astrojs/starlight/components';                                                                                        
       
-import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary } from "@/components/markdown";
+import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary, Think } from "@/components/markdown";
 
 <Quote author="Robin Milner" href="https://en.wikipedia.org/wiki/Robin_Milner">
     "There are many ways of trying to understand programs. People often rely too
@@ -84,7 +84,7 @@ it displays the remaining file contents starting from a new line. Contents in a
 text file are usually separated by whitespace, but comma (,) and tab (`\t`) are
 also commonly used to separate values in a text file.
 
-<Activity title="Activity 2.1">
+<Activity id="2.1" title="Activity 2.1">
 Create a text file using notepad and write your name and save it. Now, create a
 `.docx` file using Microsoft Word and write your name and save it as well. Check
 and compare the file size of both the files. You will find that the size of `.txt`
@@ -162,7 +162,7 @@ file access modes that can be used with the `open()` method. The file offset
 position in the table refers to the position of the file object when the file is
 opened in a particular mode.
 
-<Activity title="Activity 2.2">
+<Activity id="2.2" title="Activity 2.2">
 
 Some of the other file access modes are `rb+`, `wb`, `w+`, `ab`, `ab+`. Find out
 for what purpose each of these are used. Also, find the file offset positions in
@@ -245,12 +245,10 @@ following methods to write data in the file.
 - `write()` - for writing a single string
 - `writelines()` - for writing a sequence of strings
 
-:::caution[Think and Reflect]
-
+<Think title="Think and Reflect">
 For a newly created file, is there any difference between `write()` and
 `append()` methods?
-
-:::
+</Think>
 
 ### 2.4.1 The `write()` method ||section-2.4.1||
 
@@ -328,17 +326,15 @@ This is the third line
 ```
 </Figure>
 
-<Activity title="Activity 2.3">
+<Activity id="2.3" title="Activity 2.3">
 Run the above code by replacing `writelines()` with `write()` and see what
 happens.
 </Activity>
 
-:::caution[Think and Reflect]
-
+<Think title="Think and Reflect">
 Can we pass a tuple of numbers as an argument to `writelines()`? Will it be
 written to the file or an error will be generated?
-
-:::
+</Think>
 
 ## 2.5 Reading from a text File ||section-2.5||
 
@@ -405,7 +401,7 @@ To read the entire file line by line using the `readline()`, we can use a loop.
 This process is known as looping/ iterating over a file object. It returns an
 empty string when `EOF` is reached.
 
-<Activity title="Activity 2.4">
+<Activity id="2.4" title="Activity 2.4">
 
 Create a file having multiline data and use `readline()` with an iterator to
 read the contents of the file line by line

@@ -4,7 +4,7 @@ source: kecs104
 ---
 import { Steps } from '@astrojs/starlight/components';   
 
-import { Card, Quote, Figure, Activity, Table, Summary, Example } from "@/components/markdown";
+import { Card, Quote, Figure, Activity, Table, Summary, Example , Think} from "@/components/markdown";
 
 <Quote author="A. Aho and J. Ullman">
   "Computer Science is a science of abstraction -creating the right model for a
@@ -151,7 +151,7 @@ from time to time. The maintenance of the solution, thus, involves fixing the
 problems faced by the user, answering the queries of the user and even serving
 the request for addition or modification of features.
 
-<Activity title="Activity 4.1">
+<Activity id="4.1" title="Activity 4.1">
 
 What sequence of steps will you follow to compute the LCM of two numbers? The
 origin of the term Algorithm is traced to Persian astronomer and
@@ -378,13 +378,11 @@ flowchart TD
 
 </Example>
 
-:::caution[Think and Reflect]
-
+<Think title="Think and Reflect">
 What will happen if an algorithm does not stop after a finite number of steps?
+</Think>
 
-:::
-
-<Activity title="Activity 4.2">
+<Activity id="4.2" title="Activity 4.2">
 
 Draw a flowchart that represents the attainment of your career goal.
 
@@ -420,7 +418,7 @@ flowchart TD
 </Figure>
 </Example>
 
-<Activity title="Activity 4.3">
+<Activity id="4.3" title="Activity 4.3">
 
 Write a pseudocode for creating a scoreboard for a hockey match.
 
@@ -555,12 +553,10 @@ the far end of the map is a house.
 ![Decision making in real life](./res/fig_4.6.svg)
 </Figure>
 
-:::caution[Think and Reflect ]
-
+<Think title="Think and Reflect">
 Can you list some of the routine activities in your daily life where decision
 making is involved?
-
-:::
+</Think>
 
 With reference to [Figure 4.6](#figure-4.6), let us answer the following questions:
 
@@ -816,12 +812,10 @@ repetitions. In programming, repetition is also known as iteration or loop. A
 loop in an algorithm means execution of some program statements repeatedly till
 some specified condition is satisfied.
 
-:::caution[Think and Reflect]
-
+<Think title="Think and Reflect">
 Can you list some of the routine activities in your daily life where repetition
 or iteration is involved?
-
-:::
+</Think>
 
 <Example id="4.8" title="Example 4.8">
 
@@ -928,7 +922,7 @@ In this example, we do not know how many numbers a user is going to enter before
 entering 0. This is handled by checking the condition repeatedly till the
 condition becomes false.
 
-<Activity title="Activity 4.4">
+<Activity id="4.4" title="Activity 4.4">
 
 Let us answer the following questions using the pesudocode given in [example 4.9](#example-4.9):
 
@@ -979,13 +973,11 @@ In case all possible input values are not tested, then the program will fail.
 What if there is some other case for which it does not work? Let us look at some
 examples.
 
-:::caution[Think and Reflect]
-
+<Think title="Think and Reflect">
 Why is verification of algorithm an important step in problem solving?
+</Think>
 
-:::
-
-<Activity title="Activity 4.5">
+<Activity id="4.5" title="Activity 4.5">
 
 Write an algorithm to take as input the measurement of length and breadth in
 feet and inches (e.g., 5 ft 6 inch) of a rectangular shape and calculate its

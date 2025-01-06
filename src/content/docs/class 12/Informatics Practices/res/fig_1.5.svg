@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 194.02 107.75">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-4 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-5 {
+        fill: #231f20;
+        font-family: BookmanOldStyle, 'Bookman Old Style';
+        font-size: 10px;
+      }
+
+      .cls-2 {
+        stroke: #231f20;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-6 {
+        fill: #63b7e6;
+      }
+
+      .cls-7 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-1" width="194.02" height="107.75"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-1" width="194.02" height="107.75"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect class="cls-1" width="194.02" height="107.75"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g class="cls-7">
+      <path class="cls-6" d="M97.01,98.99c-9.97,5.21-22.14,8.27-35.29,8.27C27.91,107.25.5,86.99.5,62S27.91,16.75,61.73,16.75c13.14,0,25.32,3.06,35.29,8.27-15.69,8.2-25.94,21.71-25.94,36.99s10.25,28.79,25.94,36.99"/>
+    </g>
+    <g class="cls-3">
+      <path class="cls-2" d="M97.01,98.99c-9.97,5.21-22.14,8.27-35.29,8.27C27.91,107.25.5,86.99.5,62S27.91,16.75,61.73,16.75c13.14,0,25.32,3.06,35.29,8.27-15.69,8.2-25.94,21.71-25.94,36.99s10.25,28.79,25.94,36.99Z"/>
+    </g>
+    <g class="cls-4">
+      <path class="cls-2" d="M193.52,62c0,24.99-27.41,45.25-61.22,45.25-13.14,0-25.31-3.06-35.29-8.27,15.69-8.2,25.93-21.71,25.93-36.99s-10.24-28.78-25.93-36.99c9.97-5.21,22.14-8.27,35.29-8.27,33.81,0,61.22,20.26,61.22,45.25Z"/>
+    </g>
+    <text class="cls-5" transform="translate(39.32 8.41)"><tspan x="0" y="0">Music</tspan></text>
+    <text class="cls-5" transform="translate(118.31 8.41)"><tspan x="0" y="0">Dance</tspan></text>
+  </g>
+</svg>

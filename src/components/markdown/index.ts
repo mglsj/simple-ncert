@@ -8,6 +8,7 @@ import Activity from "./Activity.astro";
 import Quote from "./Quote.astro";
 import Summary from "./Summary.astro";
 import Definition from "./Definition.astro";
+import Think from "./Think.astro";
 
 export {
 	Figure,
@@ -20,4 +21,5 @@ export {
 	Quote,
 	Summary,
 	Definition,
+	Think,
 };

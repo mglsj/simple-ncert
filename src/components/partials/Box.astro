@@ -1,0 +1,136 @@
+---
+// source: https://github.com/HiDeoo/starlight-videos/blob/main/packages/starlight-videos/components/Box.astro
+
+// biome-ignore lint/style/useImportType: <explanation>
+import { Icon } from "@astrojs/starlight/components";
+import type { ComponentProps } from "astro/types";
+
+interface Props {
+	icon?: ComponentProps<typeof Icon>["name"] | undefined;
+	title: string;
+	variant?:
+		| "caution"
+		| "danger"
+		| "minimal"
+		| "note"
+		| "success"
+		| "tip"
+		| undefined;
+	id?: string;
+}
+
+const defaultIcons = {
+	caution: "warning",
+	danger: "error",
+	minimal: "list-format",
+	note: "information",
+	success: "approve-check-circle",
+	tip: "rocket",
+} as const;
+
+const { icon, title, variant = "minimal", id } = Astro.props;
+---
+
+<div class:list={["box", `box-${variant}`]} id={id}>
+	<p><Icon name={icon ?? defaultIcons[variant]} />{title}</p>
+	<slot />
+</div>
+
+<style>
+	.box {
+		background-color: var(--box-bg-color);
+		border-inline-start: 0.25rem solid var(--box-border-color);
+		color: var(--sl-color-white);
+		padding: 1rem;
+	}
+
+	.box-caution {
+		--box-alt-color: var(--sl-color-orange-high);
+		--box-bg-color: var(--sl-color-orange-low);
+		--box-border-color: var(--sl-color-orange);
+	}
+
+	.box-danger {
+		--box-alt-color: var(--sl-color-red-high);
+		--box-bg-color: var(--sl-color-red-low);
+		--box-border-color: var(--sl-color-red);
+	}
+
+	.box-minimal {
+		--box-alt-color: hsl(224 24% 86%);
+		--box-bg-color: hsl(224 14% 16%);
+		--box-border-color: hsl(224 4% 66%);
+	}
+
+	:root[data-theme="light"] .box-minimal {
+		--box-alt-color: hsl(224 20% 34%);
+		--box-bg-color: hsl(224 20% 94%);
+		--box-border-color: hsl(224 20% 74%);
+	}
+
+	.box-note {
+		--box-alt-color: var(--sl-color-blue-high);
+		--box-bg-color: var(--sl-color-blue-low);
+		--box-border-color: var(--sl-color-blue);
+	}
+
+	.box-success {
+		--box-alt-color: var(--sl-color-green-high);
+		--box-bg-color: var(--sl-color-green-low);
+		--box-border-color: var(--sl-color-green);
+	}
+
+	.box-tip {
+		--box-alt-color: var(--sl-color-purple-high);
+		--box-bg-color: var(--sl-color-purple-low);
+		--box-border-color: var(--sl-color-purple);
+	}
+
+	p {
+		align-items: center;
+		color: var(--box-alt-color);
+		display: flex;
+		font-size: var(--sl-text-h5);
+		font-weight: 600;
+		gap: 0.5rem;
+		line-height: var(--sl-line-height-headings);
+	}
+
+	p :global(svg) {
+		flex-shrink: 0;
+		height: 1.375rem;
+		width: 1.375rem;
+	}
+
+	.box > :global(:is(ol, ul)) {
+		padding-inline-start: 1.4375rem;
+	}
+
+	.box > :global(:is(ol, ul) > li:not(:has(label))) {
+		padding-inline-start: 0.375rem;
+	}
+
+	.box > :global(:is(ol, ul) > li::marker) {
+		color: var(--sl-color-text);
+	}
+
+	.box :global(ul:has(li > label)) {
+		list-style-type: none;
+		padding-inline-start: 0.1875rem;
+	}
+
+	.box :global(label) {
+		align-items: flex-start;
+		display: flex;
+		gap: 0.625rem;
+		margin: 0 !important;
+	}
+
+	.box :global(label :is(input[type="checkbox"], input[type="radio"])) {
+		accent-color: var(--box-alt-color);
+		flex-shrink: 0;
+		height: 1.0625rem;
+		margin-top: 0.375rem;
+		width: 1.0625rem;
+	}
+</style>

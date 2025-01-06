@@ -5,7 +5,7 @@ source: lecs103
 
 import { Steps } from '@astrojs/starlight/components';                                                                                        
       
-import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary } from "@/components/markdown";
+import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary, Think } from "@/components/markdown";
 
 <Quote author="Steve Jobs" href="https://en.wikipedia.org/wiki/Steve_Jobs">
   "We're going to be able to ask our computers to monitor things for us, and
@@ -87,11 +87,12 @@ data structure.
 
 :::
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 How does a compiler or an interpreter handle function calls in a program?
 
-:::
+</Think>
 
 ### 3.2.1	Applications of Stack ||section-3.2.1||
 
@@ -122,13 +123,14 @@ Some examples of application of stack in programming are as follows:
   another click on `BACK` shows web page P1. In this case, the history of browsed
   pages is maintained as stack.
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 The operating system in computer or mobile allocates memory to different
 applications for their execution. How does an operating system keep track of the
 free memory that can be allocated among programs/ applications to be executed?
 
-:::
+</Think>
 
 - While writing any arithmetic expression in a program, we may use parentheses
   to order the evaluation of operators. While executing the program, the
@@ -336,12 +338,13 @@ evaluate the expression. In this section, we will learn about the conversion of
 an arithmetic expression written in _infix_ notation to its equivalent
 expression in _postfix_ notation using a stack.
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 Write an algorithm to convert an infix expression into equivalent prefix
 expression using stack.
 
-:::
+</Think>
 
 During such conversion, a stack is used to keep track of the operators
 encountered in the _infix_ expression. A variable of string type is used to
@@ -453,11 +456,12 @@ expression $7 8 2 * 4 / +$ using [Algorithm 3.2](#algorithm-3.2).
 
 </Example>
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 Write an algorithm to evaluate any prefix expression using a stack.
 
-:::
+</Think>
 
 ---
 

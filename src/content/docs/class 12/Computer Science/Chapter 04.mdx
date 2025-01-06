@@ -5,7 +5,7 @@ source: lecs104
 
 import { Steps } from '@astrojs/starlight/components';                                                                                        
       
-import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary } from "@/components/markdown";
+import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary, Think } from "@/components/markdown";
 
 <Quote author="Sir Tim Berners-Lee" href="https://en.wikipedia.org/wiki/Tim_Berners-Lee">
   "We could say we want the Web to reflect a vision of the world where
@@ -95,14 +95,15 @@ and objects/items always get removed from the other end, usually called the
   different computers using a shared printer. The OS puts these print requests
   in a queue and sends them to the printer one by one on a **FIFO** basis.
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 In the web-server example (for result declaration), suppose the server receives
 a request from an Administrator to access the result of a school on an urgent
 basis, along with other requests from students to check individual results. Can
 you suggest some strategy to ensure service to all as per their urgency?
 
-:::
+</Think>
 
 ## 4.2 Operations on Queue ||section-4.2||
 
@@ -191,11 +192,10 @@ the program, following functions need to be defined:
        else:
            return False
    ```
-   :::caution[Think and Reflect]
 
+   <Think title="Think and Reflect">
    Can you implement a queue data structure using tuple or dictionary?
-
-   :::
+   </Think>
 
 5. A function (`dequeue`) to delete an element from the front of the queue. It
    has one parameter - name of the queue and returns the deleted element. The
@@ -264,12 +264,12 @@ cash counter. Usually, following are the events that occur in queue:
 - Cashier calls Next and realises that there are no more people to be served -
   underflow situation happens
 
-<Activity title="Activity 4.1">
+<Activity id="4.1" title="Activity 4.1">
 How can you avoid printing of `None`, 
 when trying to print an empty queue?
 </Activity>
 
-<Activity title="Activity 4.2">
+<Activity id="4.2" title="Activity 4.2">
 What if the content of the complete queue is to be listed?
 Write a function for it.
 </Activity>
@@ -335,7 +335,7 @@ science:
   no character left or only one character left in deque. In either case, string
   is palindrome.
 
-<Activity title="Activity 4.3">
+<Activity id="4.3" title="Activity 4.3">
 In a deque, if insertion and deletion of elements is done from the same end, it
 will behave as
 
@@ -348,7 +348,7 @@ will behave as
 4. None of the above
 </Activity>
 
-<Activity title="Activity 4.4">
+<Activity id="4.4" title="Activity 4.4">
 In a deque, if insertion and deletion of elements is done from the opposite end,
 it will behave as
 

@@ -3,7 +3,7 @@ title: 9. Structured Query Language (SQL)
 source: lecs109
 ---
 
-import { Example, Card, Figure, Quote, Activity, Table, Summary } from "@/components/markdown";
+import { Example, Card, Figure, Quote, Activity, Table, Summary, Think } from "@/components/markdown";
 
 <Quote author="Lev Manovich" href="https://en.wikipedia.org/wiki/Lev_Manovich">
 "Any unique image that you desire probably already exists on the internet or in
@@ -143,12 +143,13 @@ to define constraints for each attribute of a table.
 | `FOREIGN KEY` | The column which refers to value of an attribute defined as primary key in another table             |
 </Table>
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 Which two constraints when applied together will produce a Primary Key
 constraint?
 
-:::
+</Think>
 
 ## 9.4 SQL for Data Definition ||section-9.4||
 
@@ -307,12 +308,13 @@ Once data types and constraints are identified, let us create tables without
 specifying constraints along with the attribute name for simplification. We will
 learn to incorporate constraints on attributes in [Section 9.4.4](#section-9.4.4).
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 Which datatype out of Char and Varchar will you prefer for storing contact
 number(mobile number)? Discuss.
 
-:::
+</Think>
 
 <Example id="9.1" title="Example 9.1">
 Create table STUDENT.
@@ -470,12 +472,13 @@ Records: 0 Duplicates: 0 Warnings: 0
 ```
 </Card>
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 Name foreign keys in table ATTENDANCE and STUDENT. Is there any foreign key in
 table GUARDIAN.
 
-:::
+</Think>
 
 #### (C) Add constraint `UNIQUE` to an existing attribute ||section-9.4.4.c||
 
@@ -589,12 +592,13 @@ Records: 0 Duplicates: 0 Warnings: 0
 ```
 </Card>
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 What are the minimum and maximum income values that can be entered in the income
 attribute given the data type is `INT`?
 
-:::
+</Think>
 
 #### (G) Add default value to an attribute ||section-9.4.4.g||
 
@@ -964,13 +968,14 @@ Query OK, 1 row affected (0.05 sec)
 ```
 </Card>
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 - Which of the two insert statement should be used when the order of data to be
   inserted are not known?
 - Can we insert two records with the same roll number?
 
-:::
+</Think>
 
 ## 9.6 SQL for Data Query ||section-9.6||
 
@@ -1030,12 +1035,13 @@ WHERE RollNumber = 1;
 </Card>
 </Example>
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 Think and list few examples from your daily life where storing the data in the
 database and querying the same can be helpful.
 
-:::
+</Think>
 
 ### 9.6.2 QUERYING using Database OFFICE ||section-9.6.2||
 
@@ -1326,12 +1332,13 @@ WHERE NOT Ename = 'Aaliya';
 </Card>
 </Example>
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 What will happen if in the above query we write "Aaliya" as "AALIYA" or "aaliya"
 or "AaLIYA"? Will the query generate the same output or an error?
 
-:::
+</Think>
 
 <Example id="9.6" title="Example 9.6">
 
@@ -1660,14 +1667,15 @@ The `LIKE` operator makes use of the following two wild card characters:
 
 - **`_` (underscore) -** used to represent exactly a single character
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 When we type first letter of a contact name in our contact list in our mobile
 phones all the names containing that character are displayed. Can you relate SQL
 statement with the process? List other real-life situations where you can
 visualise a SQL statement in operation.
 
-:::
+</Think>
 
 <Example id="9.13" title="Example 9.13">
 
@@ -2396,11 +2404,12 @@ WHERE CustAdd like '%Rohini%';
 ```
 </Card>
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 Can we use arithmetic operators (+, -. *, or /) on date functions?
 
-:::
+</Think>
 
 - d) Display emails after removing the domain name extension ".com" from emails
   of the customers.

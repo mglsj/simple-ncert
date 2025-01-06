@@ -5,7 +5,7 @@ source: lecs106
 
 import { Steps } from '@astrojs/starlight/components';                                                                                        
       
-import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary } from "@/components/markdown";
+import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary, Think } from "@/components/markdown";
 
 <Quote author="Brian Kernighan">
     _"Even though most people won't be directly
@@ -103,7 +103,7 @@ display 'Element found at position 4'.
 
 </Example>
 
-<Activity title="Activity 6.1">
+<Activity id="6.1" title="Activity 6.1">
 Consider a list of 15 elements:
 
 `L=[2,3,9,7,- 6,11,12,17,45,23,29, 31,-37,41,43]`.
@@ -143,7 +143,7 @@ search algorithm will have to make n comparisons, where n is the number of
 elements in the list. This is in fact the maximum amount of work the linear
 search algorithm would have to do.
 
-<Activity title="Activity 6.2">
+<Activity id="6.2" title="Activity 6.2">
 
 In the list: `L = [7,-1, 11,32,17,19,23,29,31, 37,43]`
 
@@ -252,7 +252,7 @@ first, mid and last position before making subsequent comparisons.
 
 :::
 
-<Activity title="Activity 6.3">
+<Activity id="6.3" title="Activity 6.3">
 
 Consider the `numList` `[17, 8, -4, 7, 0, 2, 19]`. Sort it using the `sort()` function
 of Python's Lists. Now apply binary search to search for the key 7. Determine
@@ -260,7 +260,7 @@ the number of iterations required.
 
 </Activity>
 
-<Activity title="Activity 6.4">
+<Activity id="6.4" title="Activity 6.4">
 
 Consider a list `[-4, 0, 2, 7, 8, 17, 19]`. Apply binary search to find element
 -4. Determine the number of key comparisons required.
@@ -364,7 +364,7 @@ down the list to a single element and decide that the search key is the first
 element of list. This is clearly the maximum work required to find a key in the
 given list.
 
-<Activity title="Activity 6.5">
+<Activity id="6.5" title="Activity 6.5">
 For `L = [2,3,5,7,10,1 1,12,17,19,23,29,31, 37,41,43]`. Fill up the [Table 6.8](#table-6.8) for
 the given key values 2, 43, 17 and 9. What do you infer from [Table 6.8](#table-6.8) regarding
 performance of both the algorithms in different cases?
@@ -395,12 +395,13 @@ presence or absence of a key in that list. Hashing makes searching operations
 very efficient. A formula called hash function is used to calculate the value at
 an index in the list.
 
-:::caution[Think and Reflect]
+<Think title="Think and Reflect">
+
 
 Suppose a list has more than one element whose modulo division results in same
 remainder value. In such situations, what kind of hashing may be useful?
 
-:::
+</Think>
 
 Thus, a hash function takes elements of a list one by one and generates an index
 value for every element. This will generate a new list called the hash table.
