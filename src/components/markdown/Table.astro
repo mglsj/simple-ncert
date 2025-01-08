@@ -28,9 +28,13 @@ const { id = generateRandomId(), title, center = true } = Astro.props;
 <style is:global>
 	th,
 	td {
-		code,
+		* {
+			overflow-wrap: normal !important; /* Prevent breaking within words */
+		}
+
+		/* code,
 		.katex {
 			white-space: nowrap;
-		}
+		} */
 	}
 </style>

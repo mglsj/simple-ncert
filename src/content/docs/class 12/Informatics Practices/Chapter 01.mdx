@@ -178,78 +178,71 @@ Three commonly used numeric functions are `POWER()`, `ROUND()` and `MOD()`.
 Their usage along with syntax is given in [Table 1.5](#table-1.5).
 
 <Table id="1.5" title="Table 1.5 Numeric Functions" center={false}>
-
 <table>
-    <tr>
-        <th>Function </th>
-        <th>Description </th>
-        <th>Example with output </th>
-    </tr>
-    <tr>
-        <td>
-            `POWER(X,Y)`
-            can also be written as
-            `POW(X,Y)`
-        </td>
-        <td>
-            Calculates X to the power Y.
-        </td>
-        <td>
-            ```sql
-            SELECT POWER(2,3);
-            ```
-            ```
-            8
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `ROUND(N,D)`
-        </td>
-        <td>
-            Rounds off number N to D
-            number of decimal places.
-            
-            Note: If D=0, then it rounds
-            off the number to the nearest
-            integer.
-        </td>
-        <td>
-            ```sql
-            SELECT ROUND(2912.564, 1);
-            ```
-            ```
-            2912.6
-            ```
-            ```sql
-            SELECT ROUND(283.2);
-            ```
-            ```
-            283
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `MOD(A, B)`
-        </td>
-        <td>
-            Returns the remainder
-            after dividing number A by
-            number B.
-        </td>
-        <td>
-            ```sql
-            SELECT MOD(21, 2);
-            ```
-            ```
-            1
-            ```
-        </td>
-    </tr>
-</table>
+<tr>
+<th>Function </th>
+<th>Description </th>
+<th>Example with output </th>
+</tr>
+<tr>
+<td>
+`POWER(X,Y)`\
+can also be written as\
+`POW(X,Y)`
+</td>
+<td>
+Calculates X to the power Y.
+</td>
+<td>
+```sql
+SELECT POWER(2,3);
+```
+```
+8
+```
+</td>
+</tr>
+<tr>
+<td>
+`ROUND(N,D)`
+</td>
+<td>
+Rounds off number N to D number of decimal places.
 
+Note: If D=0, then it rounds off the number to the nearest integer.
+</td>
+<td>
+```sql
+SELECT ROUND(2912.564, 1);
+```
+```
+2912.6
+```
+```sql
+SELECT ROUND(283.2);
+```
+```
+283
+```
+</td>
+</tr>
+<tr>
+<td>
+`MOD(A, B)`
+</td>
+<td>
+Returns the remainder after dividing number A by number B.
+</td>
+<td>
+```sql
+SELECT MOD(21, 2);
+```
+```
+1
+```
+</td>
+</tr>
+</table>
 </Table>
 
 <Example id="1.1" title="Example 1.1">
@@ -447,6 +440,7 @@ following:
 
 - a) Display the InvoiceNo and commission value rounded off to zero decimal
   places.
+
 - b) Display the details of SALE where payment mode is credit card..
 </Activity>
 
@@ -459,220 +453,206 @@ String functions and their usage are shown in [Table 1.6](#table-1.6).
 
 <Table id="1.6" title="Table 1.6 String Functions" center={false}>
 <table>
-    <tr>
-        <th>Function </th>
-        <th>Description </th>
-        <th>Example with output </th>
-    </tr>
-    <tr>
-        <td>
-            `UCASE(string)`\
-            OR\
-            `UPPER(string)`
-        </td>
-        <td>
-            Converts string into uppercase.
-        </td>
-        <td>
-            ```sql
-            SELECT UCASE("Informatics Practices");
-            ```
-            ```
-            INFORMATICS PRACTICES
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `LCASE(string)`\
-            OR\
-            `LOWER(string)`
-        </td>
-        <td>
-            Converts string into lowercase.
-        </td>
-        <td>
-            ```sql
-            SELECT LOWER("Informatics Practices");
-            ```
-            ```
-            informatics practices
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `MID(string, pos, n)`\
-            OR\
-            `SUBSTRING(string, pos, n)`\
-            OR\
-            `SUBSTR(string, pos, n)`
-        </td>
-        <td>
-            Returns a substring of size n
-            starting from the specified position
-            (pos) of the string. If n is not
-            specified, it returns the substring
-            from the position pos till end of the
-            string.
-        </td>
-        <td>
-            ```sql
-            SELECT MID("Informatics", 3, 4);
-            ```
-            ```
-            form
-            ```
-            <br/>
-            ```sql
-            SELECT MID("Informatics",7);
-            ```
-            ```
-            atics
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `LENGTH(string)`
-        </td>
-        <td>
-            Return the number of characters
-            in the specified string.
-        </td>
-        <td>
-            ```sql
-            SELECT LENGTH("Informatics");
-            ```
-            ```
-            11
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `LEFT(string, N)`
-        </td>
-        <td>
-            Returns N number of characters
-            SELECT
-            from the left side of the string.
-        </td>
-        <td>
-            ```sql
-            LEFT("Computer", 4);
-            ```
-            ```
-            Comp
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `RIGHT(string, N)`
-        </td>
-        <td>
-            Returns N number of characters
-            SELECT
-            from the right side of the string.
-        </td>
-        <td>
-            ```sql
-            RIGHT("SCIENCE", 3);
-            ```
-            ```
-            NCE
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `INSTR(string, substring)`
-        </td>
-        <td>
-            Returns the position of the first
-            occurrence of the substring in
-            the given string.
-            Returns 0, if the
-            substring is not present in the
-            string.
-        </td>
-        <td>
-            ```sql
-            SELECT INSTR("Informatics", "ma");
-            ```
-            ```
-            6
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `LTRIM(string)`
-        </td>
-        <td>
-            Returns the given string after
-            removing leading white space
-            characters.
-        </td>
-        <td>
-            ```sql
-            SELECT LENGTH("  DELHI"),
-                LENGTH(LTRIM("  DELHI"));
-            ```
-            ```
-            +--------+--------+
-            | 7      | 5      |
-            +--------+--------+
-            1 row in set (0.00 sec)
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `RTRIM(string)`
-        </td>
-        <td>
-            Returns the given string after
-            removing trailing white space
-            characters.
-        </td>
-        <td>
-            ```sql
-            SELECT LENGTH("PEN  "),
-                LENGTH(RTRIM("PEN  "));
-            ```
-            ```
-            +--------+--------+
-            | 5      | 3      |
-            +--------+--------+
-            1 row in set (0.00 sec)
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `TRIM(string)`
-        </td>
-        <td>
-            Returns the given string after
-            removing both leading and trailing
-            white space characters.
-        </td>
-        <td>
-            ```sql
-            SELECT LENGTH("  MADAM  "),
-                LENGTH(TRIM("  MADAM  "));
-            ```
-            Output:
-            ```ansi
-            +--------+--------+
-            | 9      | 5      |
-            +--------+--------+
-            1 row in set (0.00 sec)
-            ```
-        </td>
-    </tr>
+<tr>
+<th>Function </th>
+<th>Description </th>
+<th>Example with output </th>
+</tr>
+<tr>
+<td>
+`UCASE(string)`\
+OR\
+`UPPER(string)`
+</td>
+<td>
+Converts string into uppercase.
+</td>
+<td>
+```sql
+SELECT UCASE("Informatics Practices");
+```
+```
+INFORMATICS PRACTICES
+```
+</td>
+</tr>
+<tr>
+<td>
+`LCASE(string)`\
+OR\
+`LOWER(string)`
+</td>
+<td>
+Converts string into lowercase.
+</td>
+<td>
+```sql
+SELECT LOWER("Informatics Practices");
+```
+```
+informatics practices
+```
+</td>
+</tr>
+<tr>
+<td>
+`MID(string, pos, n)`\
+OR\
+`SUBSTRING(string, pos, n)`\
+OR\
+`SUBSTR(string, pos, n)`
+</td>
+<td>
+Returns a substring of size n starting from the specified position
+(pos) of the string. 
+
+If n is not specified, it returns the substring from the position pos 
+till end of the string.
+</td>
+<td>
+```sql
+SELECT MID("Informatics", 3, 4);
+```
+```
+form
+```
+<br/>
+```sql
+SELECT MID("Informatics",7);
+```
+```
+atics
+```
+</td>
+</tr>
+<tr>
+<td>
+`LENGTH(string)`
+</td>
+<td>
+Return the number of characters in the specified string.
+</td>
+<td>
+```sql
+SELECT LENGTH("Informatics");
+```
+```
+11
+```
+</td>
+</tr>
+<tr>
+<td>
+`LEFT(string, N)`
+</td>
+<td>
+Returns N number of characters from the left side of the string.
+</td>
+<td>
+```sql
+SELECT LEFT("Computer", 4);
+```
+```
+Comp
+```
+</td>
+</tr>
+<tr>
+<td>
+`RIGHT(string, N)`
+</td>
+<td>
+Returns N number of characters from the right side of the string.
+</td>
+<td>
+```sql
+SELECT RIGHT("SCIENCE", 3);
+```
+```
+NCE
+```
+</td>
+</tr>
+<tr>
+<td>
+`INSTR(string, substring)`
+</td>
+<td>
+Returns the position of the first occurrence of the substring in
+the given string.
+
+Returns 0, if the substring is not present in the string.
+</td>
+<td>
+```sql
+SELECT INSTR("Informatics", "ma");
+```
+```
+6
+```
+</td>
+</tr>
+<tr>
+<td>
+`LTRIM(string)`
+</td>
+<td>
+Returns the given string after removing leading white space characters.
+</td>
+<td>
+```sql
+SELECT LENGTH("  DELHI"),
+LENGTH(LTRIM("  DELHI"));
+```
+```
++--------+--------+
+| 7      | 5      |
++--------+--------+
+1 row in set (0.00 sec)
+```
+</td>
+</tr>
+<tr>
+<td>
+`RTRIM(string)`
+</td>
+<td>
+Returns the given string after removing trailing white space characters.
+</td>
+<td>
+```sql
+SELECT LENGTH("PEN  "),
+LENGTH(RTRIM("PEN  "));
+```
+```
++--------+--------+
+| 5      | 3      |
++--------+--------+
+1 row in set (0.00 sec)
+```
+</td>
+</tr>
+<tr>
+<td>
+`TRIM(string)`
+</td>
+<td>
+Returns the given string after removing both leading and trailing white space characters.
+</td>
+<td>
+```sql
+SELECT LENGTH("  MADAM  "),
+LENGTH(TRIM("  MADAM  "));
+```
+Output:
+```ansi
++--------+--------+
+| 9      | 5      |
++--------+--------+
+1 row in set (0.00 sec)
+```
+</td>
+</tr>
 </table>
 </Table>
 
@@ -821,132 +801,123 @@ on. [Table 1.7](#table-1.7) explains various date and time functions.
 
 <Table id="1.7" title="Table 1.7 Date Functions" center={false}>
 <table>
-    <tr>
-        <th>Function </th>
-        <th>Description </th>
-        <th>Example with output </th>
-    </tr>
-    <tr>
-        <td>
-            `NOW()`
-        </td>
-        <td>
-            It returns the current system date and time.
-        </td>
-        <td>
-            ```sql
-            SELECT NOW();
-            ```
-            ```
-            2019-07-11 19:41:17
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `DATE()`
-        </td>
-        <td>
-            It returns the date part
-            from the given date/
-            time expression.
-        </td>
-        <td>
-            ```sql
-            SELECT DATE(NOW());
-            ```
-            ```
-            2019-07-11
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `MONTH(date)`
-        </td>
-        <td>
-            It returns the month in
-            numeric form from the
-            date.
-        </td>
-        <td>
-            ```sql
-            SELECT MONTH(NOW());
-            ```
-            ```
-            7
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `MONTHNAME(date)`
-        </td>
-        <td>
-            It returns the month
-            name from the specified
-            date.
-        </td>
-        <td>
-            ```sql
-            SELECT MONTHNAME("2003-11-28");
-            ```
-            ```
-            November
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `YEAR(date)`
-        </td>
-        <td>
-            It returns the year from
-            the date.
-        </td>
-        <td>
-            ```sql
-            SELECT YEAR("2003-10-03");
-            ```
-            ```
-            2003
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `DAY(date)`
-        </td>
-        <td>
-            It returns the day part
-            from the date.
-        </td>
-        <td>
-            ```sql
-            SELECT DAY("2003-03-24");
-            ```
-            ```
-            24
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `DAYNAME(date)`
-        </td>
-        <td>
-            It returns the name of
-            the day from the date.
-        </td>
-        <td>
-            ```sql
-            SELECT DAYNAME("2019-07-11");
-            ```
-            ```
-            Thursday
-            ```
-        </td>
-    </tr>
+<tr>
+<th>Function</th>
+<th>Description</th>
+<th>Example with output</th>
+</tr>
+<tr>
+<td>
+`NOW()`
+</td>
+<td>
+It returns the current system date and time.
+</td>
+<td>
+```sql
+SELECT NOW();
+```
+```
+2019-07-11 19:41:17
+```
+</td>
+</tr>
+<tr>
+<td>
+`DATE()`
+</td>
+<td>
+It returns the date part from the given date/time expression.
+</td>
+<td>
+```sql
+SELECT DATE(NOW());
+```
+```
+2019-07-11
+```
+</td>
+</tr>
+<tr>
+<td>
+`MONTH(date)`
+</td>
+<td>
+It returns the month in numeric form from the date.
+</td>
+<td>
+```sql
+SELECT MONTH(NOW());
+```
+```
+7
+```
+</td>
+</tr>
+<tr>
+<td>
+`MONTHNAME(date)`
+</td>
+<td>
+It returns the month name from the specified date.
+</td>
+<td>
+```sql
+SELECT MONTHNAME("2003-11-28");
+```
+```
+November
+```
+</td>
+</tr>
+<tr>
+<td>
+`YEAR(date)`
+</td>
+<td>
+It returns the year from the date.
+</td>
+<td>
+```sql
+SELECT YEAR("2003-10-03");
+```
+```
+2003
+```
+</td>
+</tr>
+<tr>
+<td>
+`DAY(date)`
+</td>
+<td>
+It returns the day part from the date.
+</td>
+<td>
+```sql
+SELECT DAY("2003-03-24");
+```
+```
+24
+```
+</td>
+</tr>
+<tr>
+<td>
+`DAYNAME(date)`
+</td>
+<td>
+It returns the name of the day from the date.
+</td>
+<td>
+```sql
+SELECT DAYNAME("2019-07-11");
+```
+```
+Thursday
+```
+</td>
+</tr>
 </table>
 </Table>
 
@@ -959,8 +930,10 @@ of some of the date and time functions.
 
 <Card>
 ```sql
-SELECT DAY(DOJ), MONTH(DOJ), YEAR(DOJ) FROM 
-EMPLOYEE;
+SELECT DAY(DOJ),
+    MONTH(DOJ),
+    YEAR(DOJ)
+FROM EMPLOYEE;
 ```
 ```ansi
 +----------+------------+-----------+ 
@@ -988,9 +961,12 @@ employees whose salary is more than
 
 <Card>
 ```sql
-SELECT DAYNAME(DOJ), DAY(DOJ), 
-MONTHNAME(DOJ), YEAR(DOJ) FROM EMPLOYEE WHERE 
-DAYNAME(DOJ)!='Sunday';
+SELECT DAYNAME(DOJ),
+    DAY(DOJ),
+    MONTHNAME(DOJ),
+    YEAR(DOJ)
+FROM EMPLOYEE
+WHERE DAYNAME(DOJ) != 'Sunday';
 ```
 ```ansi
 +--------------+----------+----------------+-----------+ 
@@ -1030,138 +1006,144 @@ of numeric type.
 
 <Table id="1.9" title="Table 1.9 Aggregate Functions" center={false}>
 <table>
-    <tr>
-        <th>Function</th>
-        <th>Description</th>
-        <th>Example with output</th>
-    </tr>
-    <tr>
-        <td>
-            `MAX(column)`
-        </td>
-        <td>
-            Returns the largest value from the specified column.
-        </td>
-        <td>
-            ```sql
-            SELECT MAX(Price) FROM INVENTORY;
-            ```
-            ```
-            673112.00
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `MIN(column)`
-        </td>
-        <td>
-            Returns the smallest value from the specified column.
-        </td>
-        <td>            
-            ```sql
-            SELECT MIN(Price) FROM INVENTORY;
-            ```
-            ```
-            355205.00
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `AVG(column)`
-        </td>
-        <td>
-            Returns the average of the values in the specified column.
-        </td>
-        <td>
-            ```sql
-            SELECT AVG(Price) FROM INVENTORY;
-            ```
-            ```
-            576091.625000
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `SUM(column)`
-        </td>
-        <td>
-            Returns the sum of the values for the specified column.
-        </td>
-        <td>
-            ```sql
-            SELECT SUM(Price) FROM INVENTORY;
-            ```
-            ```
-            4608733.00
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `COUNT(column)`
-        </td>
-        <td>
-            Returns the number of values in the specified column ignoring the NULL values.
-            
-            Note: In this example, let us consider
-            a MANAGER table having two
-            attributes and four records.
-        </td>
-        <td>
-            ```sql
-            SELECT * from MANAGER;
-            ```
-            ```
-            +------+---------+
-            | MNO  | MEMNAME |
-            +------+---------+
-            | 1    | AMIT    |
-            | 2    | KAVREET |
-            | 3    | KAVITA  |
-            | 4    | NULL    |
-            +------+---------+
-            4 rows in set (0.00 sec)
-            ```
-            <br/>
-            ```sql
-            SELECT COUNT(MEMNAME) FROM MANAGER;
-            ```
-            ```
-            +----------------+
-            | COUNT(MEMNAME) |
-            +----------------+
-            | 3              |
-            +----------------+
-            1 row in set (0.01 sec)
-            ```
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `COUNT(*)`
-        </td>
-        <td>
-            Returns the number of records in a table.
-            
-            Note: In order to display the number of records that matches a particular criteria in the table, we have to use `COUNT(*)` with `WHERE` clause.
-        </td>
-        <td>
-            ```sql
-            SELECT COUNT(*) from MANAGER;
-            ```
-            ```
-            +----------+
-            | count(*) |
-            +----------+
-            | 4        |
-            +----------+
-            1 row in set (0.00 sec)
-            ```
-        </td>
-    </tr>
+<tr>
+<th>Function</th>
+<th>Description</th>
+<th>Example with output</th>
+</tr>
+<tr>
+<td>
+`MAX(column)`
+</td>
+<td>
+Returns the largest value from the specified column.
+</td>
+<td>
+```sql
+SELECT MAX(Price)
+FROM INVENTORY;
+```
+```
+673112.00
+```
+</td>
+</tr>
+<tr>
+<td>
+`MIN(column)`
+</td>
+<td>
+Returns the smallest value from the specified column.
+</td>
+<td>            
+```sql
+SELECT MIN(Price)
+FROM INVENTORY;
+```
+```
+355205.00
+```
+</td>
+</tr>
+<tr>
+<td>
+`AVG(column)`
+</td>
+<td>
+Returns the average of the values in the specified column.
+</td>
+<td>
+```sql
+SELECT AVG(Price)
+FROM INVENTORY;
+```
+```
+576091.625000
+```
+</td>
+</tr>
+<tr>
+<td>
+`SUM(column)`
+</td>
+<td>
+Returns the sum of the values for the specified column.
+</td>
+<td>
+```sql
+SELECT SUM(Price)
+FROM INVENTORY;
+```
+```
+4608733.00
+```
+</td>
+</tr>
+<tr>
+<td>
+`COUNT(column)`
+</td>
+<td>
+Returns the number of values in the specified column ignoring the NULL values.
+
+Note: In this example, let us consider a MANAGER table having two
+attributes and four records.
+</td>
+<td>
+```sql
+SELECT *
+FROM MANAGER;
+```
+```
++------+---------+
+| MNO  | MEMNAME |
++------+---------+
+| 1    | AMIT    |
+| 2    | KAVREET |
+| 3    | KAVITA  |
+| 4    | NULL    |
++------+---------+
+4 rows in set (0.00 sec)
+```
+<br/>
+```sql
+SELECT COUNT(MEMNAME)
+FROM MANAGER;
+```
+```
++----------------+
+| COUNT(MEMNAME) |
++----------------+
+| 3              |
++----------------+
+1 row in set (0.01 sec)
+```
+</td>
+</tr>
+<tr>
+<td>
+`COUNT(*)`
+</td>
+<td>
+Returns the number of records in a table.
+
+Note: In order to display the number of records that matches a particular criteria in the table, we have to use `COUNT(*)` with `WHERE` clause.
+</td>
+<td>
+```sql
+SELECT COUNT(*)
+FROM MANAGER;
+```
+```
++----------+
+| count(*) |
++----------+
+| 4        |
++----------+
+1 row in set (0.00 sec)
+```
+</td>
+</tr>
 </table>
 </Table>
 
@@ -1682,7 +1664,7 @@ As the attribute Ucode is in both tables, we need to use table alias to remove
 ambiguity. Hence, we have used qualifier with attribute UCode in `SELECT` and `FROM`
 clauses to indicate its scope.
 
-b) Explicit use of `JOIN` clause
+- b) Explicit use of `JOIN` clause
 
 ```sql
 SELECT *
@@ -1735,7 +1717,9 @@ on two or more relations:
 - If two tables are to be joined on equality condition on the common attribute, 
   then one may use JOIN with ON clause or `NATURAL JOIN` in `FROM` clause. If three tables 
   are to be joined on equality condition, then two `JOIN` or `NATURAL JOIN` are required.
+
 - In general, N-1 joins are needed to combine N tables on equality condition.
+
 - With `JOIN` clause, we may use any relational operators to combine tuples of two
   tables.
 
@@ -1745,14 +1729,21 @@ on two or more relations:
 
 <Summary>
 - A Function is used to perform a particular task and return a value as a result.
+
 - Single row functions work on a single row to return a single value.
+
 - Multiple row functions work on a set of records as a whole and return a single value.
+
 - Numeric functions perform operations on numeric values and return numeric values.
+
 - String functions perform operations on character type values and return either character or numeric values.
+
 - Date and time functions allow us to deal with date type data values.
+
 - `GROUP BY` function is used to group the rows together that contain similar values
   in a specified column. Some of the group functions are `COUNT`, `MAX`, `MIN`, `AVG` and
   `SUM`.
+
 - Join is an operation which is used to combine rows from two or more tables based
   on one or more common fields between them.
 </Summary>
@@ -1766,18 +1757,28 @@ on two or more relations:
 Answer the following questions:
 
 - a) Define RDBMS. Name any two RDBMS software.
+
 - b) What is the purpose of the following clauses in a select statement?
+
   - i) ORDER BY
+
   - ii) HAVING
+
 - c) Site any two differences between Single_row functions and Aggregate
   functions.
+
 - d) What do you understand by Cartesian Product?
+
 - e) Write the name of the functions to perform the following operations:
+
   - i) To display the day like "Monday", "Tuesday", from the date when India got
     independence.
+
   - ii) To display the specified number of characters from a particular position
     of the given string.
+
   - iii) To display the name of the month in which you were born.
+
   - iv) To display your name in capital letters.
 
 ### Question 2
@@ -1837,21 +1838,29 @@ sold in a grocery shop.
 </Table>
 
 - a) Write SQL queries for the following:
+
   - i. Create the table Product with appropriate data types and constraints.
+
   - ii. Identify the primary key in Product.
+
   - iii. List the Product Code, Product name and price in descending order of
     their product name. If PName is the same then display the data in ascending
     order of price.
+
   - iv. Add a new column Discount to the table Product.
+
   - v. Calculate the value of the discount in the table Product as 10 per cent
     of the UPrice for all those products where the UPrice is more than 100,
     otherwise the discount will be 0.
+
   - vi. Increase the price by 12 per cent for all the products manufactured by
     Dove.
+
   - vii.Display the total number of products manufactured by each manufacturer.
 
 - b) Write the output(s) produced by executing the following queries on the
   basis of the information given above in the table Product:
+
   - i.
     ```sql
     SELECT PName,
@@ -1859,16 +1868,19 @@ sold in a grocery shop.
     FROM Product
     GROUP BY Pname;
     ```
+
   - ii.
     ```sql
     SELECT DISTINCT Manufacturer
     FROM Product;
     ```
+
   - iii.
     ```sql
     SELECT COUNT(DISTINCT PName)
     FROM Product;
     ```
+
   - iv.
     ```sql
     SELECT PName,
@@ -1883,13 +1895,21 @@ sold in a grocery shop.
 Using the CARSHOWROOM database given in the chapter, write the SQL queries for
 the following:
 
+
 - a) Add a new column Discount in the INVENTORY table.
+
 - b) Set appropriate discount values for all cars keeping in mind the following:
+
   - (i) No discount is available on the LXI model.
+
   - (ii) VXI model gives a 10% discount.
+
   - (iii) A 12% discount is given on cars other than LXI model and VXI model.
+
 - c) Display the name of the costliest car with fuel type "Petrol".
+
 - d) Calculate the average discount and total discount available on Car4.
+
 - e) List the total number of cars having no discount.
 
 ### Question 5
@@ -1920,25 +1940,36 @@ AdmNo (admission number).
 Write SQL queries for the following:
 
 - a) Create the database Streams_Of_Students.
+
 - b) Create the table Student by choosing appropriate data types based on the
   data given in the table.
+
 - c) Identify the Primary keys from tables Student and Stream. Also, identify
   the foreign key from the table Stream.
+
 - d) Jay has now changed his stream to Humanities. Write an appropriate SQL
   query to reflect this change.
+
 - e) Display the names of students whose names end with the character 'a'. Also,
   arrange the students in alphabetical order.
+
 - f) Display the names of students enrolled in Science and Humanities stream,
   ordered by student name in alphabetical order, then by admission number in
   ascending order (for duplicating names).
+
 - g) List the number of students in each stream having more than 1 student.
+
 - h) Display the names of students enrolled in different streams, where students
   are arranged in descending order of admission number.
+
 - i) Show the Cartesian product on the Student and Stream table. Also mention
   the degree and cardinality produced after applying the Cartesian product.
+
 - j) Add a new column 'TeacherIncharge" in the Stream table. Insert appropriate
   data in each row.
+
 - k) List the names of teachers and students.
+
 - l) If Cartesian product is again applied on Student and Stream tables, what
   will be the degree and cardinality of this modified table?
 
