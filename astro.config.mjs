@@ -7,6 +7,7 @@ import rehypeKatex from "rehype-katex";
 import starlightImageZoom from "starlight-image-zoom";
 import starlightMermaid from "./packages/starlight-mermaid";
 import sidebarData from "./sidebar.ts";
+import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
 
 // https://astro.build/config
 export default defineConfig({
@@ -38,6 +39,9 @@ export default defineConfig({
 				"@/styles/global.css",
 				"./packages/starlight-mermaid/styles.css",
 			],
+			expressiveCode: {
+				plugins: [pluginCollapsibleSections()],
+			},
 			components: {
 				PageTitle: "@/components/overrides/PageTitle.astro",
 			},

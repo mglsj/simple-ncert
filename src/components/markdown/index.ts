@@ -9,6 +9,7 @@ import Quote from "./Quote.astro";
 import Summary from "./Summary.astro";
 import Definition from "./Definition.astro";
 import Think from "./Think.astro";
+import Collapse from "./Collapse.astro";
 
 export {
 	Figure,
@@ -22,4 +23,5 @@ export {
 	Summary,
 	Definition,
 	Think,
+	Collapse,
 };

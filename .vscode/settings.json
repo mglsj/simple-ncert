@@ -3,5 +3,6 @@
         "https://json.schemastore.org/github-workflow.json": "file:///c%3A/Users/laksh/Documents/programming/web/encert/.github/workflows/deploy.yml"
     },
     "workspaceKeybindings.markdownMathSyntax.enabled": true,
-    "svg.preview.background": "dark-transparent" // setting can be anything you want
+    "svg.preview.background": "dark-transparent", // setting can be anything you want
+    "jupyter.defaultCellOutputMimeType": "text/plain"
 }

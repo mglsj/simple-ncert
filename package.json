@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"@astrojs/starlight": "^0.30.3",
+		"@expressive-code/plugin-collapsible-sections": "^0.38.3",
 		"@fontsource-variable/noto-sans": "^5.1.1",
 		"@fontsource-variable/noto-sans-devanagari": "^5.1.1",
 		"@fontsource-variable/noto-serif": "^5.1.1",

@@ -3,7 +3,9 @@ title: 2. Data Handling Using Pandas - I
 source: leip102
 ---
 
-import { Example, Card, Figure, Quote, Activity, Table, Summary, Think } from "@/components/markdown";
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+import { Example, Card, Figure, Quote, Activity, Table, Summary, Think, Collapse } from "@/components/markdown";
 
 <Quote author="W. Cunningham">
 "If you don't think carefully, you might believe that programming is just typing
@@ -124,9 +126,9 @@ series1 = pd.Series([10, 20, 30])
 print(series1)
 ```
 ```ansi
-0    10 
-1    20 
-2    30 
+0    10
+1    20
+2    30
 dtype: int64
 ```
 </Card>
@@ -149,9 +151,9 @@ series2 = pd.Series(
 print(series2)
 ```
 ```ansi
-3     Kavi 
-5    Shyam 
-1     Ravi 
+3     Kavi
+5    Shyam
+1     Ravi
 dtype: object
 ```
 </Card>
@@ -174,9 +176,9 @@ series2 = pd.Series(
 print(series2)
 ```
 ```ansi
-Feb    2 
-Mar    3 
-Apr    4 
+Feb    2
+Mar    3
+Apr    4
 dtype: int64
 ```
 </Card>
@@ -203,11 +205,11 @@ series3 = pd.Series(array1)
 print(series3)
 ```
 ```ansi
-0    1 
-1    2 
-2    3 
-3    4 
-dtype: int32
+0    1
+1    2
+2    3
+3    4
+dtype: int64
 ```
 </Card>
 
@@ -223,11 +225,11 @@ print(series4)
 
 ```
 ```ansi
-Jan    1 
-Feb    2 
-Mar    3 
-Apr    4 
-dtype: int32
+Jan    1
+Feb    2
+Mar    3
+Apr    4
+dtype: int64
 ```
 </Card>
 
@@ -243,8 +245,35 @@ series5 = pd.Series(
     index=["Jan", "Feb", "Mar"],
 )
 ```
-```ansi
-[35m[1mValueError[0m: [35mLength of passed values is 4, index implies 3[0m
+```ansi collapse={1-27}
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+Cell In[653], line 1
+----> 1 series5 = pd.Series(
+      2     array1,
+      3     index=["Jan", "Feb", "Mar"],
+      4 )
+
+File ~\AppData\Roaming\Python\Python313\site-packages\pandas\core\series.py:575, in Series.__init__(self, data, index, dtype, name, copy, fastpath)
+    573     index = default_index(len(data))
+    574 elif is_list_like(data):
+--> 575     com.require_length_match(data, index)
+    577 # create/copy the manager
+    578 if isinstance(data, (SingleBlockManager, SingleArrayManager)):
+
+File ~\AppData\Roaming\Python\Python313\site-packages\pandas\core\common.py:573, in require_length_match(data, index)
+    569 """
+    570 Check the length of data matches the length of the index.
+    571 """
+    572 if len(data) != len(index):
+--> 573     raise ValueError(
+    574         "Length of values "
+    575         f"({len(data)}) "
+    576         "does not match length of index "
+    577         f"({len(index)})"
+    578     )
+
+ValueError: Length of values (4) does not match length of index (3)
 ```
 </Card>
 
@@ -267,11 +296,7 @@ dict1 = {
 print(dict1)
 ```
 ```ansi
-{
-    "India": "NewDelhi",
-    "UK": "London",
-    "Japan": "Tokyo",
-}
+{'India': 'NewDelhi', 'UK': 'London', 'Japan': 'Tokyo'}
 ```
 </Card>
 
@@ -283,9 +308,9 @@ series8 = pd.Series(dict1)
 print(series8)
 ```
 ```ansi
-India   NewDelhi 
-UK        London 
-Japan      Tokyo 
+India    NewDelhi
+UK         London
+Japan       Tokyo
 dtype: object
 ```
 </Card>
@@ -317,7 +342,7 @@ seriesNum = pd.Series([10, 20, 30])
 seriesNum[2]
 ```
 ```ansi
-30
+np.int64(30)
 ```
 </Card>
 
@@ -336,7 +361,7 @@ seriesMnths = pd.Series(
 seriesMnths["Mar"]
 ```
 ```ansi
-3
+np.int64(3)
 ```
 </Card>
 
@@ -375,8 +400,8 @@ integers or a list of index labels as shown in the following examples:
 seriesCapCntry[[3, 2]]
 ```
 ```ansi
-France Paris 
-UK London 
+France     Paris
+UK        London
 dtype: object
 ```
 </Card>
@@ -386,8 +411,8 @@ dtype: object
 seriesCapCntry[["UK", "USA"]]
 ```
 ```ansi
-UK           London 
-USA    WashingtonDC 
+UK           London
+USA    WashingtonDC
 dtype: object
 ```
 </Card>
@@ -401,10 +426,10 @@ seriesCapCntry.index = [10, 20, 30, 40]
 seriesCapCntry
 ```
 ```ansi
-10 NewDelhi 
-20 WashingtonDC 
-30 London 
-40 Paris 
+10        NewDelhi
+20    WashingtonDC
+30          London
+40           Paris
 dtype: object
 ```
 </Card>
@@ -430,8 +455,8 @@ seriesCapCntry = pd.Series(
 seriesCapCntry[1:3]
 ```
 ```ansi
-USA WashingtonDC 
-UK London 
+USA    WashingtonDC
+UK           London
 dtype: object
 ```
 </Card>
@@ -445,9 +470,9 @@ label is also included in the output, for example:
 seriesCapCntry["USA":"France"]
 ```
 ```ansi
-USA WashingtonDC 
-UK London 
-France Paris 
+USA       WashingtonDC
+UK              London
+France           Paris
 dtype: object
 ```
 </Card>
@@ -459,10 +484,10 @@ We can also get the series in reverse order, for example:
 seriesCapCntry[::-1]
 ```
 ```ansi
-France Paris 
-UK London 
-USA WashingtonDC 
-India NewDelhi 
+France           Paris
+UK              London
+USA       WashingtonDC
+India         NewDelhi
 dtype: object
 ```
 </Card>
@@ -481,13 +506,13 @@ seriesAlph = pd.Series(
 seriesAlph
 ```
 ```ansi
-a 10 
-b 11 
-c 12 
-d 13 
-e 14 
-f 15 
-dtype: int32
+a    10
+b    11
+c    12
+d    13
+e    14
+f    15
+dtype: int64
 ```
 </Card>
 
@@ -497,13 +522,13 @@ seriesAlph[1:3] = 50
 seriesAlph
 ```
 ```ansi
-a 10 
-b 50 
-c 50 
-d 13 
-e 14 
-f 15 
-dtype: int32
+a    10
+b    50
+c    50
+d    13
+e    14
+f    15
+dtype: int64
 ```
 </Card>
 
@@ -517,13 +542,13 @@ seriesAlph["c":"e"] = 500
 seriesAlph
 ```
 ```ansi
-a 10 
-b 50 
-c 500 
-d 500 
-e 500 
-f 15 
-dtype: int32
+a     10
+b     50
+c    500
+d    500
+e    500
+f     15
+dtype: int64
 ```
 </Card>
 
@@ -538,130 +563,130 @@ usingseriesCapCntry as an example:
 seriesCapCntry
 ```
 ```ansi
-India NewDelhi 
-USA WashingtonDC 
-UK London 
-France Paris 
+India         NewDelhi
+USA       WashingtonDC
+UK              London
+France           Paris
 dtype: object
 ```
 </Card>
 
 <Table id="2.1" title="Table 2.1 Attributes of Pandas Series" center={false}>
 <table>
-  <tr>
-    <th>
-      Attribute Name
-    </th>
-    <th>
-      Purpose
-    </th>
-    <th>
-      Example
-    </th>
-  </tr>
-  <tr>
-    <td>
-      `name`
-    </td>
-    <td>
-      assigns a name to the Series
-    </td>
-    <td>
-      ```py
-      seriesCapCntry.name = 'Capitals' 
-      print(seriesCapCntry)
-      ```
-      ```
-      India NewDelhi 
-      USA WashingtonDC 
-      UK London 
-      France Paris 
-      Name: Capitals, dtype: object
-      ```
-    </td>
-  </tr>
-  <tr>
-    <td>
-      `index.name`
-    </td>
-    <td>
-      assigns a name to the index
-      of the series
-    </td>
-    <td>
-      ```py
-      seriesCapCntry.index.name = 'Countries' 
-      print(seriesCapCntry)
-      ```
-      ```
-      Countries 
-      India NewDelhi 
-      USA WashingtonDC 
-      UK London 
-      France Paris 
-      Name: Capitals, dtype: object
-      ```
-    </td>
-  </tr>
-  <tr>
-    <td>
-      `values`
-    </td>
-    <td>
-      prints a list of the values in
-      the series
-    </td>
-    <td>
-      ```py
-      print(seriesCapCntry.values)
-      ```
-      ```
-      ['NewDelhi' 'WashingtonDC' 'London' 'Paris']
-      ```
-    </td>
-  </tr>
-  <tr>
-    <td>
-      `size`
-    </td>
-    <td>
-      prints the number of values
-      in the Series object
-    </td>
-    <td>
-      ```py
-      print(seriesCapCntry.size)
-      ```
-      ```
-      4
-      ```
-    </td>
-  </tr>
-  <tr>
-    <td>
-    `empty`
-    </td>
-    <td>
-      prints True if the series is
-      empty, and False otherwise
-    </td>
-    <td>
-      ```py
-      seriesCapCntry.empty
-      ```
-      ```
-      False
-      ```
-      ```py
-      # Create an empty series 
-      seriesEmpt=pd.Series() 
-      seriesEmpt.empty
-      ```
-      ```
-      True
-      ```
-    </td>
-  </tr>
+<tr>
+<th>
+Attribute Name
+</th>
+<th>
+Purpose
+</th>
+<th>
+Example
+</th>
+</tr>
+<tr>
+<td>
+`name`
+</td>
+<td>
+assigns a name to the Series
+</td>
+<td>
+```py
+seriesCapCntry.name = "Capitals"
+print(seriesCapCntry)
+```
+```
+India         NewDelhi
+USA       WashingtonDC
+UK              London
+France           Paris
+Name: Capitals, dtype: object
+```
+</td>
+</tr>
+<tr>
+<td>
+`index.name`
+</td>
+<td>
+assigns a name to the index
+of the series
+</td>
+<td>
+```py
+seriesCapCntry.index.name = "Countries"
+print(seriesCapCntry)
+```
+```
+Countries
+India         NewDelhi
+USA       WashingtonDC
+UK              London
+France           Paris
+Name: Capitals, dtype: object
+```
+</td>
+</tr>
+<tr>
+<td>
+`values`
+</td>
+<td>
+prints a list of the values in
+the series
+</td>
+<td>
+```py
+print(seriesCapCntry.values)
+```
+```
+['NewDelhi' 'WashingtonDC' 'London' 'Paris']
+```
+</td>
+</tr>
+<tr>
+<td>
+`size`
+</td>
+<td>
+prints the number of values
+in the Series object
+</td>
+<td>
+```py
+print(seriesCapCntry.size)
+```
+```
+4
+```
+</td>
+</tr>
+<tr>
+<td>
+`empty`
+</td>
+<td>
+prints True if the series is
+empty, and False otherwise
+</td>
+<td>
+```py
+seriesCapCntry.empty
+```
+```
+False
+```
+```py
+# Create an empty series 
+seriesEmpt=pd.Series() 
+seriesEmpt.empty
+```
+```
+True
+```
+</td>
+</tr>
 </table>
 </Table>
 
@@ -676,17 +701,17 @@ seriesTenTwenty = pd.Series(np.arange(10, 20, 1))
 print(seriesTenTwenty)
 ```
 ```ansi
-0 10 
-1 11 
-2 12 
-3 13 
-4 14 
-5 15 
-6 16 
-7 17 
-8 18 
-9 19 
-dtype: int32
+0    10
+1    11
+2    12
+3    13
+4    14
+5    15
+6    16
+7    17
+8    18
+9    19
+dtype: int64
 ```
 </Card>
 
@@ -718,42 +743,36 @@ Explanation
 Example
 </th>
 </tr>
-
 <tr>
 <td>
 `head(n)`
 </td>
 <td>
-Returns the first n members of the series. If
-the value for n is not passed, then by default
-n takes 5 and the first five members are
-displayed.
+Returns the first n members of the series. If the value for n is not passed, then by default
+n takes 5 and the first five members are displayed.
 </td>
 <td>
-
 ```py
 seriesTenTwenty.head(2)
 ```
 ```
-0 10 
-1 11 
-dtype: int32
+0    10
+1    11
+dtype: int64
 ```
 ```py
 seriesTenTwenty.head()
 ```
 ```
-0 10 
-1 11 
-2 12 
-3 13 
-4 14 
-dtype: int32
+0    10
+1    11
+2    12
+3    13
+4    14
+dtype: int64
 ```
-
 </td>
 </tr>
-
 <tr>
 <td>
 `count()`
@@ -762,49 +781,42 @@ dtype: int32
 Returns the number of non-NaN values in the Series
 </td>
 <td>
-
 ```py
 seriesTenTwenty.count()
 ```
 ```
-10
+np.int64(10)
 ```
-
 </td>
 </tr>
-
 <tr>
 <td>
 `tail(n)`
 </td>
 <td>
-Returns the last n members of the series. If
-the value for n is not passed, then by default
-n takes 5 and the last five members are
-displayed.
+Returns the last n members of the series. If the value for n is not passed, then by default
+n takes 5 and the last five members are displayed.
 </td>
 <td>
-
 ```py
 seriesTenTwenty.tail(2)
 ```
 ```
-8 18 
-9 19 
-dtype: int32
+8    18
+9    19
+dtype: int64
 ```
 ```py
 seriesTenTwenty.tail() 
 ```
 ```
-5 15 
-6 16 
-7 17 
-8 18 
-9 19 
-dtype: int32
+5    15
+6    16
+7    17
+8    18
+9    19
+dtype: int64
 ```
-
 </td>
 </tr>
 </table>
@@ -832,11 +844,11 @@ seriesA = pd.Series(
 seriesA
 ```
 ```ansi
-a 1 
-b 2 
-c 3 
-d 4 
-e 5 
+a    1
+b    2
+c    3
+d    4
+e    5
 dtype: int64
 ```
 </Card>
@@ -850,11 +862,11 @@ seriesB = pd.Series(
 seriesB
 ```
 ```ansi
-z 10 
-y 20 
-a -10 
-c -50 
-e 100 
+z     10
+y     20
+a    -10
+c    -50
+e    100
 dtype: int64
 ```
 </Card>
@@ -871,13 +883,13 @@ addition is NaN if one of the elements or both elements have no value.
 seriesA + seriesB
 ```
 ```ansi
-a -9.0 
-b NaN 
--47.0 
-d NaN 
-e 105.0 
-y NaN 
-z NaN 
+a     -9.0
+b      NaN
+c    -47.0
+d      NaN
+e    105.0
+y      NaN
+z      NaN
 dtype: float64
 ```
 </Card>
@@ -906,13 +918,13 @@ as shown in [Table 2.3](#table-2.3).
 seriesA.add(seriesB, fill_value=0)
 ```
 ```ansi
-a -9.0 
-b 2.0 
-c -47.0 
-d 4.0 
-e 105.0 
-y 20.0 
-z 10.0 
+a     -9.0
+b      2.0
+c    -47.0
+d      4.0
+e    105.0
+y     20.0
+z     10.0
 dtype: float64
 ```
 </Card>
@@ -958,13 +970,13 @@ Again, it can be done in two different ways, as shown in the following examples:
 seriesA - seriesB 
 ```
 ```ansi
-a 11.0 
-b NaN 
-c 53.0 
-d NaN 
-e -95.0 
-y NaN 
-z NaN 
+a    11.0
+b     NaN
+c    53.0
+d     NaN
+e   -95.0
+y     NaN
+z     NaN
 dtype: float64
 ```
 </Card>
@@ -979,13 +991,13 @@ seriesA using explicit subtraction method `sub()`.
 seriesA.sub(seriesB, fill_value=1000)
 ```
 ```ansi
-a 11.0 
-b -998.0 
-c 53.0 
-d -996.0 
-e -95.0 
-y 980.0 
-z 990.0 
+a     11.0
+b   -998.0
+c     53.0
+d   -996.0
+e    -95.0
+y    980.0
+z    990.0
 dtype: float64
 ```
 </Card>
@@ -1000,13 +1012,13 @@ Again, it can be done in two different ways, as shown in the following examples:
 seriesA * seriesB 
 ```
 ```ansi
-a -10.0 
-b NaN 
-c -150.0 
-d NaN 
-e 500.0 
-y NaN 
-z NaN 
+a    -10.0
+b      NaN
+c   -150.0
+d      NaN
+e    500.0
+y      NaN
+z      NaN
 dtype: float64
 ```
 </Card>
@@ -1021,13 +1033,13 @@ with seriesA using explicit multiplication method `mul()`.
 seriesA.mul(seriesB, fill_value=0) 
 ```
 ```ansi
-a -10.0 
-b 0.0 
-c -150.0 
-d 0.0 
-e 500.0 
-y 0.0 
-z 0.0 
+a    -10.0
+b      0.0
+c   -150.0
+d      0.0
+e    500.0
+y      0.0
+z      0.0
 dtype: float64
 ```
 </Card>
@@ -1056,13 +1068,13 @@ Again, it can be done in two different ways, as shown in the following examples:
 seriesA / seriesB 
 ```
 ```ansi
-a -0.10 
-b NaN 
-c -0.06 
-d NaN 
-e 0.05 
-y NaN 
-z NaN 
+a   -0.10
+b     NaN
+c   -0.06
+d     NaN
+e    0.05
+y     NaN
+z     NaN
 dtype: float64
 ```
 </Card>
@@ -1077,13 +1089,13 @@ using explicit division method `div()`.
 seriesA.div(seriesB, fill_value=0)
 ```
 ```ansi
-a -0.10 
-b inf 
-c -0.06 
-d inf 
-e 0.05 
-y 0.00 
-z 0.00 
+a   -0.10
+b     inf
+c   -0.06
+d     inf
+e    0.05
+y    0.00
+z    0.00
 dtype: float64
 ```
 </Card>
@@ -1100,52 +1112,76 @@ numeric, string, boolean, etc., as in tables of a database.
 
 <Table>
 <table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th colspan="3" style="text-align: center;"> Column Indexes</th>
-  </tr>
-  <tr>
-    <th></th>
-    <th></th>
-    <th>State</th>
-    <th>Geographical Area (sq Km)</th>
-    <th>Area under Very Dense Forests (sq Km)</th>
-  </tr>
-  <tr>
-    <td rowspan="3" style="
-        writing-mode: vertical-rl;
-        white-space: nowrap;
-        padding: 0;
-        vertical-align: middle;
-      ">
-      <p style="transform: rotate(180deg);"><b>Row Index</b></p>
-    </td>
-    <td>
-      1
-    </td>
-    <td>
-      Assam
-    </td>
-    <td>
-      78438
-    </td>
-    <td>
-      2797
-    </td>
-  </tr>
-  <tr>
-    <td style="padding: 0.5rem 1rem;">2</td>
-    <td>Delhi</td>
-    <td>1483</td>
-    <td>6.72</td>
-  </tr>
-  <tr>
-    <td style="padding: 0.5rem 1rem;">3</td>
-    <td>Kerala</td>
-    <td>38852</td>
-    <td>1663</td>
-  </tr>
+    <tr>
+        <th></th>
+        <th></th>
+        <th colspan="3" style="text-align: center">
+            Column Indexes
+        </th>
+    </tr>
+    <tr>
+        <th></th>
+        <th></th>
+        <th>
+            State
+        </th>
+        <th>
+            Geographical Area (sq Km)
+        </th>
+        <th>
+            Area under Very Dense Forests (sq Km)
+        </th>
+    </tr>
+    <tr>
+        <td
+            rowspan="3"
+            style="writing-mode: vertical-rl; white-space: nowrap; padding: 0; vertical-align: middle"
+        >
+            <p style="transform: rotate(180deg)">
+                <b>Row Index</b>
+            </p>
+        </td>
+        <td>
+            1
+        </td>
+        <td>
+            Assam
+        </td>
+        <td>
+            78438
+        </td>
+        <td>
+            2797
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 0.5rem 1rem">
+            2
+        </td>
+        <td>
+            Delhi
+        </td>
+        <td>
+            1483
+        </td>
+        <td>
+            6.72
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 0.5rem 1rem">
+            3
+        </td>
+        <td>
+            Kerala
+        </td>
+        <td>
+            38852
+        </td>
+        <td>
+            1663
+        </td>
+    </tr>
 </table>
 </Table>
 
@@ -1163,11 +1199,11 @@ An empty DataFrame can be created as follows:
 import pandas as pd
 
 dFrameEmt = pd.DataFrame()
-dFrameEmt
+print(dFrameEmt)
 ```
 ```ansi
-Empty DataFrame 
-Columns: [] 
+Empty DataFrame
+Columns: []
 Index: []
 ```
 </Card>
@@ -1193,10 +1229,10 @@ dFrame4 = pd.DataFrame(array1)
 dFrame4
 ```
 ```ansi
-     0 
-0   10 
-1   20 
-2   30
+    0
+0  10
+1  20
+2  30
 ```
 </Card>
 
@@ -1212,10 +1248,10 @@ dFrame5 = pd.DataFrame(
 dFrame5
 ```
 ```ansi
-     A    B     C      D
-0   10   20    30    NaN
-1  -10  -20   -30  -40.0
-2  100  200   300    NaN
+     A    B    C     D
+0   10   20   30   NaN
+1  -10  -20  -30 -40.0
+2  100  200  300   NaN
 ```
 </Card>
 
@@ -1234,9 +1270,9 @@ dFrameListDict = pd.DataFrame(listDict)
 dFrameListDict
 ```
 ```ansi
- a b c 
-0 10 20 NaN 
-1 5 10 20.0
+    a   b     c
+0  10  20   NaN
+1   5  10  20.0
 ```
 </Card>
 
@@ -1266,10 +1302,10 @@ dFrameForest = pd.DataFrame(dictForest)
 dFrameForest
 ```
 ```
-State GArea VDF 
-0 Assam 78438 2797.00 
-1 Delhi 1483 6.72 
-2 Kerala 38852 1663.00
+    State  GArea      VDF
+0   Assam  78438  2797.00
+1   Delhi   1483     6.72
+2  Kerala  38852  1663.00
 ```
 </Card>
 
@@ -1290,10 +1326,10 @@ dFrameForest1 = pd.DataFrame(
 dFrameForest1
 ```
 ```ansi
- State VDF GArea 
-0 Assam 2797.00 78438 
-1 Delhi 6.72 1483 
-2 Kerala 1663.00 38852
+    State      VDF  GArea
+0   Assam  2797.00  78438
+1   Delhi     6.72   1483
+2  Kerala  1663.00  38852
 ```
 </Card>
 
@@ -1326,12 +1362,12 @@ dFrame6 = pd.DataFrame(seriesA)
 dFrame6
 ```
 ```ansi
-    0 
-a   1 
-b   2 
-c   3 
-d   4 
-e   5
+   0
+a  1
+b  2
+c  3
+d  4
+e  5
 ```
 </Card>
 
@@ -1346,9 +1382,9 @@ dFrame7 = pd.DataFrame([seriesA, seriesB])
 dFrame7
 ```
 ```ansi
-a b c d e 
-0 1 2 3 4 5 
-1 1000 2000 -1000 -5000 1000
+      a     b     c     d     e
+0     1     2     3     4     5
+1  1000  2000 -1000 -5000  1000
 ```
 </Card>
 
@@ -1362,9 +1398,9 @@ dFrame8 = pd.DataFrame([seriesA, seriesC])
 dFrame8
 ```
 ```ansi
-a b c d e z y 
-0 1.0 2.0 3.0 4.0 5.0 NaN NaN 
-1 -10.0 NaN -50.0 NaN 100.0 10.0 20.0
+      a    b     c    d      e     z     y
+0   1.0  2.0   3.0  4.0    5.0   NaN   NaN
+1 -10.0  NaN -50.0  NaN  100.0  10.0  20.0
 ```
 </Card>
 
@@ -1411,10 +1447,10 @@ ResultDF = pd.DataFrame(ResultSheet)
 ResultDF
 ```
 ```ansi
- Arnab Ramit Samridhi Riya Mallika 
-Maths 90 92 89 81 94 
-Science 91 81 91 71 95 
-Hindi 97 96 88 67 99
+         Arnab  Ramit  Samridhi  Riya  Mallika
+Maths       90     92        89    81       94
+Science     91     81        91    71       95
+Hindi       97     96        88    67       99
 ```
 </Card>
 
@@ -1430,7 +1466,7 @@ The following output shows that every column in the DataFrame is a Series:
 type(ResultDF.Arnab)
 ```
 ```ansi
-<class 'pandas.core.series.Series'>
+pandas.core.series.Series
 ```
 </Card>
 
@@ -1461,14 +1497,14 @@ dFrameUnion = pd.DataFrame(dictForUnion)
 dFrameUnion
 ```
 ```ansi
- Series1 Series2 Series3 
-a 1.0 -10.0 -10.0 
-b 2.0 NaN NaN 
-c 3.0 -50.0 -50.0 
-d 4.0 NaN NaN 
-e 5.0 100.0 100.0 
-y NaN 20.0 20.0 
-z NaN 10.0 10.0
+   Series1  Series2  Series3
+a      1.0    -10.0    -10.0
+b      2.0      NaN      NaN
+c      3.0    -50.0    -50.0
+d      4.0      NaN      NaN
+e      5.0    100.0    100.0
+y      NaN     20.0     20.0
+z      NaN     10.0     10.0
 ```
 </Card>
 
@@ -1489,10 +1525,10 @@ ResultDF["Preeti"] = [89, 78, 76]
 ResultDF
 ```
 ```ansi
-Arnab Ramit Samridhi Riya Mallika Preeti 
-Maths 90 92 89 81 94 89 
-Science 91 81 91 71 95 78 
-Hindi 97 96 88 67 99 76
+         Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
+Maths       90     92        89    81       94      89
+Science     91     81        91    71       95      78
+Hindi       97     96        88    67       99      76
 ```
 </Card>
 
@@ -1507,10 +1543,10 @@ ResultDF["Ramit"] = [99, 98, 78]
 ResultDF
 ```
 ```ansi
- Arnab Ramit Samridhi Riya Mallika Preeti 
-Maths 90 99 89 81 94 89 
-Science 91 98 91 71 95 78 
-Hindi 97 78 88 67 99 76
+         Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
+Maths       90     99        89    81       94      89
+Science     91     98        91    71       95      78
+Hindi       97     78        88    67       99      76
 ```
 </Card>
 
@@ -1524,10 +1560,10 @@ ResultDF["Arnab"] = 90
 ResultDF
 ```
 ```ansi
- Arnab Ramit Samridhi Riya Mallika Preeti 
-Maths 90 99 89 81 94 89 
-Science 90 98 91 71 95 78 
-Hindi 90 78 88 67 99 76
+         Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
+Maths       90     99        89    81       94      89
+Science     90     98        91    71       95      78
+Hindi       90     78        88    67       99      76
 ```
 </Card>
 
@@ -1543,10 +1579,10 @@ ResultDF, we can use the following statement:
 ResultDF
 ```
 ```ansi
-Arnab Ramit Samridhi Riya Mallika Preeti 
-Maths 90 92 89 81 94 89 
-Science 91 81 91 71 95 78 
-Hindi 97 96 88 67 99 76
+         Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
+Maths       90     99        89    81       94      89
+Science     90     98        91    71       95      78
+Hindi       90     78        88    67       99      76
 ```
 </Card>
 
@@ -1556,11 +1592,11 @@ ResultDF.loc["English"] = [85, 86, 83, 80, 90, 89]
 ResultDF
 ```
 ```ansi
-Arnab Ramit Samridhi Riya Mallika Preeti 
-Maths 90 92 89 81 94 89 
-Science 91 81 91 71 95 78 
-Hindi 97 96 88 67 99 76 
-English 85 86 83 80 90 89
+         Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
+Maths       90     99        89    81       94      89
+Science     90     98        91    71       95      78
+Hindi       90     78        88    67       99      76
+English     85     86        83    80       90      89
 ```
 </Card>
 
@@ -1574,11 +1610,11 @@ ResultDF.loc["English"] = [95, 86, 95, 80, 95, 99]
 ResultDF
 ```
 ```ansi
- Arnab Ramit Samridhi Riya Mallika Preeti 
-Maths 90 92 89 81 94 89 
-Science 91 81 91 71 95 78 
-Hindi 97 96 88 67 99 76 
-English 95 86 95 80 95 99
+         Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
+Maths       90     99        89    81       94      89
+Science     90     98        91    71       95      78
+Hindi       90     78        88    67       99      76
+English     95     86        95    80       95      99
 ```
 </Card>
 
@@ -1592,11 +1628,11 @@ ResultDF.loc["Maths"] = 0
 ResultDF
 ```
 ```ansi
- Arnab Ramit Samridhi Riya Mallika Preeti 
-Maths 0 0 0 0 0 0 
-Science 91 81 91 71 95 78 
-Hindi 97 96 88 67 99 76 
-English 95 86 95 80 95 99
+         Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
+Maths        0      0         0     0        0       0
+Science     90     98        91    71       95      78
+Hindi       90     78        88    67       99      76
+English     95     86        95    80       95      99
 ```
 </Card>
 
@@ -1629,11 +1665,11 @@ ResultDF[:] = 0
 ResultDF
 ```
 ```ansi
- Arnab Ramit Samridhi Riya Mallika Preeti 
-Maths 0 0 0 0 0 0 
-Science 0 0 0 0 0 0 
-Hindi 0 0 0 0 0 0 
-English 0 0 0 0 0 0
+         Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
+Maths        0      0         0     0        0       0
+Science      0      0         0     0        0       0
+Hindi        0      0         0     0        0       0
+English      0      0         0     0        0       0
 ```
 </Card>
 
@@ -1646,15 +1682,45 @@ assigned the value 0 and for deleting a column,the parameter axis is assigned
 the value 1. Consider the following DataFrame:
 
 <Card>
+
+<Collapse title="Reset ResultDF">
+```py
+# Reset ResultDF
+ResultDF = pd.DataFrame(
+    {
+        "Arnab": pd.Series(
+            [90, 91, 97, 95],
+            index=["Maths", "Science", "Hindi", "English"],
+        ),
+        "Ramit": pd.Series(
+            [92, 81, 96, 86],
+            index=["Maths", "Science", "Hindi", "English"],
+        ),
+        "Samridhi": pd.Series(
+            [89, 91, 88, 95],
+            index=["Maths", "Science", "Hindi", "English"],
+        ),
+        "Riya": pd.Series(
+            [81, 71, 67, 80],
+            index=["Maths", "Science", "Hindi", "English"],
+        ),
+        "Mallika": pd.Series(
+            [94, 95, 99, 95],
+            index=["Maths", "Science", "Hindi", "English"],
+        ),
+    }
+)
+```
+</Collapse>
 ```py
 ResultDF
 ```
 ```ansi
-Arnab Ramit Samridhi Riya Mallika 
-Maths 90 92 89 81 94 
-Science 91 81 91 71 95 
-Hindi 97 96 88 67 99 
-English 95 86 95 80 95
+         Arnab  Ramit  Samridhi  Riya  Mallika
+Maths       90     92        89    81       94
+Science     91     81        91    71       95
+Hindi       97     96        88    67       99
+English     95     86        95    80       95
 ```
 </Card>
 
@@ -1666,10 +1732,10 @@ ResultDF = ResultDF.drop("Science", axis=0)
 ResultDF
 ```
 ```ansi
-Arnab Ramit Samridhi Riya Mallika 
-Maths 90 92 89 81 94 
-Hindi 97 96 88 67 99 
-English 95 86 95 80 95
+         Arnab  Ramit  Samridhi  Riya  Mallika
+Maths       90     92        89    81       94
+Hindi       97     96        88    67       99
+English     95     86        95    80       95
 ```
 </Card>
 
@@ -1684,11 +1750,11 @@ ResultDF = ResultDF.drop(
 )
 ResultDF
 ```
-```asni
-        Arnab   Mallika 
-Maths      90        94 
-Hindi      97        99 
-English    95        95
+```ansi
+         Arnab  Mallika
+Maths       90       94
+Hindi       97       99
+English     95       95
 ```
 </Card>
 
@@ -1698,15 +1764,45 @@ the matching rows from it. For example, consider the
 following DataFrame: 
 
 <Card>
+
+<Collapse title="Reset ResultDF">
+```py
+# Reset ResultDF
+ResultDF = pd.DataFrame(
+    {
+        "Arnab": pd.Series(
+            [90, 91, 97, 97],
+            index=["Maths", "Science", "Hindi", "Hindi"],
+        ),
+        "Ramit": pd.Series(
+            [92, 81, 96, 86],
+            index=["Maths", "Science", "Hindi", "Hindi"],
+        ),
+        "Samridhi": pd.Series(
+            [89, 91, 88, 78],
+            index=["Maths", "Science", "Hindi", "Hindi"],
+        ),
+        "Riya": pd.Series(
+            [81, 71, 67, 60],
+            index=["Maths", "Science", "Hindi", "Hindi"],
+        ),
+        "Mallika": pd.Series(
+            [94, 95, 99, 45],
+            index=["Maths", "Science", "Hindi", "Hindi"],
+        ),
+    }
+)
+```
+</Collapse>
 ```py
 ResultDF
 ```
 ```ansi
-Arnab Ramit Samridhi Riya Mallika 
-Maths 90 92 89 81 94 
-Science 91 81 91 71 95 
-Hindi 97 96 88 67 99 
-Hindi 97 89 78 60 45
+         Arnab  Ramit  Samridhi  Riya  Mallika
+Maths       90     92        89    81       94
+Science     91     81        91    71       95
+Hindi       97     96        88    67       99
+Hindi       97     86        78    60       45
 ```
 </Card>
 
@@ -1719,9 +1815,9 @@ ResultDF = ResultDF.drop("Hindi", axis=0)
 ResultDF
 ```
 ```ansi
-Arnab Ramit Samridhi Riya Mallika 
-Maths 90 92 89 81 94 
-Science 91 81 91 71 95
+         Arnab  Ramit  Samridhi  Riya  Mallika
+Maths       90     92        89    81       94
+Science     91     81        91    71       95
 ```
 </Card>
 
@@ -1733,15 +1829,44 @@ indices Maths to sub1, Science to sub2, Hindi to sub3 and English to sub4 we can
 write the following statement:
 
 <Card>
+<Collapse title="Reset ResultDF">
+```py
+# Reset ResultDF
+ResultDF = pd.DataFrame(
+    {
+        "Arnab": pd.Series(
+            [90, 91, 97, 97],
+            index=["Maths", "Science", "English", "Hindi"],
+        ),
+        "Ramit": pd.Series(
+            [92, 81, 96, 86],
+            index=["Maths", "Science", "English", "Hindi"],
+        ),
+        "Samridhi": pd.Series(
+            [89, 91, 88, 78],
+            index=["Maths", "Science", "English", "Hindi"],
+        ),
+        "Riya": pd.Series(
+            [81, 71, 67, 60],
+            index=["Maths", "Science", "English", "Hindi"],
+        ),
+        "Mallika": pd.Series(
+            [94, 95, 99, 45],
+            index=["Maths", "Science", "English", "Hindi"],
+        ),
+    }
+)
+```
+</Collapse>
 ```py
 ResultDF
 ```
 ```ansi
-Arnab Ramit Samridhi Riya Mallika 
-Maths 90 92 89 81 94 
-Science 91 81 91 71 95 
-English 97 96 88 67 99 
-Hindi 97 89 78 60 45
+         Arnab  Ramit  Samridhi  Riya  Mallika
+Maths       90     92        89    81       94
+Science     91     81        91    71       95
+English     97     96        88    67       99
+Hindi       97     86        78    60       45
 ```
 </Card>
 
@@ -1759,11 +1884,11 @@ ResultDF = ResultDF.rename(
 print(ResultDF)
 ```
 ```ansi
-Arnab Ramit Samridhi Riya Mallika 
-Sub1 90 92 89 81 94 
-Sub2 91 81 91 71 95 
-Sub3 97 96 88 67 99 
-Sub4 97 89 78 60 45
+      Arnab  Ramit  Samridhi  Riya  Mallika
+Sub1     90     92        89    81       94
+Sub2     91     81        91    71       95
+Sub3     97     96        88    67       99
+Sub4     97     86        78    60       45
 ```
 </Card>
 
@@ -1789,11 +1914,11 @@ ResultDF = ResultDF.rename(
 print(ResultDF)
 ```
 ```ansi
-Arnab Ramit Samridhi Riya Mallika 
-Sub1 90 92 89 81 94 
-Sub2 91 81 91 71 95 
-English 97 96 88 67 99 
-Sub4 97 89 78 60 45
+      Student1  Student2  Student3  Riya  Student4
+Sub1        90        92        89    81        94
+Sub2        91        81        91    71        95
+Sub3        97        96        88    67        99
+Sub4        97        86        78    60        45
 ```
 </Card>
 
@@ -1804,6 +1929,35 @@ shown below. The parameter axis='columns' implies we want to change the column
 labels:
 
 <Card>
+<Collapse title="Reset ResultDF">
+```py
+# Reset ResultDF
+ResultDF = pd.DataFrame(
+    {
+        "Arnab": pd.Series(
+            [90, 91, 97, 97],
+            index=["Maths", "Science", "English", "Hindi"],
+        ),
+        "Ramit": pd.Series(
+            [92, 81, 96, 86],
+            index=["Maths", "Science", "English", "Hindi"],
+        ),
+        "Samridhi": pd.Series(
+            [89, 91, 88, 78],
+            index=["Maths", "Science", "English", "Hindi"],
+        ),
+        "Riya": pd.Series(
+            [81, 71, 67, 60],
+            index=["Maths", "Science", "English", "Hindi"],
+        ),
+        "Mallika": pd.Series(
+            [94, 95, 99, 45],
+            index=["Maths", "Science", "English", "Hindi"],
+        ),
+    }
+)
+```
+</Collapse>
 ```py
 ResultDF = ResultDF.rename(
     {
@@ -1817,11 +1971,11 @@ ResultDF = ResultDF.rename(
 print(ResultDF)
 ```
 ```ansi
-         Student1  Student2  Student3  Riya  Student4 
-Maths          90        92       89     81        94 
-Science        91        81       91     71        95 
-English        97        96       88     67        99 
-Hindi          97        89       78     60        45
+         Student1  Student2  Student3  Riya  Student4
+Maths          90        92        89    81        94
+Science        91        81        91    71        95
+English        97        96        88    67        99
+Hindi          97        86        78    60        45
 ```
 </Card>
 
@@ -1846,14 +2000,22 @@ with DataFrames. Let us continue to use the ResultDF created earlier. As shown
 in the following example, a single row label returns the row as a Series.
 
 <Card>
+
+<Collapse title="Reset ResultDF">
+```py
+# Reset ResultDF
+ResultDF = pd.DataFrame(ResultSheet)
+```
+</Collapse>
+
 ```py
 ResultDF
 ```
 ```ansi
- Arnab Ramit Samridhi Riya Mallika 
-Maths 90 92 89 81 94 
-Science 91 81 91 71 95 
-Hindi 97 96 88 67 99
+         Arnab  Ramit  Samridhi  Riya  Mallika
+Maths       90     92        89    81       94
+Science     91     81        91    71       95
+Hindi       97     96        88    67       99
 ```
 </Card>
 
@@ -1862,11 +2024,11 @@ Hindi 97 96 88 67 99
 ResultDF.loc['Science']
 ```
 ```ansi
-Arnab 91 
-Ramit 81 
-Samridhi 91 
-Riya 71 
-Mallika 95 
+Arnab       91
+Ramit       81
+Samridhi    91
+Riya        71
+Mallika     95
 Name: Science, dtype: int64
 ```
 </Card>
@@ -1881,7 +2043,8 @@ dFrame10Multiples = pd.DataFrame([10, 20, 30, 40, 50])
 dFrame10Multiples.loc[2]
 ```
 ```ansi
-0 30 Name: 2, dtype: int64
+0    30
+Name: 2, dtype: int64
 ```
 </Card>
 
@@ -1892,9 +2055,9 @@ When a single column label is passed, it returns the column as a Series.
 ResultDF.loc[:, "Arnab"]
 ```
 ```ansi
-Maths 90 
-Science 91 
-Hindi 97 
+Maths      90
+Science    91
+Hindi      97
 Name: Arnab, dtype: int64
 ```
 </Card>
@@ -1907,9 +2070,9 @@ subjects by using the command:
 print(df["Arnab"])
 ```
 ```ansi
-Maths 56 
-Science 91 
-English 97 Hindi 97 
+Maths      90
+Science    91
+Hindi      97
 Name: Arnab, dtype: int64
 ```
 </Card>
@@ -1922,9 +2085,9 @@ shown below. Note that using `[[]]` returns a DataFrame.
 ResultDF.loc[["Science", "Hindi"]]
 ```
 ```ansi
-Arnab Ramit Samridhi Riya Mallika 
-Science 91 81 91 71 95 
-Hindi 97 96 88 67 99
+         Arnab  Ramit  Samridhi  Riya  Mallika
+Science     91     81        91    71       95
+Hindi       97     96        88    67       99
 ```
 </Card>
 
@@ -1943,11 +2106,11 @@ condition or not.
 ResultDF.loc["Maths"] > 90
 ```
 ```
-Arnab False 
-Ramit True 
-Samridhi False 
-Riya False 
-Mallika True 
+Arnab       False
+Ramit        True
+Samridhi    False
+Riya        False
+Mallika      True
 Name: Maths, dtype: bool
 ```
 </Card>
@@ -1959,9 +2122,9 @@ To check in which subjects 'Arnab' has scored more than 90, we can write:
 ResultDF.loc[:, "Arnab"] > 90
 ```
 ```ansi
-Maths False 
-Science True 
-Hindi True 
+Maths      False
+Science     True
+Hindi       True
 Name: Arnab, dtype: bool
 ```
 </Card>
@@ -1976,9 +2139,9 @@ To retrieve a set of rows, slicing can be used with row labels. For example:
 ResultDF.loc["Maths":"Science"]
 ```
 ```ansi
- Arnab Ramit Samridhi Riya Mallika 
-Maths 90 92 89 81 94 
-Science 91 81 91 71 95
+         Arnab  Ramit  Samridhi  Riya  Mallika
+Maths       90     92        89    81       94
+Science     91     81        91    71       95
 ```
 </Card>
 
@@ -2001,8 +2164,8 @@ and column with label Arnab:
 ResultDF.loc["Maths":"Science", "Arnab"]
 ```
 ```ansi
-Maths 90 
-Science 91 
+Maths      90
+Science    91
 Name: Arnab, dtype: int64
 ```
 </Card>
@@ -2015,9 +2178,9 @@ those rows and columns:
 ResultDF.loc["Maths":"Science", "Arnab":"Samridhi"]
 ```
 ```
- Arnab Ramit Samridhi 
-Maths 90 92 89 
-Science 91 81 91
+         Arnab  Ramit  Samridhi
+Maths       90     92        89
+Science     91     81        91
 ```
 </Card>
 
@@ -2029,9 +2192,9 @@ access values of those rows and columns:
 ResultDF.loc["Maths":"Science", ["Arnab", "Samridhi"]]
 ```
 ```ansi
-Arnab Samridhi 
-Maths 90 89 
-Science 91 91
+         Arnab  Samridhi
+Maths       90        89
+Science     91        91
 ```
 </Card>
 
@@ -2051,15 +2214,24 @@ as Science is omitted:
 ResultDF.loc[[True, False, True]]
 ```
 ```ansi
- Arnab Ramit Samridhi Riya Mallika 
-Maths 90 92 89 81 94 
-Hindi 97 96 88 67 99
+       Arnab  Ramit  Samridhi  Riya  Mallika
+Maths     90     92        89    81       94
+Hindi     97     96        88    67       99
 ```
 </Card>
 
 ### 2.3.5 Joining, Merging and Concatenation of DataFrames
 
 #### (A) Joining ||section-2.3.5.a||
+
+:::danger[Deprecated Method]
+
+As of Pandas version 2.0, the Pandas `append()` method is no longer in use. 
+It is important to keep this in mind while working with Pandas. 
+More efficient alternatives for concatenating DataFrames are the 
+`.concat()` function from the `pandas.DataFrame` module.
+
+:::
 
 We can use the `pandas.DataFrame.append()` method to merge two DataFrames. It
 appends rowsof the second DataFrame at the end of the first DataFrame. Columns
@@ -2077,10 +2249,10 @@ dFrame1 = pd.DataFrame(
 dFrame1
 ```
 ```ansi
- C1 C2 C3 
-R1 1 2.0 3.0 
-R2 4 5.0 NaN 
-R3 6 NaN NaN
+    C1   C2   C3
+R1   1  2.0  3.0
+R2   4  5.0  NaN
+R3   6  NaN  NaN
 ```
 </Card>
 
@@ -2094,26 +2266,38 @@ dFrame2 = pd.DataFrame(
 dFrame2
 ```
 ```ansi
- C2 C5 
-R4 10 20.0 
-R2 30 NaN 
-R5 40 50.0
+    C2    C5
+R4  10  20.0
+R2  30   NaN
+R5  40  50.0
 ```
 </Card>
 
 <Card>
+
+<Tabs syncKey="append">
+<TabItem label="Append (pd < 2.0)">
 ```py
 dFrame1 = dFrame1.append(dFrame2)
 dFrame1
 ```
+</TabItem>
+<TabItem label="Concat (pd >= 2.0)">
+```py
+dFrame1 = pd.concat([dFrame1, dFrame2])
+dFrame1
+```
+</TabItem>
+</Tabs>
+
 ```ansi
- C1 C2 C3 C5 
-R1 1.0 2.0 3.0 NaN 
-R2 4.0 5.0 NaN NaN 
-R3 6.0 NaN NaN NaN 
-R4 NaN 10.0 NaN 20.0 
-R2 NaN 30.0 NaN NaN 
-R5 NaN 40.0 NaN 50.0
+     C1    C2   C3    C5
+R1  1.0   2.0  3.0   NaN
+R2  4.0   5.0  NaN   NaN
+R3  6.0   NaN  NaN   NaN
+R4  NaN  10.0  NaN  20.0
+R2  NaN  30.0  NaN   NaN
+R5  NaN  40.0  NaN  50.0
 ```
 </Card>
 
@@ -2123,36 +2307,94 @@ parameter sort=True. The column labels shall appear in unsorted order when the
 parameter sort = False.
 
 <Card>
+
+<Collapse title="Reset dFrame1 and dFrame2">
+```py
+# Reset dFrame1 and dFrame2
+dFrame1 = pd.DataFrame(
+    [[1, 2, 3], [4, 5], [6]],
+    columns=["C1", "C2", "C3"],
+    index=["R1", "R2", "R3"],
+)
+dFrame2 = pd.DataFrame(
+    [[10, 20], [30], [40, 50]],
+    columns=["C2", "C5"],
+    index=["R4", "R2", "R5"],
+)
+```
+</Collapse>
+
+<Tabs syncKey="append">
+<TabItem label="Append (pd < 2.0)">
 ```py
 # append dFrame1 to dFrame2
-dFrame2 = dFrame2.append(dFrame1, sort="True")
+dFrame2 = dFrame2.append(dFrame1, sort=True)
 dFrame2
 ```
+</TabItem>
+<TabItem label="Concat (pd >= 2.0)">
+```py
+# concatenate dFrame1 to dFrame2
+dFrame2 = pd.concat([dFrame2, dFrame1], sort=True)
+dFrame2
+```
+</TabItem>
+</Tabs>
+
 ```ansi
- C1 C2 C3 C5 
-R4 NaN 10.0 NaN 20.0 
-R2 NaN 30.0 NaN NaN 
-R5 NaN 40.0 NaN 50.0 
-R1 1.0 2.0 3.0 NaN 
-R2 4.0 5.0 NaN NaN 
-R3 6.0 NaN NaN NaN
+     C1    C2   C3    C5
+R4  NaN  10.0  NaN  20.0
+R2  NaN  30.0  NaN   NaN
+R5  NaN  40.0  NaN  50.0
+R1  1.0   2.0  3.0   NaN
+R2  4.0   5.0  NaN   NaN
+R3  6.0   NaN  NaN   NaN
 ```
 </Card>
 
 <Card>
+
+<Collapse title="Reset dFrame1 and dFrame2">
+```py
+# Reset dFrame1 and dFrame2
+dFrame1 = pd.DataFrame(
+    [[1, 2, 3], [4, 5], [6]],
+    columns=["C1", "C2", "C3"],
+    index=["R1", "R2", "R3"],
+)
+dFrame2 = pd.DataFrame(
+    [[10, 20], [30], [40, 50]],
+    columns=["C2", "C5"],
+    index=["R4", "R2", "R5"],
+)
+```
+</Collapse>
+
+<Tabs syncKey="append">
+<TabItem label="Append (pd < 2.0)">
 ```py
 # append dFrame1 to dFrame2 with sort=False
-dFrame2 = dFrame2.append(dFrame1, sort="False")
+dFrame2 = dFrame2.append(dFrame1, sort=False)
 dFrame2
 ```
+</TabItem>
+<TabItem label="Concat (pd >= 2.0)">
+```py
+# concatenate dFrame1 to dFrame2 with sort=False
+dFrame2 = pd.concat([dFrame2, dFrame1], sort=False)
+dFrame2
+```
+</TabItem>
+</Tabs>
+
 ```ansi
- C2 C5 C1 C3 
-R4 10.0 20.0 NaN NaN 
-R2 30.0 NaN NaN NaN 
-R5 40.0 50.0 NaN NaN 
-R1 2.0 NaN 1.0 3.0 
-R2 5.0 NaN 4.0 NaN 
-R3 NaN NaN 6.0 NaN
+      C2    C5   C1   C3
+R4  10.0  20.0  NaN  NaN
+R2  30.0   NaN  NaN  NaN
+R5  40.0  50.0  NaN  NaN
+R1   2.0   NaN  1.0  3.0
+R2   5.0   NaN  4.0  NaN
+R3   NaN   NaN  6.0  NaN
 ```
 </Card>
 
@@ -2165,18 +2407,47 @@ The parameter ignore_index of `append()` method may be set to True, when we do n
 want to use row index labels. By default, ignore_index = False.
 
 <Card>
+
+<Collapse title="Reset dFrame1 and dFrame2">
+```py
+# Reset dFrame1 and dFrame2
+dFrame1 = pd.DataFrame(
+    [[1, 2, 3], [4, 5], [6]],
+    columns=["C1", "C2", "C3"],
+    index=["R1", "R2", "R3"],
+)
+dFrame2 = pd.DataFrame(
+    [[10, 20], [30], [40, 50]],
+    columns=["C2", "C5"],
+    index=["R4", "R2", "R5"],
+)
+```
+</Collapse>
+
+<Tabs syncKey="append">
+<TabItem label="Append (pd < 2.0)">
 ```py
 dFrame1 = dFrame1.append(dFrame2, ignore_index=True)
 dFrame1
 ```
+</TabItem>
+<TabItem label="Concat (pd >= 2.0)">
+```py
+dFrame1 = pd.concat([dFrame1, dFrame2], ignore_index=True)
+dFrame1
 ```
- C1 C2 C3 C5 
-0 1.0 2.0 3.0 NaN 
-1 4.0 5.0 NaN NaN 
-2 6.0 NaN NaN NaN 
-3 NaN 10.0 NaN 20.0 
-4 NaN 30.0 NaN NaN 
-5 NaN 40.0 NaN 50.0
+</TabItem>
+</Tabs>
+
+
+```ansi
+    C1    C2   C3    C5
+0  1.0   2.0  3.0   NaN
+1  4.0   5.0  NaN   NaN
+2  6.0   NaN  NaN   NaN
+3  NaN  10.0  NaN  20.0
+4  NaN  30.0  NaN   NaN
+5  NaN  40.0  NaN  50.0
 ```
 </Card>
 
@@ -2223,11 +2494,11 @@ ForestAreaDF = pd.DataFrame(ForestArea)
 ForestAreaDF
 ```
 ```
-Assam Kerala Delhi 
-GeoArea 78438 38852 1483.00 
-VeryDense 2797 1663 6.72 
-ModeratelyDense 10192 9407 56.24 
-OpenForest 15116 9251 129.45
+                 Assam  Kerala    Delhi
+GeoArea          78438   38852  1483.00
+VeryDense         2797    1663     6.72
+ModeratelyDense  10192    9407    56.24
+OpenForest       15116    9251   129.45
 ```
 </Card>
 
@@ -2256,10 +2527,7 @@ to display row labels
 ForestAreaDF.index
 ```
 ```
-Index(
-    ["GeoArea", "VeryDense", "ModeratelyDense", "OpenForest"],
-    dtype="object",
-)
+Index(['GeoArea', 'VeryDense', 'ModeratelyDense', 'OpenForest'], dtype='object')
 ```
 </td>
 </tr>
@@ -2291,9 +2559,9 @@ to display data type of each column in the DataFrame
 ForestAreaDF.dtypes
 ```
 ```
-Assam int64
-Kerala int64
-Delhi float64
+Assam       int64
+Kerala      int64
+Delhi     float64
 dtype: object
 ```
 </td>
@@ -2311,14 +2579,10 @@ without the axes labels
 ForestAreaDF.values
 ```
 ```
-array(
-    [
-        [7.8438e04, 3.8852e04, 1.4830e03],
-        [2.7970e03, 1.6630e03, 6.7200e00],
-        [1.0192e04, 9.4070e03, 5.6240e01],
-        [1.5116e04, 9.2510e03, 1.2945e02],
-    ]
-)
+array([[7.8438e+04, 3.8852e+04, 1.4830e+03],
+       [2.7970e+03, 1.6630e+03, 6.7200e+00],
+       [1.0192e+04, 9.4070e+03, 5.6240e+01],
+       [1.5116e+04, 9.2510e+03, 1.2945e+02]])
 ```
 </td>
 </tr>
@@ -2371,17 +2635,16 @@ replace each other's position
 ForestAreaDF.T
 ```
 ```
-GeoArea VeryDense ModeratelyDense OpenForest
-Assam 78438.0 2797.00 10192.00 15116.00
-Kerala38852.0 1663.00 9407.00 9251.00
-Delhi 1483.0 6.72 56.24 129.45
+        GeoArea  VeryDense  ModeratelyDense  OpenForest
+Assam   78438.0    2797.00         10192.00    15116.00
+Kerala  38852.0    1663.00          9407.00     9251.00
+Delhi    1483.0       6.72            56.24      129.45
 ```
 </td>
 </tr>
 <tr>
 <td>
 `DataFrame.head(n)`
-
 </td>
 <td>
 to display the first n rows in the DataFrame 
@@ -2391,9 +2654,9 @@ to display the first n rows in the DataFrame
 ForestAreaDF.head(2)
 ```
 ```
-Assam Kerala Delhi
-GeoArea 78438 38852 1483.00
-VeryDense 2797 1663 6.72
+           Assam  Kerala    Delhi
+GeoArea    78438   38852  1483.00
+VeryDense   2797    1663     6.7
 ```
 displays the first 2 rows of the DataFrame ForestAreaDF.
 If the parameter n is not specified by default it gives 
@@ -2412,9 +2675,9 @@ to display the last n rows in the DataFrame
 ForestAreaDF.tail(2)
 ```
 ```
-Assam Kerala Delhi
-ModeratelyDense 10192 9407 56.24
-OpenForest 15116 9251 129.45
+                 Assam  Kerala   Delhi
+ModeratelyDense  10192    9407   56.24
+OpenForest       15116    9251  129.45
 ```
 displays the last 2 rows of the DataFrame ForestAreaDF. 
 If the parameter n is not specified by default it gives the 
@@ -2490,12 +2753,12 @@ marks = pd.read_csv(
 marks
 ```
 ```ansi
-RollNo Name Eco Maths 
-0 1 Arnab 18 57 
-1 2 Kritika 23 45 
-2 3 Divyam 51 37 
-3 4 Vivaan 40 60 
-4 5 Aaroosh 18 27
+   RollNo      Name   Eco   Maths
+0       1     Arnab    18      57
+1       2   Kritika    23      45
+2       3    Divyam    51      37
+3       4    Vivaan    40      60
+4       5   Aaroosh    18      27
 ```
 </Card>
 
@@ -2523,12 +2786,13 @@ marks1 = pd.read_csv(
 marks1
 ```
 ```ansi
- RNo StudentName Sub1 Sub2 
-0 1 Arnab 18 57 
-1 2 Kritika 23 45 
-2 3 Divyam 51 37 
-3 4 Vivaan 40 60 
-4 5 Aaroosh 18 27
+      RNo StudentName  Sub1    Sub2
+0  RollNo        Name   Eco   Maths
+1       1       Arnab    18      57
+2       2     Kritika    23      45
+3       3      Divyam    51      37
+4       4      Vivaan    40      60
+5       5     Aaroosh    18      27
 ```
 </Card>
 
@@ -2543,10 +2807,10 @@ we can use the following statement:
 ResultDF
 ```
 ```ansi
-Arnab Ramit Samridhi Riya Mallika 
-Maths 90 92 89 81 94 
-Science 91 81 91 71 95 
-Hindi 97 96 88 67 99
+         Arnab  Ramit  Samridhi  Riya  Mallika
+Maths       90     92        89    81       94
+Science     91     81        91    71       95
+Hindi       97     96        88    67       99
 ```
 </Card>
 

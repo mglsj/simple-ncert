@@ -22,3 +22,5 @@ pnpm-debug.log*
 pnpm-lock.yaml
 
 test.*
+
+.mypy_cache/
