@@ -1,11 +1,15 @@
 ---
 title: 2. File Handling in Python
 source: lecs102
+sidebar:
+  badge:
+    text: py
+    variant: note
 ---
 
 import { Steps } from '@astrojs/starlight/components';                                                                                        
       
-import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary, Think } from "@/components/markdown";
+import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary, Think, Know } from "@/components/markdown";
 
 <Quote author="Robin Milner" href="https://en.wikipedia.org/wiki/Robin_Milner">
     "There are many ways of trying to understand programs. People often rely too
@@ -44,13 +48,13 @@ and the output can be stored permanently into a file.
 So, what is a file? A file is a named location on a secondary storage media
 where data are permanently stored for later access.
 
-:::tip[Do you know?]
+<Know title="Do you know?">
 
 Text files contain only the ASCII equivalent of the contents of the file whereas
 a .docx file contains many additional information like the author's name, page
 settings, font type and size, date of creation and modification, etc.
 
-:::
+</Know>
 
 ## 2.2. Types of Files ||section-2.2||
 
@@ -130,12 +134,12 @@ the file (read and write) by calling the functions defined in the Python's `io`
 module. If the file does not exist, the above statement creates a new empty file
 and assigns it the name we specify in the statement.
 
-:::tip[Do you know?]
+<Know title="Do you know?">
 
 The `file_object` establishes a link between the program and the data file
 stored in the permanent storage
 
-:::
+</Know>
 
 The `file_object` has certain attributes that tells us basic information about
 the file, such as:
@@ -292,13 +296,13 @@ The `write()` actually writes data onto a buffer. When the `close()` method is
 executed, the contents from this buffer are moved to the file located on the
 permanent storage.
 
-:::tip[Do you know?]
+<Know title="Do you know?">
 
 We can also use the `flush()` method to clear the buffer and write contents in
 buffer to the file. This is how programmers can forcefully write to the file as
 and when required
 
-:::
+</Know>
 
 ### 2.4.2 The `writelines()` method ||section-2.4.2||
 

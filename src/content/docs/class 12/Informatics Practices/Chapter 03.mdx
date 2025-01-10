@@ -1,0 +1,44 @@
+---
+title: 3. Data Handling Using Pandas - II
+source: leip103
+sidebar:
+  badge:
+    text: py
+    variant: note
+---
+
+import Pyodide from "@/components/code/Pyodide.astro"
+
+<Pyodide />
+
+```py exec
+url = "http://localhost:4321/simple-ncert/res/PCA_AY_2011_Revised.csv"
+
+import urllib.request
+print("Downloading file:")
+urllib.request.urlretrieve(url, "PCA_AY_2011_Revised.csv")
+print("File downloaded")
+```
+
+```py exec
+import pyodide_http
+pyodide_http.patch_all()
+
+url = "http://localhost:4321/simple-ncert/res/PCA_AY_2011_Revised.csv"
+
+import urllib.request
+print("Downloading file:")
+urllib.request.urlretrieve(url, "PCA_AY_2011_Revised.csv")
+print("File downloaded")
+```
+
+```py exec
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+
+```py exec
+# Add path to the CSV file in your computer
+data = pd.read_csv("PCA_AY_2011_Revised.csv")
+df = pd.DataFrame(data)
+```

@@ -5,15 +5,20 @@ import remarkMath from "remark-math";
 import remarkCustomHeaderId from "remark-custom-header-id";
 import rehypeKatex from "rehype-katex";
 import starlightImageZoom from "starlight-image-zoom";
-import starlightMermaid from "./packages/starlight-mermaid";
 import sidebarData from "./sidebar.ts";
-import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-sections";
+
+import rehypeStarlightMermaid from "./src/plugins/rephype-starlight-mermaid.ts";
+import rehypeExecutablePython from "./src/plugins/rephype-executable-python.ts";
 
 // https://astro.build/config
 export default defineConfig({
 	markdown: {
 		remarkPlugins: [remarkMath, remarkCustomHeaderId],
-		rehypePlugins: [rehypeKatex, starlightMermaid],
+		rehypePlugins: [
+			rehypeKatex,
+			rehypeExecutablePython,
+			rehypeStarlightMermaid,
+		],
 	},
 	site: "https://mglsj.github.io/",
 	base: "/simple-ncert/",
@@ -37,11 +42,8 @@ export default defineConfig({
 				"@fontsource-variable/noto-sans",
 				"@fontsource-variable/noto-serif",
 				"@/styles/global.css",
-				"./packages/starlight-mermaid/styles.css",
+				"@/plugins/styles.css",
 			],
-			expressiveCode: {
-				plugins: [pluginCollapsibleSections()],
-			},
 			components: {
 				PageTitle: "@/components/overrides/PageTitle.astro",
 			},
@@ -76,4 +78,9 @@ export default defineConfig({
 			],
 		}),
 	],
+	vite: {
+		optimizeDeps: {
+			exclude: ["pyodide"],
+		},
+	},
 });

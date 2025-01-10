@@ -1,0 +1,15 @@
+---
+import Box from "@/components/partials/Box.astro";
+import { generateRandomId } from "@/lib/helpers";
+
+interface Props {
+	title: string;
+	id?: string;
+}
+
+const { title, id = generateRandomId() } = Astro.props;
+---
+
+<Box title={title} variant="tip" icon="star" id={`know-${id}`}>
+	<slot />
+</Box>

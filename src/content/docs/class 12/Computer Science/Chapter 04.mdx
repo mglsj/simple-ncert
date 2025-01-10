@@ -5,7 +5,7 @@ source: lecs104
 
 import { Steps } from '@astrojs/starlight/components';                                                                                        
       
-import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary, Think } from "@/components/markdown";
+import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary, Think, Know } from "@/components/markdown";
 
 <Quote author="Sir Tim Berners-Lee" href="https://en.wikipedia.org/wiki/Tim_Berners-Lee">
   "We could say we want the Web to reflect a vision of the world where
@@ -142,13 +142,13 @@ the figure, Front of the queue is on the left and Rear on the right.
   </centre>
 </Figure>
 
-:::tip[Now you know]
+<Know title="Now you know">
 
 While using a list to implement queue, we can designate either end of the list
 as Front or Rear of the queue. But we have to fix either of the ends index[0] or
 index[n-1] as Front and fix the opposite end as Rear.
 
-:::
+</Know>
 
 ## 4.3 Implementation of Queue using Python ||section-4.3||
 
@@ -238,13 +238,13 @@ the program, following functions need to be defined:
 
 </Steps>
 
-:::tip[Now you know]
+<Know title="Now you know">
 
 While choosing the name of above functions general naming convention w.r.t. the
 queue is followed. As these are user defined functions any other name can also
 be used.
 
-:::
+</Know>
 
 Let us consider the example of a queue that people form while waiting at a bank
 cash counter. Usually, following are the events that occur in queue:

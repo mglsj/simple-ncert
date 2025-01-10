@@ -3,30 +3,46 @@
 	"type": "module",
 	"version": "0.0.1",
 	"scripts": {
+		"setup": "pnpm install && pnpx playwright install --with-deps chromium",
 		"dev": "astro dev",
 		"start": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
-		"astro": "astro",
-		"postinstall": "cd ./packages/starlight-mermaid && pnpm install"
+		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/starlight": "^0.30.3",
-		"@expressive-code/plugin-collapsible-sections": "^0.38.3",
+		"@astrojs/starlight": "^0.30.5",
 		"@fontsource-variable/noto-sans": "^5.1.1",
 		"@fontsource-variable/noto-sans-devanagari": "^5.1.1",
 		"@fontsource-variable/noto-serif": "^5.1.1",
 		"@fontsource-variable/noto-serif-devanagari": "^5.1.1",
-		"astro": "^5.1.2",
+		"astro": "^5.1.4",
+		"hast-util-to-dom": "^4.0.0",
+		"hast-util-to-text": "^4.0.2",
+		"hastscript": "^9.0.0",
+		"mermaid-isomorphic": "^3.0.0",
+		"mini-svg-data-uri": "^1.4.4",
+		"pyodide": "^0.27.0",
 		"rehype-katex": "^7.0.1",
 		"remark-custom-header-id": "^1.0.0",
 		"remark-math": "^6.0.0",
 		"sharp": "^0.33.5",
+		"space-separated-tokens": "^2.0.2",
 		"starlight-image-zoom": "^0.10.1",
-		"starlight-sidebar-topics-dropdown": "^0.3.0"
+		"starlight-sidebar-topics-dropdown": "^0.3.0",
+		"unified": "^11.0.5",
+		"unist-util-visit-parents": "^6.0.1",
+		"vite-plugin-static-copy": "^2.2.0"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^1.9.4"
+		"@biomejs/biome": "^1.9.4",
+		"@types/hast": "^3.0.4",
+		"@types/node": "^22.10.5",
+		"playwright": "^1.49.1",
+		"typescript": "^5.7.3"
+	},
+	"peerDependencies": {
+		"playwright": "1"
 	},
 	"packageManager": "pnpm@7.5.0"
 }

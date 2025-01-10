@@ -4,7 +4,7 @@ source: kecs104
 ---
 import { Steps } from '@astrojs/starlight/components';   
 
-import { Card, Quote, Figure, Activity, Table, Summary, Example , Think} from "@/components/markdown";
+import { Card, Quote, Figure, Activity, Table, Summary, Example, Think, Know} from "@/components/markdown";
 
 <Quote author="A. Aho and J. Ullman">
   "Computer Science is a science of abstraction -creating the right model for a
@@ -158,13 +158,13 @@ origin of the term Algorithm is traced to Persian astronomer and
 
 </Activity>
 
-:::tip[Now you know]
+<Know title="Now you know">
 
 The origin of the term Algorithm is traced to Persian astronomer and
 mathematician, Abu Abdullah Muhammad ibn Musa Al-Khwarizmi (c. 850 AD) as the
 Latin translation of Al- Khwarizmi was called 'Algorithmi'.
 
-:::
+</Know>
 
 ## 4.3 Algorithm ||section-4.3||
 
@@ -1074,7 +1074,7 @@ as it checks for all the numbers as long as the divisor is less than the number.
 If the given number is large, this method will take more time to give the
 output.
 
-:::tip[Now you know]
+<Know title="Now you know">
 
 The spirit of problem solving by decomposition is to 'divide and conquer'. In
 words of Howard Raffa, a famous mathematician:
@@ -1082,7 +1082,7 @@ words of Howard Raffa, a famous mathematician:
 _"Decompose a complex problem into simpler problems get one's thinking straight
 in these simpler problems, put these analyses together with logical glue"_
 
-:::
+</Know>
 
 Algorithm (ii) is more efficient than (i) as it checks for divisibility till
 half the number, and thus it reduces the time for computation of the prime

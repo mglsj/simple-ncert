@@ -1,11 +1,19 @@
 ---
 title: 2. Data Handling Using Pandas - I
 source: leip102
+sidebar:
+  badge:
+    text: py
+    variant: note
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 import { Example, Card, Figure, Quote, Activity, Table, Summary, Think, Collapse } from "@/components/markdown";
+
+import Pyodide from "@/components/code/Pyodide.astro"
+
+<Pyodide/>
 
 <Quote author="W. Cunningham">
 "If you don't think carefully, you might believe that programming is just typing
@@ -116,7 +124,7 @@ or use series, we first need to import the Pandas library.
 A Series can be created using scalar values as shown in the example below:
 
 <Card>
-```py
+```py exec
 # import Pandas with alias pd
 import pandas as pd
 
@@ -142,7 +150,7 @@ We can also assign user-defined labels to the index and use them to access
 elements of a Series. The following example has a numeric index in random order.
 
 <Card>
-```py
+```py exec
 series2 = pd.Series(
     ["Kavi", "Shyam", "Ravi"],
     index=[3, 5, 1],
@@ -167,7 +175,7 @@ Here, data values Kavi, Shyam and Ravi have index values 3, 5 and 1,
 respectively. We can also use letters or strings as indices, for example:
 
 <Card>
-```py
+```py exec
 series2 = pd.Series(
     [2, 3, 4],
     index=["Feb", "Mar", "Apr"],
@@ -195,7 +203,7 @@ would happen if we give any other name?
 We can create a series from a one-dimensional (1D) NumPy array, as shown below:
 
 <Card>
-```py
+```py exec
 # import NumPy with alias np
 import numpy as np
 import pandas as pd
@@ -216,7 +224,7 @@ dtype: int64
 The following example shows that we can use letters or strings as indices:
 
 <Card>
-```py
+```py exec
 series4 = pd.Series(
     array1,
     index=["Jan", "Feb", "Mar", "Apr"],
@@ -239,7 +247,7 @@ example shown below, array1 contains 4 values whereas there are only 3 indices,
 hence ValueError is displayed.
 
 <Card>
-```py
+```py exec
 series5 = pd.Series(
     array1,
     index=["Jan", "Feb", "Mar"],
@@ -285,7 +293,7 @@ index for a Series, as shown in the following example. Here, keys of the
 dictionary dict1 become indices in the series.
 
 <Card>
-```py
+```py exec
 dict1 = {
     "India": "NewDelhi",
     "UK": "London",
@@ -301,7 +309,7 @@ print(dict1)
 </Card>
 
 <Card>
-```py
+```py exec
 series8 = pd.Series(dict1)
 
 # Display the series
@@ -337,7 +345,7 @@ index.
   from a Series.
 
 <Card>
-```py
+```py exec
 seriesNum = pd.Series([10, 20, 30])
 seriesNum[2]
 ```
@@ -353,7 +361,7 @@ from a Series, as shown below. Here, the value 3 is displayed for the labelled
 index Mar.
 
 <Card>
-```py
+```py exec
 seriesMnths = pd.Series(
     [2, 3, 4],
     index=["Feb", "Mar", "Apr"],
@@ -369,7 +377,7 @@ In the following example, value NewDelhi is displayed for the labelled index
 India.
 
 <Card>
-```py
+```py exec
 seriesCapCntry = pd.Series(
     ["NewDelhi", "WashingtonDC", "London", "Paris"],
     index=["India", "USA", "UK", "France"],
@@ -384,7 +392,7 @@ seriesCapCntry["India"]
 We can also access an element of the series using the positional index:
 
 <Card>
-```py
+```py exec
 seriesCapCntry[1]
 ```
 ```ansi
@@ -396,7 +404,7 @@ More than one element of a series can be accessed using a list of positional
 integers or a list of index labels as shown in the following examples:
 
 <Card>
-```py
+```py exec
 seriesCapCntry[[3, 2]]
 ```
 ```ansi
@@ -407,7 +415,7 @@ dtype: object
 </Card>
 
 <Card>
-```py
+```py exec
 seriesCapCntry[["UK", "USA"]]
 ```
 ```ansi
@@ -421,7 +429,7 @@ The index values associated with the series can be altered by assigning new
 index values as shown in the following example:
 
 <Card>
-```py
+```py exec
 seriesCapCntry.index = [10, 20, 30, 40]
 seriesCapCntry
 ```
@@ -445,7 +453,7 @@ of data values of the series are extracted. Consider the following series
 seriesCapCntry:
 
 <Card>
-```py
+```py exec
 seriesCapCntry = pd.Series(
     ["NewDelhi", "WashingtonDC", "London", "Paris"],
     index=["India", "USA", "UK", "France"],
@@ -466,7 +474,7 @@ displayed. If labelled indexes are used for slicing, then value at the end index
 label is also included in the output, for example:
 
 <Card>
-```py
+```py exec
 seriesCapCntry["USA":"France"]
 ```
 ```ansi
@@ -480,7 +488,7 @@ dtype: object
 We can also get the series in reverse order, for example:
 
 <Card>
-```py
+```py exec
 seriesCapCntry[::-1]
 ```
 ```ansi
@@ -496,7 +504,7 @@ We can also use slicing to modify the values of series elements as shown in the
 following example:
 
 <Card>
-```py
+```py exec
 import numpy as np
 
 seriesAlph = pd.Series(
@@ -517,7 +525,7 @@ dtype: int64
 </Card>
 
 <Card>
-```py
+```py exec
 seriesAlph[1:3] = 50
 seriesAlph
 ```
@@ -537,7 +545,7 @@ value at the end index position. But, it changes the value at the end index
 label when slicing is done using labels.
 
 <Card>
-```py
+```py exec
 seriesAlph["c":"e"] = 500
 seriesAlph
 ```
@@ -559,7 +567,7 @@ property with the series name. [Table 2.1](#table-2.1) lists some attributes of 
 usingseriesCapCntry as an example:
 
 <Card>
-```py
+```py exec
 seriesCapCntry
 ```
 ```ansi
@@ -592,7 +600,7 @@ Example
 assigns a name to the Series
 </td>
 <td>
-```py
+```py exec
 seriesCapCntry.name = "Capitals"
 print(seriesCapCntry)
 ```
@@ -614,7 +622,7 @@ assigns a name to the index
 of the series
 </td>
 <td>
-```py
+```py exec
 seriesCapCntry.index.name = "Countries"
 print(seriesCapCntry)
 ```
@@ -637,7 +645,7 @@ prints a list of the values in
 the series
 </td>
 <td>
-```py
+```py exec
 print(seriesCapCntry.values)
 ```
 ```
@@ -654,7 +662,7 @@ prints the number of values
 in the Series object
 </td>
 <td>
-```py
+```py exec
 print(seriesCapCntry.size)
 ```
 ```
@@ -671,13 +679,14 @@ prints True if the series is
 empty, and False otherwise
 </td>
 <td>
-```py
+```py exec
 seriesCapCntry.empty
 ```
 ```
 False
 ```
-```py
+
+```py exec
 # Create an empty series 
 seriesEmpt=pd.Series() 
 seriesEmpt.empty
@@ -696,7 +705,7 @@ In this section, we are going to discuss some of the methods that are available
 for Pandas Series. Let us consider the following series:
 
 <Card>
-```py
+```py exec
 seriesTenTwenty = pd.Series(np.arange(10, 20, 1))
 print(seriesTenTwenty)
 ```
@@ -752,7 +761,7 @@ Returns the first n members of the series. If the value for n is not passed, the
 n takes 5 and the first five members are displayed.
 </td>
 <td>
-```py
+```py exec
 seriesTenTwenty.head(2)
 ```
 ```
@@ -760,7 +769,7 @@ seriesTenTwenty.head(2)
 1    11
 dtype: int64
 ```
-```py
+```py exec
 seriesTenTwenty.head()
 ```
 ```
@@ -781,7 +790,7 @@ dtype: int64
 Returns the number of non-NaN values in the Series
 </td>
 <td>
-```py
+```py exec
 seriesTenTwenty.count()
 ```
 ```
@@ -798,7 +807,7 @@ Returns the last n members of the series. If the value for n is not passed, then
 n takes 5 and the last five members are displayed.
 </td>
 <td>
-```py
+```py exec
 seriesTenTwenty.tail(2)
 ```
 ```
@@ -806,7 +815,7 @@ seriesTenTwenty.tail(2)
 9    19
 dtype: int64
 ```
-```py
+```py exec
 seriesTenTwenty.tail() 
 ```
 ```
@@ -836,7 +845,7 @@ Consider the following series: seriesA and seriesB for understanding
 mathematical operations on series in Pandas.
 
 <Card>
-```py
+```py exec
 seriesA = pd.Series(
     [1, 2, 3, 4, 5],
     index=["a", "b", "c", "d", "e"],
@@ -854,7 +863,7 @@ dtype: int64
 </Card>
 
 <Card>
-```py
+```py exec
 seriesB = pd.Series(
     [10, 20, -10, -50, 100],
     index=["z", "y", "a", "c", "e"],
@@ -879,7 +888,7 @@ that were matched while performing the addition. Note here that the output of
 addition is NaN if one of the elements or both elements have no value.
 
 <Card>
-```py
+```py exec
 seriesA + seriesB
 ```
 ```ansi
@@ -914,7 +923,7 @@ of the fill value for any element in seriesA or seriesB that might be missing,
 as shown in [Table 2.3](#table-2.3).
 
 <Card>
-```py
+```py exec
 seriesA.add(seriesB, fill_value=0)
 ```
 ```ansi
@@ -965,7 +974,7 @@ appropriate method.
 Again, it can be done in two different ways, as shown in the following examples:
 
 <Card>
-```py
+```py exec
 # using subtraction operator
 seriesA - seriesB 
 ```
@@ -985,7 +994,7 @@ Let us now replace the missing values with 1000 before subtracting seriesB from
 seriesA using explicit subtraction method `sub()`.
 
 <Card>
-```py
+```py exec
 # using fill value 1000 while making 
 # explicit call of the method
 seriesA.sub(seriesB, fill_value=1000)
@@ -1007,7 +1016,7 @@ dtype: float64
 Again, it can be done in two different ways, as shown in the following examples:
 
 <Card>
-```py
+```py exec
 # using multiplication operator
 seriesA * seriesB 
 ```
@@ -1027,7 +1036,7 @@ Let us now replace the missing values with 0 before multiplication of seriesB
 with seriesA using explicit multiplication method `mul()`.
 
 <Card>
-```py
+```py exec
 # using fill value 0 while making 
 # explicit call of the method
 seriesA.mul(seriesB, fill_value=0) 
@@ -1063,7 +1072,7 @@ output in place of NaN.
 Again, it can be done in two different ways, as shown in the following examples:
 
 <Card>
-```py
+```py exec
 # using division operator
 seriesA / seriesB 
 ```
@@ -1083,7 +1092,7 @@ Let us now replace the missing values with 0 before dividing seriesA by seriesB
 using explicit division method `div()`.
 
 <Card>
-```py
+```py exec
 # using fill value 0 while making  
 # explicit call of the method
 seriesA.div(seriesB, fill_value=0)
@@ -1195,7 +1204,7 @@ this section.
 An empty DataFrame can be created as follows:
 
 <Card>
-```py
+```py exec
 import pandas as pd
 
 dFrameEmt = pd.DataFrame()
@@ -1219,7 +1228,7 @@ Consider the following three NumPy ndarrays. Let us create a simple DataFrame
 without any column labels, using a single ndarray:
 
 <Card>
-```py
+```py exec
 import numpy as np
 
 array1 = np.array([10, 20, 30])
@@ -1240,7 +1249,7 @@ We can create a DataFrame using more than one ndarrays, as shown in the
 following example:
 
 <Card>
-```py
+```py exec
 dFrame5 = pd.DataFrame(
     [array1, array3, array2],
     columns=["A", "B", "C", "D"],
@@ -1260,7 +1269,7 @@ dFrame5
 We can create DataFrame from a list of Dictionaries, for example:
 
 <Card>
-```py
+```py exec
 # Create list of dictionaries
 listDict = [
     {"a": 10, "b": 20},
@@ -1292,7 +1301,7 @@ following dictionary consisting of the keys 'State', 'GArea' (geographical area)
 and 'VDF' (very dense forest) and the corresponding values as list.
 
 <Card>
-```py
+```py exec
 dictForest = {
     "State": ["Assam", "Delhi", "Kerala"],
     "GArea": [78438, 1483, 38852],
@@ -1318,7 +1327,7 @@ assigning a particular sequence of the dictionary keys as columns parameter, for
 example:
 
 <Card>
-```py
+```py exec
 dFrameForest1 = pd.DataFrame(
     dictForest,
     columns=["State", "VDF", "GArea"],
@@ -1339,7 +1348,7 @@ In the output, VDF is now displayed as the middle column instead of last.
 
 Consider the following three Series:
 
-```py
+```py exec
 seriesA = pd.Series(
     [1, 2, 3, 4, 5],
     index=["a", "b", "c", "d", "e"],
@@ -1357,7 +1366,7 @@ seriesC = pd.Series(
 We can create a DataFrame using a single series as shown below:
 
 <Card>
-```py
+```py exec
 dFrame6 = pd.DataFrame(seriesA) 
 dFrame6
 ```
@@ -1377,7 +1386,7 @@ more than one series, we need to pass multiple series in the list as shown
 below:
 
 <Card>
-```py
+```py exec
 dFrame7 = pd.DataFrame([seriesA, seriesB]) 
 dFrame7
 ```
@@ -1393,7 +1402,7 @@ DataFrame object and each series becomes a row in the DataFrame. Now look at the
 following example:
 
 <Card>
-```py
+```py exec
 dFrame8 = pd.DataFrame([seriesA, seriesC]) 
 dFrame8
 ```
@@ -1416,7 +1425,7 @@ ResultSheet is a dictionary of series containing marks of 5 students in three
 subjects. The names of the students are the keys to the dictionary, and the
 index values of the series are the subject names as shown below:
 
-```py
+```py exec
 ResultSheet = {
     "Arnab": pd.Series(
         [90, 91, 97],
@@ -1442,7 +1451,7 @@ ResultSheet = {
 ```
 
 <Card>
-```py
+```py exec
 ResultDF = pd.DataFrame(ResultSheet)
 ResultDF
 ```
@@ -1462,7 +1471,7 @@ they the same?
 The following output shows that every column in the DataFrame is a Series:
 
 <Card>
-```py
+```py exec
 type(ResultDF.Arnab)
 ```
 ```ansi
@@ -1474,7 +1483,7 @@ When a DataFrame is created from a Dictionary of Series, the resulting index or
 row labels are a union of all series indexes used to create the DataFrame. For
 example:
 
-```py
+```py exec
 dictForUnion = {
     "Series1": pd.Series(
         [1, 2, 3, 4, 5],
@@ -1492,7 +1501,7 @@ dictForUnion = {
 ```
 
 <Card>
-```py
+```py exec
 dFrameUnion = pd.DataFrame(dictForUnion) 
 dFrameUnion
 ```
@@ -1520,7 +1529,7 @@ ResultDF defined earlier. In order to add a new column for another student
 'Preeti', we can write the following statement:
 
 <Card>
-```py
+```py exec
 ResultDF["Preeti"] = [89, 78, 76]
 ResultDF
 ```
@@ -1538,7 +1547,7 @@ assignment statement will update the values of the already existing column, for
 example:
 
 <Card>
-```py
+```py exec
 ResultDF["Ramit"] = [99, 98, 78]
 ResultDF
 ```
@@ -1555,7 +1564,7 @@ DataFrame. For example, the following statement sets marks=90 for all subjects
 for the column name 'Arnab':
 
 <Card>
-```py
+```py exec
 ResultDF["Arnab"] = 90
 ResultDF
 ```
@@ -1575,7 +1584,7 @@ Science and Hindi. Suppose, we need to add the marks for English subject in
 ResultDF, we can use the following statement:
 
 <Card>
-```py
+```py exec
 ResultDF
 ```
 ```ansi
@@ -1587,7 +1596,7 @@ Hindi       90     78        88    67       99      76
 </Card>
 
 <Card>
-```py
+```py exec
 ResultDF.loc["English"] = [85, 86, 83, 80, 90, 89]
 ResultDF
 ```
@@ -1605,7 +1614,7 @@ index value (label). In such case, a row with this index label will be updated,
 for example:
 
 <Card>
-```py
+```py exec
 ResultDF.loc["English"] = [95, 86, 95, 80, 95, 99]
 ResultDF
 ```
@@ -1623,7 +1632,7 @@ particular value. For example, the following statement sets marks in 'Maths' for
 all columns to 0:
 
 <Card>
-```py
+```py exec
 ResultDF.loc["Maths"] = 0
 ResultDF
 ```
@@ -1659,7 +1668,7 @@ Further, we can set all values of a DataFrame to a particular value, for
 example:
 
 <Card>
-```py
+```py exec
 # Set all values in ResultDF to 0
 ResultDF[:] = 0
 ResultDF
@@ -1684,7 +1693,7 @@ the value 1. Consider the following DataFrame:
 <Card>
 
 <Collapse title="Reset ResultDF">
-```py
+```py exec
 # Reset ResultDF
 ResultDF = pd.DataFrame(
     {
@@ -1712,7 +1721,7 @@ ResultDF = pd.DataFrame(
 )
 ```
 </Collapse>
-```py
+```py exec
 ResultDF
 ```
 ```ansi
@@ -1727,7 +1736,7 @@ English     95     86        95    80       95
 The following example shows how to delete the row with label 'Science':
 
 <Card>
-```py
+```py exec
 ResultDF = ResultDF.drop("Science", axis=0)
 ResultDF
 ```
@@ -1743,7 +1752,7 @@ The following example shows how to delete the columns having labels 'Samridhi',
 'Ramit' and 'Riya':
 
 <Card>
-```py
+```py exec
 ResultDF = ResultDF.drop(
     ["Samridhi", "Ramit", "Riya"],
     axis=1,
@@ -1766,7 +1775,7 @@ following DataFrame:
 <Card>
 
 <Collapse title="Reset ResultDF">
-```py
+```py exec
 # Reset ResultDF
 ResultDF = pd.DataFrame(
     {
@@ -1794,7 +1803,7 @@ ResultDF = pd.DataFrame(
 )
 ```
 </Collapse>
-```py
+```py exec
 ResultDF
 ```
 ```ansi
@@ -1810,7 +1819,7 @@ To remove the duplicate rows labelled 'Hindi', we need to write the following
 statement:
 
 <Card>
-```py
+```py exec
 ResultDF = ResultDF.drop("Hindi", axis=0)
 ResultDF
 ```
@@ -1830,7 +1839,7 @@ write the following statement:
 
 <Card>
 <Collapse title="Reset ResultDF">
-```py
+```py exec
 # Reset ResultDF
 ResultDF = pd.DataFrame(
     {
@@ -1858,7 +1867,7 @@ ResultDF = pd.DataFrame(
 )
 ```
 </Collapse>
-```py
+```py exec
 ResultDF
 ```
 ```ansi
@@ -1871,7 +1880,7 @@ Hindi       97     86        78    60       45
 </Card>
 
 <Card>
-```py
+```py exec
 ResultDF = ResultDF.rename(
         {
             "Maths": "Sub1",
@@ -1902,7 +1911,7 @@ changed. If no new label is passed corresponding to an existing label, the
 existing row label is left as it is, for example:
 
 <Card>
-```py
+```py exec
 ResultDF = ResultDF.rename(
     {
         "Maths": "Sub1",
@@ -1930,7 +1939,7 @@ labels:
 
 <Card>
 <Collapse title="Reset ResultDF">
-```py
+```py exec
 # Reset ResultDF
 ResultDF = pd.DataFrame(
     {
@@ -1958,7 +1967,7 @@ ResultDF = pd.DataFrame(
 )
 ```
 </Collapse>
-```py
+```py exec
 ResultDF = ResultDF.rename(
     {
         "Arnab": "Student1",
@@ -2002,13 +2011,13 @@ in the following example, a single row label returns the row as a Series.
 <Card>
 
 <Collapse title="Reset ResultDF">
-```py
+```py exec
 # Reset ResultDF
 ResultDF = pd.DataFrame(ResultSheet)
 ```
 </Collapse>
 
-```py
+```py exec
 ResultDF
 ```
 ```ansi
@@ -2020,7 +2029,7 @@ Hindi       97     96        88    67       99
 </Card>
 
 <Card>
-```py
+```py exec
 ResultDF.loc['Science']
 ```
 ```ansi
@@ -2038,7 +2047,7 @@ interpreted as a label of the index and not as an integer position along the
 index, for example:
 
 <Card>
-```py
+```py exec
 dFrame10Multiples = pd.DataFrame([10, 20, 30, 40, 50])
 dFrame10Multiples.loc[2]
 ```
@@ -2051,7 +2060,7 @@ Name: 2, dtype: int64
 When a single column label is passed, it returns the column as a Series.
 
 <Card>
-```py
+```py exec
 ResultDF.loc[:, "Arnab"]
 ```
 ```ansi
@@ -2066,8 +2075,8 @@ Also, we can obtain the same result that is the marks of 'Arnab' in all the
 subjects by using the command:
 
 <Card>
-```py
-print(df["Arnab"])
+```py exec
+print(ResultDF["Arnab"])
 ```
 ```ansi
 Maths      90
@@ -2081,7 +2090,7 @@ To read more than one row from a DataFrame, a list of row labels is used as
 shown below. Note that using `[[]]` returns a DataFrame.
 
 <Card>
-```py
+```py exec
 ResultDF.loc[["Science", "Hindi"]]
 ```
 ```ansi
@@ -2102,7 +2111,7 @@ displays `True` or `False` depending on whether the data value satisfies the giv
 condition or not.
 
 <Card>
-```py
+```py exec
 ResultDF.loc["Maths"] > 90
 ```
 ```
@@ -2118,7 +2127,7 @@ Name: Maths, dtype: bool
 To check in which subjects 'Arnab' has scored more than 90, we can write:
 
 <Card>
-```py
+```py exec
 ResultDF.loc[:, "Arnab"] > 90
 ```
 ```ansi
@@ -2135,7 +2144,7 @@ We can use slicing to select a subset of rows and/or columns from a DataFrame.
 To retrieve a set of rows, slicing can be used with row labels. For example:
 
 <Card>
-```py
+```py exec
 ResultDF.loc["Maths":"Science"]
 ```
 ```ansi
@@ -2160,7 +2169,7 @@ example, the following statement displays the rows with label Maths and Science,
 and column with label Arnab:
 
 <Card>
-```py
+```py exec
 ResultDF.loc["Maths":"Science", "Arnab"]
 ```
 ```ansi
@@ -2174,7 +2183,7 @@ We may use a slice of labels with a slice of column names to access values of
 those rows and columns:
 
 <Card>
-```py
+```py exec
 ResultDF.loc["Maths":"Science", "Arnab":"Samridhi"]
 ```
 ```
@@ -2188,7 +2197,7 @@ Alternatively, we may use a slice of labels with a list of column names to
 access values of those rows and columns:
 
 <Card>
-```py
+```py exec
 ResultDF.loc["Maths":"Science", ["Arnab", "Samridhi"]]
 ```
 ```ansi
@@ -2210,7 +2219,7 @@ omitted in the output. For example, in the following statement, row having index
 as Science is omitted:
 
 <Card>
-```py
+```py exec
 ResultDF.loc[[True, False, True]]
 ```
 ```ansi
@@ -2240,7 +2249,7 @@ consider the two DataFrames— dFrame1 and dFrame2described below. Let us use th
 `append()` method to append dFrame2 to dFrame1:
 
 <Card>
-```py
+```py exec
 dFrame1 = pd.DataFrame(
     [[1, 2, 3], [4, 5], [6]],
     columns=["C1", "C2", "C3"],
@@ -2257,7 +2266,7 @@ R3   6  NaN  NaN
 </Card>
 
 <Card>
-```py
+```py exec
 dFrame2 = pd.DataFrame(
     [[10, 20], [30], [40, 50]],
     columns=["C2", "C5"],
@@ -2283,7 +2292,7 @@ dFrame1
 ```
 </TabItem>
 <TabItem label="Concat (pd >= 2.0)">
-```py
+```py exec
 dFrame1 = pd.concat([dFrame1, dFrame2])
 dFrame1
 ```
@@ -2309,7 +2318,7 @@ parameter sort = False.
 <Card>
 
 <Collapse title="Reset dFrame1 and dFrame2">
-```py
+```py exec
 # Reset dFrame1 and dFrame2
 dFrame1 = pd.DataFrame(
     [[1, 2, 3], [4, 5], [6]],
@@ -2333,7 +2342,7 @@ dFrame2
 ```
 </TabItem>
 <TabItem label="Concat (pd >= 2.0)">
-```py
+```py exec
 # concatenate dFrame1 to dFrame2
 dFrame2 = pd.concat([dFrame2, dFrame1], sort=True)
 dFrame2
@@ -2355,7 +2364,7 @@ R3  6.0   NaN  NaN   NaN
 <Card>
 
 <Collapse title="Reset dFrame1 and dFrame2">
-```py
+```py exec
 # Reset dFrame1 and dFrame2
 dFrame1 = pd.DataFrame(
     [[1, 2, 3], [4, 5], [6]],
@@ -2379,7 +2388,7 @@ dFrame2
 ```
 </TabItem>
 <TabItem label="Concat (pd >= 2.0)">
-```py
+```py exec
 # concatenate dFrame1 to dFrame2 with sort=False
 dFrame2 = pd.concat([dFrame2, dFrame1], sort=False)
 dFrame2
@@ -2409,7 +2418,7 @@ want to use row index labels. By default, ignore_index = False.
 <Card>
 
 <Collapse title="Reset dFrame1 and dFrame2">
-```py
+```py exec
 # Reset dFrame1 and dFrame2
 dFrame1 = pd.DataFrame(
     [[1, 2, 3], [4, 5], [6]],
@@ -2432,7 +2441,7 @@ dFrame1
 ```
 </TabItem>
 <TabItem label="Concat (pd >= 2.0)">
-```py
+```py exec
 dFrame1 = pd.concat([dFrame1, dFrame2], ignore_index=True)
 dFrame1
 ```
@@ -2471,7 +2480,7 @@ the area under moderately dense forests, and the area under open forests (all in
 sq km), in three States of India -Assam, Delhi and Kerala are as shown in the
 following DataFrame ForestAreaDF:
 
-```py
+```py exec
 ForestArea = {
     "Assam": pd.Series(
         [78438, 2797, 10192, 15116],
@@ -2489,7 +2498,7 @@ ForestArea = {
 ```
 
 <Card>
-```py
+```py exec
 ForestAreaDF = pd.DataFrame(ForestArea)
 ForestAreaDF
 ```
@@ -2523,7 +2532,7 @@ Example
 to display row labels
 </td>
 <td>
-```py
+```py exec
 ForestAreaDF.index
 ```
 ```
@@ -2539,7 +2548,7 @@ Index(['GeoArea', 'VeryDense', 'ModeratelyDense', 'OpenForest'], dtype='object')
 to display column labels
 </td>
 <td>
-```py
+```py exec
 ForestAreaDF.columns
 ```
 ```
@@ -2555,7 +2564,7 @@ Index(['Assam', 'Kerala', 'Delhi'], dtype='object')
 to display data type of each column in the DataFrame
 </td>
 <td>
-```py
+```py exec
 ForestAreaDF.dtypes
 ```
 ```
@@ -2575,7 +2584,7 @@ to display a NumPy ndarray having all the values in the DataFrame,
 without the axes labels
 </td>
 <td>
-```py
+```py exec
 ForestAreaDF.values
 ```
 ```
@@ -2594,7 +2603,7 @@ array([[7.8438e+04, 3.8852e+04, 1.4830e+03],
 to display a tuple representing the dimensionality of the DataFrame
 </td>
 <td>
-```py
+```py exec
 ForestAreaDF.shape
 ```
 ```
@@ -2611,7 +2620,7 @@ It means ForestAreaDF has 4 rows and 3 columns.
 to display a tuple representing the dimensionality of the DataFrame
 </td>
 <td>
-```py
+```py exec
 ForestAreaDF.size
 ```
 ```
@@ -2631,7 +2640,7 @@ Means, row indices and column labels of the DataFrame
 replace each other's position
 </td>
 <td>
-```py
+```py exec
 ForestAreaDF.T
 ```
 ```
@@ -2650,7 +2659,7 @@ Delhi    1483.0       6.72            56.24      129.45
 to display the first n rows in the DataFrame 
 </td>
 <td>
-```py
+```py exec
 ForestAreaDF.head(2)
 ```
 ```
@@ -2671,7 +2680,7 @@ the first 5 rows of the DataFrame.
 to display the last n rows in the DataFrame
 </td>
 <td>
-```py
+```py exec
 ForestAreaDF.tail(2)
 ```
 ```
@@ -2691,13 +2700,13 @@ last 5 rows of the DataFrame.
 to returns the value True if DataFrame is empty and False otherwise
 </td>
 <td>
-```py
+```py exec
 ForestAreaDF.empty
 ```
 ```
 False
 ```
-```py
+```py exec
 # Create an empty dataFrame
 df = pd.DataFrame()
 df.empty
@@ -2744,7 +2753,27 @@ We can load the data from the ResultData.csv file into a DataFrame, say marks
 using Pandas `read_csv()` function as shown below:
 
 <Card>
-```py
+
+<Collapse title="Create CSV File">
+```py exec
+# Create NCERT Folder if not exists
+from pathlib import Path
+Path("C:/NCERT").mkdir(parents=True, exist_ok=True)
+
+# Create CSV File
+data = """RollNo, Name, Eco, Maths
+1, Arnab, 18, 57
+2, Kritika, 23, 45
+3, Divyam, 51, 37
+4, Vivaan, 40, 60
+5, Aaroosh, 18, 27"""
+
+with open("C:/NCERT/ResultData.csv", "w") as file:
+    file.write(data)
+```
+</Collapse>
+
+```py exec
 marks = pd.read_csv(
     "C:/NCERT/ResultData.csv",
     sep=",",
@@ -2777,9 +2806,9 @@ statement, names parameter is used to specify the labels for columns of the
 DataFrame marks1:
 
 <Card>
-```py
+```py exec
 marks1 = pd.read_csv(
-    "C:/NCERT/ResultData1.csv",
+    "C:/NCERT/ResultData.csv",
     sep=",",
     names=["RNo", "StudentName", "Sub1", "Sub2"],
 )
@@ -2798,12 +2827,12 @@ marks1
 
 ### 2.4.2 Exporting a DataFrame to a CSV file ||section-2.4.2||
 
-We can use the t`o_csv()` function to save a DataFrame to a text or csv file. For
+We can use the `to_csv()` function to save a DataFrame to a text or csv file. For
 example, to save the DataFrame ResultDF created in the previous section; 
 we can use the following statement:
 
 <Card>
-```py
+```py exec
 ResultDF
 ```
 ```ansi
@@ -2814,12 +2843,19 @@ Hindi       97     96        88    67       99
 ```
 </Card>
 
-```py
+```py exec
 ResultDF.to_csv(
     path_or_buf="C:/NCERT/resultout.csv",
     sep=",",
 )
 ```
+
+<Collapse title="View resultout.csv">
+```py exec
+with open("C:/NCERT/resultout.csv", "r") as file:
+    print(file.read())
+```
+</Collapse>
 
 This creates a file by the name `resultout.csv` in the folder `C:/NCERT` on the hard
 disk. When we open this file in any text editor or a spreadsheet, we will find
@@ -2830,7 +2866,7 @@ In case we do not want the column names to be saved to the file we may use the
 parameter header=False. Another parameter index=False is used when we do not
 want the row labels to be written to the file on disk. For example:
 
-```py
+```py exec
 ResultDF.to_csv(
     "C:/NCERT/resultonly.txt",
     sep="@",
@@ -2838,6 +2874,13 @@ ResultDF.to_csv(
     index=False,
 )
 ```
+
+<Collapse title="View resultonly.txt">
+```py exec
+with open("C:/NCERT/resultonly.txt", "r") as file:
+    print(file.read())
+```
+</Collapse>
 
 If we open the file `resultonly.txt`, we will find the following contents:
 

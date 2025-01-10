@@ -1,0 +1,15 @@
+---
+import { PYTHON_TAG_NAME } from "./helpers.ts";
+
+interface Props {
+	code: string;
+}
+
+const { code } = Astro.props;
+---
+
+<PYTHON_TAG_NAME>
+	<slot />
+	<snippet>{code}</snippet>
+	<output> </output>
+</PYTHON_TAG_NAME>

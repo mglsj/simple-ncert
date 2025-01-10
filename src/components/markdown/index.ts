@@ -10,6 +10,7 @@ import Summary from "./Summary.astro";
 import Definition from "./Definition.astro";
 import Think from "./Think.astro";
 import Collapse from "./Collapse.astro";
+import Know from "./Know.astro";
 
 export {
 	Figure,
@@ -24,4 +25,5 @@ export {
 	Definition,
 	Think,
 	Collapse,
+	Know,
 };

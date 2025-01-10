@@ -1,0 +1,378 @@
+---
+import Box from "@/components/partials/Box.astro";
+---
+
+<Box title="Interactive Python" variant="minimal" icon="seti:python">
+	<p>
+		This page uses Pyodide. That means all the Python code you see here is
+		executed in your browser using WebAssembly. You can run the code
+		snippets by clicking the "Run Code" button. If you want to run all the
+		code snippets at once, click the "Run All" button.
+	</p>
+	<button class="run-all not-content">
+		<p>Run All</p>
+	</button>
+</Box>
+
+<style>
+	.run-all {
+		background-color: transparent;
+		align-items: center;
+		border: 1px solid transparent;
+		border-radius: 999rem;
+		display: inline-flex;
+		font-size: var(--sl-text-sm);
+		gap: 0.5em;
+		line-height: 1.1875;
+		outline-offset: 0.25rem;
+		padding: 0.4375rem 1.125rem;
+		text-decoration: none;
+		border-color: inherit;
+		color: var(--sl-color-white);
+	}
+
+	.run-all:hover {
+		cursor: pointer;
+	}
+
+	@media (min-width: 50rem) {
+		.run-all {
+			font-size: var(--sl-text-base);
+			padding: 0.9375rem 1.25rem;
+		}
+	}
+
+	:global(.sl-markdown-content) .run-all {
+		margin-inline-end: 1rem;
+	}
+	:global(.sl-markdown-content) .run-all:not(:where(p *)) {
+		margin-block: 1rem;
+	}
+</style>
+
+<div id="pyodide-loading">
+	<span class="pyodide-loading-spinner"></span>
+	<p>Loading Pyodide</p>
+</div>
+
+<style is:global>
+	.pyodide-loading-spinner {
+		width: 20px;
+		height: 20px;
+		border: 2px solid #fff;
+		border-bottom-color: transparent;
+		border-radius: 50%;
+		display: inline-block;
+		box-sizing: border-box;
+		animation: rotation 1s linear infinite;
+	}
+
+	@keyframes rotation {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	#pyodide-loading {
+		z-index: 999;
+		position: fixed;
+		bottom: 1rem;
+		right: 1rem;
+		padding: 1rem;
+		border-radius: 0.25rem;
+		background-color: #333;
+		color: white;
+		user-select: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		p {
+			margin: 0;
+			margin-left: 1rem;
+		}
+	}
+
+	.expressive-code .run {
+		inset-inline-end: calc(
+			var(--ec-brdWd) + var(--ec-uiPadInl) / 2 + 40px
+		) !important;
+	}
+
+	.expressive-code .run button::after {
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='%23000000'%3E%3Cpath d='M336-216v-528l408 264-408 264Zm73-265Zm-1 133 204-132-204-132v264Z'/%3E%3C/svg%3E") !important;
+	}
+</style>
+
+<script>
+	import await_future_py from "./await_future.py?raw";
+	import { version as PYODIDE_VERSION } from "pyodide/package.json";
+	import { loadPyodide, type PyodideInterface } from "pyodide";
+	import type {
+		PyProxy,
+		PyDict,
+		PyAwaitable,
+		PyProxyWithGet,
+		PyCallable,
+	} from "pyodide/ffi";
+
+	import { PYODIDE_PACKAGES, PYTHON_TAG_NAME } from "./helpers.ts";
+
+	type PyConsole = {
+		stdout_callback: (s: string) => void;
+		stderr_callback: (s: string) => void;
+		push: (line: string) => PyProxyWithGet;
+		// custom
+		await_future: PyAwaitable & PyCallable;
+	};
+
+	declare global {
+		interface Window {
+			pyodide: PyodideInterface;
+			pyConsole: PyConsole;
+		}
+	}
+
+	function resetPyodideStdin(pyodide: PyodideInterface) {
+		pyodide.setStdin({ stdin: () => prompt() || "" });
+	}
+
+	async function initializePyodide(): Promise<PyodideInterface> {
+		const pyodide = await loadPyodide({
+			indexURL: `https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/`,
+			packages: PYODIDE_PACKAGES,
+		});
+		resetPyodideStdin(pyodide);
+		// patch http module
+		pyodide.runPython(`
+import pyodide_http
+pyodide_http.patch_all()`);
+		return pyodide;
+	}
+
+	function resetPyConsoleCallbacks(pyConsole: PyConsole) {
+		pyConsole.stdout_callback = (s: string) => {
+			console.log("Pyodide: " + s.trimEnd());
+		};
+		pyConsole.stderr_callback = (s: string) => {
+			console.error("Pyodide: " + s.trimEnd());
+		};
+	}
+
+	async function initializePyConsole(
+		pyodide: PyodideInterface,
+	): Promise<PyConsole> {
+		const { PyodideConsole } = pyodide.pyimport("pyodide.console") as {
+			PyodideConsole: (arg0: PyProxy) => PyConsole;
+		};
+
+		const pyConsole = PyodideConsole(pyodide.globals);
+		resetPyConsoleCallbacks(pyConsole);
+
+		const namespace: PyDict = pyodide.globals.get("dict")();
+		pyConsole.await_future = pyodide.runPython(await_future_py, {
+			globals: namespace,
+		}) as PyAwaitable & PyCallable;
+		namespace.destroy();
+
+		return pyConsole;
+	}
+
+	async function executeLine(
+		pyConsole: PyConsole,
+		pyodide: PyodideInterface,
+		line: string,
+	): Promise<{
+		std_out: string;
+		std_err: string;
+	}> {
+		let std_out = "";
+		let std_err = "";
+		let last_output = "";
+
+		pyConsole.stdout_callback = (s: string) => {
+			std_out += s;
+			last_output = s.trimEnd();
+		};
+		pyConsole.stderr_callback = (s: string) => {
+			std_err += s;
+		};
+		pyodide.setStdin({
+			stdin: () => {
+				const input = prompt(last_output);
+				std_out += input + "\n";
+				return input;
+			},
+		});
+
+		execute: {
+			const consoleFuture = pyConsole.push(line);
+
+			switch (consoleFuture.syntax_check) {
+				case "syntax-error":
+					std_err += `Syntax Error in line: ${line}\n${consoleFuture.error}`;
+					break execute;
+				case "incomplete":
+					break execute;
+				case "complete":
+					break;
+				default:
+					throw new Error(
+						`Unexpected PyConsole.future type ${consoleFuture.syntax_check}`,
+					);
+			}
+
+			const wrapped = pyConsole.await_future(consoleFuture);
+			try {
+				const [value] = await wrapped;
+
+				if (value !== undefined) {
+					std_out += value.toString() + "\n";
+				}
+				if (value instanceof window.pyodide.ffi.PyProxy) {
+					value.destroy();
+				}
+			} catch (e) {
+				if (e?.constructor.name === "PythonError") {
+					const message = consoleFuture.formatted_error || e.message;
+					std_err += message;
+				} else {
+					throw e;
+				}
+			} finally {
+				consoleFuture.destroy();
+				wrapped.destroy();
+			}
+		}
+		resetPyConsoleCallbacks(pyConsole);
+		resetPyodideStdin(pyodide);
+		return { std_out, std_err };
+	}
+
+	const execPyContainers = document.querySelectorAll(PYTHON_TAG_NAME);
+
+	for (const container of execPyContainers) {
+		const figureConatiner = container.querySelector("figure");
+
+		const runButton = document.createElement("button") as HTMLButtonElement;
+		runButton.title = "Run Code";
+		runButton.innerHTML = "<div></div>";
+		runButton.onclick = () => {
+			if (!window.pyConsole) {
+				console.error("PyConsole not initialized");
+				return;
+			}
+			runSnippet(container, window.pyConsole, window.pyodide);
+		};
+		runButton.dataset.copied = "Executed";
+		runButton.dataset.code = "";
+
+		const runButtonContainer = document.createElement("div");
+		runButtonContainer.classList.add("copy", "run");
+		runButtonContainer.appendChild(runButton);
+
+		figureConatiner?.appendChild(runButtonContainer);
+	}
+
+	async function runSnippet(
+		container: Element,
+		pyConsole: PyConsole,
+		pyodide: PyodideInterface,
+	) {
+		const snippet = container.querySelector("snippet");
+
+		const outputContainer = container.querySelector("output");
+		outputContainer.innerHTML = "";
+
+		const outputElement = document.createElement("pre");
+		outputElement.textContent = "Running...";
+		outputContainer?.appendChild(outputElement);
+
+		let anyOutput = false;
+
+		// set matplotlib target
+		document.pyodideMplTarget = outputElement;
+
+		const lines: string[] = [
+			...snippet.textContent.trim().split("\n"),
+			"\n",
+		];
+
+		for (const line of lines) {
+			const { std_out, std_err } = await executeLine(
+				pyConsole,
+				pyodide,
+				line,
+			);
+			if (std_out) {
+				if (!anyOutput) {
+					outputElement.textContent = "";
+					anyOutput = true;
+				}
+				outputElement.textContent += std_out;
+			}
+			if (std_err) {
+				if (!anyOutput) {
+					outputElement.textContent = "";
+					anyOutput = true;
+				}
+				outputElement.textContent += std_err;
+			}
+		}
+
+		if (!anyOutput) {
+			outputElement.textContent = "[Executed without output]";
+		}
+
+		// reset matplotlib target
+		document.pyodideMplTarget = null;
+	}
+
+	async function runAllSnippets(
+		pyConsole: PyConsole,
+		pyodide: PyodideInterface,
+		follow: boolean = false,
+	) {
+		for (const container of execPyContainers) {
+			const outputContainer = container.querySelector("output");
+			outputContainer.innerHTML = "<pre>Waiting...</pre>";
+		}
+
+		for (const container of execPyContainers) {
+			if (follow) {
+				await new Promise((resolve) => setTimeout(resolve, 500));
+				container.scrollIntoView({ behavior: "smooth" });
+				await new Promise((resolve) => setTimeout(resolve, 200));
+			}
+			await runSnippet(container, pyConsole, pyodide);
+		}
+	}
+
+	const runAllBtn = document.querySelector(".run-all");
+	runAllBtn?.addEventListener("click", async () => {
+		if (!window.pyConsole) {
+			console.error("PyConsole not initialized");
+			return;
+		}
+		await runAllSnippets(window.pyConsole, window.pyodide);
+	});
+
+	const pyodideLoadingMessageBox = document.getElementById("pyodide-loading");
+
+	document.addEventListener("DOMContentLoaded", async () => {
+		console.log("Initializing Pyodide and PyConsole");
+
+		window.pyodide = await initializePyodide();
+		console.log("Pyodide initialized");
+
+		window.pyConsole = await initializePyConsole(window.pyodide);
+		console.log("PyConsole initialized");
+
+		pyodideLoadingMessageBox.style.display = "none";
+
+		// runSnippets(window.pyConsole);
+	});
+</script>

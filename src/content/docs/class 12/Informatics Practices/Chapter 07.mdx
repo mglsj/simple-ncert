@@ -2,11 +2,19 @@
 title: 7. Project Based Learning
 source: leip107
 next: false
+sidebar:
+  badge:
+    text: py
+    variant: note
 ---
 
-import { Example, Figure, Quote, Card, Think, Table } from "@/components/markdown";
+import { Example, Figure, Quote, Card, Think, Table, Collapse } from "@/components/markdown";
 
 import { Steps } from '@astrojs/starlight/components'; 
+
+import Pyodide from "@/components/code/Pyodide.astro"
+
+<Pyodide />
 
 <Quote author="Gautam Buddha">
 "An idea that is developed and put into action is more important than idea that
@@ -301,8 +309,9 @@ well-crafted survey questionnaire can help in exploring and finding many facts.
 
 Open Government Data (OGD) Platform India www.data.gov.in is a platform for
 supporting open data initiative of Government of India. From this platform, let
-us consider the dataset “Special Tabulation on Adolescent and youth population
-classified by various parameters for India, States and Union Territories, 2011”.
+us consider the dataset [**"Special Tabulation on Adolescent and youth population
+classified by various parameters for India, States and Union Territories, 
+2011"**](https://www.data.gov.in/resource/special-tabulation-adolescent-and-youth-population-classified-various-parameters-india).
 The dataset was contributed by the Ministry of Home Affairs, Government of
 India, and released under National Data Sharing and Accessibility Policy
 (NDSAP). The dataset was published on portal on 07/09/2015.
@@ -415,7 +424,7 @@ Let us now write the code for the above identified steps:
 
 0. <Card title="Import required libraries.">
 
-   ```py
+   ```py exec
    import pandas as pd
    import matplotlib.pyplot as plt
    ```
@@ -424,7 +433,20 @@ Let us now write the code for the above identified steps:
 
 1. <Card title="Read the CSV file in a DataFrame.">
 
-   ```py
+   <Collapse title="Download CSV data">
+   ```py exec
+   import urllib.request
+
+   print("Downloading file:")
+
+   url = "/simple-ncert/res/PCA_AY_2011_Revised.csv"
+   urllib.request.urlretrieve(url, "PCA_AY_2011_Revised.csv")
+
+   print("File downloaded")
+   ```
+   </Collapse>
+
+   ```py exec
    # Add path to the CSV file in your computer
    data = pd.read_csv("PCA_AY_2011_Revised.csv")
    df = pd.DataFrame(data)
@@ -434,7 +456,7 @@ Let us now write the code for the above identified steps:
 
 2. <Card title="Check shape of the DataFrame.">
 
-   ```py
+   ```py exec
    print(df.shape)
    ```
    We get the output showing the dataset contains 12168 rows and 123 columns.
@@ -443,7 +465,7 @@ Let us now write the code for the above identified steps:
 
 3. <Card title="Display the columns.">
 
-   ```py
+   ```py exec
    print(df.columns.values)
    ```
 
@@ -474,24 +496,24 @@ Let us now write the code for the above identified steps:
    - b. Identify the number of rows required for plotting. In order to decide
      the number of rows, we needs to check the values in the column 'Area Name'
 
-   ```py
-   print(df['Area Name']
+   ```py exec
+   print(df['Area Name'])
    ```
 
    The following is the output:
 
    ```
-   0     INDIA
-   1     INDIA
-   2     INDIA
-   3     INDIA
-   4     INDIA
-   ...
-   12163 District - South Andaman (03)
-   12164 District - South Andaman (03)
-   12165 District - South Andaman (03)
-   12166 District - South Andaman (03)
-   12167 District - South Andaman (03)
+   0                                INDIA
+   1                                INDIA
+   2                                INDIA
+   3                                INDIA
+   4                                INDIA
+                        ...              
+   12163    District - South Andaman (03)
+   12164    District - South Andaman (03)
+   12165    District - South Andaman (03)
+   12166    District - South Andaman (03)
+   12167    District - South Andaman (03)
    Name: Area Name, Length: 12168, dtype: object
    ```
 
@@ -507,7 +529,7 @@ Let us now write the code for the above identified steps:
    df.loc[row selection, column selection]
    ```
 
-   ```py
+   ```py exec
    df1 = df.loc[
        (df["Area Name"] == "INDIA"),
        "Area Name":"Total Population - Females",
@@ -523,7 +545,7 @@ Let us now write the code for the above identified steps:
 6. <Card title="The names of the columns in the DataFrame are too long.">
     The following statement can be used to rename the columns.
 
-   ```py
+   ```py exec
    df1.columns = [
        "Area",
        "Class",
@@ -541,28 +563,32 @@ Let us now write the code for the above identified steps:
    We decided to plot TotalPop, MalePop, FemalePopwith respect to Category. But,
    on inspecting the DataFrame df1 we have noticed that the Category column
    contains data under six different categories — '10-14', '15-19', '20-24',
-   'Adolescent (10-19)', 'All Ages', 'Youth (15-24)'. print(df1)
+   'Adolescent (10-19)', 'All Ages', 'Youth (15-24)'. 
+   
+   ```py exec
+   print(df1)
+   ```
 
    ```
-   Area       Class           Category   TotalPop   MalePop FemalePop
-   0    INDIA Total           All Ages 1210854977 623270258 587584719
-   1    INDIA Total              10-14  132709212  69418835  63290377
-   2    INDIA Total              15-19  120526449  63982396  56544053
-   3    INDIA Total              20-24  111424222  57584693  53839529
-   4    INDIA Total Adolescent (10-19)  253235661 133401231 119834430
-   5    INDIA Total      Youth (15-24)  231950671 121567089 110383582
-   6    INDIA Rural           All Ages  833748852 427781058 405967794
-   7    INDIA Rural              10-14   96804494  50488158  46316336
-   8    INDIA Rural              15-19   83902472  44570557  39331915
-   9    INDIA Rural              20-24   73835046  38138662  35696384
-   10   INDIA Rural Adolescent (10-19)  180706966  95058715  85648251
-   11   INDIA Rural      Youth (15-24)  157737518  82709219  75028299
-   12   INDIA Urban           All Ages  377106125 195489200 181616925
-   13   INDIA Urban              10-14   35904718  18930677  16974041
-   14   INDIA Urban              15-19   36623977  19411839  17212138
-   15   INDIA Urban              20-24   37589176  19446031  18143145
-   16   INDIA Urban Adolescent (10-19)   72528695  38342516  34186179
-   17   INDIA Urban      Youth (15-24)   74213153  38857870  35355283
+      Area  Class            Category    TotalPop    MalePop  FemalePop
+   0   INDIA  Total            All Ages  1210854977  623270258  587584719
+   1   INDIA  Total               10-14   132709212   69418835   63290377
+   2   INDIA  Total               15-19   120526449   63982396   56544053
+   3   INDIA  Total               20-24   111424222   57584693   53839529
+   4   INDIA  Total  Adolescent (10-19)   253235661  133401231  119834430
+   5   INDIA  Total       Youth (15-24)   231950671  121567089  110383582
+   6   INDIA  Rural            All Ages   833748852  427781058  405967794
+   7   INDIA  Rural               10-14    96804494   50488158   46316336
+   8   INDIA  Rural               15-19    83902472   44570557   39331915
+   9   INDIA  Rural               20-24    73835046   38138662   35696384
+   10  INDIA  Rural  Adolescent (10-19)   180706966   95058715   85648251
+   11  INDIA  Rural       Youth (15-24)   157737518   82709219   75028299
+   12  INDIA  Urban            All Ages   377106125  195489200  181616925
+   13  INDIA  Urban               10-14    35904718   18930677   16974041
+   14  INDIA  Urban               15-19    36623977   19411839   17212138
+   15  INDIA  Urban               20-24    37589176   19446031   18143145
+   16  INDIA  Urban  Adolescent (10-19)    72528695   38342516   34186179
+   17  INDIA  Urban       Youth (15-24)    74213153   38857870   35355283
    ```
 
    Therefore, to plot TotalPop, MalePop, FemalePop, we should do grouping of
@@ -570,8 +596,9 @@ Let us now write the code for the above identified steps:
    help to provide a complete picture. The GROUP BY() function when applied on
    the column 'Category' on our DataFrame df1, gives us the following result:
 
-   ```py
+   ```py exec
    d = df1.groupby("Category").sum()
+   print(d)
    ```
 
    ```
@@ -587,11 +614,12 @@ Let us now write the code for the above identified steps:
    We are interested only in the categories '10-14', '15- 19' and '20-24'. So,
    let us drop the remaining rows using the following Python statement
 
-   ```py
+   ```py exec
    d = d.drop(
        ["Adolescent (10-19)", "All Ages", "Youth (15-24)"],
        axis=0,
    )
+   print(d)
    ```
 
    ```
@@ -605,7 +633,7 @@ Let us now write the code for the above identified steps:
 
 8. <Card title="Plot the data as a barchart for the DataFrame obtained in Step 7.">
 
-   ```py
+   ```py exec
    d.plot(kind='bar')
    plt.show()
    ```
