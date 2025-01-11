@@ -11,13 +11,17 @@ import { Steps } from '@astrojs/starlight/components';
       
 import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary, Think, Know } from "@/components/markdown";
 
+import { Pyodide, InputPrompt } from "@/components/code"
+
+<Pyodide/>
+
 <Quote author="Robin Milner" href="https://en.wikipedia.org/wiki/Robin_Milner">
     "There are many ways of trying to understand programs. People often rely too
     much on one way, which is called "debugging" and consists of running a partly-
     understood program to see if it does what you expected. Another way, which ML
     advocates, is to install some means of understanding in the very programs
     themselves." 
-  </Quote>
+</Quote>
 
 In this Chapter
 
@@ -58,7 +62,7 @@ settings, font type and size, date of creation and modification, etc.
 
 ## 2.2. Types of Files ||section-2.2||
 
-Computers store every file as a collection of 0s and 1s i.e., in binary form.
+Computers store every file as a collection of $0$s and $1$s i.e., in binary form.
 Therefore, every file is basically just a series of bytes stored one after the
 other. There are mainly two types of data files — text file and binary file. A
 text file consists of human readable characters, which can be opened by any text
@@ -83,7 +87,7 @@ represents _'A'_.
 Each line of a text file is terminated by a special character, called the End of
 Line (`EOL`). For example, the default `EOL` character in Python is the newline
 (`\n`). However, other characters can be used to indicate `EOL`. When a text editor
-or a program interpreter encounters the ASCII equivalent of the EOL character,
+or a program interpreter encounters the ASCII equivalent of the `EOL` character,
 it displays the remaining file contents starting from a new line. Contents in a
 text file are usually separated by whitespace, but comma (,) and tab (`\t`) are
 also commonly used to separate values in a text file.
@@ -97,7 +101,7 @@ file is in bytes whereas that of `.docx` is in KBs.
 
 ### 2.2.2 Binary Files ||section-2.2.2||
 
-Binary files are also stored in terms of bytes (0s and 1s), but unlike text
+Binary files are also stored in terms of bytes ($0$s and $1$s), but unlike text
 files, these bytes do not represent the ASCII values of characters. Rather, they
 represent the actual content such as image, audio, video, compressed versions of
 other files, executable files, etc. These files are not human readable. Thus,
@@ -190,7 +194,7 @@ each case.
 Consider the following example.
 
 ```py
-myObject = open(“myfile.txt”, “a+”)
+myObject = open("myfile.txt", "a+")
 ```
 
 In the above statement, the file `myfile.txt` is opened in append and read
@@ -263,14 +267,17 @@ every sentence to mark the end of line.
 
 Consider the following piece of code:
 
-```py
->>> myobject=open("myfile.txt",'w')
->>> myobject.write("Hey I have started using files in Python\n")
-41
->>> myobject.close()
+```py exec
+myobject = open("myfile.txt",'w')
+myobject.write("Hey I have started using files in Python\n")
+myobject.close()
 ```
 
-On execution, write() returns the number of characters written on to the file.
+```output
+41
+```
+
+On execution, `write()` returns the number of characters written on to the file.
 Hence, 41, which is the length of the string passed as an argument, is
 displayed.
 
@@ -283,13 +290,16 @@ displayed.
 If numeric data are to be written to a text file, the data need to be converted
 into string before writing to the file. For example:
 
-```py
->>> myobject=open("myfile.txt",'w') 
->>> marks=58 
-# number 58 is converted to a string using str() 
->>> myobject.write(str(marks)) 
-2 
->>> myobject.close()
+```py exec
+myobject = open("myfile.txt", "w")
+marks = 58
+# number 58 is converted to a string using str()
+myobject.write(str(marks))
+myobject.close()
+```
+
+```output
+2
 ```
 
 The `write()` actually writes data onto a buffer. When the `close()` method is
@@ -312,18 +322,22 @@ method. Unlike `write()`, the `writelines()` method does not return the number
 of characters written in the file. The following code explains the use of
 `writelines()`.
 
-```py
->>> myobject=open("myfile.txt",'w')
->>> lines = ["Hello everyone\n", "Writing multiline strings\n", "This is the third line"]
->>> myobject.writelines(lines)
->>> myobject.close()
+```py exec
+myobject = open("myfile.txt", "w")
+lines = [
+    "Hello everyone\n",
+    "Writing multiline strings\n",
+    "This is the third line",
+]
+myobject.writelines(lines)
+myobject.close()
 ```
 
 On opening `myfile.txt`, using notepad, its content will appear as shown in
 [Figure 2.1](#figure-2.1).
 
 <Figure id="2.1" title="Figure 2.1: Contents of myfile.txt">
-```txt title="mtfile.txt"
+```txt title="myfile.txt"
 Hello everyone
 Writing multiline strings
 This is the third line
@@ -358,23 +372,28 @@ file_object.read(n)
 Consider the following set of statements to understand the usage of `read()`
 method:
 
-```py
->>> myobject=open("myfile.txt",'r')
->>> myobject.read(10)
-"Hello ever"
->>> myobject.close()
+```py exec
+myobject = open("myfile.txt", "r")
+myobject.read(10)
+myobject.close()
+```
+```output
+Hello ever
 ```
 
 If no argument or a negative number is specified in `read()`, the entire file
 content is read. For example,
 
-```py
->>> myobject=open("myfile.txt",'r')
->>> print(myobject.read())
+```py exec
+myobject = open("myfile.txt", "r")
+print(myobject.read())
+myobject.close()
+```
+
+```output
 Hello everyone
 Writing multiline strings
 This is the third line
->>> myobject.close()
 ```
 
 ### 2.5.2 The `readline([n])` method ||section-2.5.2||
@@ -385,20 +404,28 @@ of bytes of data from a file but maximum up to the newline character (`\n`). In
 the following example, the second statement reads the first ten characters of
 the first line of the text file and displays them on the screen.
 
-```py
->>> myobject=open("myfile.txt",'r')
->>> myobject.readline(10)
-'Hello ever'
->>> myobject.close()
+```py exec
+myobject = open("myfile.txt", "r")
+myobject.readline(10)
+myobject.close()
+```
+
+```output
+Hello ever
 ```
 
 If no argument or a negative number is specified, it reads a complete line and
 returns string.
 
-```py
->>> myobject=open("myfile.txt",'r')
->>> print (myobject.readline())
-'Hello everyone\n'
+```py exec
+myobject = open("myfile.txt", "r")
+print(myobject.readline())
+myobject.close()
+```
+
+```output
+Hello everyone
+
 ```
 
 To read the entire file line by line using the `readline()`, we can use a loop.
@@ -418,12 +445,14 @@ The method reads all the lines and returns the lines along with newline as a
 list of strings. The following example uses `readlines()` to read data from the
 text file `myfile.txt`.
 
-```py
->>> myobject=open("myfile.txt", 'r')
->>> print(myobject.readlines())
-['Hello everyone\n', 'Writing multiline
-strings\n', 'This is the third line']
->>> myobject.close()
+```py exec
+myobject = open("myfile.txt", "r")
+print(myobject.readlines())
+myobject.close()
+```
+
+```output
+['Hello everyone\n', 'Writing multiline strings\n', 'This is the third line']
 ```
 
 As shown in the above output, when we read a file using `readlines()` function,
@@ -434,12 +463,16 @@ In case we want to display each word of a line separately as an element of a
 list, then we can use `split()` function. The following code demonstrates the
 use of `split()` function.
 
-```py
->>> myobject = open("myfile.txt",'r')
->>> d = myobject.readlines()
->>> for line in d:s
-        words=line.split()
-        print(words)
+```py exec
+myobject = open("myfile.txt", "r")
+
+d = myobject.readlines()
+for line in d:
+    words = line.split()
+    print(words)
+```
+
+```output
 ['Hello', 'everyone']
 ['Writing', 'multiline', 'strings']
 ['This', 'is', 'the', 'third', 'line']
@@ -449,10 +482,15 @@ In the output, each string is returned as elements of a list. However, if
 `splitlines()` is used instead of `split()`, then each line is returned as
 element of a list, as shown in the output below:
 
-```py
->>> for line in d:
-        words=line.splitlines()
-        print(words)
+```py exec
+for line in d:
+    words = line.splitlines()
+    print(words)
+
+myobject.close()
+```
+
+```output
 ['Hello everyone']
 ['Writing multiline strings']
 ['This is the third line']
@@ -462,19 +500,38 @@ Let us now write a program that accepts a string from the user and writes it to
 a text file. Thereafter, the same program reads the text file and displays it on
 the screen.
 
-import program_2_1 from './res/program_2.1.py?raw';
-import output_2_1 from './res/output_2.1.txt?raw';
-
 <Program
   id="2.1"
-  title="Program 2-1 Writing and reading to a text file"
-  code={program_2_1}
-	output={output_2_1}
+  title="Program 2-1"
 >
 
-- root
-  - program_2.1.py
-  - testfile.txt
+Writing and reading to a text file
+
+<InputPrompt/>
+
+```py exec=code
+# creating a data file
+fobject = open("testfile.txt", "w")
+sentence = input("Enter the contents to be written in the file:\n")
+# Writing data to the file
+fobject.write(sentence)
+# Closing a file
+fobject.close()
+
+print("Now reading the contents of the file:")
+fobject = open("testfile.txt", "r")
+# looping over the file object to read the file
+for str in fobject:
+    print(str)
+fobject.close()
+```
+
+```output
+Enter the contents to be written in the file:
+roll_numbers = [1, 2, 3, 4, 5, 6]
+Now reading the contents of the file:
+roll_numbers = [1, 2, 3, 4, 5, 6]
+```
 
 </Program>
 
@@ -525,19 +582,42 @@ will position the file object at 5th byte position from the beginning of the
 file. The code in [Program 2-2](#program-2.2) below demonstrates the usage of `seek()` and
 `tell()`.
 
-import program_2_2 from './res/program_2.2.py?raw';
-import output_2_2 from './res/output_2.2.txt?raw';
-
 <Program
   id="2.2"
-  title="Program 2-2 Application of seek() and tell()"
-  code={program_2_2}
-  output={output_2_2}            
+  title="Program 2-2"          
 >
 
-- root
-  - program_2.2.py
-  - testfile.txt
+Application of `seek()` and `tell()`
+
+```py exec=code
+print("Learning to move the file object")
+
+fileobject = open("testfile.txt", "r+")
+str = fileobject.read()
+print(str)
+
+print("\nInitially, the position of the file object is: ", fileobject.tell())
+
+fileobject.seek(0)
+print("\nNow the file object is at the beginning of the file: ", fileobject.tell())
+
+fileobject.seek(10)
+print("\nWe are moving to 10th byte position from the beginning of file")
+print("The position of the file object is at", fileobject.tell())
+
+str = fileobject.read()
+print(str)
+```
+
+```output
+Learning to move the file object
+roll_numbers = [1, 2, 3, 4, 5, 6]
+Initially, the position of the fi le object is: 33
+Now the file object is at the beginning of the file: 0
+We are moving to 10th byte position from the beginning of file
+The position of the file object is at 10
+rs = [1, 2, 3, 4, 5, 6]
+```
 
 </Program>
 
@@ -561,18 +641,34 @@ both cases, if the file does not exist, then a new empty file will be created.
 In [Program 2-3](#program-2.3), a file, `practice.txt` is opened in write (`w`) mode and three
 sentences are stored in it as shown in the output screen that follows it.
 
-import program_2_3 from './res/program_2.3.py?raw';
-import output_2_3 from './res/output_2.3.txt?raw';
-
 <Program
-  id="program-23"
-  title="Program 2-3 To create a text file and write data in it"
-  code={program_2_3}
-  output={output_2_3}
+  id="2.3"
+  title="Program 2-3"
 >
-- root
-  - program_2.3.py
-  - practice.txt
+
+To create a text file and write data in it
+
+<InputPrompt/>
+
+```py exec=code
+# program to create a text file and add data
+fileobject = open("practice.txt", "w+")
+while True:
+    data = input("Enter data to save in the text file: ")
+    fileobject.write(data)
+    ans = input("Do you wish to enter more data?(y/n): ")
+    if ans == "n":
+        break
+fileobject.close()
+```
+
+```output
+Enter data to save in the text file: I am interested to learn about Computer Science
+Do you wish to enter more data?(y/n): y
+Enter data to save in the text file: Python is easy to learn
+Do you wish to enter more data?(y/n): n
+```
+
 </Program>
 
 ### 2.7.2 Traversing a file and displaying data ||section-2.7.2||
@@ -581,18 +677,26 @@ To read and display data that is stored in a text file, we will refer to the
 previous example where we have created the file practice.txt. The file will be
 opened in read mode and reading will begin from the beginning of the file.
 
-import program_2_4 from './res/program_2.4.py?raw';
-import output_2_4 from './res/output_2.4.txt?raw';
-
 <Program
-  id="program-24"
-  title="Program 2-4 To display data from a text file"
-  code={program_2_4}
-  output={output_2_4}
+  id="2.4"
+  title="Program 2-4"
 >
-- root
-  - program_2.4.py
-  - practice.txt
+
+To display data from a text file
+
+```py exec=code
+fileobject = open("practice.txt", "r")
+str = fileobject.readline()
+while str:
+    print(str)
+    str = fileobject.readline()
+fileobject.close()
+```
+
+```output
+I am interested to learn about Computer SciencePython is easy to learn
+```
+
 </Program>
 
 In [Program 2-4](#program-2.4), the `readline()` is used in the while loop to read the data line
@@ -605,18 +709,51 @@ for reading the file. Now let us create one single program to read and write
 data using a single file object. Since both the operations have to be performed
 using a single file object, the file will be opened in `w+` mode.
 
-import program_2_5 from './res/program_2.5.py?raw';
-import output_2_5 from './res/output_2.5.txt?raw';
-
 <Program
   id="2.5"
-  title="Program 2-5 To perform reading and writing operation in a text file"
-  code={program_2_5}
-  output={output_2_5}
+  title="Program 2-5"
 >
-- root
-  - program_2.5.py
-  - report.txt
+
+To perform reading and writing operation in a text file
+
+<InputPrompt/>
+
+```py exec=code
+fileobject = open("report.txt", "w+")
+print("WRITING DATA IN THE FILE")
+print()  # to display a blank line
+
+while True:
+    line = input("Enter a sentence ")
+    fileobject.write(line)
+    fileobject.write("\n")
+    choice = input("Do you wish to enter more data? (y/n): ")
+    if choice in ("n", "N"):
+        break
+
+print("The byte position of file object is ", fileobject.tell())
+fileobject.seek(0)  # places file object at beginning of file
+print()
+
+print("READING DATA FROM THE FILE")
+str = fileobject.read()
+print(str)
+
+fileobject.close()
+```
+
+```output
+WRITING DATA IN THE FILE
+Enter a sentence I am a student of class XII
+Do you wish to enter more data? (y/n): y
+Enter a sentence my school contact number is 4390xxx8
+Do you wish to enter more data? (y/n): n
+The byte position of file object is 67
+READING DATA FROM THE FILE
+I am a student of class XII
+my school contact number is 4390xxx8
+```
+
 </Program>
 
 
@@ -669,16 +806,21 @@ handle named `file_object`. For example, [Program 2-6](#program-2.6) writes the 
 student (roll_no, name, gender and marks) in the binary file named mybinary.dat
 using the `dump()`. We need to close the file after pickling.
 
-import program_2_6 from './res/program_2.6.py?raw';
-
 <Program
   id="2.6"
-  title="Program 2-6 Pickling data in Python"
-  code={program_2_6}
+  title="Program 2-6"
 >
-- root
-  - program_2.6.py
-  - mybinary.dat
+
+Pickling data in Python
+
+```py exec=code
+import pickle
+
+listvalues = [1, "Geetika", "F", 26]
+fileobject = open("mybinary.dat", "wb")
+pickle.dump(listvalues, fileobject)
+fileobject.close()
+```
 </Program>
 
 ### 2.8.2 The `load()` method ||section-2.8.2||
@@ -695,18 +837,28 @@ named `file_object` and is stored in a new file handle called `store_object`.
 The [Program 2-7](#program-2.7) demonstrates how to read data from the file `mybinary.dat` using
 the `load()`.
 
-import program_2_7 from './res/program_2.7.py?raw';
-import output_2_7 from './res/output_2.7.txt?raw';
-
 <Program
   id="2.7"
-  title="Program 2-7 Unpickling data in Python"
-  code={program_2_7}
-  output={output_2_7}
+  title="Program 2-7"
 >
-- root
-  - program_2.7.py
-  - mybinary.dat
+
+Unpickling data in Python
+
+```py exec=code
+import pickle
+
+print("The data that were stored in file are: ")
+fileobject = open("mybinary.dat", "rb")
+objectvar = pickle.load(fileobject)
+fileobject.close()
+print(objectvar)
+```
+
+```output
+The data that were stored in file are:
+[1, 'Geetika', 'F', 26]
+```
+
 </Program>
 
 ### 2.8.3 File handling using `pickle` module ||section-2.8.3||
@@ -718,18 +870,91 @@ read from the binary file and displayed on the screen using the same object. The
 user may enter as many records as they wish to. The program also displays the
 size of binary files before starting with the reading process.
 
-import program_2_8 from './res/program_2.8.py?raw';
-import output_2_8 from './res/output_2.8.txt?raw';
-
 <Program
-  id="program-28"
-  title="Program 2-8 To perform basic operations on a binary file using pickle module"
-  code={program_2_8}
-  output={output_2_8}
+  id="2.8"
+  title="Program 2-8"
 >
-- root
-  - program_2.8.py
-  - empfile.dat
+
+To perform basic operations on a binary file using pickle module
+
+<InputPrompt/>
+
+```py exec=code
+# Program to write and read employee records in a binary file
+import pickle
+
+print("WORKING WITH BINARY FILES")
+bfile = open("empfile.dat", "ab")
+recno = 1
+print("Enter Records of Employees")
+print()
+
+# taking data from user and dumping in the file as list object
+while True:
+    print("RECORD No.", recno)
+    eno = int(input("\tEmployee number : "))
+    ename = input("\tEmployee Name : ")
+    ebasic = int(input("\tBasic Salary : "))
+    allow = int(input("\tAllowances : "))
+    totsal = ebasic + allow
+    print("\tTOTAL SALARY : ", totsal)
+    edata = [eno, ename, ebasic, allow, totsal]
+    pickle.dump(edata, bfile)
+    
+    ans = input("Do you wish to enter more records (y/n)? ")
+    recno = recno + 1
+    if ans.lower() == "n":
+        print("Record entry OVER ")
+        print()
+        break
+
+# retrieving the size of file
+print("Size of binary file (in bytes):", bfile.tell())
+bfile.close()
+
+# Reading the employee records from the file using load() module
+print("Now reading the employee records from the file")
+print()
+readrec = 1
+try:
+    with open("empfile.dat", "rb") as bfile:
+        while True:
+            edata = pickle.load(bfile)
+            print("Record Number : ", readrec)
+            print(edata)
+            readrec = readrec + 1
+except EOFError:
+    pass
+
+bfile.close()
+```
+
+```output
+WORKING WITH BINARY FILES
+Enter Records of Employees
+RECORD No. 1
+Employee number : 11
+Employee Name : D N Ravi
+Basic Salary : 32600
+Allowances : 4400
+TOTAL SALARY : 37000
+Do you wish to enter more records (y/n)? y
+RECORD No. 2
+Employee number : 12
+Employee Name : Farida Ahmed
+Basic Salary : 38250
+Allowances : 5300
+TOTAL SALARY : 43550
+Do you wish to enter more records (y/n)? n
+Record entry OVER
+Size of binary file (in bytes): 216
+Now reading the employee records from the file
+Record Number : 1
+[11, 'D N Ravi', 32600, 4400, 37000]
+Record Number : 2
+[12, 'Farida Ahmed', 38250, 5300, 43550]
+```
+
 </Program>
 
 As each employee record is stored as a list in the file `empfile.dat`, hence
@@ -742,40 +967,56 @@ end-of-file exception.
 ## Summary
 
 <Summary>
+
 - A file is a named location on a secondary storage media where data are
   permanently stored for later access.
+
 - A text file contains only textual information consisting of alphabets, numbers
   and other special symbols. Such files are stored with extensions like `.txt`,
   `.py`, `.c`, `.csv`, `.html`, etc. Each byte of a text file represents a
   character.
+
 - Each line of a text file is stored as a sequence of ASCII equivalent of the
   characters and is terminated by a special character, called the End of Line
   (EOL).
+
 - Binary file consists of data stored as a stream of bytes.
+
 - `open()` method is used to open a file in Python and it returns a file object
   called file handle. The file handle is used to transfer data to and from the
   file by calling the functions defined in the Python's io module.
+
 - `close()` method is used to close the file. While closing a file, the system
   frees up all the resources like processor and memory allocated to it.
+
 - `write()` method takes a string as an argument and writes it to the text file.
+
 - `writelines()` method is used to write multiple strings to a file. We need to
   pass an iterable object like lists, tuple etc. containing strings to
   `writelines()` method.
+
 - `read([n])` method is used to read a specified number of bytes (n) of data
   from a data file.
+
 - `readline([n])` method reads one complete line from a file where lines are
   ending with a newline (\n). It can also be used to read a specified number (n)
   of bytes of data from a file but maximum up to the newline character (\n).
+
 - `readlines()` method reads all the lines and returns the lines along with
   newline character, as a list of strings.
+
 - `tell()` method returns an integer that specifies the current position of the
   file object. The position so specified is the byte position from the beginning
   of the file till the current position of the file object.
+
 - `seek()` method is used to position the file object at a particular position
   in a file.
+
 - Pickling is the process by which a Python object is converted to a byte
   stream.
+
 - `dump()` method is used to write the objects in a binary file.
+
 - `load()` method is used to read data from a binary file.
 </Summary>
 
@@ -788,7 +1029,9 @@ end-of-file exception.
 Differentiate between:
 
 1. text file and binary file
+
 2. `readline()` and `readlines()`
+
 3. `write()` and `writelines()`
 
 ### Question 2
@@ -796,8 +1039,11 @@ Differentiate between:
 Write the use and syntax for the following methods:
 
 1. `open()`
+
 2. `read()`
+
 3. `seek()`
+
 4. `dump()`
 
 ### Question 3
@@ -806,8 +1052,11 @@ Write the file mode that will be used for opening the following files. Also,
 write the Python statements to open the following files:
 
 1. a text file `example.txt` in both read and write mode
+
 2. a binary file `bfile.dat` in write mode
+
 3. a text file `try.txt` in append and read mode
+
 4. a binary file `btry.dat` in read only mode.
 
 ### Question 4

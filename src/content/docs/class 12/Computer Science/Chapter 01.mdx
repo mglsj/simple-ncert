@@ -2,11 +2,19 @@
 title: 1. Exception Handling in Python
 prev: false
 source: lecs101
+sidebar:
+  badge:
+    text: py
+    variant: note
 ---
 
 import { Steps } from '@astrojs/starlight/components';                                                                                        
       
 import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary, Think } from "@/components/markdown";
+
+import { Pyodide, InputPrompt } from "@/components/code"
+
+<Pyodide/>
 
 <Quote author="Bjarne Stroustrup" href="https://en.wikipedia.org/wiki/Bjarne_Stroustrup">
     "I like my code to be elegant and efficient. The logic should be
@@ -75,7 +83,7 @@ mode as shown in [Figure 1.2](#figure-1.2), a dialog box specifying the name of 
 ([Figure 1.3](#figure-1.3)) and a small description about the error is displayed.
 
 <Figure id="1.2" title="Figure 1.2: An error in the script ">
-```python title="Error in the script"
+```py exec title="Error in the script" 
 def test():
     marks=20
     if marks>10:
@@ -198,8 +206,8 @@ description of the error.
 <Figure 
   id="1.5" 
   title="Figure 1.5: Use of the raise statement to throw an exception"
->
-```ansi title="Python 3.13 (64-bit)"
+> 
+```ansi title="Python 3.13 (64-bit)" {3}
 Python 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
 [35m[1m>>> [0mraise Exception ("OOPS!! An Exception has occured")
@@ -277,13 +285,25 @@ immediately after the assert keyword. If this expression is false, an
 `AssertionError` exception is raised which can be handled like any other
 exception. Consider the code given in [Program 1-1](#program-1.1).
 
-import program_1_1 from './res/program_1.1.py?raw';
-
 <Program
-  id="program-11"
-  title="Program 1-1: Use of assert statement"
-  code={program_1_1}
-/>
+  id="1.1"
+  title="Program 1-1"
+>
+Use of assert statement
+
+```py exec
+print("use of assert statement")
+
+
+def negativecheck(number):
+    assert number >= 0, "OOPS... Negative Number"
+    print(number * number)
+
+
+print(negativecheck(100))
+print(negativecheck(-350))
+```
+</Program>
 
 <Figure id="1.7" title="Figure 1.7: Output of Program 1-1">
 ```ansi title="Python 3.13 (64-bit)" {5-16}
@@ -410,13 +430,30 @@ except [exception-name]:
 
 Consider the [Program 1-2](#program-1.2) given below:
 
-import program_1_2 from './res/program_1.2.py?raw';
-
 <Program
   id="1.2"
-  title="Program 1-2 Using try..except block"
-  code={program_1_2}
-/>
+  title="Program 1-2"
+>
+Using `try..except` block
+
+```py exec
+print("Practicing for try block")
+
+try:
+    numerator = 50
+    denom = int(input("Enter the denominator"))
+    quotient = numerator / denom
+    print(quotient)
+    print("Division performed successfully")
+except ZeroDivisionError:
+    print("Denominator as ZERO.... not allowed")
+
+print("OUTSIDE try..except block")
+```
+
+<InputPrompt/>
+
+</Program>
 
 In [Program 1-2](#program-1.2), the `ZeroDivisionError` exception is handled. If the user enters
 any non-zero value as denominator, the quotient will be displayed along with the
@@ -433,7 +470,7 @@ executed and the message "`OUTSIDE try..except block`" is displayed in this case
 also.
 
 <Figure id="1.9" title="Figure 1.9: Output without an error">
-```ansi title="Python 3.13 (64-bit)" {5-8}
+```ansi title="Python 3.13 (64-bit)" {5-9}
 Python 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
 [35m[1m>>> [0m
@@ -442,12 +479,13 @@ Practicing for try block
 Enter the denominator12
 4.166666666666667
 Division performed successfully
+OUTSIDE try..except block
 [35m[1m>>> [0m
 ```
 </Figure>
 
 <Figure id="1.10" title="Figure 1.10: Output with exception raised">
-```ansi title="Python 3.13 (64-bit)" {5-7}
+```ansi title="Python 3.13 (64-bit)" {5-8}
 Python 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
 [35m[1m>>> [0m
@@ -455,6 +493,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 Practicing for try block
 Enter the denominator0
 Denominator as ZERO.... not allowed
+OUTSIDE try..except block
 [35m[1m>>> [0m
 ```
 </Figure>
@@ -463,13 +502,30 @@ Sometimes, a single piece of code might be suspected to have more than one type
 of error. For handling such situations, we can have multiple except blocks for a
 single try block as shown in the [Program 1-3](#program-1.3).
 
-import program_1_3 from './res/program_1.3.py?raw';
-
 <Program
   id="1.3"
-  title="Program 1-3 Use of multiple except clauses"
-  code={program_1_3}
-/>
+  title="Program 1-3"
+>
+
+Use of multiple `except` clauses
+
+```py exec
+print("Handling multiple exceptions")
+
+try:
+    numerator = 50
+    denom = int(input("Enter the denominator: "))
+    print(numerator / denom)
+    print("Division performed successfully")
+except ZeroDivisionError:
+    print("Denominator as ZERO is not allowed")
+except ValueError:
+    print("Only INTEGERS should be entered")
+```
+
+<InputPrompt/>
+
+</Program>
 
 In the code, two types of exceptions (`ZeroDivisionError` and `ValueError`) are
 handled using two `except` blocks for a single `try` block. When an exception is
@@ -482,13 +538,30 @@ without specifying any exception. This except clause should be added as the last
 clause of the `try..except` block. The [Program 1-4](#program-1.4) given below along with the
 output given in [Figure 1.11](#figure-1.11) explains this.
 
-import program_1_4 from './res/program_1.4.py?raw';
-
 <Program
-  id="program-14"
-  title="Program 1-4 Use of except without specifying an exception"
-  code={program_1_4}
-/>
+  id="1.4"
+  title="Program 1-4"
+>
+
+Use of `except` without specifying an `Exception`
+
+```py exec
+print("Handling exceptions without naming them")
+
+try:
+    numerator = 50
+    denom = int(input("Enter the denominator"))
+    quotient = numerator / denom
+    print("Division performed successfully")
+except ValueError:
+    print("Only INTEGERS should be entered")
+except:
+    print("OOPS.....SOME EXCEPTION RAISED")
+```
+
+<InputPrompt/>
+
+</Program>
 
 If the above code is executed, and the denominator entered is 0 (zero) , the
 handler for `ZeroDivisionError` exception will be searched. Since it is not
@@ -499,7 +572,7 @@ executed , so the message "`OOPS.....SOME EXCEPTION RAISED`" will be displayed.
   id="1.11" 
   title="Figure 1.11: Output of Program 1-4"
 >
-```ansi title="Python 3.13 (64-bit)" {5-8}
+```ansi title="Python 3.13 (64-bit)" {5-7}
 Python 3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
 [35m[1m>>> [0m
@@ -507,7 +580,6 @@ Type "help", "copyright", "credits" or "license" for more information.
 Handling exceptions without naming them
 Enter the denominator0
 OOPS.....SOME EXCEPTION RAISED
-unrecognized DEC mode: 9001
 [35m[1m>>> [0m
 ```
 </Figure>
@@ -521,13 +593,31 @@ In this case, the statements inside the `else` clause will be executed. [Program
 1-5](#program-1.5) along with its output explains the use of `else` block with the
 `try...except` block.
 
-import program_1_5 from './res/program_1.5.py?raw';
-
 <Program
   id="1.5"
-  title="Program 1-5 Use of else clause"
-  code={program_1_5}
-/>
+  title="Program 1-5"
+>
+
+Use of `else` clause
+
+```py exec
+print("Handling exception using try...except...else")
+try:
+    numerator = 50
+    denom = int(input("Enter the denominator: "))
+    quotient = numerator / denom
+    print("Division performed successfully")
+except ZeroDivisionError:
+    print("Denominator as ZERO is not allowed")
+except ValueError:
+    print("Only INTEGERS should be entered")
+else:
+    print("The result of division operation is ", quotient)
+```
+
+<InputPrompt/>
+
+</Program>
 
 <Figure id="1.12" title="Figure 1.12: Output of Program 1-5">
 ```ansi title="Python 3.13 (64-bit)" {5-8}
@@ -552,13 +642,34 @@ use `finally` clause while working with files to ensure that the file object is
 closed. If used, `finally` should always be placed at the end of `try` clause,
 after all `except` blocks and the `else` block.
 
-import program_1_6 from './res/program_1.6.py?raw';
-
 <Program
-    id="1.6"
-    title="Program 1-6 Use of finally clause"
-    code={program_1_6}
-/>
+  id="1.6"
+  title="Program 1-6"
+>
+
+Use of `finally` clause
+
+```py exec
+print("Handling exception using try...except...else...finally")
+
+try:
+    numerator = 50
+    denom = int(input("Enter the denominator: "))
+    quotient = numerator / denom
+    print("Division performed successfully")
+except ZeroDivisionError:
+    print("Denominator as ZERO is not allowed")
+except ValueError:
+    print("Only INTEGERS should be entered")
+else:
+    print("The result of division operation is ", quotient)
+finally:
+    print("OVER AND OUT")
+```
+
+<InputPrompt/>
+
+</Program>
 
 In the above program, the message "`OVER AND OUT`" will be displayed
 irrespective of whether an exception is raised or not.
@@ -574,13 +685,32 @@ error occurs for which there is no handler code (`except` clause) defined, then
 also the `finally` clause will be executed first. Consider the code given in
 [Program 1-7](#program-1.7) to understand these concepts.
 
-import program_1_7 from './res/program_1.7.py?raw';
-
 <Program
   id="1.7"
-  title="Program 1-7 Recovering through finally clause"
-  code={program_1_7}
-/>
+  title="Program 1-7"
+>
+
+Recovering through `finally` clause
+
+```py exec
+print(" Practicing for try block")
+
+try:
+    numerator = 50
+    denom = int(input("Enter the denominator"))
+    quotient = numerator / denom
+    print("Division performed successfully")
+except ZeroDivisionError:
+    print("Denominator as ZERO is not allowed")
+else:
+    print("The result of division operation is ", quotient)
+finally:
+    print("OVER AND OUT")
+```
+
+<InputPrompt/>
+
+</Program>
 
 While executing the above code, if we enter a non-numeric data as input, the
 `finally` block will be executed. So, the message "`OVER AND OUT`" will be
@@ -624,34 +754,49 @@ exception occurs or not.
 <Summary>
 - Syntax errors or parsing errors are detected when we have not followed the
   rules of the particular programming language while writing a program.
+
 - When syntax error is encountered, Python displays the name of the error and a
   small description about the error.
+
 - The execution of the program will start only after the syntax error is
   rectified.
+
 - An exception is a Python object that represents an error.
+
 - Syntax errors are also handled as exceptions.
+
 - The exception needs to be handled by the programmer so that the program does
   not terminate abruptly.
+
 - When an exception occurs during execution of a program and there is a built-in
   exception defined for that, the error message written in that exception is
   displayed. The programmer then has to take appropriate action and handle it.
+
 - Some of the commonly occurring built-in exceptions are `SyntaxError`,
   `ValueError`, `IOError`, `KeyboardInterrupt`, `ImportError`, `EOFError`,
   `ZeroDivisionError`, `IndexError`, `NameError`, `IndentationError`,
   `TypeError`,and `OverFlowerror`.
+
 - When an error is encountered in a program, Python interpreter raises or throws
   an exception.
+
 - Exception Handlers are the codes that are designed to execute when a specific
   exception is raised.
+
 - Raising an exception involves interrupting the normal flow of the program
   execution and jumping to the exception handler.
+
 - `raise` and `assert` statements are used to raise exceptions.
+
 - The process of exception handling involves writing additional code to give
   proper messages or instructions to the user. This prevents the program from
   crashing abruptly. The additional code is known as an exception handler.
+
 - An exception is said to be caught when a code that is designed to handle a
   particular exception is executed.
+
 - An exception is caught in the `try` block and handles in `except` block.
+
 - The statements inside the `finally` block are always executed regardless of
   whether an exception occurred in the `try` block or not.
 </Summary>
@@ -671,8 +816,11 @@ When are the following built-in exceptions raised? Give examples to support your
 answers.
 
 1. `ImportError`
+
 2. `IOError`
+
 3. `NameError`
+
 4. `ZeroDivisionError`
 
 ### Question 3
@@ -691,7 +839,9 @@ expression in the program.
 Define the following:
 
 1. Exception Handling
+
 2. Throwing an exception
+
 3. Catching an exception
 
 ### Question 6

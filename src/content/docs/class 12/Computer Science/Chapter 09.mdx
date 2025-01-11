@@ -1,6 +1,10 @@
 ---
 title: 9. Structured Query Language (SQL)
 source: lecs109
+sidebar:
+  badge:
+    text: sql
+    variant: caution
 ---
 
 import { Example, Card, Figure, Quote, Activity, Table, Summary, Think } from "@/components/markdown";
@@ -3122,36 +3126,53 @@ on two or more relations:
 
 <Summary>
 - Database is a collection of related tables. MySQL is a 'relational' DBMS.
+
 - **DDL (Data Definition Language)** includes SQL statements such as, Create table,
   Alter table and Drop table.
+
 - **DML (Data Manipulation Language)** includes SQL statements such as, insert,
   select, update and delete.
+
 - A table is a collection of rows and columns, where each row is a record and
   columns describe the feature of records.
+
 - `ALTER TABLE` statement is used to make changes in the structure of a table like
   adding, removing or changing datatype of column(s).
+
 - `UPDATE` statement is used to modify existing data in a table.
+
 - `WHERE` clause in SQL query is used to enforce condition(s).
+
 - `DISTINCT` clause is used to eliminate repetition and display the values only
   once.
+
 - The `BETWEEN` operator defines the range of values inclusive of boundary values.
+
 - The `IN` operator selects values that match any value in the given list of
   values.
+
 - `NULL` values can be tested using `IS NULL` and `IS NOT NULL`.
+
 - `ORDER BY` clause is used to display the result of a SQL query in ascending or
   descending order with respect to specified attribute values. By default, the
   order is ascending.
+
 - `LIKE` operator is used for pattern matching. `%` and `_` are two wild card
   characters. The per cent (`%`) symbol is used to represent zero or more
   characters. The underscore (`_`) symbol is used to represent a single character.
+
 - A Function is used to perform a particular task and return a value as a
   result.
+
 - Single Row functions work on a single row of the table and return a single
   value.
+
 - Multiple Row functions work on a set of records as a whole and return a single
   value. Examples include `COUNT`, `MAX`, `MIN`, `AVG` and `SUM`.
+
 - `GROUP BY` function is used to group rows of a table that contain the same
   values in a specified column.
+
 - Join is an operation which is used to combine rows from two or more tables
   based on one or more common fields between them.
 </Summary>
@@ -3165,21 +3186,34 @@ on two or more relations:
 Answer the following questions:
 
 - a) Define RDBMS. Name any two RDBMS software.
+
 - b) What is the purpose of the following clauses in a select statement?
+
   - i) `ORDER BY`
+
   - ii) `GROUP BY`
+
 - c) Site any two differences between Single Row Functions and Aggregate
   Functions.
+
 - d) What do you understand by Cartesian Product?
+
 - e) Differentiate between the following statements:
+
   - i) `ALTER` and `UPDATE`
+
   - ii) `DELETE` and `DROP`
+
 - f) Write the name of the functions to perform the following operations:
+
   - i) To display the day like "Monday", "Tuesday", from the date when India got
     independence.
+
   - ii) To display the specified number of characters from a particular position
     of the given string.
+
   - iii) To display the name of the month in which you were born.
+
   - iv) To display your name in capital letters.
 
 ### Question 2
@@ -3190,14 +3224,17 @@ Write the output produced by the following SQL statements:
   ```sql
   SELECT POW(2, 3);
   ```
+
 - b) 
   ```sql
   SELECT ROUND(342.9234, -1);
   ```
+
 - c)
   ```sql
   SELECT LENGTH("Informatics Practices");
   ```
+
 - d) 
   ```sql
   SELECT YEAR("1979/11/26"),
@@ -3205,6 +3242,7 @@ Write the output produced by the following SQL statements:
       DAY("1979/11/26"),
       MONTHNAME("1979/11/26");
   ```
+
 - e) 
   ```sql
   SELECT LEFT("INDIA", 3),
@@ -3227,16 +3265,21 @@ Consider the following MOVIE table and write the SQL queries based on it.
 | 006     | Punjabi_Movie | Comedy    | -           | 30500          | -            |
 
 - a) Display all the information from the Movie table.
+
 - b) List business done by the movies showing only MovieID, MovieName and
   Total_Earning. Total_ Earning to be calculated as the sum of ProductionCost
   and BusinessCost.
 - c) List the different categories of movies.
+
 - d) Find the net profit of each movie showing its MovieID, MovieName and
   NetProfit. Net Profit is to be calculated as the difference between Business
   Cost and Production Cost.
+
 - e) List MovieID, MovieName and Cost for all movies with ProductionCost greater
   than 10,000 and less than 1,00,000.
+
 - f) List details of all movies which fall in the category of comedy or action.
+
 - g) List details of all movies which have not been released yet.
 
 ### Question 4
@@ -3248,13 +3291,19 @@ Hurricane. During summer vacations, various matches will be conducted between
 these teams. Help your sports teacher to do the following:
 
 - a) Create a database "Sports".
+
 - b) Create a table "TEAM" with following considerations:
+
   - i) It should have a column TeamID for storing an integer value between 1 to
     9, which refers to unique identification of a team.
+
   - ii) Each TeamID should have its associated name (TeamName), which should be
     a string of length not less than 10 characters.
+
 - c) Using table level constraint, make TeamID as the primary key.
+
 - d) Show the structure of the table TEAM using a SQL statement.
+
 - e) As per the preferences of the students four teams were formed as given
   below. Insert these four rows in TEAM table:
 
@@ -3267,6 +3316,7 @@ these teams. Help your sports teacher to do the following:
   Row 3: (4, Team Hurricane)
 
 - f) Show the contents of the table TEAM using a DML statement.
+
 - g) Now create another table MATCH_DETAILS and insert data as shown below.
   Choose appropriate data types and constraints for each attribute.
 
@@ -3289,10 +3339,14 @@ write the queries for the following:
 
 - a) Display the MatchID of all those matches where both the teams have scored
   more than 70.
+
 - b) Display the MatchID of all those matches where FirstTeam has scored less
   than 70 but SecondTeam has scored more than 70.
+
 - c) Display the MatchID and date of matches played by Team 1 and won by it.
+
 - d) Display the MatchID of matches played by Team 2 and not won by it.
+
 - e) Change the name of the relation TEAM to T_DATA. Also change the attributes
   TeamID and TeamName to T_ID and T_NAME respectively.
 
@@ -3307,6 +3361,7 @@ following anomalies.
 
 - a) M/S Wonderful Garments also keeps handkerchiefs of red colour, medium size
   of Rs. 100 each.
+
 - b) 
   ```sql
   INSERT INTO COST (UCode, Size, Price)
@@ -3320,6 +3375,7 @@ following anomalies.
 - c) Further, they should be able to assign a new UCode to an item only if it
   has a valid UName. Write a query to add appropriate constraints to the
   SCHOOLUNIFORM database.
+
 - d) Add the constraint so that the price of an item is always greater than
   zero.
 
@@ -3340,16 +3396,22 @@ sold in a grocery shop.
 Write SQL queries for the following:
 
 - a) Create the table Product with appropriate data types and constraints.
+
 - b) Identify the primary key in Product.
+
 - c) List the Product Code, Product name and price in descending order of their
   product name. If PName is the same, then display the data in ascending order
   of price.
+
 - d) Add a new column Discount to the table Product.
+
 - e) Calculate the value of the discount in the table Product as 10 per cent of
   the UPrice for all those products where the UPrice is more than 100, otherwise
   the discount will be 0.
+
 - f) Increase the price by 12 per cent for all the products manufactured by
   Dove.
+
 - g) Display the total number of products manufactured by each manufacturer.
 
 Write the output(s) produced by executing the following queries on the basis
@@ -3362,16 +3424,19 @@ of the information given above in the table Product:
   FROM Product
   GROUP BY Pname;
   ```
+
 - i) 
   ```sql
   SELECT DISTINCT Manufacturer
   FROM Product;
   ```
+
 - j) 
   ```sql
   SELECT COUNT (DISTINCT PName)
   FROM Product;
   ```
+
 - k) 
   ```sql
   SELECT PName,
@@ -3387,13 +3452,20 @@ Using the CARSHOWROOM database given in the chapter, write the SQL queries for
 the following:
 
 - a) Add a new column Discount in the INVENTORY table.
+
 - b) Set appropriate discount values for all cars keeping in mind the following:
+
   - (i) No discount is available on the LXI model.
+
   - (ii) VXI model gives a 10 per cent discount.
+
   - (iii) A 12 per cent discount is given on cars other than LXI model and VXI
     model.
-- c) Display the name of the costliest car with fuel type “Petrol”.
+
+- c) Display the name of the costliest car with fuel type "Petrol”.
+
 - d) Calculate the average discount and total discount available on Baleno cars.
+
 - e) List the total number of cars having no discount.
 
 ---

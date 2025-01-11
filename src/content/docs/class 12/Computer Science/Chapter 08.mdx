@@ -28,7 +28,7 @@ attendance record and guardian details.
 The class teacher marks daily attendance of the students in the attendance
 register. The teacher records 'P' for present or 'A' for absent against each
 student's roll number on each working day. If class strength is 50 and total
-working days in a month are 26, the teacher needs to record $50 × 26$ records
+working days in a month are 26, the teacher needs to record $50 \times 26$ records
 manually in the register every month. As the volume of data increases, manual
 data entry becomes tedious. Following are some of the limitations of manual
 record keeping in this example:
@@ -76,7 +76,7 @@ monthly attendance report on school website, one has to write computer programs
 to access data from files.
 
 Continuing the example of attendance at school, we need to store data about
-students and attendance in two separate files. Table 8.1 shows the contents of
+students and attendance in two separate files. [Table 8.1](#table-8.1) shows the contents of
 STUDENT file which has six columns, as detailed below:
 
 RollNumber - Roll number of the student
@@ -102,7 +102,7 @@ GAddress - Address of the guardian of the student
 | 6           | Manika P.    | 2002-03-10     | Sujata P.       | 7802983674 | HNO-13, B- block, Preet Vihar, Madurai |
 </Table>
 
-Table 8.2 shows another file called ATTENDANCE which has four columns, as
+[Table 8.2](#table-8.2) shows another file called ATTENDANCE which has four columns, as
 detailed below:
 
 AttendanceDate - Date for which attendance was marked
@@ -164,7 +164,7 @@ the files.
 
 #### (D) Data Isolation ||section-8.2.1.d||
 
-Both the files presented at Table 8.1 (STUDENT) and at Table 8.2 (ATTENDANCE)
+Both the files presented at [Table 8.1](#table-8.1) (STUDENT) and at [Table 8.2](#table-8.2) (ATTENDANCE)
 are related to students. But there is no link or mapping between them. The
 school will have to write separate programs to access these two files. This is
 because data mapping is not supported in file system. In a more complex system
@@ -215,7 +215,7 @@ commands is called querying the database. In addition, users can modify the
 structure of the database itself through a DBMS.
 
 Databases are widely used in various fields. Some applications are given in
-Table 8.3.
+[Table 8.3](#table-8.3).
 
 <Table id="8.3" title="Table 8.3 Use of Database in Real-life Applications">
 | Application                      | Database to maintain data about                                                                                    |
@@ -237,11 +237,11 @@ that requires users to use programming commands to create and manage databases.
 
 ### 8.3.1 File System to DBMS ||section-8.3.1||
 
-Let us revisit our school example where two data files were maintained (Table
-8.1 by office and Table 8.2 by teacher). Let us now design a database to store
+Let us revisit our school example where two data files were maintained ([Table
+8.1](#table-8.1) by office and [Table 8.2](#table-8.2) by teacher). Let us now design a database to store
 data of those two files. We know that tables in a database are linked or related
-through one or more common columns or fields. In our example, the STUDENT (Table
-8.1) file and ATTENDANCE (Table 8.2) file have RollNumber and SName as common
+through one or more common columns or fields. In our example, the STUDENT ([Table
+8.1](#table-8.1)) file and ATTENDANCE ([Table 8.2](#table-8.2)) file have RollNumber and SName as common
 field names. In order to convert these two files into a database, we need to
 incorporate the following changes:
 
@@ -278,7 +278,7 @@ High Cost is incurred while shifting from file system to DBMS:
 
 :::
 
-Figure 8.1 shows the related data files for the STUDENT, GUARDIAN and ATTENDANCE
+[Figure 8.1](#figure-8.1) shows the related data files for the STUDENT, GUARDIAN and ATTENDANCE
 details. Note that this is not the complete database schema since it does not
 show any relationship among tables.
 
@@ -290,8 +290,8 @@ show any relationship among tables.
 ![Record structure of three files in STUDENTATTENDANCE database](./res/fig_8.1.webp)
 </Figure>
 
-The tables shown at Figure 8.1 are empty, which are to be populated with actual
-data as shown in Table 8.4, 8.5 and 8.6.
+The tables shown at [Figure 8.1](#figure-8.1) are empty, which are to be populated with actual
+data as shown in [Table 8.4](#table-8.4), [8.5](#table-8.5) and [8.6](#table-8.6).
 
 <Table id="8.4" title="Table 8.4 Snapshot of STUDENT table">
 | RollNumber | SName        | SDateofBirth | GUID         |
@@ -331,7 +331,7 @@ data as shown in Table 8.4, 8.5 and 8.6.
 | 2018-09-02 | 6          | P      |
 </Table>
 
-Figure 8.2 shows a simplified database called STUDENTATTENDANCE, which is used
+[Figure 8.2](#figure-8.2) shows a simplified database called STUDENTATTENDANCE, which is used
 to maintain data about the student, guardian and attendance. As shown here, the
 DBMS maintains a single repository of data at a centralised location and can be
 used by multiple users (office staff, teacher) at the same time.
@@ -440,7 +440,7 @@ book discusses the DBMS based on relational data model.
 In relational model, tables are called relations that store data for different
 columns. Each table can have multiple columns where each column name should be
 unique. For example, each row in the table represents a related set of values.
-Each row of Table 8.5 represents a particular guardian and has related values
+Each row of [Table 8.5](#table-8.5) represents a particular guardian and has related values
 viz. guardian's ID with guardian name, address and phone number. Thus, a table
 consists of a collection of relationships.
 
@@ -452,7 +452,7 @@ extracting guardian details of a particular student. If linking attributes are
 not there in appropriate relations, it will not be possible to keep the database
 in correct state and retrieve valid information from the database.
 
-Figure 8.3 shows the relational database Student Attendance along with the three
+[Figure 8.3](#figure-8.3) shows the relational database Student Attendance along with the three
 relations (tables) STUDENT, ATTENDANCE and GUARDIAN.
 
 <Figure 
@@ -473,14 +473,14 @@ relations (tables) STUDENT, ATTENDANCE and GUARDIAN.
 
 Each tuple (row) in a relation (table) corresponds to data of a real world
 entity (for example, Student, Guardian, and Attendance). In the GUARDIAN
-relation (Table 8.5), each row represents the facts about the guardian and each
+relation ([Table 8.5](#table-8.5)), each row represents the facts about the guardian and each
 column name in the GUARDIAN table is used to interpret the meaning of data
 stored under that column. A database that is modeled on relational data model
-concept is called Relational Database. Figure 8.4 shows relation GUARDIAN with
+concept is called Relational Database. [Figure 8.4](#figure-8.4) shows relation GUARDIAN with
 some populated data.
 
 Let us now understand the commonly used terminologies in relational data model
-using Figure 8.4.
+using [Figure 8.4](#figure-8.4).
 
 <Figure 
   id="8.4"
@@ -494,13 +494,16 @@ using Figure 8.4.
   in a relation. Simply stated, the columns of a relation are the attributes
   which are also referred as fields. For example, GUID, GName, GPhone and
   GAddress are attributes of relation GUARDIAN.
+
 - ii) **TUPLE:** Each row of data in a relation (table) is called a tuple. In a
   table with n columns, a tuple is a relationship between the n related values.
+
 - iii) **DOMAIN:** It is a set of values from which an attribute can take a
   value in each row. Usually, a data type is used to specify domain for an
   attribute. For example, in STUDENT relation, the attribute RollNumber takes
   integer values and hence its domain is a set of integer values. Similarly, the
   set of character strings constitutes the domain of the attribute SName.
+
 - iv) **DEGREE:** The number of attributes in a relation is called the Degree of
   the relation. For example, relation GUARDIAN with four attributes is a
   relation of degree 4.
@@ -559,7 +562,7 @@ these attributes can be used to uniquely identify the tuples in the relation.
 Such attributes are called candidate keys as each of them are candidates for the
 primary key.
 
-As shown in Figure 8.4, the relation GUARDIAN has four attributes out of which
+As shown in [Figure 8.4](#figure-8.4), the relation GUARDIAN has four attributes out of which
 GUID and GPhone always take unique values. No two guardians will have same phone
 number or same GUID. Hence, these two attributes are the candidate keys as they
 both are candidates for primary key.
@@ -601,7 +604,7 @@ take NULL value if it is not the part of primary key of the foreign table. The
 relation in which the referenced primary key is defined is called primary
 relation or master relation.
 
-In Figure 8.5, two foreign keys in Student Attendance database are shown using
+In [Figure 8.5](#figure-8.5), two foreign keys in Student Attendance database are shown using
 schema diagram where the foreign key is displayed as a directed arc (arrow)
 originating from it and ending at the corresponding attribute of the primary key
 of the referenced table. The underlined attributes make the primary key of that
@@ -621,31 +624,46 @@ table.
 
 <Summary>
 - A file in a file system is a container to store data in a computer.
+
 - File system suffers from Data Redundancy, Data Inconsistency, Data Isolation,
   Data Dependence and Controlled Data sharing.
+
 - Database Management System (DBMS) is a software to create and manage
   databases. A database is a collection of tables.
+
 - Database schema is the design of a database.
+
 - A database constraint is a restriction on the type of data that that can be
   inserted into the table.
+
 - Database schema and database constraints are stored in database catalog.
+
 - The snapshot of the database at any given time is the database instance.
+
 - A query is a request to a database for information retrieval and data
   manipulation (insertion, deletion or update). It is written in Structured
   Query Language (SQL).
+
 - Relational DBMS (RDBMS) is used to store data in related tables. Rows and
   columns of a table are called tuples and attributed respectively. A table is
   referred to as a relation.
+
 - Destructions on data stored in a RDBMS is applied by use of keys such as
   Candidate Key, Primary Key, Composite Primary Key, Foreign Key.
+
 - Primary key in a relation is used for unique identification of tuples.
+
 - Foreign key is used to relate two tables or relations.
+
 - Each column in a table represents a feature (attribute) of a record. Table
   stores the information for an entity whereas a row represents a record.
+
 - Each row in a table represents a record. A tuple is a collection of attribute
   values that makes a record unique.
+
 - A tuple is a unique entity whereas attribute values can be duplicate in the
   table.
+
 - SQL is the standard language for RDBMS systems like MySQL.
 </Summary>
 
@@ -658,13 +676,18 @@ table.
 Give the terms for each of the following:
 
 - a) Collection of logically related records.
+
 - b) DBMS creates a file that contains description about the data stored in the
   database.
+
 - c) Attribute that can uniquely identify the tuples in a relation.
+
 - d) Special value that is stored when actual data value is unknown for an
   attribute.
+
 - e) An attribute which can uniquely identify tuples of the table but is not
   defined as primary key of the table.
+
 - f) Software that is used to create, manipulate and maintain a relational
   database.
 
@@ -675,8 +698,11 @@ Why foreign keys are allowed to have NULL values? Explain with an example.
 ### Question 3
 
 Differentiate between: 
+
 - a) Database state and database schema 
+
 - b) Primary key and foreign key 
+
 - c) Degree and cardinality of a relation
 
 ### Question 4
@@ -711,9 +737,11 @@ the following:
 
 - a) Roll no 24 may not be interested in sports. Can a NULL value be assigned to
   that student's preference field?
+
 - b) Roll no 17 has given two preferences in sports. Which property of
   relational DBMC is violated here? Can we use any constraint or key in the
   relational DBMS to check against such violation, if any?
+
 - c) Kabaddi was not chosen by any student. Is it possible to have this tuple in
   the Sports Preferences relation?
 
@@ -760,12 +788,15 @@ following questions:
   Decide appropriate attribute names along with their data type. Each item and
   its price should be stored only once. What restriction should be used while
   defining the relation?
+
 - b) In order to generate bill, we should know the quantity of an item
   purchased. Should this information be in a new relation or a part of the
   previous relation? If a new relation is required, decide appropriate name and
   data type for attributes. Also, identify appropriate primary key and foreign
   key so that the following two restrictions are satisfied:
+
   - i) The same bill cannot be generated for different orders.
+
   - ii) Bill can be generated only for available items in the canteen.
 
 - c) The school wants to find out how many calories students intake when they
@@ -781,9 +812,11 @@ EMPLOYEE(AadharNumber, Name, Address, Department,EmployeeID)
 DEPENDENT(EmployeeID, DependentName, Relationship)
 
 - a) Name the attributes of EMPLOYEE, which can be used as candidate keys.
+
 - b) The company wants to retrieve details of dependent of a particular
   employee. Name the tables and the key which are required to retrieve this
   detail.
+
 - c) What is the degree of EMPLOYEE and DEPENDENT relation?
 
 ### Question 10
@@ -800,13 +833,18 @@ figure shows database schema and its state.
 
 - a) Can they insert the following tuples to the UNIFORM Relation? Give reasons
   in support of your answer.
+
   - i) 7, Handkerchief, NULL
+
   - ii) 4, Ribbon, Red
+
   - iii) 8, NULL, White
 
 - b) Can they insert the following tuples to the COST Relation? Give reasons in
   support of your answer.
+
   - i) 7, S, 0
+
   - ii) 9, XL, 100
 
 ### Question 11
@@ -822,8 +860,10 @@ Audi(AudiNo, Movie_ID, Seats, ScreenType, TicketPrice)
 
 - a) Is it correct to assign Movie_ID as the primary key in the MOVIE relation?
   If no, then suggest an appropriate primary key.
+
 - b) Is it correct to assign AudiNo as the primary key in the AUDI relation? If
   no, then suggest appropriate primary key.
+
 - c) Is there any foreign key in any of these relations?
 
 <Figure 
@@ -837,9 +877,12 @@ Audi(AudiNo, Movie_ID, Seats, ScreenType, TicketPrice)
 For the above given database STUDENT-PROJECT, answer the following:
 
 - a) Name primary key of each table.
+
 - b) Find foreign key(s) in table PROJECT-ASSIGNED.
+
 - c) Is there any alternate key in table STUDENT? Give justification for your
   answer.
+
 - d) Can a user assign duplicate value to the field RollNo of STUDENT table?
   Jusify.
 
@@ -849,7 +892,12 @@ For the above given database STUDENT-PROJECT, can we perform the following
 operations?
 
 - a) Insert a student record with missing roll number value.
+
 - b) Insert a student record with missing registration number value.
+
 - c) Insert a project detail without submission-date.
+
 - d) Insert a record with registration ID IP-101-19 and ProjectNo 206 in table
   PROJECT-ASSIGNED.
+
+---

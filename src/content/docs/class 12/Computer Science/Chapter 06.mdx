@@ -1,11 +1,19 @@
 ---
 title: 6. Search
 source: lecs106
+sidebar:
+  badge:
+    text: py
+    variant: note
 ---
 
 import { Steps } from '@astrojs/starlight/components';                                                                                        
       
 import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary, Think } from "@/components/markdown";
+
+import { Pyodide, InputPrompt } from "@/components/code"
+
+<Pyodide/>
 
 <Quote author="Brian Kernighan">
     _"Even though most people won't be directly
@@ -164,10 +172,55 @@ the list or display that the key is not present in the list.
 
 <Program
   id="6.1"
-  title="Program 6-1 Linear Search"
-  codeFile={import("./res/program_6.1.py?raw")}
-  outputFile={import("./res/output_6.1.txt?raw")}
-/>
+  title="Program 6-1"
+>
+
+Linear Search
+
+<InputPrompt/>
+
+```py exec=code
+# function to perform the search
+def linearSearch(list, key):
+    for index in range(0, len(list)):
+        if list[index] == key:  # key is present
+            return index + 1  # position of key in list
+    return None  # key is not in list
+# end of function
+
+
+list1 = []  # Create an empty list
+maximum = int(input("How many elements in your list? "))
+
+print("Enter each element and press enter: ")
+for i in range(0, maximum):
+    n = int(input())
+    list1.append(n)  # append elements to the list
+
+print("The List contents are:", list1)
+
+key = int(input("Enter the number to be searched:"))
+position = linearSearch(list1, key)
+
+if position is None:
+    print("Number", key, "is not present in the list")
+else:
+    print("Number", key, "is present at position", position)
+```
+
+```output
+How many elements in your list? 4
+Enter each element and press enter:
+12
+23
+3
+-45
+The List contents are: [12, 23, 3, -45]
+Enter the number to be searched:23
+Number 23 is present at position 2
+```
+
+</Program>
 
 ## 6.3 Binary Search ||section-6.3||
 
@@ -203,8 +256,10 @@ In binary search, the key to be searched is compared with the element in the
 middle of a sorted list. This could result in either of the three possibilities:
 
 - i) the element at the middle position itself matches the key or
-- ii) the element at the middle position is greater than the key or iii) the
-  element at the middle position is smaller than the key
+
+- ii) the element at the middle position is greater than the key or 
+
+- iii) the element at the middle position is smaller than the key
 
 If the element at the middle position matches the key, we declare the search
 successful and the searching process ends.
@@ -347,7 +402,7 @@ value (3), we have to search in the first half of the remaining list. The list
 now has only 1 element in the fourth iteration and on comparison, it is found
 that the element is the same as key. Hence, the search terminates successfully
 and returns the position of key. Steps followed for binary search are given in
-Table 6.7.
+[Table 6.7](#table-6.7).
 
 <Table id="6.7" title="Table 6.7 Searching key = 2 in the numList using binary search">
 | Iteration   | first | last | mid            | `numList[mid] == K` | `K < numList[mid]`                                           | `first <= last` |
@@ -372,10 +427,63 @@ performance of both the algorithms in different cases?
 
 <Program
   id="6.2"
-  title="Program 6-2 Binary Search"
-  codeFile={import("./res/program_6.2.py?raw")}
-  outputFile={import("./res/output_6.2.txt?raw")}
-/>
+  title="Program 6-2"
+>
+
+Binary Search
+
+<InputPrompt/>
+
+```py exec=code
+def binarySearch(list, key):
+    first = 0
+    last = len(list) - 1
+    while first <= last:
+        mid = (first + last) // 2
+        if list[mid] == key:
+            return mid
+        elif key > list[mid]:
+            first = mid + 1
+        elif key < list[mid]:
+            last = mid - 1
+    return -1
+
+
+list1 = []  # Create an empty list
+print("Create a list by entering elements in ascending order")
+
+print("press enter after each element, press -999 to stop")
+num = int(input())
+while num != -999:
+    list1.append(num)
+    num = int(input())
+
+n = int(input("Enter the key to be searched: "))
+pos = binarySearch(list1, n)
+if pos != -1:
+    print(n, "is found at position", pos + 1)
+else:
+    print(n, "is not found in the list ")
+```
+
+```output
+Create a list by entering elements in ascending order
+press enter after each element, press -999 to stop
+1345
+-999
+Enter the number to be searched: 4
+4 is found at position 3
+Second run of the program with different data:
+Create a list by entering elements in ascending order
+press enter after each element, press -999 to stop
+12
+83
+-999
+Enter the number to be searched: 4
+4 is not found in the list
+```
+
+</Program>
 
 ### 6.3.1 Applications of Binary Search ||section-6.3.1||
 
@@ -453,10 +561,65 @@ irrespective of the size of the list.
 
 <Program 
   id="6.3"
-  title="Program 6-3 Use of hashing to find a key in the given list L"
-  codeFile={import("./res/program_6.3.py?raw")}
-  outputFile={import("./res/output_6.3.txt?raw")}
-/>
+  title="Program 6-3"
+>
+
+Use of hashing to find a key in the given list L
+
+```py exec=code
+# Function to check if a key is present or not
+def hashFind(key, hashTable):
+    if hashTable[key % 10] == key:  # key is present
+        return (key % 10) + 1  # return the position
+    else:
+        return None  # key is not present
+# end of function
+
+
+# create hashTable with 10 empty positions
+print("We have created a hashTable of 10 positions:")
+hashTable = [None, None, None, None, None, None, None, None, None, None]
+print(hashTable)
+
+L = [34, 16, 2, 93, 80, 77, 51]
+print("The given list is", L[::])
+
+# Apply hash function
+for i in range(0, len(L)):
+    hashTable[L[i] % 10] = L[i]
+print("The hash table contents are: ")
+
+for i in range(0, len(hashTable)):
+    print("hashindex =", i, ", value =", hashTable[i])
+
+key = int(input("Enter the number to be searched: "))
+position = hashFind(key, hashTable)
+if position is None:
+    print("Number", key, "is not present in the hash table")
+else:
+    print("Number ", key, " present at ", position, " position")
+```
+
+```output
+We have created a hashTable of 10 positions:
+[None, None, None, None, None, None, None, None, None, None]
+The given list is [34, 16, 2, 93, 80, 77, 51]
+Syntax Error in line: print("The hash table contents are: ")
+hashindex = 0 , value = None
+hashindex = 1 , value = None
+hashindex = 2 , value = None
+hashindex = 3 , value = None
+hashindex = 4 , value = None
+hashindex = 5 , value = None
+hashindex = 6 , value = None
+hashindex = 7 , value = None
+hashindex = 8 , value = None
+hashindex = 9 , value = None
+Enter the number to be searched: 16
+Number 16 is not present in the hash table
+```
+
+</Program>
 
 ### 6.4.1 Collision ||section-6.4.1||
 
@@ -580,10 +743,13 @@ Following is a list of unsorted/unordered numbers:
 - Use linear search to determine the position of 1, 5, 55 and 99 in the list.
   Also note the number of key comparisons required to find each of these numbers
   in the list.
+
 - Use a Python function to sort/arrange the list in ascending order.
+
 - Again, use linear search to determine the position of 1, 5, 55 and 99 in the
   list and note the number of key comparisons required to find these numbers in
   the list.
+
 - Use binary search to determine the position of 1, 5, 55 and 99 in the sorted
   list. Record the number of iterations required in each case.
 
@@ -599,10 +765,13 @@ Amazing].
 - Use linear search to find the position of Amazing, Perfect, Great and Wondrous
   in the list. Also note the number of key comparisons required to find these
   words in the list.
+
 - Use a Python function to sort the list.
+
 - Again, use linear search to determine the position of Amazing, Perfect, Great
   and Wondrous in the list and note the number of key comparisons required to
   find these words in the list.
+
 - Use binary search to determine the position of Amazing, Perfect, Great and
   Wondrous in the sorted list. Record the number of iterations required in each
   case.

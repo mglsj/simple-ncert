@@ -1,7 +1,0 @@
-Learning to move the file object
-roll_numbers = [1, 2, 3, 4, 5, 6]
-Initially, the position of the fi le object is: 33
-Now the file object is at the beginning of the file: 0
-We are moving to 10th byte position from the beginning of file
-The position of the file object is at 10
-rs = [1, 2, 3, 4, 5, 6]

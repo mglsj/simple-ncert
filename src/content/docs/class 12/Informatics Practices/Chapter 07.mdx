@@ -16,7 +16,7 @@ import Pyodide from "@/components/code/Pyodide.astro"
 
 <Pyodide />
 
-<Quote author="Gautam Buddha">
+<Quote author="Gautam Buddha" href="https://en.wikipedia.org/wiki/Gautama_Buddha">
 "An idea that is developed and put into action is more important than idea that
 exists only as an idea."
 </Quote>
@@ -646,10 +646,9 @@ Let us now write the code for the above identified steps:
    <Figure
         id="7.2"
         title="Figure 7.2: Barchart showing population in different categories"
-        invertable={true}
         images={[
             {
-                src: import("./res/fig_7.2.png"),
+                src: import("./res/fig_7.2.webp"),
                 alt: "Barchart showing population in different categories",
             }
         ]}

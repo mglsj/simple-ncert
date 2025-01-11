@@ -11,6 +11,10 @@ import { Steps } from '@astrojs/starlight/components';
       
 import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary, Think, Know } from "@/components/markdown";
 
+import { Pyodide, InputPrompt } from "@/components/code"
+
+<Pyodide/>
+
 <Quote author="Steve Jobs" href="https://en.wikipedia.org/wiki/Steve_Jobs">
   "We're going to be able to ask our computers to monitor things for us, and
   when certain conditions happen, are triggered, the computers will take certain
@@ -201,7 +205,7 @@ The program shall define the following functions to perform these operations:
 1. Let us create an empty stack named `glassStack`. We will do so by assigning an
    empty list to the identifier named `glassStack`:
 
-   ```py
+   ```py exec
    glassStack = list()
    ```
 
@@ -210,9 +214,9 @@ The program shall define the following functions to perform these operations:
    _'underflow'_. This function returns True if the stack is empty, else returns
    False.
 
-   ```py
+   ```py exec
    def isEmpty(glassStack): 
-       if len(glassStack)==0:
+       if len(glassStack) == 0:
            return True 
        else:
            return False
@@ -228,7 +232,7 @@ The program shall define the following functions to perform these operations:
    is no more space available in memory. Hence, we will never face _'overflow'_
    (no space for new element) condition for stack.
 
-   ```py
+   ```py exec
    def opPush(glassStack,element): 
        glassStack.append(element)
    ```
@@ -237,7 +241,7 @@ The program shall define the following functions to perform these operations:
    We will use the `len()` function of list in Python to find the number of
    elements in the `glassStack`.
 
-   ```py
+   ```py exec
    def size(glassStack): 
        return len(glassStack)
    ```
@@ -245,13 +249,14 @@ The program shall define the following functions to perform these operations:
 5. A function named `top` to read the most recent element (**TOP**) in the
    `glassStack`.
 
-   ```py
+   ```py exec
    def top(glassStack):
        if isEmpty(glassStack):
-           print('Stack is empty') 
+           print("Stack is empty") 
            return None
        else:
-           x =len(glassStack) element=glassStack[x-1] 
+           x = len(glassStack) 
+           element = glassStack[x-1] 
            return element
    ```
 
@@ -262,10 +267,10 @@ The program shall define the following functions to perform these operations:
    removes the topmost element from it. We shall use the built- in method
    `pop()` of Python list that removes the element from the end of the list.
 
-   ```py
+   ```py exec
    def opPop(glassStack):
        if isEmpty(glassStack): 
-           print('underflow')      
+           print("underflow")      
            return None
        else:
            return(glassStack.pop())
@@ -273,11 +278,11 @@ The program shall define the following functions to perform these operations:
 
 7. A function named `display` to show the contents of the stack.
 
-   ```py
+   ```py exec
    def display(glassStack): 
        x = len(glassStack)
        print("Current elements in the stack are: ")
-       for i in range(x-1,-1,-1): 
+       for i in range(x - 1, -1, -1): 
            print(glassStack[i])
    ```
 
@@ -286,15 +291,66 @@ The program shall define the following functions to perform these operations:
 Once we define the above functions we can use the following Python code to
 implement a stack of glasses.
 
-import program_3_stack from './res/program_3.stack.py?raw';
-import output_3_stack from './res/output_3.stack.txt?raw';
-
 <Program
-  id="3.stack"
-  title="Program 3: Implementation of Stack in Python"
-  code={program_3_stack}
-	output={output_3_stack}
-/>
+  id="3"
+  title="Program 3"
+>
+
+Implementation of Stack in Python
+
+```py exec
+# add elements to stack
+element = "glass1"
+print("Pushing element", element)
+opPush(glassStack, element)
+element = "glass2"
+print("Pushing element", element)
+opPush(glassStack, element)
+
+# display number of elements in stack
+print("Current number of elements in stack is", size(glassStack))
+
+# delete an element from the stack
+element = opPop(glassStack)
+print("Popped element is", element)
+
+# add new element to stack
+element = "glass3"
+print("Pushing element", element)
+opPush(glassStack, element)
+
+# display the last element added to the stack
+print("top element is", top(glassStack))
+
+# display all elements in the stack
+display(glassStack)
+
+# delete all elements from stack
+while True:
+    item = opPop(glassStack)
+    if item == None:
+        print("Stack is empty now")
+        break
+    else:
+        print("Popped element is", item)
+```
+
+```output
+Pushing element glass1 
+Pushing element glass2
+Current number of elements in stack is 2 
+Popped element is glass2
+Pushing element glass3 top element is glass3
+Current elements in the stack are: 
+glass3 
+glass1
+Popped element is glass3 
+Popped element is glass1 
+Underflow
+Stack is empty now
+```
+
+</Program>
 
 
 ## 3.5	Notations for Arithmetic Expressions ||section-3.5||
@@ -474,26 +530,36 @@ Write an algorithm to evaluate any prefix expression using a stack.
 <Summary>
 - Stack is a data structure in which insertion and deletion is done from one end
   only, usually referred to a**s TOP.**
+
 - Stack follows **LIFO** principle using which an element inserted in the last will
   be the first one to be out.
+
 - **PUSH** and **POP** are two basic operations performed on a stack for insertion and
   deletion of elements, respectively.
+
 - Trying to pop an element from an empty stack results into a special condition
   underflow.
+
 - In Python, list is used for implementing a stack and its built-in-functions
   append and pop are used for insertion and deletion, respectively. Hence, no
   explicit declaration of **TOP** is needed.
+
 - Any arithmetic expression can be represented in any of the three notations
   viz. _Infix_, _Prefix_ and _Postfix_.
+
 - While programming, Infix notation is used for writing an expression in which
   binary operators are written in between the operands.
+
 - A single traversal from left to right of Prefix/ Postfix expression is
   sufficient to evaluate the expression as operators are correctly placed as per
   their order of precedence.
+
 - Stack is commonly used data structure to convert an Infix expression into
   equivalent Prefix/Postfix notation.
+
 - While conversion of an Infix notation to its equivalent Prefix/Postfix
   notation, only operators are PUSHed onto the Stack.
+
 - When evaluating any Postfix expression using Stack, only operands are PUSHed
   onto it.
 </Summary>
@@ -507,8 +573,11 @@ Write an algorithm to evaluate any prefix expression using a stack.
 State **TRUE** or **FALSE** for the following cases:
 
 1. Stack is a linear data structure
+
 2. Stack does not follow **LIFO** rule
+
 3. PUSH operation may result into underflow condition
+
 4. In POSTFIX notation for expression, operators are placed after operands
 
 ### Question 2
@@ -516,26 +585,27 @@ State **TRUE** or **FALSE** for the following cases:
 Find the output of the following code:
 
 ```py title="a"
-result=0 
-numberList=[10,20,30] 
-numberList.append(40) 
-result=result+numberList.pop() 
-result=result+numberList.pop() 
-print(“Result=”,result)
+result = 0
+numberList = [10, 20, 30]
+numberList.append(40)
+result = result + numberList.pop()
+result = result + numberList.pop()
+print("Result=", result)
 ```
 
 ```py title="b"
-answer=[]; output='' 
-answer.append('T') 
-answer.append('A') 
-answer.append('M') 
-ch=answer.pop() 
-output=output+ch 
-ch=answer.pop() 
-output=output+ch 
-ch=answer.pop() 
-output=output+ch 
-print(“Result=”,output)
+answer = []
+output = ""
+answer.append("T")
+answer.append("A")
+answer.append("M")
+ch = answer.pop()
+output = output + ch
+ch = answer.pop()
+output = output + ch
+ch = answer.pop()
+output = output + ch
+print("Result=", output)
 ```
 
 ### Question 3
@@ -553,6 +623,7 @@ Evaluate following postfix expressions while showing status of stack after each
 operation given A=3, B=5, C=1, D=4
 
 1. $A B + C *$
+
 2. $A B * C / D *$
 
 ### Question 6
@@ -561,6 +632,7 @@ Convert the following infix notations to postfix notations, showing stack and
 string contents at each step.
 
 1. $A + B - C * D$
+
 2. $A * (( C + D)/E)$
 
 ### Question 7
@@ -572,3 +644,5 @@ largest odd number in the Stack.
 (**Hint.** Keep popping out the elements from stack
 and maintain the largest element retrieved so far in a variable. Repeat till
 Stack is empty)
+
+---

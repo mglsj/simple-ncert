@@ -46,6 +46,14 @@ main {
 	}
 }
 
+@media (max-width: 800px) {
+	.img-half-width {
+		img {
+			width: 100%;
+		}
+	}
+}
+
 .img-full-width {
 	img {
 		width: 100%;

@@ -1,11 +1,10 @@
 ---
 import { Card } from "@/components/markdown";
 import { generateRandomId } from "@/lib/helpers";
-import { Code, FileTree } from "@astrojs/starlight/components";
 
 interface Props {
 	id?: string;
-    lang?: string;
+	lang?: string;
 	title: string;
 	code?: string;
 	output?: string;
@@ -13,37 +12,35 @@ interface Props {
 	outputFile?: Promise<{ default: string }>;
 }
 
-const { 
-    id = generateRandomId(),
-    title, 
-    lang="python", 
-    code, 
-    output, 
-	codeFile,
-	outputFile
+const {
+	id = generateRandomId(),
+	title,
+	// lang = "python",
+	// code,
+	// output,
+	// codeFile,
+	// outputFile,
 } = Astro.props;
 
-let raw_code = "";
-if (code) {
-	raw_code = code;
-}
-else if (codeFile) {
-	raw_code = (await codeFile).default;
-} else {
-	throw new Error("No code or codeFile provided");
-}
+// let raw_code = "";
+// if (code) {
+// 	raw_code = code;
+// } else if (codeFile) {
+// 	raw_code = (await codeFile).default;
+// } else {
+// 	throw new Error("No code or codeFile provided");
+// }
 
-let raw_output = "";
-if (output) {
-	raw_output = output;
-}
-else if (outputFile) {
-	raw_output = (await outputFile).default;
-}
+// let raw_output = "";
+// if (output) {
+// 	raw_output = output;
+// } else if (outputFile) {
+// 	raw_output = (await outputFile).default;
+// }
 ---
 
 <Card title={title} id={`program-${id}`} heading={5}>
-	<Code lang={lang} code={raw_code} />
+	<!-- <Code lang={lang} code={raw_code} />
 	{raw_output && (
         <p>Output:</p>
         <Code lang="ansi" code={raw_output} />
@@ -53,5 +50,6 @@ else if (outputFile) {
 		<FileTree>
 			<slot />
 		</FileTree>
-	)}
+	)} -->
+	<slot />
 </Card>

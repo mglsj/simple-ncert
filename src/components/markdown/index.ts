@@ -11,6 +11,8 @@ import Definition from "./Definition.astro";
 import Think from "./Think.astro";
 import Collapse from "./Collapse.astro";
 import Know from "./Know.astro";
+import Quiz from "./Quiz.astro";
+import QuizOption from "./QuizOption.astro";
 
 export {
 	Figure,
@@ -26,4 +28,6 @@ export {
 	Think,
 	Collapse,
 	Know,
+	Quiz,
+	QuizOption,
 };

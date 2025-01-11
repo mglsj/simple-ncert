@@ -1,11 +1,19 @@
 ---
 title: 5. Sorting
 source: lecs105
+sidebar:
+  badge:
+    text: py
+    variant: note
 ---
 
 import { Steps } from '@astrojs/starlight/components';                                                                                        
       
 import { Example, Card, Figure, Quote, Algorithm, Activity, Table, Program, Summary, Think } from "@/components/markdown";
+
+import { Pyodide, InputPrompt } from "@/components/code"
+
+<Pyodide/>
 
 <Quote author="Peter Thiel" href="https://en.wikipedia.org/wiki/Peter_Thiel">
 "Every one of today's smartphones has thousands of times more processing power
@@ -127,15 +135,39 @@ a list of `n` elements, and sorts the list in ascending order:
 sort a list in descending order?
 </Activity>
 
-import program_5_1 from './res/program_5.1.py?raw';
-import output_5_1 from './res/output_5.1.txt?raw';
-
 <Program
   id="5.1"
-  title="Program 5-1 Implementation of bubble sort using Python."
-  code={program_5_1}
-  output={output_5_1}
-/>
+  title="Program 5-1"
+>
+
+Implementation of bubble sort using Python
+
+```py exec=code
+def bubble_Sort(list1):
+    n = len(list1)
+    for i in range(n):  # Number of passes
+        for j in range(0, n - i - 1):
+            # size-i-1 because last i elements are 
+            # already sorted in previous passes
+            if list1[j] > list1[j + 1]:
+                # Swap element at jth position with (j+1)th position
+                list1[j], list1[j + 1] = list1[j + 1], list1[j]
+
+
+numList = [8, 7, 13, 1, -9, 4]
+bubble_Sort(numList)
+
+print("The sorted list is :")
+for i in range(len(numList)):
+    print(numList[i], end=" ")
+```
+
+```output
+The sorted list is :
+-9 1 4 7 8 13
+```
+
+</Program>
 
 
 ## 5.3 Selection Sort ||section-5.3||
@@ -216,15 +248,43 @@ sort.
 
 </Activity>
 
-import program_5_2 from './res/program_5.2.py?raw';
-import output_5_2 from './res/output_5.2.txt?raw';
-
 <Program
-    id="5.2"
-    title="Program 5-2 Implementation of selection sort using Python."
-    code={program_5_2}
-  output={output_5_2}
-/>
+  id="5.2"
+  title="Program 5-2"
+>
+
+Implementation of selection sort using Python
+
+```py exec=code
+def selection_Sort(list2):
+    flag = 0  # to decide when to swap
+    n = len(list2)
+    for i in range(n):  # Traverse through all list elements
+        min = i
+        for j in range(i + 1, len(list2)):
+            # the left elements are already sorted in previous passes
+            if list2[j] < list2[min]:
+                # element at j is smaller than the current min element
+                min = j
+                flag = 1
+        if flag == 1:  # next smallest element is found
+            list2[min], list2[i] = list2[i], list2[min]
+
+
+numList = [8, 7, 13, 1, -9, 4]
+selection_Sort(numList)
+
+print("The sorted list is :")
+for i in range(len(numList)):
+    print(numList[i], end=" ")
+```
+
+```output
+The sorted list is :
+-9 1 4 7 8 13
+```
+
+</Program>
 
 ## 5.4 Insertion Sort ||section-5.4||
 
@@ -303,15 +363,39 @@ sort.
 
 </Activity>
 
-import program_5_3 from './res/program_5.3.py?raw';
-import output_5_3 from './res/output_5.3.txt?raw';
-
 <Program
   id="5.3"
-  title="Program 5-3 Implementation of insertion sort using Python."
-  code={program_5_3}
-  output={output_5_3}
-/>
+  title="Program 5-3"
+>
+
+Implementation of insertion sort using Python
+
+```py exec=code
+def insertion_Sort(list3):
+    n = len(list3)
+    for i in range(n):  # Traverse through all elements
+        temp = list3[i]
+        j = i - 1
+        while j >= 0 and temp < list3[j]:
+            list3[j + 1] = list3[j]
+            j = j - 1
+        list3[j + 1] = temp
+
+
+numList = [8, 7, 13, 1, -9, 4]
+insertion_Sort(numList)
+
+print("The sorted list is :")
+for i in range(len(numList)):
+    print(numList[i], end=" ")
+```
+
+```output
+The sorted list is :
+-9 1 4 7 8 13
+```
+
+</Program>
 
 ## 5.5 Time Complexity of Algorithms ||section-5.5||
 
@@ -364,15 +448,19 @@ time complexity of $n^2$.
 <Summary>
 - The process of placing or rearranging a collection of elements into a
   particular order is known as sorting.
+
 - Bubble sort is the simplest sorting algorithm that works by repeatedly
   swapping the adjacent elements in case they are unordered in n-1 passes.
+
 - In Selection Sort, the smallest element is selected from the unsorted array
   and swapped with the leftmost element, and that element becomes a part of the
   sorted array. The process continues for the next element in the unsorted array
   till the list is sorted.
+
 - Insertion Sort places the element of a list at its suitable place in each
   pass. It is similar to the placing of cards at its right position while
   playing cards.
+
 - Complexity analysis is performed to explain how an algorithm will perform when
   the input grows larger.
 </Summary>

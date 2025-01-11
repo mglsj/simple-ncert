@@ -123,7 +123,6 @@ or use series, we first need to import the Pandas library.
 
 A Series can be created using scalar values as shown in the example below:
 
-<Card>
 ```py exec
 # import Pandas with alias pd
 import pandas as pd
@@ -133,13 +132,13 @@ series1 = pd.Series([10, 20, 30])
 # Display the series
 print(series1)
 ```
-```ansi
+
+```output
 0    10
 1    20
 2    30
 dtype: int64
 ```
-</Card>
 
 Observe that output is shown in two columns -the index is on the left and the
 data value is on the right. If we do not explicitly specify an index for the
@@ -149,7 +148,7 @@ through N - 1. Here N is the number of data elements.
 We can also assign user-defined labels to the index and use them to access
 elements of a Series. The following example has a numeric index in random order.
 
-<Card>
+
 ```py exec
 series2 = pd.Series(
     ["Kavi", "Shyam", "Ravi"],
@@ -158,13 +157,14 @@ series2 = pd.Series(
 # Display the series
 print(series2)
 ```
-```ansi
+
+```output
 3     Kavi
 5    Shyam
 1     Ravi
 dtype: object
 ```
-</Card>
+
 
 <Activity id="2.1" title="Activity 2.1">
 Create a series having names of any five famous monuments of India and assign
@@ -174,7 +174,7 @@ their States as index values.
 Here, data values Kavi, Shyam and Ravi have index values 3, 5 and 1,
 respectively. We can also use letters or strings as indices, for example:
 
-<Card>
+
 ```py exec
 series2 = pd.Series(
     [2, 3, 4],
@@ -183,13 +183,14 @@ series2 = pd.Series(
 # Display the series
 print(series2)
 ```
-```ansi
+
+```output
 Feb    2
 Mar    3
 Apr    4
 dtype: int64
 ```
-</Card>
+
 
 Here, data values 2,3,4 have index values Feb, Mar and Apr, respectively.
 
@@ -202,7 +203,7 @@ would happen if we give any other name?
 
 We can create a series from a one-dimensional (1D) NumPy array, as shown below:
 
-<Card>
+
 ```py exec
 # import NumPy with alias np
 import numpy as np
@@ -212,18 +213,19 @@ array1 = np.array([1, 2, 3, 4])
 series3 = pd.Series(array1)
 print(series3)
 ```
-```ansi
+
+```output
 0    1
 1    2
 2    3
 3    4
 dtype: int64
 ```
-</Card>
+
 
 The following example shows that we can use letters or strings as indices:
 
-<Card>
+
 ```py exec
 series4 = pd.Series(
     array1,
@@ -232,28 +234,30 @@ series4 = pd.Series(
 print(series4)
 
 ```
-```ansi
+
+```output
 Jan    1
 Feb    2
 Mar    3
 Apr    4
 dtype: int64
 ```
-</Card>
+
 
 When index labels are passed with the array, then the length of the index and
 array must be of the same size, else it will result in a ValueError. In the
 example shown below, array1 contains 4 values whereas there are only 3 indices,
 hence ValueError is displayed.
 
-<Card>
+
 ```py exec
 series5 = pd.Series(
     array1,
     index=["Jan", "Feb", "Mar"],
 )
 ```
-```ansi collapse={1-27}
+
+```output collapse={1-27}
 ---------------------------------------------------------------------------
 ValueError                                Traceback (most recent call last)
 Cell In[653], line 1
@@ -283,7 +287,7 @@ File ~\AppData\Roaming\Python\Python313\site-packages\pandas\core\common.py:573,
 
 ValueError: Length of values (4) does not match length of index (3)
 ```
-</Card>
+
 
 #### (C) Creation of Series from Dictionary ||section-2.2.1.c||
 
@@ -292,7 +296,7 @@ retrieved when its key is known. Dictionary keys can be used to construct an
 index for a Series, as shown in the following example. Here, keys of the
 dictionary dict1 become indices in the series.
 
-<Card>
+
 ```py exec
 dict1 = {
     "India": "NewDelhi",
@@ -303,25 +307,27 @@ dict1 = {
 # Display the dictionary
 print(dict1)
 ```
-```ansi
+
+```output
 {'India': 'NewDelhi', 'UK': 'London', 'Japan': 'Tokyo'}
 ```
-</Card>
 
-<Card>
+
+
 ```py exec
 series8 = pd.Series(dict1)
 
 # Display the series
 print(series8)
 ```
-```ansi
+
+```output
 India    NewDelhi
 UK         London
 Japan       Tokyo
 dtype: object
 ```
-</Card>
+
 
 ### 2.2.2 Accessing Elements of a Series ||section-2.2.2||
 
@@ -344,15 +350,15 @@ index.
 - Following example shows usage of the positional index for accessing a value
   from a Series.
 
-<Card>
+
 ```py exec
 seriesNum = pd.Series([10, 20, 30])
 seriesNum[2]
 ```
-```ansi
-np.int64(30)
+
+```output
+30
 ```
-</Card>
 
 Here, the value 30 is displayed for the positional index 2.
 
@@ -360,7 +366,7 @@ When labels are specified, we can use labels as indices while selecting values
 from a Series, as shown below. Here, the value 3 is displayed for the labelled
 index Mar.
 
-<Card>
+
 ```py exec
 seriesMnths = pd.Series(
     [2, 3, 4],
@@ -368,15 +374,15 @@ seriesMnths = pd.Series(
 )
 seriesMnths["Mar"]
 ```
-```ansi
-np.int64(3)
+
+```output
+3
 ```
-</Card>
 
 In the following example, value NewDelhi is displayed for the labelled index
 India.
 
-<Card>
+
 ```py exec
 seriesCapCntry = pd.Series(
     ["NewDelhi", "WashingtonDC", "London", "Paris"],
@@ -384,63 +390,68 @@ seriesCapCntry = pd.Series(
 )
 seriesCapCntry["India"]
 ```
-```ansi
+
+```output
 'NewDelhi'
 ```
-</Card>
+
 
 We can also access an element of the series using the positional index:
 
-<Card>
+
 ```py exec
 seriesCapCntry[1]
 ```
-```ansi
+
+```output
 'WashingtonDC'
 ```
-</Card>
+
 
 More than one element of a series can be accessed using a list of positional
 integers or a list of index labels as shown in the following examples:
 
-<Card>
+
 ```py exec
 seriesCapCntry[[3, 2]]
 ```
-```ansi
+
+```output
 France     Paris
 UK        London
 dtype: object
 ```
-</Card>
 
-<Card>
+
+
 ```py exec
 seriesCapCntry[["UK", "USA"]]
 ```
-```ansi
+
+```output
 UK           London
 USA    WashingtonDC
 dtype: object
 ```
-</Card>
+
 
 The index values associated with the series can be altered by assigning new
 index values as shown in the following example:
 
-<Card>
+
 ```py exec
 seriesCapCntry.index = [10, 20, 30, 40]
 seriesCapCntry
 ```
-```ansi
+
+```output
 10        NewDelhi
 20    WashingtonDC
 30          London
 40           Paris
 dtype: object
 ```
-</Card>
+
 
 #### (B) Slicing ||section-2.2.2.b||
 
@@ -452,7 +463,7 @@ the value at the endindex position is excluded, i.e., only (end - start) number
 of data values of the series are extracted. Consider the following series
 seriesCapCntry:
 
-<Card>
+
 ```py exec
 seriesCapCntry = pd.Series(
     ["NewDelhi", "WashingtonDC", "London", "Paris"],
@@ -462,48 +473,51 @@ seriesCapCntry = pd.Series(
 # excludes the value at index position 3
 seriesCapCntry[1:3]
 ```
-```ansi
+
+```output
 USA    WashingtonDC
 UK           London
 dtype: object
 ```
-</Card>
+
 
 As we can see that in the above output, only data values at indices 1 and 2 are
 displayed. If labelled indexes are used for slicing, then value at the end index
 label is also included in the output, for example:
 
-<Card>
+
 ```py exec
 seriesCapCntry["USA":"France"]
 ```
-```ansi
+
+```output
 USA       WashingtonDC
 UK              London
 France           Paris
 dtype: object
 ```
-</Card>
+
 
 We can also get the series in reverse order, for example:
 
-<Card>
+
 ```py exec
 seriesCapCntry[::-1]
 ```
-```ansi
+
+```output
 France           Paris
 UK              London
 USA       WashingtonDC
 India         NewDelhi
 dtype: object
 ```
-</Card>
+
 
 We can also use slicing to modify the values of series elements as shown in the
 following example:
 
-<Card>
+
 ```py exec
 import numpy as np
 
@@ -513,7 +527,8 @@ seriesAlph = pd.Series(
 )
 seriesAlph
 ```
-```ansi
+
+```output
 a    10
 b    11
 c    12
@@ -522,14 +537,15 @@ e    14
 f    15
 dtype: int64
 ```
-</Card>
 
-<Card>
+
+
 ```py exec
 seriesAlph[1:3] = 50
 seriesAlph
 ```
-```ansi
+
+```output
 a    10
 b    50
 c    50
@@ -538,18 +554,19 @@ e    14
 f    15
 dtype: int64
 ```
-</Card>
+
 
 Observe that updating the values in a series using slicing also excludes the
 value at the end index position. But, it changes the value at the end index
 label when slicing is done using labels.
 
-<Card>
+
 ```py exec
 seriesAlph["c":"e"] = 500
 seriesAlph
 ```
-```ansi
+
+```output
 a     10
 b     50
 c    500
@@ -558,7 +575,7 @@ e    500
 f     15
 dtype: int64
 ```
-</Card>
+
 
 ### 2.2.3 Attributes of Series ||section-2.2.3||
 
@@ -566,18 +583,19 @@ We can access certain properties called attributes of a series by using that
 property with the series name. [Table 2.1](#table-2.1) lists some attributes of Pandas series
 usingseriesCapCntry as an example:
 
-<Card>
+
 ```py exec
 seriesCapCntry
 ```
-```ansi
+
+```output
 India         NewDelhi
 USA       WashingtonDC
 UK              London
 France           Paris
 dtype: object
 ```
-</Card>
+
 
 <Table id="2.1" title="Table 2.1 Attributes of Pandas Series" center={false}>
 <table>
@@ -604,7 +622,7 @@ assigns a name to the Series
 seriesCapCntry.name = "Capitals"
 print(seriesCapCntry)
 ```
-```
+```output
 India         NewDelhi
 USA       WashingtonDC
 UK              London
@@ -626,7 +644,7 @@ of the series
 seriesCapCntry.index.name = "Countries"
 print(seriesCapCntry)
 ```
-```
+```output
 Countries
 India         NewDelhi
 USA       WashingtonDC
@@ -648,7 +666,7 @@ the series
 ```py exec
 print(seriesCapCntry.values)
 ```
-```
+```output
 ['NewDelhi' 'WashingtonDC' 'London' 'Paris']
 ```
 </td>
@@ -665,7 +683,7 @@ in the Series object
 ```py exec
 print(seriesCapCntry.size)
 ```
-```
+```output
 4
 ```
 </td>
@@ -682,7 +700,7 @@ empty, and False otherwise
 ```py exec
 seriesCapCntry.empty
 ```
-```
+```output
 False
 ```
 
@@ -691,7 +709,7 @@ False
 seriesEmpt=pd.Series() 
 seriesEmpt.empty
 ```
-```
+```output
 True
 ```
 </td>
@@ -704,12 +722,13 @@ True
 In this section, we are going to discuss some of the methods that are available
 for Pandas Series. Let us consider the following series:
 
-<Card>
+
 ```py exec
 seriesTenTwenty = pd.Series(np.arange(10, 20, 1))
 print(seriesTenTwenty)
 ```
-```ansi
+
+```output
 0    10
 1    11
 2    12
@@ -722,7 +741,7 @@ print(seriesTenTwenty)
 9    19
 dtype: int64
 ```
-</Card>
+
 
 <Activity id="2.3" title="Activity 2.3">
 Consider the following code:
@@ -764,7 +783,7 @@ n takes 5 and the first five members are displayed.
 ```py exec
 seriesTenTwenty.head(2)
 ```
-```
+```output
 0    10
 1    11
 dtype: int64
@@ -772,7 +791,7 @@ dtype: int64
 ```py exec
 seriesTenTwenty.head()
 ```
-```
+```output
 0    10
 1    11
 2    12
@@ -793,7 +812,7 @@ Returns the number of non-NaN values in the Series
 ```py exec
 seriesTenTwenty.count()
 ```
-```
+```output
 np.int64(10)
 ```
 </td>
@@ -810,7 +829,7 @@ n takes 5 and the last five members are displayed.
 ```py exec
 seriesTenTwenty.tail(2)
 ```
-```
+```output
 8    18
 9    19
 dtype: int64
@@ -818,7 +837,7 @@ dtype: int64
 ```py exec
 seriesTenTwenty.tail() 
 ```
-```
+```output
 5    15
 6    16
 7    17
@@ -844,7 +863,7 @@ implemented and all missing values are filled in with `NaN` by default.
 Consider the following series: seriesA and seriesB for understanding
 mathematical operations on series in Pandas.
 
-<Card>
+
 ```py exec
 seriesA = pd.Series(
     [1, 2, 3, 4, 5],
@@ -852,7 +871,8 @@ seriesA = pd.Series(
 )
 seriesA
 ```
-```ansi
+
+```output
 a    1
 b    2
 c    3
@@ -860,9 +880,9 @@ d    4
 e    5
 dtype: int64
 ```
-</Card>
 
-<Card>
+
+
 ```py exec
 seriesB = pd.Series(
     [10, 20, -10, -50, 100],
@@ -870,7 +890,8 @@ seriesB = pd.Series(
 ) 
 seriesB
 ```
-```ansi
+
+```output
 z     10
 y     20
 a    -10
@@ -878,7 +899,7 @@ c    -50
 e    100
 dtype: int64
 ```
-</Card>
+
 
 #### (A) Addition of two Series ||section-2.2.5.a||
 
@@ -887,11 +908,12 @@ together, as shown in the following code. [Table 2.2](#table-2.2) shows the deta
 that were matched while performing the addition. Note here that the output of
 addition is NaN if one of the elements or both elements have no value.
 
-<Card>
+
 ```py exec
 seriesA + seriesB
 ```
-```ansi
+
+```output
 a     -9.0
 b      NaN
 c    -47.0
@@ -901,7 +923,7 @@ y      NaN
 z      NaN
 dtype: float64
 ```
-</Card>
+
 
 <Table id="2.2" title="Table 2.2 Details of addition of two series">
 | Index | Value from seriesA | Value from seriesB | seriesA + seriesB |
@@ -922,11 +944,12 @@ equivalent to calling `seriesA + seriesB`, `but add()` allows explicit specifica
 of the fill value for any element in seriesA or seriesB that might be missing,
 as shown in [Table 2.3](#table-2.3).
 
-<Card>
+
 ```py exec
 seriesA.add(seriesB, fill_value=0)
 ```
-```ansi
+
+```output
 a     -9.0
 b      2.0
 c    -47.0
@@ -936,7 +959,7 @@ y     20.0
 z     10.0
 dtype: float64
 ```
-</Card>
+
 
 <Activity id="2.4" title="Activity 2.4">
 Draw two tables for subtraction similar to [tables 2.2](#table-2.2) and [2.3](#table-2.3) 
@@ -973,12 +996,13 @@ appropriate method.
 
 Again, it can be done in two different ways, as shown in the following examples:
 
-<Card>
+
 ```py exec
 # using subtraction operator
 seriesA - seriesB 
 ```
-```ansi
+
+```output
 a    11.0
 b     NaN
 c    53.0
@@ -988,18 +1012,19 @@ y     NaN
 z     NaN
 dtype: float64
 ```
-</Card>
+
 
 Let us now replace the missing values with 1000 before subtracting seriesB from
 seriesA using explicit subtraction method `sub()`.
 
-<Card>
+
 ```py exec
 # using fill value 1000 while making 
 # explicit call of the method
 seriesA.sub(seriesB, fill_value=1000)
 ```
-```ansi
+
+```output
 a     11.0
 b   -998.0
 c     53.0
@@ -1009,18 +1034,19 @@ y    980.0
 z    990.0
 dtype: float64
 ```
-</Card>
+
 
 ##### (C) Multiplication of two Series ||section-2.2.5.c||
 
 Again, it can be done in two different ways, as shown in the following examples:
 
-<Card>
+
 ```py exec
 # using multiplication operator
 seriesA * seriesB 
 ```
-```ansi
+
+```output
 a    -10.0
 b      NaN
 c   -150.0
@@ -1030,18 +1056,19 @@ y      NaN
 z      NaN
 dtype: float64
 ```
-</Card>
+
 
 Let us now replace the missing values with 0 before multiplication of seriesB
 with seriesA using explicit multiplication method `mul()`.
 
-<Card>
+
 ```py exec
 # using fill value 0 while making 
 # explicit call of the method
 seriesA.mul(seriesB, fill_value=0) 
 ```
-```ansi
+
+```output
 a    -10.0
 b      0.0
 c   -150.0
@@ -1051,7 +1078,7 @@ y      0.0
 z      0.0
 dtype: float64
 ```
-</Card>
+
 
 <Activity id="2.6" title="Activity 2.6">
 Draw two tables for division similar to [tables 2.2](#table-2.2) and [2.3](#table-2.3) showing the changes
@@ -1071,12 +1098,13 @@ output in place of NaN.
 
 Again, it can be done in two different ways, as shown in the following examples:
 
-<Card>
+
 ```py exec
 # using division operator
 seriesA / seriesB 
 ```
-```ansi
+
+```output
 a   -0.10
 b     NaN
 c   -0.06
@@ -1086,18 +1114,19 @@ y     NaN
 z     NaN
 dtype: float64
 ```
-</Card>
+
 
 Let us now replace the missing values with 0 before dividing seriesA by seriesB
 using explicit division method `div()`.
 
-<Card>
+
 ```py exec
 # using fill value 0 while making  
 # explicit call of the method
 seriesA.div(seriesB, fill_value=0)
 ```
-```ansi
+
+```output
 a   -0.10
 b     inf
 c   -0.06
@@ -1107,7 +1136,7 @@ y    0.00
 z    0.00
 dtype: float64
 ```
-</Card>
+
 
 ## 2.3 dataFrame ||section-2.3||
 
@@ -1203,19 +1232,20 @@ this section.
 
 An empty DataFrame can be created as follows:
 
-<Card>
+
 ```py exec
 import pandas as pd
 
 dFrameEmt = pd.DataFrame()
 print(dFrameEmt)
 ```
-```ansi
+
+```output
 Empty DataFrame
 Columns: []
 Index: []
 ```
-</Card>
+
 
 <Think title="Think and Reflect">
 What would happen if we pass 3 columns or 5 columns instead of 4 in the above
@@ -1227,7 +1257,7 @@ code? What is the reason?
 Consider the following three NumPy ndarrays. Let us create a simple DataFrame
 without any column labels, using a single ndarray:
 
-<Card>
+
 ```py exec
 import numpy as np
 
@@ -1237,18 +1267,19 @@ array3 = np.array([-10, -20, -30, -40])
 dFrame4 = pd.DataFrame(array1)
 dFrame4
 ```
-```ansi
+
+```output
     0
 0  10
 1  20
 2  30
 ```
-</Card>
+
 
 We can create a DataFrame using more than one ndarrays, as shown in the
 following example:
 
-<Card>
+
 ```py exec
 dFrame5 = pd.DataFrame(
     [array1, array3, array2],
@@ -1256,19 +1287,20 @@ dFrame5 = pd.DataFrame(
 )
 dFrame5
 ```
-```ansi
+
+```output
      A    B    C     D
 0   10   20   30   NaN
 1  -10  -20  -30 -40.0
 2  100  200  300   NaN
 ```
-</Card>
+
 
 #### (C) Creation of DataFrame from List of Dictionaries ||section-2.3.1.c||
 
 We can create DataFrame from a list of Dictionaries, for example:
 
-<Card>
+
 ```py exec
 # Create list of dictionaries
 listDict = [
@@ -1278,12 +1310,13 @@ listDict = [
 dFrameListDict = pd.DataFrame(listDict)
 dFrameListDict
 ```
-```ansi
+
+```output
     a   b     c
 0  10  20   NaN
 1   5  10  20.0
 ```
-</Card>
+
 
 Here, the dictionary keys are taken as column labels, and the values
 corresponding to each key are taken as rows. There will be as many rows as the
@@ -1300,7 +1333,7 @@ DataFrames can also be created from a dictionary of lists. Consider the
 following dictionary consisting of the keys 'State', 'GArea' (geographical area)
 and 'VDF' (very dense forest) and the corresponding values as list.
 
-<Card>
+
 ```py exec
 dictForest = {
     "State": ["Assam", "Delhi", "Kerala"],
@@ -1310,13 +1343,14 @@ dictForest = {
 dFrameForest = pd.DataFrame(dictForest)
 dFrameForest
 ```
-```
+
+```output
     State  GArea      VDF
 0   Assam  78438  2797.00
 1   Delhi   1483     6.72
 2  Kerala  38852  1663.00
 ```
-</Card>
+
 
 Note that dictionary keys become column labels by default in a DataFrame, and
 the lists become the rows. Thus, a DataFrame can be thought of as a dictionary
@@ -1326,7 +1360,7 @@ We can change the sequence of columns in a DataFrame. This can be done by
 assigning a particular sequence of the dictionary keys as columns parameter, for
 example:
 
-<Card>
+
 ```py exec
 dFrameForest1 = pd.DataFrame(
     dictForest,
@@ -1334,13 +1368,14 @@ dFrameForest1 = pd.DataFrame(
 )
 dFrameForest1
 ```
-```ansi
+
+```output
     State      VDF  GArea
 0   Assam  2797.00  78438
 1   Delhi     6.72   1483
 2  Kerala  1663.00  38852
 ```
-</Card>
+
 
 In the output, VDF is now displayed as the middle column instead of last.
 
@@ -1365,12 +1400,13 @@ seriesC = pd.Series(
 
 We can create a DataFrame using a single series as shown below:
 
-<Card>
+
 ```py exec
 dFrame6 = pd.DataFrame(seriesA) 
 dFrame6
 ```
-```ansi
+
+```output
    0
 a  1
 b  2
@@ -1378,40 +1414,42 @@ c  3
 d  4
 e  5
 ```
-</Card>
+
 
 Here, the DataFrame dFrame6 has as many numbers of rows as the numbers of
 elements in the series, but has only one column. To create a DataFrame using
 more than one series, we need to pass multiple series in the list as shown
 below:
 
-<Card>
+
 ```py exec
 dFrame7 = pd.DataFrame([seriesA, seriesB]) 
 dFrame7
 ```
-```ansi
+
+```output
       a     b     c     d     e
 0     1     2     3     4     5
 1  1000  2000 -1000 -5000  1000
 ```
-</Card>
+
 
 Observe that the labels in the series object become the column names in the
 DataFrame object and each series becomes a row in the DataFrame. Now look at the
 following example:
 
-<Card>
+
 ```py exec
 dFrame8 = pd.DataFrame([seriesA, seriesC]) 
 dFrame8
 ```
-```ansi
+
+```output
       a    b     c    d      e     z     y
 0   1.0  2.0   3.0  4.0    5.0   NaN   NaN
 1 -10.0  NaN -50.0  NaN  100.0  10.0  20.0
 ```
-</Card>
+
 
 Here, different series do not have the same set of labels. But, the number of
 columns in a DataFrame equals to distinct labels in all the series. So, if a
@@ -1450,18 +1488,19 @@ ResultSheet = {
 }
 ```
 
-<Card>
+
 ```py exec
 ResultDF = pd.DataFrame(ResultSheet)
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika
 Maths       90     92        89    81       94
 Science     91     81        91    71       95
 Hindi       97     96        88    67       99
 ```
-</Card>
+
 
 <Activity id="2.7" title="Activity 2.7">
 Use the type function to check the datatypes of ResultSheet and ResultDF. Are
@@ -1470,14 +1509,15 @@ they the same?
 
 The following output shows that every column in the DataFrame is a Series:
 
-<Card>
+
 ```py exec
 type(ResultDF.Arnab)
 ```
-```ansi
+
+```output
 pandas.core.series.Series
 ```
-</Card>
+
 
 When a DataFrame is created from a Dictionary of Series, the resulting index or
 row labels are a union of all series indexes used to create the DataFrame. For
@@ -1500,12 +1540,13 @@ dictForUnion = {
 }
 ```
 
-<Card>
+
 ```py exec
 dFrameUnion = pd.DataFrame(dictForUnion) 
 dFrameUnion
 ```
-```ansi
+
+```output
    Series1  Series2  Series3
 a      1.0    -10.0    -10.0
 b      2.0      NaN      NaN
@@ -1515,7 +1556,7 @@ e      5.0    100.0    100.0
 y      NaN     20.0     20.0
 z      NaN     10.0     10.0
 ```
-</Card>
+
 
 ### 2.3.2 Operations on rows and columns in DataFrames ||section-2.3.2||
 
@@ -1528,53 +1569,56 @@ We can easily add a new column to a DataFrame. Let us consider the DataFrame
 ResultDF defined earlier. In order to add a new column for another student
 'Preeti', we can write the following statement:
 
-<Card>
+
 ```py exec
 ResultDF["Preeti"] = [89, 78, 76]
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
 Maths       90     92        89    81       94      89
 Science     91     81        91    71       95      78
 Hindi       97     96        88    67       99      76
 ```
-</Card>
+
 
 Assigning values to a new column label that does not exist will create a new
 column at the end. If the column already exists in the DataFrame then the
 assignment statement will update the values of the already existing column, for
 example:
 
-<Card>
+
 ```py exec
 ResultDF["Ramit"] = [99, 98, 78]
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
 Maths       90     99        89    81       94      89
 Science     91     98        91    71       95      78
 Hindi       97     78        88    67       99      76
 ```
-</Card>
+
 
 We can also change data of an entire column to a particular value in a
 DataFrame. For example, the following statement sets marks=90 for all subjects
 for the column name 'Arnab':
 
-<Card>
+
 ```py exec
 ResultDF["Arnab"] = 90
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
 Maths       90     99        89    81       94      89
 Science     90     98        91    71       95      78
 Hindi       90     78        88    67       99      76
 ```
-</Card>
+
 
 #### (B) Adding a New Row to a DataFrame ||section-2.3.2.b||
 
@@ -1583,67 +1627,71 @@ the DataFrame ResultDF that has three rows for the three subjects - Maths,
 Science and Hindi. Suppose, we need to add the marks for English subject in
 ResultDF, we can use the following statement:
 
-<Card>
+
 ```py exec
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
 Maths       90     99        89    81       94      89
 Science     90     98        91    71       95      78
 Hindi       90     78        88    67       99      76
 ```
-</Card>
 
-<Card>
+
+
 ```py exec
 ResultDF.loc["English"] = [85, 86, 83, 80, 90, 89]
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
 Maths       90     99        89    81       94      89
 Science     90     98        91    71       95      78
 Hindi       90     78        88    67       99      76
 English     85     86        83    80       90      89
 ```
-</Card>
+
 
 We cannot use this method to add a row of data with already existing (duplicate)
 index value (label). In such case, a row with this index label will be updated,
 for example:
 
-<Card>
+
 ```py exec
 ResultDF.loc["English"] = [95, 86, 95, 80, 95, 99]
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
 Maths       90     99        89    81       94      89
 Science     90     98        91    71       95      78
 Hindi       90     78        88    67       99      76
 English     95     86        95    80       95      99
 ```
-</Card>
+
 
 `DataFRame.loc[]` method can also be used to change the data values of a row to a
 particular value. For example, the following statement sets marks in 'Maths' for
 all columns to 0:
 
-<Card>
+
 ```py exec
 ResultDF.loc["Maths"] = 0
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
 Maths        0      0         0     0        0       0
 Science     90     98        91    71       95      78
 Hindi       90     78        88    67       99      76
 English     95     86        95    80       95      99
 ```
-</Card>
+
 
 <Think title="Think and Reflect">
 Can you write a program to count the number of rows and columns in a DataFrame?
@@ -1667,20 +1715,21 @@ ValueError: Length of values does not match length of index.
 Further, we can set all values of a DataFrame to a particular value, for
 example:
 
-<Card>
+
 ```py exec
 # Set all values in ResultDF to 0
 ResultDF[:] = 0
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika  Preeti
 Maths        0      0         0     0        0       0
 Science      0      0         0     0        0       0
 Hindi        0      0         0     0        0       0
 English      0      0         0     0        0       0
 ```
-</Card>
+
 
 #### (C) Deleting Rows or Columns from a DataFrame ||section-2.3.2.c||
 
@@ -1690,7 +1739,7 @@ from which they need to be dropped. To delete a row, the parameter axis is
 assigned the value 0 and for deleting a column,the parameter axis is assigned
 the value 1. Consider the following DataFrame:
 
-<Card>
+
 
 <Collapse title="Reset ResultDF">
 ```py exec
@@ -1724,34 +1773,36 @@ ResultDF = pd.DataFrame(
 ```py exec
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika
 Maths       90     92        89    81       94
 Science     91     81        91    71       95
 Hindi       97     96        88    67       99
 English     95     86        95    80       95
 ```
-</Card>
+
 
 The following example shows how to delete the row with label 'Science':
 
-<Card>
+
 ```py exec
 ResultDF = ResultDF.drop("Science", axis=0)
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika
 Maths       90     92        89    81       94
 Hindi       97     96        88    67       99
 English     95     86        95    80       95
 ```
-</Card>
+
 
 The following example shows how to delete the columns having labels 'Samridhi',
 'Ramit' and 'Riya':
 
-<Card>
+
 ```py exec
 ResultDF = ResultDF.drop(
     ["Samridhi", "Ramit", "Riya"],
@@ -1759,20 +1810,21 @@ ResultDF = ResultDF.drop(
 )
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Mallika
 Maths       90       94
 Hindi       97       99
 English     95       95
 ```
-</Card>
+
 
 If the DataFrame has more than one row with the 
 same label, the `DataFrame.drop()` method will delete all 
 the matching rows from it. For example, consider the 
 following DataFrame: 
 
-<Card>
+
 
 <Collapse title="Reset ResultDF">
 ```py exec
@@ -1806,29 +1858,31 @@ ResultDF = pd.DataFrame(
 ```py exec
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika
 Maths       90     92        89    81       94
 Science     91     81        91    71       95
 Hindi       97     96        88    67       99
 Hindi       97     86        78    60       45
 ```
-</Card>
+
 
 To remove the duplicate rows labelled 'Hindi', we need to write the following
 statement:
 
-<Card>
+
 ```py exec
 ResultDF = ResultDF.drop("Hindi", axis=0)
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika
 Maths       90     92        89    81       94
 Science     91     81        91    71       95
 ```
-</Card>
+
 
 #### (D) Renaming Row Labels of a DataFrame ||section-2.3.2.d||
 
@@ -1837,7 +1891,7 @@ We can change the labels of rows and columns in a DataFrame using the
 indices Maths to sub1, Science to sub2, Hindi to sub3 and English to sub4 we can
 write the following statement:
 
-<Card>
+
 <Collapse title="Reset ResultDF">
 ```py exec
 # Reset ResultDF
@@ -1870,16 +1924,17 @@ ResultDF = pd.DataFrame(
 ```py exec
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika
 Maths       90     92        89    81       94
 Science     91     81        91    71       95
 English     97     96        88    67       99
 Hindi       97     86        78    60       45
 ```
-</Card>
 
-<Card>
+
+
 ```py exec
 ResultDF = ResultDF.rename(
         {
@@ -1892,14 +1947,15 @@ ResultDF = ResultDF.rename(
     )
 print(ResultDF)
 ```
-```ansi
+
+```output
       Arnab  Ramit  Samridhi  Riya  Mallika
 Sub1     90     92        89    81       94
 Sub2     91     81        91    71       95
 Sub3     97     96        88    67       99
 Sub4     97     86        78    60       45
 ```
-</Card>
+
 
 <Think title="Think and Reflect">
 What if in the rename function we pass a value for a row label that does not
@@ -1910,7 +1966,7 @@ The parameter axis='index' is used to specify that the row label is to be
 changed. If no new label is passed corresponding to an existing label, the
 existing row label is left as it is, for example:
 
-<Card>
+
 ```py exec
 ResultDF = ResultDF.rename(
     {
@@ -1922,14 +1978,15 @@ ResultDF = ResultDF.rename(
 )
 print(ResultDF)
 ```
-```ansi
+
+```output
       Student1  Student2  Student3  Riya  Student4
 Sub1        90        92        89    81        94
 Sub2        91        81        91    71        95
 Sub3        97        96        88    67        99
 Sub4        97        86        78    60        45
 ```
-</Card>
+
 
 #### (E) Renaming Column Labels of a DataFrame ||section-2.3.2.e||
 
@@ -1937,7 +1994,7 @@ To alter the column names of ResultDF we can again use the `rename()` method, as
 shown below. The parameter axis='columns' implies we want to change the column
 labels:
 
-<Card>
+
 <Collapse title="Reset ResultDF">
 ```py exec
 # Reset ResultDF
@@ -1979,14 +2036,15 @@ ResultDF = ResultDF.rename(
 )
 print(ResultDF)
 ```
-```ansi
+
+```output
          Student1  Student2  Student3  Riya  Student4
 Maths          90        92        89    81        94
 Science        91        81        91    71        95
 English        97        96        88    67        99
 Hindi          97        86        78    60        45
 ```
-</Card>
+
 
 Note that the column Riya remains unchanged since we did not pass any new label.
 
@@ -2008,7 +2066,7 @@ There are several methods in Pandas to implement label based indexing.
 with DataFrames. Let us continue to use the ResultDF created earlier. As shown
 in the following example, a single row label returns the row as a Series.
 
-<Card>
+
 
 <Collapse title="Reset ResultDF">
 ```py exec
@@ -2020,19 +2078,21 @@ ResultDF = pd.DataFrame(ResultSheet)
 ```py exec
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika
 Maths       90     92        89    81       94
 Science     91     81        91    71       95
 Hindi       97     96        88    67       99
 ```
-</Card>
 
-<Card>
+
+
 ```py exec
 ResultDF.loc['Science']
 ```
-```ansi
+
+```output
 Arnab       91
 Ramit       81
 Samridhi    91
@@ -2040,65 +2100,69 @@ Riya        71
 Mallika     95
 Name: Science, dtype: int64
 ```
-</Card>
+
 
 Also, note that when the row label is passed as an integer value, it is
 interpreted as a label of the index and not as an integer position along the
 index, for example:
 
-<Card>
+
 ```py exec
 dFrame10Multiples = pd.DataFrame([10, 20, 30, 40, 50])
 dFrame10Multiples.loc[2]
 ```
-```ansi
+
+```output
 0    30
 Name: 2, dtype: int64
 ```
-</Card>
+
 
 When a single column label is passed, it returns the column as a Series.
 
-<Card>
+
 ```py exec
 ResultDF.loc[:, "Arnab"]
 ```
-```ansi
+
+```output
 Maths      90
 Science    91
 Hindi      97
 Name: Arnab, dtype: int64
 ```
-</Card>
+
 
 Also, we can obtain the same result that is the marks of 'Arnab' in all the
 subjects by using the command:
 
-<Card>
+
 ```py exec
 print(ResultDF["Arnab"])
 ```
-```ansi
+
+```output
 Maths      90
 Science    91
 Hindi      97
 Name: Arnab, dtype: int64
 ```
-</Card>
+
 
 To read more than one row from a DataFrame, a list of row labels is used as
 shown below. Note that using `[[]]` returns a DataFrame.
 
-<Card>
+
 ```py exec
 ResultDF.loc[["Science", "Hindi"]]
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika
 Science     91     81        91    71       95
 Hindi       97     96        88    67       99
 ```
-</Card>
+
 
 #### (B) Boolean Indexing ||section-2.3.3.b||
 
@@ -2110,11 +2174,12 @@ filter data values. Consider the DataFrame ResultDF, the following statement
 displays `True` or `False` depending on whether the data value satisfies the given
 condition or not.
 
-<Card>
+
 ```py exec
 ResultDF.loc["Maths"] > 90
 ```
-```
+
+```output
 Arnab       False
 Ramit        True
 Samridhi    False
@@ -2122,37 +2187,39 @@ Riya        False
 Mallika      True
 Name: Maths, dtype: bool
 ```
-</Card>
+
 
 To check in which subjects 'Arnab' has scored more than 90, we can write:
 
-<Card>
+
 ```py exec
 ResultDF.loc[:, "Arnab"] > 90
 ```
-```ansi
+
+```output
 Maths      False
 Science     True
 Hindi       True
 Name: Arnab, dtype: bool
 ```
-</Card>
+
 
 ### 2.3.4 Accessing DataFrames Element through Slicing ||section-2.3.4||
 
 We can use slicing to select a subset of rows and/or columns from a DataFrame.
 To retrieve a set of rows, slicing can be used with row labels. For example:
 
-<Card>
+
 ```py exec
 ResultDF.loc["Maths":"Science"]
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika
 Maths       90     92        89    81       94
 Science     91     81        91    71       95
 ```
-</Card>
+
 
 <Activity id="2.8" title="Activity 2.8">
 - a) Using the DataFrame ResultDF, write the statement to access Marks of Arnab
@@ -2168,44 +2235,47 @@ with a column name to access values of those rows in that column only. For
 example, the following statement displays the rows with label Maths and Science,
 and column with label Arnab:
 
-<Card>
+
 ```py exec
 ResultDF.loc["Maths":"Science", "Arnab"]
 ```
-```ansi
+
+```output
 Maths      90
 Science    91
 Name: Arnab, dtype: int64
 ```
-</Card>
+
 
 We may use a slice of labels with a slice of column names to access values of
 those rows and columns:
 
-<Card>
+
 ```py exec
 ResultDF.loc["Maths":"Science", "Arnab":"Samridhi"]
 ```
-```
+
+```output
          Arnab  Ramit  Samridhi
 Maths       90     92        89
 Science     91     81        91
 ```
-</Card>
+
 
 Alternatively, we may use a slice of labels with a list of column names to
 access values of those rows and columns:
 
-<Card>
+
 ```py exec
 ResultDF.loc["Maths":"Science", ["Arnab", "Samridhi"]]
 ```
-```ansi
+
+```output
          Arnab  Samridhi
 Maths       90        89
 Science     91        91
 ```
-</Card>
+
 
 #### Filtering Rows in DataFrames
 
@@ -2218,16 +2288,17 @@ specifying '`True`' for the rows to be shown and '`False`' for the ones to be
 omitted in the output. For example, in the following statement, row having index
 as Science is omitted:
 
-<Card>
+
 ```py exec
 ResultDF.loc[[True, False, True]]
 ```
-```ansi
+
+```output
        Arnab  Ramit  Samridhi  Riya  Mallika
 Maths     90     92        89    81       94
 Hindi     97     96        88    67       99
 ```
-</Card>
+
 
 ### 2.3.5 Joining, Merging and Concatenation of DataFrames
 
@@ -2248,7 +2319,7 @@ not present in the first DataFrame are added as new columns. For example,
 consider the two DataFrames— dFrame1 and dFrame2described below. Let us use the
 `append()` method to append dFrame2 to dFrame1:
 
-<Card>
+
 ```py exec
 dFrame1 = pd.DataFrame(
     [[1, 2, 3], [4, 5], [6]],
@@ -2257,15 +2328,16 @@ dFrame1 = pd.DataFrame(
 )
 dFrame1
 ```
-```ansi
+
+```output
     C1   C2   C3
 R1   1  2.0  3.0
 R2   4  5.0  NaN
 R3   6  NaN  NaN
 ```
-</Card>
 
-<Card>
+
+
 ```py exec
 dFrame2 = pd.DataFrame(
     [[10, 20], [30], [40, 50]],
@@ -2274,31 +2346,38 @@ dFrame2 = pd.DataFrame(
 )
 dFrame2
 ```
-```ansi
+
+```output
     C2    C5
 R4  10  20.0
 R2  30   NaN
 R5  40  50.0
 ```
-</Card>
 
-<Card>
+
+
 
 <Tabs syncKey="append">
-<TabItem label="Append (pd < 2.0)">
-```py
-dFrame1 = dFrame1.append(dFrame2)
-dFrame1
-```
-</TabItem>
 <TabItem label="Concat (pd >= 2.0)">
 ```py exec
 dFrame1 = pd.concat([dFrame1, dFrame2])
 dFrame1
 ```
+```output
+     C1    C2   C3    C5
+R1  1.0   2.0  3.0   NaN
+R2  4.0   5.0  NaN   NaN
+R3  6.0   NaN  NaN   NaN
+R4  NaN  10.0  NaN  20.0
+R2  NaN  30.0  NaN   NaN
+R5  NaN  40.0  NaN  50.0
+```
 </TabItem>
-</Tabs>
-
+<TabItem label="Append (pd < 2.0)">
+```py
+dFrame1 = dFrame1.append(dFrame2)
+dFrame1
+```
 ```ansi
      C1    C2   C3    C5
 R1  1.0   2.0  3.0   NaN
@@ -2308,14 +2387,14 @@ R4  NaN  10.0  NaN  20.0
 R2  NaN  30.0  NaN   NaN
 R5  NaN  40.0  NaN  50.0
 ```
-</Card>
+</TabItem>
+</Tabs>
+
 
 Alternatively, if we append dFrame1 to dFrame2, the rows of dFrame2 precede the
 rows of dFrame1. To get the column labels appear in sorted order we can set the
-parameter sort=True. The column labels shall appear in unsorted order when the
-parameter sort = False.
-
-<Card>
+parameter `sort=True`. The column labels shall appear in unsorted order when the
+parameter `sort=False`.
 
 <Collapse title="Reset dFrame1 and dFrame2">
 ```py exec
@@ -2334,22 +2413,28 @@ dFrame2 = pd.DataFrame(
 </Collapse>
 
 <Tabs syncKey="append">
-<TabItem label="Append (pd < 2.0)">
-```py
-# append dFrame1 to dFrame2
-dFrame2 = dFrame2.append(dFrame1, sort=True)
-dFrame2
-```
-</TabItem>
 <TabItem label="Concat (pd >= 2.0)">
 ```py exec
 # concatenate dFrame1 to dFrame2
 dFrame2 = pd.concat([dFrame2, dFrame1], sort=True)
 dFrame2
 ```
+```output
+     C1    C2   C3    C5
+R4  NaN  10.0  NaN  20.0
+R2  NaN  30.0  NaN   NaN
+R5  NaN  40.0  NaN  50.0
+R1  1.0   2.0  3.0   NaN
+R2  4.0   5.0  NaN   NaN
+R3  6.0   NaN  NaN   NaN
+```
 </TabItem>
-</Tabs>
-
+<TabItem label="Append (pd < 2.0)">
+```py
+# append dFrame1 to dFrame2
+dFrame2 = dFrame2.append(dFrame1, sort=True)
+dFrame2
+```
 ```ansi
      C1    C2   C3    C5
 R4  NaN  10.0  NaN  20.0
@@ -2359,9 +2444,8 @@ R1  1.0   2.0  3.0   NaN
 R2  4.0   5.0  NaN   NaN
 R3  6.0   NaN  NaN   NaN
 ```
-</Card>
-
-<Card>
+</TabItem>
+</Tabs>
 
 <Collapse title="Reset dFrame1 and dFrame2">
 ```py exec
@@ -2380,22 +2464,28 @@ dFrame2 = pd.DataFrame(
 </Collapse>
 
 <Tabs syncKey="append">
-<TabItem label="Append (pd < 2.0)">
-```py
-# append dFrame1 to dFrame2 with sort=False
-dFrame2 = dFrame2.append(dFrame1, sort=False)
-dFrame2
-```
-</TabItem>
 <TabItem label="Concat (pd >= 2.0)">
 ```py exec
 # concatenate dFrame1 to dFrame2 with sort=False
 dFrame2 = pd.concat([dFrame2, dFrame1], sort=False)
 dFrame2
 ```
+```output
+      C2    C5   C1   C3
+R4  10.0  20.0  NaN  NaN
+R2  30.0   NaN  NaN  NaN
+R5  40.0  50.0  NaN  NaN
+R1   2.0   NaN  1.0  3.0
+R2   5.0   NaN  4.0  NaN
+R3   NaN   NaN  6.0  NaN
+```
 </TabItem>
-</Tabs>
-
+<TabItem label="Append (pd < 2.0)">
+```py
+# append dFrame1 to dFrame2 with sort=False
+dFrame2 = dFrame2.append(dFrame1, sort=False)
+dFrame2
+```
 ```ansi
       C2    C5   C1   C3
 R4  10.0  20.0  NaN  NaN
@@ -2405,17 +2495,16 @@ R1   2.0   NaN  1.0  3.0
 R2   5.0   NaN  4.0  NaN
 R3   NaN   NaN  6.0  NaN
 ```
-</Card>
+</TabItem>
+</Tabs>
 
-The parameter verify_integrity of `append()` method may be set to True when we want
-to raise an error if the row labels are duplicate. By default, verify_integrity
-= False. That is why we could append the duplicate row with label R2 when
+The parameter `verify_integrity` of `append()` method may be set to `True` when we want
+to raise an error if the row labels are duplicate. By default, `verify_integrity=False`. 
+That is why we could append the duplicate row with label R2 when
 appending the two DataFrames, as shown above.
 
-The parameter ignore_index of `append()` method may be set to True, when we do not
-want to use row index labels. By default, ignore_index = False.
-
-<Card>
+The parameter ignore_index of `append()` method may be set to `True`, when we do not
+want to use row index labels. By default, `ignore_index=False`.
 
 <Collapse title="Reset dFrame1 and dFrame2">
 ```py exec
@@ -2434,21 +2523,26 @@ dFrame2 = pd.DataFrame(
 </Collapse>
 
 <Tabs syncKey="append">
-<TabItem label="Append (pd < 2.0)">
-```py
-dFrame1 = dFrame1.append(dFrame2, ignore_index=True)
-dFrame1
-```
-</TabItem>
 <TabItem label="Concat (pd >= 2.0)">
 ```py exec
 dFrame1 = pd.concat([dFrame1, dFrame2], ignore_index=True)
 dFrame1
 ```
+```output
+    C1    C2   C3    C5
+0  1.0   2.0  3.0   NaN
+1  4.0   5.0  NaN   NaN
+2  6.0   NaN  NaN   NaN
+3  NaN  10.0  NaN  20.0
+4  NaN  30.0  NaN   NaN
+5  NaN  40.0  NaN  50.0
+```
 </TabItem>
-</Tabs>
-
-
+<TabItem label="Append (pd < 2.0)">
+```py
+dFrame1 = dFrame1.append(dFrame2, ignore_index=True)
+dFrame1
+```
 ```ansi
     C1    C2   C3    C5
 0  1.0   2.0  3.0   NaN
@@ -2458,7 +2552,8 @@ dFrame1
 4  NaN  30.0  NaN   NaN
 5  NaN  40.0  NaN  50.0
 ```
-</Card>
+</TabItem>
+</Tabs>
 
 The `append()` method can also be used to append a series or a dictionary to a
 DataFrame.
@@ -2472,7 +2567,7 @@ How can you check whether a given DataFrame has any missing value or not?
 Like Series, we can access certain properties called attributes of a DataFrame
 by using that property with the DataFrame name. [Table 2.4](#table-2.4) lists some attributes
 of Pandas DataFrame. We are going to use a part of the data from a report called
-"STATE OF FOREST REPORT 2017", Published by Forest Survey of India, accessible
+**"STATE OF FOREST REPORT 2017"**, Published by Forest Survey of India, accessible
 at https://fsi.nic.in/forest-report-2017, as our example data in this section.
 
 As per this report, the geographical area, the area under very dense forests,
@@ -2497,19 +2592,20 @@ ForestArea = {
 }
 ```
 
-<Card>
+
 ```py exec
 ForestAreaDF = pd.DataFrame(ForestArea)
 ForestAreaDF
 ```
-```
+
+```output
                  Assam  Kerala    Delhi
 GeoArea          78438   38852  1483.00
 VeryDense         2797    1663     6.72
 ModeratelyDense  10192    9407    56.24
 OpenForest       15116    9251   129.45
 ```
-</Card>
+
 
 <Table id="table-2.4" title="Table 2.4 Some Attributes of Pandas DataFrame" center={false}>
 <table>
@@ -2535,7 +2631,7 @@ to display row labels
 ```py exec
 ForestAreaDF.index
 ```
-```
+```output
 Index(['GeoArea', 'VeryDense', 'ModeratelyDense', 'OpenForest'], dtype='object')
 ```
 </td>
@@ -2551,7 +2647,7 @@ to display column labels
 ```py exec
 ForestAreaDF.columns
 ```
-```
+```output
 Index(['Assam', 'Kerala', 'Delhi'], dtype='object')
 ```
 </td>
@@ -2567,7 +2663,7 @@ to display data type of each column in the DataFrame
 ```py exec
 ForestAreaDF.dtypes
 ```
-```
+```output
 Assam       int64
 Kerala      int64
 Delhi     float64
@@ -2587,7 +2683,7 @@ without the axes labels
 ```py exec
 ForestAreaDF.values
 ```
-```
+```output
 array([[7.8438e+04, 3.8852e+04, 1.4830e+03],
        [2.7970e+03, 1.6630e+03, 6.7200e+00],
        [1.0192e+04, 9.4070e+03, 5.6240e+01],
@@ -2606,7 +2702,7 @@ to display a tuple representing the dimensionality of the DataFrame
 ```py exec
 ForestAreaDF.shape
 ```
-```
+```output
 (4, 3)
 ```
 It means ForestAreaDF has 4 rows and 3 columns.
@@ -2623,7 +2719,7 @@ to display a tuple representing the dimensionality of the DataFrame
 ```py exec
 ForestAreaDF.size
 ```
-```
+```output
 12
 ```
 This means the ForestAreaDF has 12 values in it.
@@ -2643,7 +2739,7 @@ replace each other's position
 ```py exec
 ForestAreaDF.T
 ```
-```
+```output
         GeoArea  VeryDense  ModeratelyDense  OpenForest
 Assam   78438.0    2797.00         10192.00    15116.00
 Kerala  38852.0    1663.00          9407.00     9251.00
@@ -2662,7 +2758,7 @@ to display the first n rows in the DataFrame
 ```py exec
 ForestAreaDF.head(2)
 ```
-```
+```output
            Assam  Kerala    Delhi
 GeoArea    78438   38852  1483.00
 VeryDense   2797    1663     6.7
@@ -2683,7 +2779,7 @@ to display the last n rows in the DataFrame
 ```py exec
 ForestAreaDF.tail(2)
 ```
-```
+```output
                  Assam  Kerala   Delhi
 ModeratelyDense  10192    9407   56.24
 OpenForest       15116    9251  129.45
@@ -2703,7 +2799,7 @@ to returns the value True if DataFrame is empty and False otherwise
 ```py exec
 ForestAreaDF.empty
 ```
-```
+```output
 False
 ```
 ```py exec
@@ -2711,7 +2807,7 @@ False
 df = pd.DataFrame()
 df.empty
 ```
-```
+```output
 True
 ```
 </td>
@@ -2752,8 +2848,6 @@ RollNo, Name, Eco, Maths
 We can load the data from the ResultData.csv file into a DataFrame, say marks
 using Pandas `read_csv()` function as shown below:
 
-<Card>
-
 <Collapse title="Create CSV File">
 ```py exec
 # Create NCERT Folder if not exists
@@ -2781,7 +2875,8 @@ marks = pd.read_csv(
 )
 marks
 ```
-```ansi
+
+```output
    RollNo      Name   Eco   Maths
 0       1     Arnab    18      57
 1       2   Kritika    23      45
@@ -2789,7 +2884,7 @@ marks
 3       4    Vivaan    40      60
 4       5   Aaroosh    18      27
 ```
-</Card>
+
 
 - The first parameter to the `read_csv()` is the name of the comma separated data
   file along with its path.
@@ -2805,7 +2900,7 @@ the DataFrame using the `read_csv()` function. For example, in the following
 statement, names parameter is used to specify the labels for columns of the
 DataFrame marks1:
 
-<Card>
+
 ```py exec
 marks1 = pd.read_csv(
     "C:/NCERT/ResultData.csv",
@@ -2814,7 +2909,8 @@ marks1 = pd.read_csv(
 )
 marks1
 ```
-```ansi
+
+```output
       RNo StudentName  Sub1    Sub2
 0  RollNo        Name   Eco   Maths
 1       1       Arnab    18      57
@@ -2823,7 +2919,7 @@ marks1
 4       4      Vivaan    40      60
 5       5     Aaroosh    18      27
 ```
-</Card>
+
 
 ### 2.4.2 Exporting a DataFrame to a CSV file ||section-2.4.2||
 
@@ -2831,17 +2927,18 @@ We can use the `to_csv()` function to save a DataFrame to a text or csv file. Fo
 example, to save the DataFrame ResultDF created in the previous section; 
 we can use the following statement:
 
-<Card>
+
 ```py exec
 ResultDF
 ```
-```ansi
+
+```output
          Arnab  Ramit  Samridhi  Riya  Mallika
 Maths       90     92        89    81       94
 Science     91     81        91    71       95
 Hindi       97     96        88    67       99
 ```
-</Card>
+
 
 ```py exec
 ResultDF.to_csv(

@@ -136,8 +136,16 @@ import Box from "@/components/partials/Box.astro";
 		}
 	}
 
-	function resetPyodideStdin(pyodide: PyodideInterface) {
+	function resetPyodideStdStreams(pyodide: PyodideInterface) {
 		pyodide.setStdin({ stdin: () => prompt() || "" });
+
+		pyodide.setStdout({
+			batched: (s: string) => console.log("Pyodide: " + s),
+		});
+
+		pyodide.setStderr({
+			batched: (s: string) => console.error("Pyodide: " + s),
+		});
 	}
 
 	async function initializePyodide(): Promise<PyodideInterface> {
@@ -145,7 +153,7 @@ import Box from "@/components/partials/Box.astro";
 			indexURL: `https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/`,
 			packages: PYODIDE_PACKAGES,
 		});
-		resetPyodideStdin(pyodide);
+		resetPyodideStdStreams(pyodide);
 		// patch http module
 		pyodide.runPython(`
 import pyodide_http
@@ -181,6 +189,53 @@ pyodide_http.patch_all()`);
 		return pyConsole;
 	}
 
+	async function executeCode(
+		pyodide: PyodideInterface,
+		code: string,
+	): Promise<string> {
+		let output = "";
+		let last_output = "";
+
+		const decoder = new TextDecoder();
+
+		pyodide.setStdin({
+			stdin: () => {
+				const input = prompt(last_output);
+				output += input + "\n";
+				return input;
+			},
+		});
+		pyodide.setStdout({
+			write: (data: Uint8Array) => {
+				const std_out = decoder.decode(data);
+				last_output = std_out;
+				output += std_out;
+				return std_out.length;
+			},
+		});
+		pyodide.setStderr({
+			write: (data: Uint8Array) => {
+				const std_err = decoder.decode(data);
+				output += std_err;
+				return std_err.length;
+			},
+		});
+
+		try {
+			await pyodide.runPythonAsync(code);
+		} catch (e) {
+			if (e?.constructor.name === "PythonError") {
+				output += e.message;
+			} else {
+				throw e;
+			}
+		}
+
+		resetPyodideStdStreams(pyodide);
+
+		return output;
+	}
+
 	async function executeLine(
 		pyConsole: PyConsole,
 		pyodide: PyodideInterface,
@@ -213,7 +268,7 @@ pyodide_http.patch_all()`);
 
 			switch (consoleFuture.syntax_check) {
 				case "syntax-error":
-					std_err += `Syntax Error in line: ${line}\n${consoleFuture.error}`;
+					std_err += `Syntax Error in line: ${line}\n${consoleFuture.error || ""}`;
 					break execute;
 				case "incomplete":
 					break execute;
@@ -221,7 +276,7 @@ pyodide_http.patch_all()`);
 					break;
 				default:
 					throw new Error(
-						`Unexpected PyConsole.future type ${consoleFuture.syntax_check}`,
+						`Unexpected PyConsole.future type ${consoleFuture.syntax_check || ""}`,
 					);
 			}
 
@@ -248,39 +303,15 @@ pyodide_http.patch_all()`);
 			}
 		}
 		resetPyConsoleCallbacks(pyConsole);
-		resetPyodideStdin(pyodide);
+		resetPyodideStdStreams(pyodide);
 		return { std_out, std_err };
 	}
 
-	const execPyContainers = document.querySelectorAll(PYTHON_TAG_NAME);
-
-	for (const container of execPyContainers) {
-		const figureConatiner = container.querySelector("figure");
-
-		const runButton = document.createElement("button") as HTMLButtonElement;
-		runButton.title = "Run Code";
-		runButton.innerHTML = "<div></div>";
-		runButton.onclick = () => {
-			if (!window.pyConsole) {
-				console.error("PyConsole not initialized");
-				return;
-			}
-			runSnippet(container, window.pyConsole, window.pyodide);
-		};
-		runButton.dataset.copied = "Executed";
-		runButton.dataset.code = "";
-
-		const runButtonContainer = document.createElement("div");
-		runButtonContainer.classList.add("copy", "run");
-		runButtonContainer.appendChild(runButton);
-
-		figureConatiner?.appendChild(runButtonContainer);
-	}
-
 	async function runSnippet(
-		container: Element,
+		container: HTMLElement,
 		pyConsole: PyConsole,
 		pyodide: PyodideInterface,
+		focusOutput: boolean = false,
 	) {
 		const snippet = container.querySelector("snippet");
 
@@ -296,30 +327,45 @@ pyodide_http.patch_all()`);
 		// set matplotlib target
 		document.pyodideMplTarget = outputElement;
 
-		const lines: string[] = [
-			...snippet.textContent.trim().split("\n"),
-			"\n",
-		];
-
-		for (const line of lines) {
-			const { std_out, std_err } = await executeLine(
-				pyConsole,
+		if (container.dataset.mode === "code") {
+			const output = await executeCode(
 				pyodide,
-				line,
+				snippet.textContent.trim() + "\n",
 			);
-			if (std_out) {
+
+			if (output) {
 				if (!anyOutput) {
 					outputElement.textContent = "";
 					anyOutput = true;
 				}
-				outputElement.textContent += std_out;
+				outputElement.textContent += output;
 			}
-			if (std_err) {
-				if (!anyOutput) {
-					outputElement.textContent = "";
-					anyOutput = true;
+		} else {
+			const lines: string[] = [
+				...snippet.textContent.trim().split("\n"),
+				"\n",
+			];
+
+			for (const line of lines) {
+				const { std_out, std_err } = await executeLine(
+					pyConsole,
+					pyodide,
+					line,
+				);
+				if (std_out) {
+					if (!anyOutput) {
+						outputElement.textContent = "";
+						anyOutput = true;
+					}
+					outputElement.textContent += std_out;
 				}
-				outputElement.textContent += std_err;
+				if (std_err) {
+					if (!anyOutput) {
+						outputElement.textContent = "";
+						anyOutput = true;
+					}
+					outputElement.textContent += std_err;
+				}
 			}
 		}
 
@@ -329,7 +375,13 @@ pyodide_http.patch_all()`);
 
 		// reset matplotlib target
 		document.pyodideMplTarget = null;
+
+		if (focusOutput) {
+			outputElement.scrollIntoView({ behavior: "smooth" });
+		}
 	}
+
+	const execPyContainers = document.querySelectorAll(PYTHON_TAG_NAME);
 
 	async function runAllSnippets(
 		pyConsole: PyConsole,
@@ -349,6 +401,28 @@ pyodide_http.patch_all()`);
 			}
 			await runSnippet(container, pyConsole, pyodide);
 		}
+	}
+
+	for (const container of execPyContainers) {
+		const figureConatiner = container.querySelector("figure");
+
+		const runButton = document.createElement("button") as HTMLButtonElement;
+		runButton.title = "Run Code";
+		runButton.innerHTML = "<div></div>";
+		runButton.onclick = () => {
+			if (!window.pyConsole) {
+				console.error("PyConsole not initialized");
+				return;
+			}
+			runSnippet(container, window.pyConsole, window.pyodide, true);
+		};
+		runButton.dataset.copied = "Executed";
+
+		const runButtonContainer = document.createElement("div");
+		runButtonContainer.classList.add("copy", "run");
+		runButtonContainer.appendChild(runButton);
+
+		figureConatiner?.appendChild(runButtonContainer);
 	}
 
 	const runAllBtn = document.querySelector(".run-all");
