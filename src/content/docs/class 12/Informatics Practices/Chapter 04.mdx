@@ -16,7 +16,7 @@ import {
 
 import Pyodide from "@/components/code/Pyodide.astro"
 
-<Pyodide/>
+<Pyodide ds={true}/>
 
 <Quote author="M. McIntyre">
 "Human visual perception is the most powerful of data interfaces between
@@ -189,15 +189,16 @@ Plotting a line chart of date versus temperature by adding Label on X and Y
 axis, and adding a Title and Grids to the chart.
 
 ```py exec
-import matplotlib.pyplot as plt 
-date=["25/12","26/12","27/12"] 
-temp=[8.5,10.5,6.8] 
-plt.plot(date, temp) 
-plt.xlabel("Date") #add the Label on x-axis 
-plt.ylabel("Temperature") #add the Label on y-axis 
-plt.title("Date wise Temperature") #add the title to the chart 
-plt.grid(True) #add gridlines to the background 
-plt.yticks(temp) 
+import matplotlib.pyplot as plt
+
+date = ["25/12", "26/12", "27/12"]
+temp = [8.5, 10.5, 6.8]
+plt.plot(date, temp)
+plt.xlabel("Date")  # add the Label on x-axis
+plt.ylabel("Temperature")  # add the Label on y-axis
+plt.title("Date wise Temperature")  # add the title to the chart
+plt.grid(True)  # add gridlines to the background
+plt.yticks(temp)
 plt.show()
 ```
 
@@ -460,6 +461,15 @@ data = {
     "Week 1": [5000, 5900, 6500, 3500, 4000, 5300, 7900],
     "Week 2": [4000, 3000, 5000, 5500, 3000, 4300, 5900],
     "Week 3": [4000, 5800, 3500, 2500, 3000, 5300, 6000],
+    "Day": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    ],
 }
 
 df_sales = pd.DataFrame(data)
@@ -469,14 +479,14 @@ df_sales.to_csv("MelaSales.csv", index=False)
 ```
 
 ```csv title="MelaSales.csv"
-Week 1,Week 2,Week 3
-5000,4000,4000
-5900,3000,5800
-6500,5000,3500
-3500,5500,2500
-4000,3000,3000
-5300,4300,5300
-7900,5900,6000
+Week 1,Week 2,Week 3,Day
+5000,4000,4000,Monday
+5900,3000,5800,Tuesday
+6500,5000,3500,Wednesday
+3500,5500,2500,Thursday
+4000,3000,3000,Friday
+5300,4300,5300,Saturday
+7900,5900,6000,Sunday
 ```
 
 </Collapse>
@@ -618,40 +628,6 @@ of DataFrame at x axis which is a numeric starting from 0.
 
 This program displays the Python script to display Bar plot for the
 "MelaSales.csv" file with column Day on x axis as shown below in [Figure 4.7](#figure-4.7)
-
-<Collapse title="Update MelaSales.csv">
-
-```py exec
-import pandas as pd
-
-# Load the CSV file into a DataFrame
-df = pd.read_csv("MelaSales.csv")
-# Add a new column "Day" to the DataFrame
-df["Day"] = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-]
-# Save the DataFrame to a CSV file
-df_sales.to_csv("MelaSales.csv", index=False)
-```
-
-```csv title="MelaSales.csv"
-Week 1,Week 2,Week 3,Day
-5000,4000,4000,Monday
-5900,3000,5800,Tuesday
-6500,5000,3500,Wednesday
-3500,5500,2500,Thursday
-4000,3000,3000,Friday
-5300,4300,5300,Saturday
-7900,5900,6000,Sunday
-```
-
-</Collapse>
 
 ```py exec
 import pandas as pd
@@ -808,7 +784,7 @@ the hatch value as "o".
 
 <Program id="4.9" title="Program 4-9">
 
-```py
+```py exec
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -898,9 +874,7 @@ df.plot(
 plt.xlabel("Temperature")
 plt.ylabel("Number of times")
 plt.show()
-```
 
-```py exec
 # plot histogram for both 'ANNUAL - MIN' and 'ANNUAL - MAX'
 df.plot(
     kind="hist",
@@ -997,7 +971,7 @@ discounts ranging from 10% to 50% over a period of 5 weeks. He recorded his
 sales for each type of discount in an array. Draw a scatter plot to show a
 relationship between the discount offered and sales made.
 
-```py
+```py exec
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -1377,7 +1351,7 @@ forest cover in sq km along with the names of the corresponding states.
 | Tripura           | 10486   | 8073        |
 </Table>
 
-```py
+```py exec
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -1607,7 +1581,7 @@ blanks:
 - c) The lowest value for the five subjects is : _____ , ______, _______,
   ______, ______
 
-- ## d) ______________ subject has two outliers with the value ________ and
+- d) ______________ subject has two outliers with the value ________ and
 
 - e) ______________ subject shows minimum variation
 

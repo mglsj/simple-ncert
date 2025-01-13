@@ -1,8 +1,15 @@
 ---
 import Box from "@/components/partials/Box.astro";
+
+interface Props {
+	ds: boolean;
+}
+
+const { ds = false } = Astro.props;
 ---
 
 <Box title="Interactive Python" variant="minimal" icon="seti:python">
+	<div id="pyodide-modules" data-module-ds={ds}></div>
 	<p>
 		This page uses Pyodide. That means all the Python code you see here is
 		executed in your browser using WebAssembly. You can run the code
@@ -49,6 +56,8 @@ import Box from "@/components/partials/Box.astro";
 		margin-block: 1rem;
 	}
 </style>
+
+<div id="plot-container"></div>
 
 <div id="pyodide-loading">
 	<span class="pyodide-loading-spinner"></span>
@@ -109,6 +118,8 @@ import Box from "@/components/partials/Box.astro";
 
 <script>
 	import await_future_py from "./await_future.py?raw";
+	import plt_show_py from "./plt_show.py?raw";
+
 	import { version as PYODIDE_VERSION } from "pyodide/package.json";
 	import { loadPyodide, type PyodideInterface } from "pyodide";
 	import type {
@@ -119,7 +130,18 @@ import Box from "@/components/partials/Box.astro";
 		PyCallable,
 	} from "pyodide/ffi";
 
-	import { PYODIDE_PACKAGES, PYTHON_TAG_NAME } from "./helpers.ts";
+	import {
+		PYODIDE_PACKAGES,
+		PYODIDE_DS_PACKAGES,
+		PYTHON_TAG_NAME,
+	} from "./helpers.ts";
+	const dataNode = document.getElementById("pyodide-modules");
+	const ds = dataNode?.dataset.moduleDs === "true";
+
+	const pyodidePackages = [
+		...PYODIDE_PACKAGES,
+		...(ds ? PYODIDE_DS_PACKAGES : []),
+	];
 
 	type PyConsole = {
 		stdout_callback: (s: string) => void;
@@ -151,13 +173,20 @@ import Box from "@/components/partials/Box.astro";
 	async function initializePyodide(): Promise<PyodideInterface> {
 		const pyodide = await loadPyodide({
 			indexURL: `https://cdn.jsdelivr.net/pyodide/v${PYODIDE_VERSION}/full/`,
-			packages: PYODIDE_PACKAGES,
+			packages: pyodidePackages,
 		});
 		resetPyodideStdStreams(pyodide);
+
 		// patch http module
 		pyodide.runPython(`
 import pyodide_http
 pyodide_http.patch_all()`);
+
+		if (ds) {
+			// patch matplotlib show
+			pyodide.runPython(plt_show_py);
+		}
+
 		return pyodide;
 	}
 
@@ -222,7 +251,10 @@ pyodide_http.patch_all()`);
 		});
 
 		try {
-			await pyodide.runPythonAsync(code);
+			pyodide.runPython(code);
+
+			// flush stdout
+			pyodide.runPython(`print(end="",flush=True)`);
 		} catch (e) {
 			if (e?.constructor.name === "PythonError") {
 				output += e.message;
@@ -319,26 +351,31 @@ pyodide_http.patch_all()`);
 		outputContainer.innerHTML = "";
 
 		const outputElement = document.createElement("pre");
-		outputElement.textContent = "Running...";
+		outputElement.innerHTML = "<span>Running...<span/>";
 		outputContainer?.appendChild(outputElement);
 
 		let anyOutput = false;
 
-		// set matplotlib target
-		document.pyodideMplTarget = outputElement;
+		if (ds) {
+			// set matplotlib target
+			document.pyodideMplTarget = outputElement;
+			pyodide.runPython(
+				"import matplotlib.pyplot; matplotlib.pyplot.figure()",
+			);
+		}
 
 		if (container.dataset.mode === "code") {
 			const output = await executeCode(
 				pyodide,
-				snippet.textContent.trim() + "\n",
+				snippet.textContent.trim() + "\n\n",
 			);
 
 			if (output) {
 				if (!anyOutput) {
-					outputElement.textContent = "";
+					outputElement.innerHTML = "";
 					anyOutput = true;
 				}
-				outputElement.textContent += output;
+				outputElement.innerHTML += output.replaceAll("\n", "<br/>");
 			}
 		} else {
 			const lines: string[] = [
@@ -354,10 +391,13 @@ pyodide_http.patch_all()`);
 				);
 				if (std_out) {
 					if (!anyOutput) {
-						outputElement.textContent = "";
+						outputElement.innerHTML = "";
 						anyOutput = true;
 					}
-					outputElement.textContent += std_out;
+					outputElement.innerHTML += std_out.replaceAll(
+						"\n",
+						"<br/>",
+					);
 				}
 				if (std_err) {
 					if (!anyOutput) {
@@ -370,18 +410,22 @@ pyodide_http.patch_all()`);
 		}
 
 		if (!anyOutput) {
-			outputElement.textContent = "[Executed without output]";
+			outputElement.innerHTML = "<span>[Executed without output]<span/>";
 		}
 
-		// reset matplotlib target
-		document.pyodideMplTarget = null;
+		if (ds) {
+			// reset matplotlib target
+			document.pyodideMplTarget = null;
+		}
 
 		if (focusOutput) {
 			outputElement.scrollIntoView({ behavior: "smooth" });
 		}
 	}
 
-	const execPyContainers = document.querySelectorAll(PYTHON_TAG_NAME);
+	const execPyContainers = document.querySelectorAll(
+		PYTHON_TAG_NAME,
+	) as NodeListOf<HTMLElement>;
 
 	async function runAllSnippets(
 		pyConsole: PyConsole,
@@ -394,12 +438,7 @@ pyodide_http.patch_all()`);
 		}
 
 		for (const container of execPyContainers) {
-			if (follow) {
-				await new Promise((resolve) => setTimeout(resolve, 500));
-				container.scrollIntoView({ behavior: "smooth" });
-				await new Promise((resolve) => setTimeout(resolve, 200));
-			}
-			await runSnippet(container, pyConsole, pyodide);
+			await runSnippet(container, pyConsole, pyodide, follow);
 		}
 	}
 
@@ -414,7 +453,7 @@ pyodide_http.patch_all()`);
 				console.error("PyConsole not initialized");
 				return;
 			}
-			runSnippet(container, window.pyConsole, window.pyodide, true);
+			runSnippet(container, window.pyConsole, window.pyodide);
 		};
 		runButton.dataset.copied = "Executed";
 

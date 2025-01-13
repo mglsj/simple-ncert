@@ -14,7 +14,7 @@ import { Steps } from '@astrojs/starlight/components';
 
 import Pyodide from "@/components/code/Pyodide.astro"
 
-<Pyodide />
+<Pyodide ds={true}/>
 
 <Quote author="Gautam Buddha" href="https://en.wikipedia.org/wiki/Gautama_Buddha">
 "An idea that is developed and put into action is more important than idea that
@@ -569,7 +569,7 @@ Let us now write the code for the above identified steps:
    print(df1)
    ```
 
-   ```
+   ```output
       Area  Class            Category    TotalPop    MalePop  FemalePop
    0   INDIA  Total            All Ages  1210854977  623270258  587584719
    1   INDIA  Total               10-14   132709212   69418835   63290377
@@ -601,7 +601,7 @@ Let us now write the code for the above identified steps:
    print(d)
    ```
 
-   ```
+   ```output
            Category   TotalPop    MalePop  FemalePop
                10-14  265418424  138837670  126580754
                15-19  241052898  127964792  113088106
@@ -622,7 +622,7 @@ Let us now write the code for the above identified steps:
    print(d)
    ```
 
-   ```
+   ```output
    Category  TotalPop   MalePop FemalePop
    10-14 265418424 138837670 126580754
    15-19 241052898 127964792 113088106
