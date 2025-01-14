@@ -5,10 +5,11 @@ import remarkMath from "remark-math";
 import remarkCustomHeaderId from "remark-custom-header-id";
 import rehypeKatex from "rehype-katex";
 import starlightImageZoom from "starlight-image-zoom";
-import sidebarData from "./sidebar.ts";
 
+import sidebarData from "./sidebar.ts";
 import rehypeStarlightMermaid from "./src/plugins/rephype-starlight-mermaid.ts";
 import rehypeExecutablePython from "./src/plugins/rephype-executable-python.ts";
+import rehypeExecutableSql from "./src/plugins/rephype-executable-sql.ts";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +18,7 @@ export default defineConfig({
 		rehypePlugins: [
 			rehypeKatex,
 			rehypeExecutablePython,
+			rehypeExecutableSql,
 			rehypeStarlightMermaid,
 		],
 	},

@@ -1,5 +1,7 @@
 ---
 import Box from "@/components/partials/Box.astro";
+import RunAll from "@/components/partials/RunAll.astro";
+import Loader from "../partials/Loader.astro";
 
 interface Props {
 	ds: boolean;
@@ -16,95 +18,12 @@ const { ds = false } = Astro.props;
 		snippets by clicking the "Run Code" button. If you want to run all the
 		code snippets at once, click the "Run All" button.
 	</p>
-	<button class="run-all not-content">
-		<p>Run All</p>
-	</button>
+	<RunAll />
 </Box>
 
-<style>
-	.run-all {
-		background-color: transparent;
-		align-items: center;
-		border: 1px solid transparent;
-		border-radius: 999rem;
-		display: inline-flex;
-		font-size: var(--sl-text-sm);
-		gap: 0.5em;
-		line-height: 1.1875;
-		outline-offset: 0.25rem;
-		padding: 0.4375rem 1.125rem;
-		text-decoration: none;
-		border-color: inherit;
-		color: var(--sl-color-white);
-	}
-
-	.run-all:hover {
-		cursor: pointer;
-	}
-
-	@media (min-width: 50rem) {
-		.run-all {
-			font-size: var(--sl-text-base);
-			padding: 0.9375rem 1.25rem;
-		}
-	}
-
-	:global(.sl-markdown-content) .run-all {
-		margin-inline-end: 1rem;
-	}
-	:global(.sl-markdown-content) .run-all:not(:where(p *)) {
-		margin-block: 1rem;
-	}
-</style>
-
-<div id="plot-container"></div>
-
-<div id="pyodide-loading">
-	<span class="pyodide-loading-spinner"></span>
-	<p>Loading Pyodide</p>
-</div>
+<Loader title="Loading Python Console" id="pyodide-loading" />
 
 <style is:global>
-	.pyodide-loading-spinner {
-		width: 20px;
-		height: 20px;
-		border: 2px solid #fff;
-		border-bottom-color: transparent;
-		border-radius: 50%;
-		display: inline-block;
-		box-sizing: border-box;
-		animation: rotation 1s linear infinite;
-	}
-
-	@keyframes rotation {
-		0% {
-			transform: rotate(0deg);
-		}
-		100% {
-			transform: rotate(360deg);
-		}
-	}
-
-	#pyodide-loading {
-		z-index: 999;
-		position: fixed;
-		bottom: 1rem;
-		right: 1rem;
-		padding: 1rem;
-		border-radius: 0.25rem;
-		background-color: #333;
-		color: white;
-		user-select: none;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		p {
-			margin: 0;
-			margin-left: 1rem;
-		}
-	}
-
 	.expressive-code .run {
 		inset-inline-end: calc(
 			var(--ec-brdWd) + var(--ec-uiPadInl) / 2 + 40px
@@ -442,6 +361,7 @@ pyodide_http.patch_all()`);
 		}
 	}
 
+	// Add run button to each code snippet
 	for (const container of execPyContainers) {
 		const figureConatiner = container.querySelector("figure");
 
@@ -464,6 +384,7 @@ pyodide_http.patch_all()`);
 		figureConatiner?.appendChild(runButtonContainer);
 	}
 
+	// Run All Button
 	const runAllBtn = document.querySelector(".run-all");
 	runAllBtn?.addEventListener("click", async () => {
 		if (!window.pyConsole) {
@@ -472,8 +393,6 @@ pyodide_http.patch_all()`);
 		}
 		await runAllSnippets(window.pyConsole, window.pyodide);
 	});
-
-	const pyodideLoadingMessageBox = document.getElementById("pyodide-loading");
 
 	document.addEventListener("DOMContentLoaded", async () => {
 		console.log("Initializing Pyodide and PyConsole");
@@ -484,8 +403,6 @@ pyodide_http.patch_all()`);
 		window.pyConsole = await initializePyConsole(window.pyodide);
 		console.log("PyConsole initialized");
 
-		pyodideLoadingMessageBox.style.display = "none";
-
-		// runSnippets(window.pyConsole);
+		document.getElementById("pyodide-loading")?.remove();
 	});
 </script>

@@ -1,0 +1,55 @@
+---
+interface Props {
+	title: string;
+	id: string;
+}
+
+const { title, id } = Astro.props;
+---
+
+<div id={id} class="loading-div">
+	<span class="loading-spinner"></span>
+	<p>{title}</p>
+</div>
+
+<style is:global>
+	.loading-spinner {
+		width: 20px;
+		height: 20px;
+		border: 2px solid #fff;
+		border-bottom-color: transparent;
+		border-radius: 50%;
+		display: inline-block;
+		box-sizing: border-box;
+		animation: rotation 1s linear infinite;
+	}
+
+	@keyframes rotation {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	.loading-div {
+		z-index: 999;
+		position: fixed;
+		bottom: 1rem;
+		right: 1rem;
+		padding: 1rem;
+		border-radius: 0.25rem;
+		background-color: #333;
+		color: white;
+		user-select: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		p {
+			margin: 0;
+			margin-left: 1rem;
+		}
+	}
+</style>

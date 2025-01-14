@@ -262,7 +262,7 @@ Inventory table:
 
 <Card>
 ```sql
-SELECT ROUND(12 / 100 * Price, 1) "GST"
+SELECT ROUND(12 * Price / 100 , 1) "GST"
 FROM INVENTORY;
 ```
 ```ansi

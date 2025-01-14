@@ -1,0 +1,126 @@
+---
+import Box from "@/components/partials/Box.astro";
+import RunAll from "@/components/partials/RunAll.astro";
+import Loader from "../partials/Loader.astro";
+---
+
+<Box title="Interactive SQL" variant="minimal" icon="seti:db">
+	<!-- <div id="pyodide-modules" data-module-ds={ds}></div> -->
+	<p>
+		This page uses MySQL. That means all the SQL code you see here is
+		executed in your browser using WebAssembly. You can run the code
+		snippets by clicking the "Run Code" button. If you want to run all the
+		code snippets at once, click the "Run All" button.
+	</p>
+	<RunAll />
+</Box>
+
+<Loader title="Loading MySQL Console" id="mysqlconsole-loading" />
+
+<style is:global>
+	.expressive-code .run {
+		inset-inline-end: calc(
+			var(--ec-brdWd) + var(--ec-uiPadInl) / 2 + 40px
+		) !important;
+	}
+
+	.expressive-code .run button::after {
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='20px' viewBox='0 -960 960 960' width='20px' fill='%23000000'%3E%3Cpath d='M336-216v-528l408 264-408 264Zm73-265Zm-1 133 204-132-204-132v264Z'/%3E%3C/svg%3E") !important;
+	}
+</style>
+
+<script>
+	import { loadMySQLConsole, type MySQLConsole } from "./mysql-console.ts";
+
+	declare global {
+		interface Window {
+			mySqlConsole: MySQLConsole;
+		}
+	}
+
+	async function runSnippet(
+		container: HTMLElement,
+		console: MySQLConsole,
+		focusOutput: boolean = false,
+	) {
+		const snippet = container.querySelector("snippet");
+
+		const outputContainer = container.querySelector("output");
+		outputContainer.innerHTML = "";
+
+		const outputElement = document.createElement("pre");
+		outputElement.innerHTML = "<span>Running...<span/>";
+		outputContainer?.appendChild(outputElement);
+
+		let anyOutput = false;
+
+		const output = await console.executeCommand(snippet.textContent!);
+
+		if (output) {
+			anyOutput = true;
+			outputElement.innerHTML = output;
+		}
+
+		if (!anyOutput) {
+			outputElement.innerHTML = "<span>[Executed without output]<span/>";
+		}
+
+		if (focusOutput) {
+			outputElement.scrollIntoView({ behavior: "smooth" });
+		}
+	}
+
+	const execSqlContainers = document.querySelectorAll(
+		"exec-sql",
+	) as NodeListOf<HTMLElement>;
+
+	// Add run button to each code snippet
+	for (const container of execSqlContainers) {
+		const figureConatiner = container.querySelector("figure");
+
+		const runButton = document.createElement("button") as HTMLButtonElement;
+		runButton.title = "Run Code";
+		runButton.innerHTML = "<div></div>";
+		runButton.onclick = () => {
+			if (!window.mySqlConsole) {
+				console.error("MySQL Console not initialized");
+				return;
+			}
+			runSnippet(container, window.mySqlConsole, false);
+		};
+		runButton.dataset.copied = "Executed";
+
+		const runButtonContainer = document.createElement("div");
+		runButtonContainer.classList.add("copy", "run");
+		runButtonContainer.appendChild(runButton);
+
+		figureConatiner?.appendChild(runButtonContainer);
+	}
+
+	async function runAllSnippets(
+		console: MySQLConsole,
+		follow: boolean = false,
+	) {
+		for (const container of execSqlContainers) {
+			await runSnippet(container, console, follow);
+		}
+	}
+
+	// Run All Button
+	const runAllBtn = document.querySelector(".run-all");
+	runAllBtn?.addEventListener("click", async () => {
+		if (!window.mySqlConsole) {
+			console.error("MySQL Console not initialized");
+			return;
+		}
+		await runAllSnippets(window.mySqlConsole, false);
+	});
+
+	document.addEventListener("DOMContentLoaded", async () => {
+		window.mySqlConsole = await loadMySQLConsole("/simple-ncert/mysql/");
+
+		(
+			document.getElementById("mysqlconsole-loading") as HTMLDivElement
+		).remove();
+	});
+</script>

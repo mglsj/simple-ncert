@@ -1,0 +1,39 @@
+<button class="run-all not-content">
+	<p>Run All</p>
+</button>
+
+<style>
+	.run-all {
+		background-color: transparent;
+		align-items: center;
+		border: 1px solid transparent;
+		border-radius: 999rem;
+		display: inline-flex;
+		font-size: var(--sl-text-sm);
+		gap: 0.5em;
+		line-height: 1.1875;
+		outline-offset: 0.25rem;
+		padding: 0.4375rem 1.125rem;
+		text-decoration: none;
+		border-color: inherit;
+		color: var(--sl-color-white);
+	}
+
+	.run-all:hover {
+		cursor: pointer;
+	}
+
+	@media (min-width: 50rem) {
+		.run-all {
+			font-size: var(--sl-text-base);
+			padding: 0.9375rem 1.25rem;
+		}
+	}
+
+	:global(.sl-markdown-content) .run-all {
+		margin-inline-end: 1rem;
+	}
+	:global(.sl-markdown-content) .run-all:not(:where(p *)) {
+		margin-block: 1rem;
+	}
+</style>
