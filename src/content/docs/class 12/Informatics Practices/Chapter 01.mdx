@@ -8,7 +8,11 @@ sidebar:
     variant: caution
 ---
 
-import { Example, Card, Figure, Quote, Activity, Table, Summary, Think } from "@/components/markdown";
+import { Example, Card, Figure, Quote, Activity, Table, Summary, Think, Collapse } from "@/components/markdown";
+
+import { MySql } from "@/components/code"
+
+<MySql/>
 
 <Quote author="Lev Manovich" href="https://en.wikipedia.org/wiki/Lev_Manovich">
 "Any unique image that you desire probably already exists on the internet or in
@@ -38,6 +42,18 @@ functions, multiple row functions, arranging records in ascending or descending
 order, grouping records based on some criteria, and working on multiple tables
 using SQL.
 
+<Figure
+    id="1.1"
+    title="Figure 1.1 Schema diagram of database CARSHOWROOM"
+    images={[
+        {
+            src: import("./res/fig_1.1.svg"),
+            srcDark: import("./res/fig_1.1.dark.svg"),
+            alt: "Schema diagram of database CARSHOWROOM"
+        }
+    ]}
+/>
+
 Let us create a database called CARSHOWROOM, having the schema as shown in
 [Figure 1.1](#figure-1.1). It has the following four relations:
 
@@ -53,96 +69,360 @@ Let us create a database called CARSHOWROOM, having the schema as shown in
 - **EMPLOYEE:** Stores employee Id, name, date of birth, date of joining,
   designation, and salary of each employee in the showroom.
 
-<Figure
-    id="1.1"
-    title="Figure 1.1 Schema diagram of database CARSHOWROOM"
-    images={[
-        {
-            src: import("./res/fig_1.1.svg"),
-            srcDark: import("./res/fig_1.1.dark.svg"),
-            alt: "Schema diagram of database CARSHOWROOM"
-        }
-    ]}
-/>
+<Collapse title="Create CARSHOWROOM database">
+```sql exec
+CREATE DATABASE CARSHOWROOM;
+USE CARSHOWROOM;
+CREATE TABLE INVENTORY (
+    CarId VARCHAR(255) PRIMARY KEY,
+    CarName VARCHAR(255),
+    Price DECIMAL(10, 2),
+    Model VARCHAR(255),
+    YearManufacture INT,
+    FuelType VARCHAR(255)
+);
+CREATE TABLE CUSTOMER (
+    CustId VARCHAR(255) PRIMARY KEY,
+    CustName VARCHAR(255),
+    CustAdd VARCHAR(255),
+    Phone VARCHAR(10),
+    Email VARCHAR(255)
+);
+CREATE TABLE EMPLOYEE(
+    EmpId VARCHAR(255) PRIMARY KEY,
+    EmpName VARCHAR(255),
+    DOB DATE,
+    DOJ DATE,
+    Designation VARCHAR(255),
+    Salary INT
+);
+CREATE TABLE SALE (
+    InvoiceNo VARCHAR(255) PRIMARY KEY,
+    CarId VARCHAR(255),
+    CustId VARCHAR(255),
+    SaleDate DATE,
+    PaymentMode VARCHAR(255),
+    EmpId VARCHAR(255),
+    SalePrice DECIMAL(10, 2),
+    FOREIGN KEY (CarId) REFERENCES INVENTORY(CarId),
+    FOREIGN KEY (CustId) REFERENCES CUSTOMER(CustId),
+    FOREIGN KEY (EmpId) REFERENCES EMPLOYEE(EmpId)
+);
+INSERT INTO INVENTORY (
+        CarId,
+        CarName,
+        Price,
+        Model,
+        YearManufacture,
+        FuelType
+    )
+VALUES (
+        'D001',
+        'Car1',
+        582613.00,
+        'LXI',
+        2017,
+        'Petrol'
+    ),
+    (
+        'D002',
+        'Car1',
+        673112.00,
+        'VXI',
+        2018,
+        'Petrol'
+    ),
+    (
+        'B001',
+        'Car2',
+        567031.00,
+        'Sigma1.2',
+        2019,
+        'Petrol'
+    ),
+    (
+        'B002',
+        'Car2',
+        647858.00,
+        'Delta1.2',
+        2018,
+        'Petrol'
+    ),
+    (
+        'E001',
+        'Car3',
+        355205.00,
+        '5 STR STD',
+        2017,
+        'CNG'
+    ),
+    (
+        'E002',
+        'Car3',
+        654914.00,
+        'CARE',
+        2018,
+        'CNG'
+    ),
+    (
+        'S001',
+        'Car4',
+        514000.00,
+        'LXI',
+        2017,
+        'Petrol'
+    ),
+    (
+        'S002',
+        'Car4',
+        614000.00,
+        'VXI',
+        2018,
+        'Petrol'
+    );
+INSERT INTO CUSTOMER (
+        CustId,
+        CustName,
+        CustAdd,
+        Phone,
+        Email
+    )
+VALUES (
+        'C0001',
+        'Amit Saha',
+        'L-10, Pitampura',
+        '4564587852',
+        'amitsaha2@gmail.com'
+    ),
+    (
+        'C0002',
+        'Rehnuma',
+        'J-12, SAKET',
+        '5527688761',
+        'rehnuma@hotmail.com'
+    ),
+    (
+        'C0003',
+        'Charvi Nayyar',
+        '10/9, FF, Rohini',
+        '6811635425',
+        'charvi123@yahoo.com'
+    ),
+    (
+        'C0004',
+        'Gurpreet',
+        'A-10/2, SF, Mayur Vihar',
+        '3511056125',
+        'gur_singh@yahoo.com'
+    );
+INSERT INTO SALE (
+        InvoiceNo,
+        CarId,
+        CustId,
+        SaleDate,
+        PaymentMode,
+        EmpId,
+        SalePrice
+    )
+VALUES (
+        'I00001',
+        'D001',
+        'C0001',
+        '2019-01-24',
+        'Credit Card',
+        'E004',
+        613248.00
+    ),
+    (
+        'I00002',
+        'S001',
+        'C0002',
+        '2018-12-12',
+        'Online',
+        'E001',
+        590321.00
+    ),
+    (
+        'I00003',
+        'S002',
+        'C0004',
+        '2019-01-25',
+        'Cheque',
+        'E010',
+        604000.00
+    ),
+    (
+        'I00004',
+        'D002',
+        'C0001',
+        '2018-10-15',
+        'Bank Finance',
+        'E007',
+        659982.00
+    ),
+    (
+        'I00005',
+        'E001',
+        'C0003',
+        '2018-12-20',
+        'Credit Card',
+        'E002',
+        369310.00
+    ),
+    (
+        'I00006',
+        'S002',
+        'C0002',
+        '2019-01-30',
+        'Bank Finance',
+        'E007',
+        620214.00
+    );
+INSERT INTO EMPLOYEE (
+        EmpId,
+        EmpName,
+        DOB,
+        DOJ,
+        Designation,
+        Salary
+    )
+VALUES (
+        'E001',
+        'Rushil',
+        '1994-07-10',
+        '2017-12-12',
+        'Salesman',
+        25550
+    ),
+    (
+        'E002',
+        'Sanjay',
+        '1990-03-12',
+        '2016-06-05',
+        'Salesman',
+        33100
+    ),
+    (
+        'E003',
+        'Zohar',
+        '1975-08-30',
+        '1999-01-08',
+        'Peon',
+        20000
+    ),
+    (
+        'E004',
+        'Arpit',
+        '1989-06-06',
+        '2010-12-02',
+        'Salesman',
+        39100
+    ),
+    (
+        'E006',
+        'Sanjucta',
+        '1985-11-03',
+        '2012-07-01',
+        'Receptionist',
+        27350
+    ),
+    (
+        'E007',
+        'Mayank',
+        '1993-04-03',
+        '2017-01-01',
+        'Salesman',
+        27352
+    ),
+    (
+        'E010',
+        'Rajkumar',
+        '1987-02-26',
+        '2013-10-23',
+        'Salesman',
+        31111
+    );
+```
+</Collapse>
 
 The records of the four relations are shown in [Tables 1.1](#table-1.1), [1.2](#table-1.2), 
 [1.3](#table-1.3), and [1.4](#table-1.4) respectively.
 
 <Table id="1.1" title="Table 1.1 INVENTORY" center={false}>
-```sql
+```sql exec
 SELECT * FROM INVENTORY;
 ```
 
-```ansi
-+-------+--------+-----------+-----------+-----------------+----------+
-| CarId | CarName| Price     | Model     | YearManufacture | Fueltype |
-+-------+--------+-----------+-----------+-----------------+----------+
-| D001  | Car1   | 582613.00 | LXI       | 2017            | Petrol   |
-| D002  | Car1   | 673112.00 | VXI       | 2018            | Petrol   |
-| B001  | Car2   | 567031.00 | Sigma1.2  | 2019            | Petrol   |
-| B002  | Car2   | 647858.00 | Delta1.2  | 2018            | Petrol   |
-| E001  | Car3   | 355205.00 | 5 STR STD | 2017            | CNG      |
-| E002  | Car3   | 654914.00 | CARE      | 2018            | CNG      |
-| S001  | Car4   | 514000.00 | LXI       | 2017            | Petrol   |
-| S002  | Car4   | 614000.00 | VXI       | 2018            | Petrol   |
-+-------+--------+-----------+-----------+-----------------+----------+
-8 rows in set (0.00 sec)
+```output
++-------+---------+-----------+-----------+-----------------+----------+
+| CarId | CarName | Price     | Model     | YearManufacture | FuelType |
++-------+---------+-----------+-----------+-----------------+----------+
+| D001  | Car1    | 582613.00 | LXI       |            2017 | Petrol   |
+| D002  | Car1    | 673112.00 | VXI       |            2018 | Petrol   |
+| B001  | Car2    | 567031.00 | Sigma1.2  |            2019 | Petrol   |
+| B002  | Car2    | 647858.00 | Delta1.2  |            2018 | Petrol   |
+| E001  | Car3    | 355205.00 | 5 STR STD |            2017 | CNG      |
+| E002  | Car3    | 654914.00 | CARE      |            2018 | CNG      |
+| S001  | Car4    | 514000.00 | LXI       |            2017 | Petrol   |
+| S002  | Car4    | 614000.00 | VXI       |            2018 | Petrol   |
++-------+---------+-----------+-----------+-----------------+----------+
+8 rows in set (0.01 sec)
 ```
 </Table>
 
 <Table id="1.2" title="Table 1.2 CUSTOMER" center={false}>
-```sql
+```sql exec
 SELECT * FROM CUSTOMER;
 ```
-```ansi
-+-------+--------------+------------------------+------------+---------------------+
-|CustId | CustName     | CustAdd                | Phone      | Email               |
-+-------+--------------+------------------------+------------+---------------------+
-| C0001 | AmitSaha     | L-10, Pitampura        | 4564587852 | amitsaha2@gmail.com |
-| C0002 | Rehnuma      | J-12, SAKET            | 5527688761 | rehnuma@hotmail.com |
-| C0003 | CharviNayyar | 10/9, FF, Rohini       | 6811635425 | charvi123@yahoo.com |
-| C0004 | Gurpreet     | A-10/2, SF, MayurVihar | 3511056125 | gur_singh@yahoo.com |
-+-------+--------------+------------------------+------------+---------------------+
-4 rows in set (0.00 sec)
+```output
++--------+---------------+-------------------------+------------+---------------------+
+| CustId | CustName      | CustAdd                 | Phone      | Email               |
++--------+---------------+-------------------------+------------+---------------------+
+| C0001  | Amit Saha     | L-10, Pitampura         | 4564587852 | amitsaha2@gmail.com |
+| C0002  | Rehnuma       | J-12, SAKET             | 5527688761 | rehnuma@hotmail.com |
+| C0003  | Charvi Nayyar | 10/9, FF, Rohini        | 6811635425 | charvi123@yahoo.com |
+| C0004  | Gurpreet      | A-10/2, SF, Mayur Vihar | 3511056125 | gur_singh@yahoo.com |
++--------+---------------+-------------------------+------------+---------------------+
+4 rows in set (0.01 sec)
 ```
 </Table>
 
 <Table id="1.3" title="Table 1.3 SALE" center={false}>
-```sql
+```sql exec
 SELECT * FROM SALE;
 ```
-```ansi
+```output
 +-----------+-------+--------+------------+--------------+-------+-----------+
-| InvoiceNo | CarId | CustId | SaleDate   | PaymentMode  | EmpID | SalePrice |
+| InvoiceNo | CarId | CustId | SaleDate   | PaymentMode  | EmpId | SalePrice |
 +-----------+-------+--------+------------+--------------+-------+-----------+
-| I00001    | D001  | C0001  | 2019-01-24 | Credit Card  | E004  | 613247.00 |
+| I00001    | D001  | C0001  | 2019-01-24 | Credit Card  | E004  | 613248.00 |
 | I00002    | S001  | C0002  | 2018-12-12 | Online       | E001  | 590321.00 |
 | I00003    | S002  | C0004  | 2019-01-25 | Cheque       | E010  | 604000.00 |
 | I00004    | D002  | C0001  | 2018-10-15 | Bank Finance | E007  | 659982.00 |
 | I00005    | E001  | C0003  | 2018-12-20 | Credit Card  | E002  | 369310.00 |
 | I00006    | S002  | C0002  | 2019-01-30 | Bank Finance | E007  | 620214.00 |
 +-----------+-------+--------+------------+--------------+-------+-----------+
-6 rows in set (0.00 sec)
+6 rows in set (0.01 sec)
 ```
 </Table>
 
 <Table id="1.4" title="Table 1.4 EMPLOYEE" center={false}>
-```sql
+```sql exec
 SELECT * FROM EMPLOYEE;
 ```
-```ansi
+```output
 +-------+----------+------------+------------+--------------+--------+
-| EmpID | EmpName  | DOB        | DOJ        | Designation  | Salary |
+| EmpId | EmpName  | DOB        | DOJ        | Designation  | Salary |
 +-------+----------+------------+------------+--------------+--------+
-| E001  | Rushil   | 1994-07-10 | 2017-12-12 | Salesman     | 25550  |
-| E002  | Sanjay   | 1990-03-12 | 2016-06-05 | Salesman     | 33100  |
-| E003  | Zohar    | 1975-08-30 | 1999-01-08 | Peon         | 20000  |
-| E004  | Arpit    | 1989-06-06 | 2010-12-02 | Salesman     | 39100  |
-| E006  | Sanjucta | 1985-11-03 | 2012-07-01 | Receptionist | 27350  |
-| E007  | Mayank   | 1993-04-03 | 2017-01-01 | Salesman     | 27352  |
-| E010  | Rajkumar | 1987-02-26 | 2013-10-23 | Salesman     | 31111  |
+| E001  | Rushil   | 1994-07-10 | 2017-12-12 | Salesman     |  25550 |
+| E002  | Sanjay   | 1990-03-12 | 2016-06-05 | Salesman     |  33100 |
+| E003  | Zohar    | 1975-08-30 | 1999-01-08 | Peon         |  20000 |
+| E004  | Arpit    | 1989-06-06 | 2010-12-02 | Salesman     |  39100 |
+| E006  | Sanjucta | 1985-11-03 | 2012-07-01 | Receptionist |  27350 |
+| E007  | Mayank   | 1993-04-03 | 2017-01-01 | Salesman     |  27352 |
+| E010  | Rajkumar | 1987-02-26 | 2013-10-23 | Salesman     |  31111 |
 +-------+----------+------------+------------+--------------+--------+
-7 rows in set (0.00 sec)
+7 rows in set (0.02 sec)
 ```
 </Table>
 
@@ -198,10 +478,10 @@ can also be written as\
 Calculates X to the power Y.
 </td>
 <td>
-```sql
+```sql exec
 SELECT POWER(2,3);
 ```
-```
+```output
 8
 ```
 </td>
@@ -216,16 +496,16 @@ Rounds off number N to D number of decimal places.
 Note: If D=0, then it rounds off the number to the nearest integer.
 </td>
 <td>
-```sql
+```sql exec
 SELECT ROUND(2912.564, 1);
 ```
-```
+```output
 2912.6
 ```
-```sql
+```sql exec
 SELECT ROUND(283.2);
 ```
-```
+```output
 283
 ```
 </td>
@@ -238,10 +518,10 @@ SELECT ROUND(283.2);
 Returns the remainder after dividing number A by number B.
 </td>
 <td>
-```sql
+```sql exec
 SELECT MOD(21, 2);
 ```
-```
+```output
 1
 ```
 </td>
@@ -260,12 +540,11 @@ Inventory table:
 - a) Calculate GST as 12% of Price and display the result after rounding it off
   to one decimal place.
 
-<Card>
-```sql
+```sql exec
 SELECT ROUND(12 * Price / 100 , 1) "GST"
 FROM INVENTORY;
 ```
-```ansi
+```output
 +---------+ 
 | GST     | 
 +---------+ 
@@ -280,38 +559,32 @@ FROM INVENTORY;
 +---------+
 8 rows in set (0.00 sec)
 ```
-</Card>
 
 - b) Add a new column FinalPrice to the table inventory, which will have the
   value as sum of Price and 12% of the GST.
 
-<Card>
-```sql
+```sql exec
 ALTER TABLE INVENTORY
 ADD FinalPrice Numeric(10, 1);
 ```
-```ansi
+```output
 Query OK, 8 rows affected (0.03 sec) 
 Records: 8 Duplicates: 0 Warnings: 0
 ```
-</Card>
 
-<Card>
-```sql
+```sql exec
 UPDATE INVENTORY
 SET FinalPrice = Price + Round(Price * 12 / 100, 1);
 ```
-```ansi
+```output
 Query OK, 8 rows affected (0.01 sec)
 Rows matched: 8 Changed: 8 Warnings: 0
 ```
-</Card>
 
-<Card>
-```sql
+```sql exec
 SELECT * FROM INVENTORY;
 ```
-```ansi
+```output
 +-------+--------+-----------+----------+---------------+----------+-------------+ 
 | CarId |CarName | Price     | Model    |YearManufacture| FuelType | FinalPric   | 
 +-------+--------+-----------+----------+---------------+----------+-------------+ 
@@ -326,7 +599,6 @@ SELECT * FROM INVENTORY;
 +-------+--------+-----------+----------+---------------+----------+-------------+ 
 8 rows in set (0.00 sec)
 ```
-</Card>
 
 - c) Calculate and display the amount to be paid each month (in multiples
   of 1000) which is to be calculated after dividing the FinalPrice of the car
@@ -336,15 +608,14 @@ SELECT * FROM INVENTORY;
   paid immediately, by performing modular division. Following SQL query can be
   used to solve the above mentioned problems:
 
-<Card>
-```sql
+```sql exec
 select CarId,
     FinalPrice,
-    ROUND((FinalPriceMOD(FinalPrice, 10000)) / 10, 0) "EMI",
+    ROUND((FinalPrice - MOD(FinalPrice, 10000)) / 10, 0) "EMI",
     MOD(FinalPrice, 10000) "Remaining Amount"
 FROM INVENTORY;
 ```
-```ansi
+```output
 +-------+------------+-------+------------------+ 
 | CarId | FinalPrice | EMI   | Remaining Amount | 
 +-------+------------+-------+------------------+ 
@@ -359,7 +630,6 @@ FROM INVENTORY;
 +-------+------------+-------+------------------+ 
 8 rows in set (0.00 sec)
 ```
-</Card>
 </Example>
 
 <Example id="1.2" title="Example 1.2">
@@ -368,39 +638,34 @@ FROM INVENTORY;
   Commission should have a total length of 7 in which 2 decimal places to be
   there.
 
-<Card>
-```sql
+```sql exec
 ALTER TABLE SALE
 ADD(Commission Numeric(7, 2));
 ```
-```ansi
+```output
 Query OK, 6 rows affected (0.34 sec) 
 Records: 6 Duplicates: 0 Warnings: 0
 ```
-</Card>
 
 - b) Let us now calculate commission for sales agents as 12 per cent of the
   SalePrice, insert the values to the newly added column Commission and then
   display records of the table SALE where commission > 73000.
 
-<Card>
-```sql
+```sql exec
 UPDATE SALE
 SET Commission = 12 / 100 * SalePrice;
 ```
-```ansi
+```output
 Query OK, 6 rows affected (0.06 sec) 
 Rows matched: 6 Changed: 6 Warnings: 0
 ```
-</Card>
 
-<Card>
-```sql
+```sql exec
 SELECT *
 FROM SALE
 WHERE Commission > 73000;
 ```
-```ansi
+```output
 +---------------+------+--------+------------+--------------+-------+-----------+------------+ 
 | invoiceno     |carid | custid | saledate   | paymentmode  | empid | saleprice | Commission | 
 +---------------+------+--------+------------+--------------+-------+-----------+------------+ 
@@ -410,19 +675,17 @@ WHERE Commission > 73000;
 +---------------+------+--------+------------+--------------+-------+-----------+------------+ 
 3 rows in set (0.02 sec)
 ```
-</Card>
 
 - c) Display InvoiceNo, SalePrice and Commission such that commission value is
   rounded off to 0.
 
-<Card>
-```sql
+```sql exec
 SELECT InvoiceNo,
     SalePrice,
     Round(Commission, 0)
 FROM SALE;
 ```
-```ansi
+```output
 +-----------+-----------+---------------------+ 
 | InvoiceNo | SalePrice | Round(Commission,0) | 
 +-----------+-----------+---------------------+ 
@@ -435,7 +698,6 @@ FROM SALE;
 +-----------+-----------+---------------------+ 
 6 rows in set (0.00 sec)
 ```
-</Card>
 </Example>
 
 <Activity id="1.1" title="Activity 1.1">
@@ -472,10 +734,10 @@ OR\
 Converts string into uppercase.
 </td>
 <td>
-```sql
+```sql exec
 SELECT UCASE("Informatics Practices");
 ```
-```
+```output
 INFORMATICS PRACTICES
 ```
 </td>
@@ -490,10 +752,10 @@ OR\
 Converts string into lowercase.
 </td>
 <td>
-```sql
+```sql exec
 SELECT LOWER("Informatics Practices");
 ```
-```
+```output
 informatics practices
 ```
 </td>
@@ -514,17 +776,16 @@ If n is not specified, it returns the substring from the position pos
 till end of the string.
 </td>
 <td>
-```sql
+```sql exec
 SELECT MID("Informatics", 3, 4);
 ```
-```
+```output
 form
 ```
-<br/>
-```sql
+```sql exec
 SELECT MID("Informatics",7);
 ```
-```
+```output
 atics
 ```
 </td>
@@ -537,10 +798,10 @@ atics
 Return the number of characters in the specified string.
 </td>
 <td>
-```sql
+```sql exec
 SELECT LENGTH("Informatics");
 ```
-```
+```output
 11
 ```
 </td>
@@ -553,10 +814,10 @@ SELECT LENGTH("Informatics");
 Returns N number of characters from the left side of the string.
 </td>
 <td>
-```sql
+```sql exec
 SELECT LEFT("Computer", 4);
 ```
-```
+```output
 Comp
 ```
 </td>
@@ -569,10 +830,10 @@ Comp
 Returns N number of characters from the right side of the string.
 </td>
 <td>
-```sql
+```sql exec
 SELECT RIGHT("SCIENCE", 3);
 ```
-```
+```output
 NCE
 ```
 </td>
@@ -588,10 +849,10 @@ the given string.
 Returns 0, if the substring is not present in the string.
 </td>
 <td>
-```sql
+```sql exec
 SELECT INSTR("Informatics", "ma");
 ```
-```
+```output
 6
 ```
 </td>
@@ -604,11 +865,11 @@ SELECT INSTR("Informatics", "ma");
 Returns the given string after removing leading white space characters.
 </td>
 <td>
-```sql
+```sql exec
 SELECT LENGTH("  DELHI"),
 LENGTH(LTRIM("  DELHI"));
 ```
-```
+```output
 +--------+--------+
 | 7      | 5      |
 +--------+--------+
@@ -624,11 +885,11 @@ LENGTH(LTRIM("  DELHI"));
 Returns the given string after removing trailing white space characters.
 </td>
 <td>
-```sql
+```sql exec
 SELECT LENGTH("PEN  "),
 LENGTH(RTRIM("PEN  "));
 ```
-```
+```output
 +--------+--------+
 | 5      | 3      |
 +--------+--------+
@@ -644,12 +905,11 @@ LENGTH(RTRIM("PEN  "));
 Returns the given string after removing both leading and trailing white space characters.
 </td>
 <td>
-```sql
+```sql exec
 SELECT LENGTH("  MADAM  "),
 LENGTH(TRIM("  MADAM  "));
 ```
-Output:
-```ansi
+```output
 +--------+--------+
 | 9      | 5      |
 +--------+--------+
@@ -668,13 +928,12 @@ string functions.
 - a) Display customer name in lower case and customer email in upper case from
   table CUSTOMER.
 
-<Card>
-```sql
+```sql exec
 SELECT LOWER(CustName),
     UPPER(Email)
 FROM CUSTOMER;
 ```
-```ansi
+```output
 +-----------------+---------------------+ 
 | LOWER(CustName) | UPPER(Email)        | 
 +-----------------+---------------------+ 
@@ -685,18 +944,16 @@ FROM CUSTOMER;
 +-----------------+---------------------+ 
 4 rows in set (0.00 sec)
 ```
-</Card>
 
 - b) Display the length of the email and part of the email from the email ID
   before the character '@'. Note - Do not print '@'.
 
-<Card>
-```sql
+```sql exec
 SELECT LENGTH(Email),
     LEFT(Email, INSTR(Email, "@") -1)
 FROM CUSTOMER;
 ```
-```ansi
+```output
 +---------------+----------------------------------+ 
 | LENGTH(Email) | LEFT(Email, INSTR(Email, "@")-1) | 
 +---------------+----------------------------------+ 
@@ -707,7 +964,6 @@ FROM CUSTOMER;
 +---------------+----------------------------------+ 
 4 rows in set (0.03 sec)
 ```
-</Card>
 
 The function `INSTR` will return the position of "@" in the email address. So to
 print email id without "@" we have to use position -1.
@@ -727,13 +983,12 @@ starting from position number 1. For example, 2630 is the area code of mobile
 number 4726309212. Now, write the SQL query to display the area code of the
 customer living in Rohini.
 
-<Card>
-```sql
+```sql exec
 SELECT MID(Phone, 3, 4)
 FROM CUSTOMER
 WHERE CustAdd like '%Rohini%';
 ```
-```ansi
+```output
 +----------------+
 | MID(Phone,3,4) |
 +----------------+
@@ -741,7 +996,6 @@ WHERE CustAdd like '%Rohini%';
 +----------------+ 
 1 row in set (0.00 sec)
 ```
-</Card>
 
 <Activity id="1.3" title="Activity 1.3">
 Using the table EMPLOYEE from CARSHOWROOM database, write SQL queries for the
@@ -755,15 +1009,11 @@ following:
 - d) Display emails after removing the domain name extension ".com" from emails
   of the customers.
 
-<Card>
-```sql
-SELECT TRIM(
-        ".com"
-        from Email
-    )
+```sql exec
+SELECT TRIM(".com" from Email)
 FROM CUSTOMER;
 ```
-```ansi
+```output
 +-------------------------+
 | TRIM(".com" FROM Email) | 
 +-------------------------+ 
@@ -774,17 +1024,15 @@ FROM CUSTOMER;
 +-------------------------+ 
 4 rows in set (0.00 sec)
 ```
-</Card>
 
 - e) Display details of all the customers having yahoo emails only.
 
-<Card>
-```sql
+```sql exec
 SELECT *
 FROM CUSTOMER
 WHERE Email LIKE "%yahoo%";
 ```
-```ansi
+```output
 +--------+--------------+-----------------------+------------+---------------------+ 
 | CustID | CustName     | CustAdd               | Phone      | Email               | 
 +--------+--------------+-----------------------+------------+---------------------+ 
@@ -793,7 +1041,6 @@ WHERE Email LIKE "%yahoo%";
 +--------+--------------+-----------------------+------------+---------------------+ 
 2 rows in set (0.00 sec)
 ```
-</Card>
 </Example>
 
 #### (C) Date and Time Functions ||section-1.2.1.c||
@@ -818,10 +1065,10 @@ on. [Table 1.7](#table-1.7) explains various date and time functions.
 It returns the current system date and time.
 </td>
 <td>
-```sql
+```sql exec
 SELECT NOW();
 ```
-```
+```output
 2019-07-11 19:41:17
 ```
 </td>
@@ -834,10 +1081,10 @@ SELECT NOW();
 It returns the date part from the given date/time expression.
 </td>
 <td>
-```sql
+```sql exec
 SELECT DATE(NOW());
 ```
-```
+```output
 2019-07-11
 ```
 </td>
@@ -850,10 +1097,10 @@ SELECT DATE(NOW());
 It returns the month in numeric form from the date.
 </td>
 <td>
-```sql
+```sql exec
 SELECT MONTH(NOW());
 ```
-```
+```output
 7
 ```
 </td>
@@ -866,10 +1113,10 @@ SELECT MONTH(NOW());
 It returns the month name from the specified date.
 </td>
 <td>
-```sql
+```sql exec
 SELECT MONTHNAME("2003-11-28");
 ```
-```
+```output
 November
 ```
 </td>
@@ -882,10 +1129,10 @@ November
 It returns the year from the date.
 </td>
 <td>
-```sql
+```sql exec
 SELECT YEAR("2003-10-03");
 ```
-```
+```output
 2003
 ```
 </td>
@@ -898,10 +1145,10 @@ SELECT YEAR("2003-10-03");
 It returns the day part from the date.
 </td>
 <td>
-```sql
+```sql exec
 SELECT DAY("2003-03-24");
 ```
-```
+```output
 24
 ```
 </td>
@@ -914,10 +1161,10 @@ SELECT DAY("2003-03-24");
 It returns the name of the day from the date.
 </td>
 <td>
-```sql
+```sql exec
 SELECT DAYNAME("2019-07-11");
 ```
-```
+```output
 Thursday
 ```
 </td>
@@ -932,14 +1179,13 @@ of some of the date and time functions.
 
 - a) Select the day, month number and year of joining of all employees.
 
-<Card>
-```sql
+```sql exec
 SELECT DAY(DOJ),
     MONTH(DOJ),
     YEAR(DOJ)
 FROM EMPLOYEE;
 ```
-```ansi
+```output
 +----------+------------+-----------+ 
 | DAY(DOJ) | MONTH(DOJ) | YEAR(DOJ) | 
 +----------+------------+-----------+ 
@@ -953,7 +1199,6 @@ FROM EMPLOYEE;
 +----------+------------+-----------+ 
 7 rows in set (0.03 sec)
 ```
-</Card>
 
 <Activity id="1.4" title="Activity 1.4">
 Using the table EMPLOYEE of CARSHOWROOM database, list the day of birth for all
@@ -963,8 +1208,7 @@ employees whose salary is more than
 - b) If the date of joining is not a Sunday, then display it in the following
   format "Wednesday, 26, November, 1979."
 
-<Card>
-```sql
+```sql exec
 SELECT DAYNAME(DOJ),
     DAY(DOJ),
     MONTHNAME(DOJ),
@@ -972,7 +1216,7 @@ SELECT DAYNAME(DOJ),
 FROM EMPLOYEE
 WHERE DAYNAME(DOJ) != 'Sunday';
 ```
-```ansi
+```output
 +--------------+----------+----------------+-----------+ 
 | DAYNAME(DOJ) | DAY(DOJ) | MONTHNAME(DOJ) | YEAR(DOJ) | 
 +--------------+----------+----------------+-----------+ 
@@ -983,7 +1227,6 @@ WHERE DAYNAME(DOJ) != 'Sunday';
 +--------------+----------+----------------+-----------+ 
 4 rows in set (0.00 sec)
 ```
-</Card>
 </Example>
 
 <Think title="Think and Reflect">
@@ -1023,11 +1266,11 @@ of numeric type.
 Returns the largest value from the specified column.
 </td>
 <td>
-```sql
+```sql exec
 SELECT MAX(Price)
 FROM INVENTORY;
 ```
-```
+```output
 673112.00
 ```
 </td>
@@ -1040,11 +1283,11 @@ FROM INVENTORY;
 Returns the smallest value from the specified column.
 </td>
 <td>            
-```sql
+```sql exec
 SELECT MIN(Price)
 FROM INVENTORY;
 ```
-```
+```output
 355205.00
 ```
 </td>
@@ -1057,11 +1300,11 @@ FROM INVENTORY;
 Returns the average of the values in the specified column.
 </td>
 <td>
-```sql
+```sql exec
 SELECT AVG(Price)
 FROM INVENTORY;
 ```
-```
+```output
 576091.625000
 ```
 </td>
@@ -1074,11 +1317,11 @@ FROM INVENTORY;
 Returns the sum of the values for the specified column.
 </td>
 <td>
-```sql
+```sql exec
 SELECT SUM(Price)
 FROM INVENTORY;
 ```
-```
+```output
 4608733.00
 ```
 </td>
@@ -1094,11 +1337,11 @@ Note: In this example, let us consider a MANAGER table having two
 attributes and four records.
 </td>
 <td>
-```sql
+```sql exec
 SELECT *
 FROM MANAGER;
 ```
-```
+```output
 +------+---------+
 | MNO  | MEMNAME |
 +------+---------+
@@ -1110,11 +1353,11 @@ FROM MANAGER;
 4 rows in set (0.00 sec)
 ```
 <br/>
-```sql
+```sql exec
 SELECT COUNT(MEMNAME)
 FROM MANAGER;
 ```
-```
+```output
 +----------------+
 | COUNT(MEMNAME) |
 +----------------+
@@ -1134,11 +1377,11 @@ Returns the number of records in a table.
 Note: In order to display the number of records that matches a particular criteria in the table, we have to use `COUNT(*)` with `WHERE` clause.
 </td>
 <td>
-```sql
+```sql exec
 SELECT COUNT(*)
 FROM MANAGER;
 ```
-```
+```output
 +----------+
 | count(*) |
 +----------+
@@ -1156,13 +1399,12 @@ FROM MANAGER;
 - a) Display the total number of records from table INVENTORY having a model as
   VXI.
 
-<Card>
-```sql
+```sql exec
 SELECT COUNT(*)
 FROM INVENTORY
 WHERE Model = "VXI";
 ```
-```ansi
+```output
 +----------+ 
 | COUNT(*) | 
 +----------+ 
@@ -1170,17 +1412,15 @@ WHERE Model = "VXI";
 +----------+ 
 1 row in set (0.00 sec)
 ```
-</Card>
 
 - b) Display the total number of different types of Models available from table
 INVENTORY.
 
-<Card>
-```sql
+```sql exec
 SELECT COUNT(DISTINCT Model)
 FROM INVENTORY;
 ```
-```ansi
+```output
 +-----------------------+ 
 | COUNT(DISTINCT MODEL) | 
 +-----------------------+
@@ -1188,18 +1428,16 @@ FROM INVENTORY;
 +-----------------------+
 1 row in set (0.09 sec)
 ```
-</Card>
 
 - c) Display the average price of all the cars with Model LXI from table
 INVENTORY.
 
-<Card>
-```sql
+```sql exec
 SELECT AVG(Price)
 FROM INVENTORY
 WHERE Model = "LXI";
 ```
-```ansi
+```output
 +---------------+
 | AVG(Price)    | 
 +---------------+ 
@@ -1207,7 +1445,6 @@ WHERE Model = "LXI";
 +---------------+ 
 1 row in set (0.03 sec)
 ```
-</Card>
 </Example>
 
 <Activity id="1.5" title="Activity 1.5">
@@ -1226,11 +1463,10 @@ Clause in SQL is used to specify conditions on the rows with `GROUP BY` clause.
 
 Consider the SALE table from the CARSHOWROOM database:
 
-<Card>
-```sql
+```sql exec
 SELECT * FROM SALE;
 ```
-```ansi
+```output
 +-----------+------+-------+------------+------------------+------+------------+------------+ 
 |InvoiceNo  |CarId |CustId | SaleDate   | PaymentMode      |EmpID | SalePrice  | Commission | 
 +-----------+------+-------+------------+------------------+------+------------+------------+ 
@@ -1243,7 +1479,6 @@ SELECT * FROM SALE;
 +-----------+------+-------+------------+------------------+------+------------+------------+ 
 6 rows in set (0.11 sec)
 ```
-</Card>
 
 CarID, CustID, SaleDate, PaymentMode, EmpID, SalePrice are the columns that can
 have rows with the same values in it. So, `GROUP BY` clause can be used
@@ -1254,14 +1489,13 @@ to calculate the sum of the price of each car type.
 
 - a) Display the number of cars purchased by each customer from the SALE table.
 
-<Card>
-```sql
+```sql exec
 SELECT CustID,
     COUNT(*) "Number of Cars"
 FROM SALE
 GROUP BY CustID;
 ```
-```ansi
+```output
 +--------+----------------+ 
 | CustID | Number of Cars | 
 +--------+----------------+ 
@@ -1272,20 +1506,18 @@ GROUP BY CustID;
 +--------+----------------+ 
 4 rows in set (0.00 sec)
 ```
-</Card>
 
 - b) Display the customer Id and number of cars purchased if the customer
   purchased more than 1 car from SALE table.
 
-<Card>
-```sql
+```sql exec
 SELECT CustID,
     COUNT(*)
 FROM SALE
 GROUP BY CustID
 HAVING Count(*) > 1;
 ```
-```ansi
+```output
 +--------+----------+ 
 | CustID | COUNT(*) | 
 +--------+----------+ 
@@ -1294,7 +1526,6 @@ HAVING Count(*) > 1;
 +--------+----------+ 
 2 rows in set (0.30 sec)
 ```
-</Card>
 
 <Activity id="1.6" title="Activity 1.6">
 
@@ -1306,15 +1537,14 @@ HAVING Count(*) > 1;
 - c) Display the number of people in each category of payment mode from the
   table SALE.
 
-<Card>
-```sql
+```sql exec
 SELECT PaymentMode,
     COUNT(PaymentMode)
 FROM SALE
 GROUP BY Paymentmode
 ORDER BY Paymentmode;
 ```
-```ansi
+```output
 +--------------+--------------------+ 
 | PaymentMode  | Count(PaymentMode) | 
 +--------------+--------------------+ 
@@ -1325,13 +1555,11 @@ ORDER BY Paymentmode;
 +--------------+--------------------+ 
 4 rows in set (0.00 sec)
 ```
-</Card>
 
 - d) Display the PaymentMode and number of payments made using that mode more than
 once.
 
-<Card>
-```sql
+```sql exec
 SELECT PaymentMode,
     Count(PaymentMode)
 FROM SALE
@@ -1339,7 +1567,7 @@ GROUP BY Paymentmode
 HAVING COUNT(*) > 1
 ORDER BY Paymentmode;
 ```
-```ansi
+```output
 +--------------+--------------------+ 
 | PaymentMode  | Count(PaymentMode) | 
 +--------------+--------------------+ 
@@ -1348,7 +1576,6 @@ ORDER BY Paymentmode;
 +--------------+--------------------+ 
 2 rows in set (0.00 sec)
 ```
-</Card>
 </Example>
 
 ## 1.4 Operations on Relations ||section-1.4||
@@ -1560,7 +1787,7 @@ and MUSIC:
 <Example id="1.7" title="Example 1.7">
 
 - a) Display all possible combinations of tuples of relations DANCE and MUSIC
-  ```sql
+  ```sql exec
   SELECT *
   FROM DANCE,
       MUSIC;
@@ -1571,7 +1798,7 @@ and MUSIC:
 - b) From the all possible combinations of tuples of relations DANCE and MUSIC,
   display only those rows such that the attribute name in both have the same
   value.
-  ```sql
+  ```sql exec
   SELECT *
   FROM DANCE D,
       MUSIC M
@@ -1643,7 +1870,7 @@ given below:
 
 - a) Using condition in `WHERE` clause
 
-```sql
+```sql exec
 SELECT *
 FROM UNIFORM U,
     COST C
@@ -1670,7 +1897,7 @@ clauses to indicate its scope.
 
 - b) Explicit use of `JOIN` clause
 
-```sql
+```sql exec
 SELECT *
 FROM UNIFORM U
     JOIN COST C ON U.Ucode = C.Ucode;
@@ -1690,13 +1917,12 @@ attribute. This operator can be used notes to join the contents of two tables
 iff there is one common attribute in both the tables. The above SQL query using
 `NATURAL JOIN` is shown below:
 
-<Card>
-```sql
+```sql exec
 SELECT *
 FROM UNIFORM
     NATURAL JOIN COST;
 ```
-```ansi
+```output
 +-------+-------+--------+------+-------+ 
 | UCode | UName | UColor | Size | Price | 
 +-------+-------+--------+------+-------+ 
@@ -1707,7 +1933,6 @@ FROM UNIFORM
 +-------+-------+--------+------+-------+ 
 4 rows in set (0.17 sec)
 ```
-</Card>
 
 It is clear from the output that the result of this query is same as that of
 queries written in (a) and (b), except that the attribute Ucode appears only
