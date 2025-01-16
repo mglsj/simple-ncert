@@ -46,7 +46,7 @@ main {
 	}
 }
 
-@media (max-width: 800px) {
+@media (max-width: 640px) {
 	.img-half-width {
 		img {
 			width: 100%;

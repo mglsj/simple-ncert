@@ -1,19 +1,19 @@
 ---
-import ShowcaseImageCard, {
-	type ShowcaseImageCardProps,
-} from "@/components/partials/ShowcaseImageCard.astro";
+import ImageCard, {
+	type ImageCardProps,
+} from "@/components/partials/ImageCard.astro";
 
-export type ShowcaseImageProps = Props;
+export type eImageProps = Props;
 
 interface Props {
-	entries: ShowcaseImageCardProps[];
+	entries: ImageCardProps[];
 }
 
 const { entries } = Astro.props;
 ---
 
 <div>
-	{entries.map((entry) => <ShowcaseImageCard {...entry} />)}
+	{entries.map((entry) => <ImageCard {...entry} />)}
 </div>
 
 <style>

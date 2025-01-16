@@ -2,9 +2,9 @@
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 
-import ShowcaseMediaCard from "./ShowcaseMediaCard.astro";
+import MediaCard from "./MediaCard.astro";
 
-export type ShowcaseImageCardProps = Props;
+export type ImageCardProps = Props;
 
 interface Props {
 	description?: string;
@@ -20,11 +20,11 @@ const imageImport = await thumbnail;
 const src = imageImport.default;
 ---
 
-<ShowcaseMediaCard
+<MediaCard
 	{href}
 	{title}
 	{description}
 	class={invertable ? "img-invertable" : ""}
 >
 	<Image {src} alt="" width="400" />
-</ShowcaseMediaCard>
+</MediaCard>

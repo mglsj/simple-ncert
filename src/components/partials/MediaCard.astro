@@ -12,25 +12,19 @@ const Element = href ? "a" : "div";
 ---
 
 <div class:list={["not-content sl-flex", className]}>
-	<Element {href} class="starlight-showcases-media-card">
-		<div class="starlight-showcases-media-asset">
+	<Element {href} class="media-card">
+		<div class="media-asset">
 			<slot />
 		</div>
-		<div class="starlight-showcases-media-infos sl-flex">
-			<p class="starlight-showcases-media-title">{title}</p>
-			{
-				description && (
-					<p class="starlight-showcases-media-description">
-						{description}
-					</p>
-				)
-			}
+		<div class="media-infos sl-flex">
+			<p class="media-title">{title}</p>
+			{description && <p class="media-description">{description}</p>}
 		</div>
 	</Element>
 </div>
 
 <style>
-	.starlight-showcases-media-card {
+	.media-card {
 		border: 1px solid var(--sl-color-gray-5);
 		border-radius: 0.5rem;
 		box-shadow: var(--sl-shadow-sm);
@@ -39,12 +33,12 @@ const Element = href ? "a" : "div";
 		width: 100%;
 	}
 
-	a.starlight-showcases-media-card:hover {
+	a.media-card:hover {
 		background-color: var(--sl-color-gray-7, var(--sl-color-gray-6));
 		border-color: var(--sl-color-gray-2);
 	}
 
-	.starlight-showcases-media-asset :global(img) {
+	.media-asset :global(img) {
 		aspect-ratio: 1/1;
 		height: 200px;
 		max-height: 200px;
@@ -53,21 +47,21 @@ const Element = href ? "a" : "div";
 		object-fit: contain;
 	}
 
-	.starlight-showcases-media-infos {
+	.media-infos {
 		border-top: 1px solid var(--sl-color-gray-5);
 		flex-direction: column;
 		gap: 0.5rem;
 		padding: 0.75rem 1rem;
 	}
 
-	.starlight-showcases-media-title {
+	.media-title {
 		color: var(--sl-color-white);
 		font-size: var(--sl-text-base);
 		font-weight: 600;
 		line-height: var(--sl-line-height-headings);
 	}
 
-	.starlight-showcases-media-description {
+	.media-description {
 		color: var(--sl-color-gray-3);
 		line-height: 1.5;
 	}

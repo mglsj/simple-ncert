@@ -8,13 +8,13 @@ const { author, href } = Astro.props;
 ---
 
 <div class="not-content sl-flex">
-	<div class="starlight-showcases-quote-card">
+	<div class="quote-card">
 		<blockquote cite={href}>
 			<em>
 				<slot />
 			</em>
 		</blockquote>
-		<div class="starlight-showcases-quote-infos">
+		<div class="quote-infos">
 			{
 				href ? (
 					<a {href} target="_blank">
@@ -29,7 +29,7 @@ const { author, href } = Astro.props;
 </div>
 
 <style>
-	.starlight-showcases-quote-card {
+	.quote-card {
 		border: 1px solid var(--sl-color-gray-5);
 		border-radius: 0.5rem;
 		box-shadow: var(--sl-shadow-sm);
@@ -41,7 +41,7 @@ const { author, href } = Astro.props;
 		padding: 1rem;
 	}
 
-	.starlight-showcases-quote-infos {
+	.quote-infos {
 		border-top: 1px solid var(--sl-color-gray-5);
 		color: var(--sl-color-gray-3);
 		font-weight: 600;
@@ -49,7 +49,7 @@ const { author, href } = Astro.props;
 		padding: 1rem;
 	}
 
-	.starlight-showcases-quote-infos a {
+	.quote-infos a {
 		color: var(--sl-color-gray-3);
 	}
 </style>

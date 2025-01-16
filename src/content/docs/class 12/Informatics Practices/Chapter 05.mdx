@@ -13,6 +13,8 @@ import {
   Think
 } from "@/components/markdown";
 
+import ShowcaseImage from "@/components/ShowcaseImge.astro"
+
 <Quote author="Noam Chomsky">
 "The internet could be a very positive step towards education, organisation and
 participation in a meaningful society."
@@ -822,33 +824,34 @@ another.
   id="5.19" 
   title="Figure 5.19: Some commonly used browsers"
 >
-<center>
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
-![Google Chrome](./res/fig_5.19_google_chrome.svg)
-
-![Apple Safari](./res/fig_5.19_apple_safari.svg)
-
-![Microsoft Edge](./res/fig_5.19_microsoft_edge.svg)
-
-Google Chrome
-
-Apple Safari
-
-Microsoft Edge
-
-![Mozilla Firefox](./res/fig_5.19_mozilla_firefox.svg)
-
-![Samsung Internet](./res/fig_5.19_samsung_internet.svg)
-
-![Opera](./res/fig_5.19_opera.svg)
-
-Mozilla Firefox
-
-Samsung Internet
-
-Opera
-</div>
-</center>
+<ShowcaseImage
+  entries={[
+    {
+      thumbnail: import('./res/fig_5.19_google_chrome.svg'),
+      title: 'Google Chrome',
+    },
+    {
+      thumbnail: import('./res/fig_5.19_apple_safari.svg'),
+      title: 'Apple Safari',
+    },
+    {
+      thumbnail: import('./res/fig_5.19_microsoft_edge.svg'),
+      title: 'Microsoft Edge',
+    },
+    {
+      thumbnail: import('./res/fig_5.19_mozilla_firefox.svg'),
+      title: 'Mozilla Firefox',
+    },
+    {
+      thumbnail: import('./res/fig_5.19_samsung_internet.svg'),
+      title: 'Samsung Internet',
+    },
+    {
+      thumbnail: import('./res/fig_5.19_opera.svg'),
+      title: 'Opera',
+    },
+  ]}
+/>
 </Figure>
 
 :::tip

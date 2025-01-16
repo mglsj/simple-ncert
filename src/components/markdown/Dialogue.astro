@@ -1,0 +1,49 @@
+---
+interface Props {
+	speaker: string;
+	align?: "left" | "right";
+}
+
+const { speaker, align = "left" } = Astro.props;
+---
+
+<div class="sl-flex">
+	<div class="dialogue-card">
+		<div
+			class:list={[
+				"dialogue-speaker",
+				align === "right" ? "text-right" : null,
+			]}
+		>
+			{speaker}
+		</div>
+		<div class="dialogue-content">
+			<slot />
+		</div>
+	</div>
+</div>
+
+<style>
+	.dialogue-card {
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.5rem;
+		box-shadow: var(--sl-shadow-sm);
+		width: 100%;
+	}
+
+	.dialogue-content {
+		padding: 1rem;
+	}
+
+	.dialogue-speaker {
+		border-bottom: 1px solid var(--sl-color-gray-5);
+		color: var(--sl-color-gray-3);
+		font-weight: 600;
+		line-height: 1.5;
+		padding: 1rem;
+
+		&.text-right {
+			text-align: right;
+		}
+	}
+</style>
