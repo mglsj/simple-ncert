@@ -1,13 +1,16 @@
 ---
-import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/PageTitle.astro";
 import SourceButton from "@/components/SourceButton.astro";
 ---
 
-<Default {...Astro.props} />
+<Default />
 
 {
-	!Astro.props.entry.data.hero && Astro.props.entry.data.source && (
-		<SourceButton source={Astro.props.entry.data.source} />
-	)
+	Astro.locals.starlightRoute.entry &&
+		!Astro.locals.starlightRoute.entry.data.hero &&
+		Astro.locals.starlightRoute.entry.data.source && (
+			<SourceButton
+				source={Astro.locals.starlightRoute.entry.data.source}
+			/>
+		)
 }

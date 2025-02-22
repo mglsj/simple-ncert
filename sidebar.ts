@@ -47,6 +47,11 @@ const sidebarData: StarlightSidebarTopicsDropdownUserConfig = [
 				autogenerate: { directory: "class 12/Mathematics" },
 				collapsed: true,
 			},
+			{
+				label: "Physics",
+				autogenerate: { directory: "class 12/Physics" },
+				collapsed: true,
+			},
 		],
 	},
 ];
