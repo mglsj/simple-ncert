@@ -11,10 +11,10 @@ interface Props {
 	href: string;
 	thumbnail: Promise<{ default: ImageMetadata }>;
 	title: string;
-	invertable?: boolean;
+	invertible?: boolean;
 }
 
-const { description, href, thumbnail, title, invertable = false } = Astro.props;
+const { description, href, thumbnail, title, invertible = false } = Astro.props;
 
 const imageImport = await thumbnail;
 const src = imageImport.default;
@@ -24,7 +24,7 @@ const src = imageImport.default;
 	{href}
 	{title}
 	{description}
-	class={invertable ? "img-invertable" : ""}
+	class={invertible ? "img-invertible" : ""}
 >
 	<Image {src} alt="" width="400" />
 </MediaCard>

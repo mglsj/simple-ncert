@@ -6,7 +6,7 @@ import FigureImage, { type ImageEntry } from "../partials/FigureImage.astro";
 interface Props {
 	id?: string;
 	title: string;
-	invertable?: boolean;
+	invertible?: boolean;
 	reverseInvert?: boolean;
 	halfWidth?: boolean;
 	center?: boolean;
@@ -22,7 +22,7 @@ type ImageSrcEntry = {
 const {
 	id = generateRandomId(),
 	title,
-	invertable = false,
+	invertible = false,
 	reverseInvert = false,
 	halfWidth = false,
 	center = false,
@@ -41,8 +41,8 @@ const images: ImageEntry[] = await Promise.all(
 <figure
 	id={`figure-${id}`}
 	class:list={[
-		invertable && !reverseInvert && "img-invertable",
-		invertable && reverseInvert && "img-reverse-invertable",
+		invertible && !reverseInvert && "img-invertible",
+		invertible && reverseInvert && "img-reverse-invertible",
 		halfWidth ? "img-half-width" : "img-full-width",
 	]}
 >

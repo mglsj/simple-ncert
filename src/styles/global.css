@@ -17,7 +17,7 @@ main {
 }
 
 :root[data-theme="dark"] {
-	.img-invertable {
+	.img-invertible {
 		img {
 			filter: invert(1);
 			-webkit-filter: invert(1);
@@ -29,7 +29,7 @@ main {
 }
 
 :root[data-theme="light"] {
-	.img-reverse-invertable {
+	.img-reverse-invertible {
 		img {
 			filter: invert(1);
 			-webkit-filter: invert(1);
