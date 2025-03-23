@@ -11,6 +11,8 @@ import rehypeStarlightMermaid from "./src/plugins/rephype-starlight-mermaid.ts";
 import rehypeExecutablePython from "./src/plugins/rephype-executable-python.ts";
 import rehypeExecutableSql from "./src/plugins/rephype-executable-sql.ts";
 
+import "katex/contrib/mhchem";
+
 // https://astro.build/config
 export default defineConfig({
 	markdown: {
@@ -44,6 +46,7 @@ export default defineConfig({
 				"@fontsource-variable/noto-sans",
 				"@fontsource-variable/noto-serif",
 				"@/styles/global.css",
+				"@/styles/katex.css",
 				"@/plugins/styles.css",
 			],
 			components: {

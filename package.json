@@ -20,6 +20,7 @@
 		"hast-util-to-dom": "^4.0.1",
 		"hast-util-to-text": "^4.0.2",
 		"hastscript": "^9.0.1",
+		"katex": "^0.16.21",
 		"mermaid-isomorphic": "^3.0.1",
 		"mini-svg-data-uri": "^1.4.4",
 		"pyodide": "^0.27.4",

@@ -17,7 +17,12 @@ const { speaker, align = "left" } = Astro.props;
 		>
 			{speaker}
 		</div>
-		<div class="dialogue-content">
+		<div
+			class:list={[
+				"dialogue-content",
+				align === "right" ? "text-right" : null,
+			]}
+		>
 			<slot />
 		</div>
 	</div>
@@ -33,6 +38,10 @@ const { speaker, align = "left" } = Astro.props;
 
 	.dialogue-content {
 		padding: 1rem;
+
+		&.text-right {
+			text-align: right;
+		}
 	}
 
 	.dialogue-speaker {

@@ -59,8 +59,3 @@ main {
 		width: 100%;
 	}
 }
-
-/* https://github.com/withastro/starlight/issues/2511 */
-.katex-html svg {
-	height: inherit;
-}

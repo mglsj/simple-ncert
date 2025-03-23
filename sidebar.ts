@@ -3,6 +3,21 @@ import type { StarlightSidebarTopicsDropdownUserConfig } from "starlight-sidebar
 const sidebarData: StarlightSidebarTopicsDropdownUserConfig = [
 	{
 		label: {
+			en: "Class 10",
+			hi: "कक्षा 11",
+		},
+		link: "/class-10/",
+		icon: "open-book",
+		items: [
+			{
+				label: "Science",
+				autogenerate: { directory: "class 10/Science" },
+				collapsed: true,
+			},
+		],
+	},
+	{
+		label: {
 			en: "Class 11",
 			hi: "कक्षा 11",
 		},

@@ -4,5 +4,6 @@
     },
     "workspaceKeybindings.markdownMathSyntax.enabled": true,
     "svg.preview.background": "editor", // setting can be anything you want
-    "jupyter.defaultCellOutputMimeType": "text/plain"
+    "jupyter.defaultCellOutputMimeType": "text/plain",
+    "markdown.validate.enabled": true
 }
